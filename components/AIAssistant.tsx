@@ -78,12 +78,11 @@ export const AIAssistant: React.FC = () => {
   // Initialize Chat Session
   const initChat = async () => {
     try {
-        // Use process.env.API_KEY directly as per guidelines. 
-        // The build tool (Vite) replaces this string with the actual key.
-        const apiKey = process.env.API_KEY;
+        // Updated to use GEMINI_API_KEY
+        const apiKey = process.env.GEMINI_API_KEY;
         
         if (!apiKey) {
-            console.warn("API Key is missing in init.");
+            console.warn("GEMINI_API_KEY is missing in init.");
             return;
         }
 
@@ -119,8 +118,7 @@ export const AIAssistant: React.FC = () => {
         
         // Final check to see if initialization worked
         if (!chatSessionRef.current) {
-             // If process.env.API_KEY was undefined, initChat would have failed silently or logged.
-             throw new Error("AI Client not initialized. API Key might be missing.");
+             throw new Error("AI Client not initialized. GEMINI_API_KEY might be missing.");
         }
 
         let response = await chatSessionRef.current.sendMessage({ message: userMsg.text });
@@ -166,13 +164,13 @@ export const AIAssistant: React.FC = () => {
         let errorMessage = "I'm having trouble connecting right now.";
         
         if (error.message.includes("403") || error.message.includes("401") || error.message.includes("API key not valid")) {
-             errorMessage = "API Error: Access denied. Please check your API Key configuration in Vercel.";
+             errorMessage = "API Error: Access denied. Please check your 'GEMINI_API_KEY' configuration in Vercel.";
         } else if (error.message.includes("404") || error.message.includes("not found")) {
              errorMessage = "API Error: Model not found. The AI service is temporarily unavailable.";
         } else if (error.message.includes("429")) {
              errorMessage = "Traffic Limit: Too many requests. Please try again later.";
-        } else if (error.message.includes("API Key might be missing") || error.message.includes("API key is required")) {
-             errorMessage = "System Error: API Key is missing. Please ensure 'API_KEY' is set in your Vercel Environment Variables and you have redeployed.";
+        } else if (error.message.includes("GEMINI_API_KEY might be missing")) {
+             errorMessage = "System Error: API Key is missing. Please ensure 'GEMINI_API_KEY' is set in your Vercel Environment Variables and you have redeployed.";
         } else if (error.message.includes("fetch failed")) {
              errorMessage = "Network Error: Could not connect to Gemini API. Check your internet.";
         } else {
