@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView, animate } from 'framer-motion';
-import { ArrowRight, Download, Linkedin, Github, Globe, ChevronDown, Terminal, Cpu, Database, Server, Code2, BrainCircuit } from 'lucide-react';
+import { ArrowRight, Download, Linkedin, Github, Globe, ChevronDown, Terminal, Cpu, Database, Server, Code2, BrainCircuit, Instagram, Facebook, MessageCircle, Send, Activity, Layers, Zap, GitBranch } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
 
 const ROLES = [
@@ -185,10 +185,14 @@ export const Hero: React.FC = () => {
               </div>
 
               {/* Socials */}
-              <div className="pt-6 flex gap-6">
+              <div className="pt-6 flex gap-6 flex-wrap">
                 {[
                     { icon: Linkedin, href: "#" },
                     { icon: Github, href: "#" },
+                    { icon: Instagram, href: "#" },
+                    { icon: Facebook, href: "#" },
+                    { icon: MessageCircle, href: "#" },
+                    { icon: Send, href: "#" },
                     { icon: Globe, href: "#" }
                 ].map((social, idx) => (
                     <a 
@@ -212,7 +216,7 @@ export const Hero: React.FC = () => {
            className="hidden lg:flex items-center justify-center relative perspective-1000 h-full min-h-[500px]"
         >
             {/* Orbiting Elements */}
-            <div className="relative w-[500px] h-[500px]">
+            <div className="relative w-[550px] h-[550px]">
                 {/* Center Core */}
                 <motion.div 
                     animate={{ 
@@ -226,8 +230,9 @@ export const Hero: React.FC = () => {
                     }}
                     className="absolute inset-0 m-auto w-64 h-80 bg-gradient-to-tr from-dark/80 to-slate-900/80 backdrop-blur-md border border-white/10 rounded-2xl flex flex-col items-center justify-center shadow-2xl z-20"
                 >
-                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-6 shadow-lg shadow-primary/30">
-                        <Terminal className="w-10 h-10 text-white" />
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-6 shadow-lg shadow-primary/30 relative overflow-hidden group">
+                        <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                        <Terminal className="w-10 h-10 text-white relative z-10" />
                     </div>
                     <div className="text-center">
                         <div className="text-xs font-mono text-primary mb-1">System Architecture</div>
@@ -235,15 +240,15 @@ export const Hero: React.FC = () => {
                     </div>
                     
                     {/* Decor lines */}
-                    <div className="absolute -right-4 top-10 w-8 h-8 rounded-full bg-surface border border-white/10 flex items-center justify-center z-30 shadow-xl">
+                    <div className="absolute -right-4 top-10 w-8 h-8 rounded-full bg-surface border border-white/10 flex items-center justify-center z-30 shadow-xl animate-bounce">
                         <Code2 className="w-4 h-4 text-emerald-400" />
                     </div>
-                    <div className="absolute -left-4 bottom-20 w-8 h-8 rounded-full bg-surface border border-white/10 flex items-center justify-center z-30 shadow-xl">
+                    <div className="absolute -left-4 bottom-20 w-8 h-8 rounded-full bg-surface border border-white/10 flex items-center justify-center z-30 shadow-xl animate-bounce delay-150">
                         <Database className="w-4 h-4 text-blue-400" />
                     </div>
                 </motion.div>
 
-                {/* Floating Card Back Left */}
+                {/* Floating Card Back Left (AI Models) */}
                 <motion.div 
                     animate={{ 
                         y: [0, 30, 0],
@@ -255,7 +260,7 @@ export const Hero: React.FC = () => {
                         ease: "easeInOut",
                         delay: 1
                     }}
-                    className="absolute top-10 left-0 w-48 h-56 bg-dark/40 backdrop-blur-sm border border-white/5 rounded-xl z-10 flex flex-col items-center justify-center p-4"
+                    className="absolute top-10 left-0 w-48 h-56 bg-dark/40 backdrop-blur-sm border border-white/5 rounded-xl z-10 flex flex-col items-center justify-center p-4 hover:border-purple-500/30 transition-colors"
                 >
                     <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mb-3">
                         <BrainCircuit className="w-6 h-6 text-purple-400" />
@@ -264,7 +269,7 @@ export const Hero: React.FC = () => {
                     <div className="text-xs text-slate-500 text-center">Predictive analytics & automation logic</div>
                 </motion.div>
 
-                 {/* Floating Card Bottom Right */}
+                 {/* Floating Card Bottom Right (Infrastructure) */}
                  <motion.div 
                     animate={{ 
                         y: [0, -25, 0],
@@ -276,7 +281,7 @@ export const Hero: React.FC = () => {
                         ease: "easeInOut",
                         delay: 2
                     }}
-                    className="absolute bottom-20 right-0 w-48 h-56 bg-dark/40 backdrop-blur-sm border border-white/5 rounded-xl z-30 flex flex-col items-center justify-center p-4 shadow-xl"
+                    className="absolute bottom-20 right-0 w-48 h-56 bg-dark/40 backdrop-blur-sm border border-white/5 rounded-xl z-30 flex flex-col items-center justify-center p-4 shadow-xl hover:border-emerald-500/30 transition-colors"
                 >
                     <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center mb-3">
                         <Server className="w-6 h-6 text-emerald-400" />
@@ -284,10 +289,60 @@ export const Hero: React.FC = () => {
                     <div className="font-bold text-white mb-1">Infrastructure</div>
                     <div className="text-xs text-slate-500 text-center">Scalable cloud solutions & DevOps</div>
                 </motion.div>
+
+                {/* NEW ELEMENT: Floating Code Snippet (Top Right) */}
+                <motion.div
+                    animate={{ y: [0, -15, 0], x: [0, 10, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                    className="absolute -top-6 right-8 w-44 p-3 bg-dark/90 backdrop-blur-md border border-white/10 rounded-xl z-20 shadow-2xl"
+                >
+                    <div className="flex gap-1.5 mb-2">
+                        <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                        <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+                        <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                    </div>
+                    <div className="space-y-1.5">
+                        <div className="h-1.5 w-3/4 bg-slate-700/50 rounded-full"></div>
+                        <div className="h-1.5 w-1/2 bg-slate-700/50 rounded-full"></div>
+                        <div className="h-1.5 w-full bg-slate-700/50 rounded-full"></div>
+                    </div>
+                    <div className="mt-3 flex items-center gap-2 border-t border-white/5 pt-2">
+                        <GitBranch className="w-3 h-3 text-primary" />
+                        <div className="text-[9px] font-mono text-slate-400">
+                             feat: ai-integration
+                        </div>
+                    </div>
+                </motion.div>
+
+                {/* NEW ELEMENT: Activity Badge (Left Center/Bottom) */}
+                <motion.div
+                    animate={{ x: [0, -10, 0], opacity: [0.8, 1, 0.8] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                    className="absolute bottom-32 -left-12 bg-surface/80 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full z-20 flex items-center gap-2 shadow-xl hover:border-primary/50 transition-colors"
+                >
+                    <div className="relative">
+                        <Activity className="w-4 h-4 text-primary" />
+                        <span className="absolute top-0 right-0 w-1.5 h-1.5 bg-primary rounded-full animate-ping"></span>
+                    </div>
+                    <div className="flex flex-col">
+                         <span className="text-[9px] text-slate-500 leading-none uppercase tracking-wide">Status</span>
+                         <span className="text-xs font-bold text-white leading-none">System Optimal</span>
+                    </div>
+                </motion.div>
+
+                {/* NEW ELEMENT: Tech Stack Node (Right Center) */}
+                <motion.div
+                   animate={{ y: [0, 20, 0], rotate: [0, 10, 0] }}
+                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
+                   className="absolute top-1/2 -right-12 w-16 h-16 bg-gradient-to-br from-indigo-500/10 to-blue-500/10 backdrop-blur-md border border-white/10 rounded-2xl flex items-center justify-center z-10 shadow-lg"
+                >
+                    <Layers className="w-6 h-6 text-indigo-400" />
+                </motion.div>
                 
                 {/* Connecting Lines (SVG) */}
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20 z-0">
                     <circle cx="50%" cy="50%" r="150" fill="none" stroke="url(#gradient)" strokeWidth="1" strokeDasharray="4 4" className="animate-spin-slow" />
+                    <circle cx="50%" cy="50%" r="220" fill="none" stroke="white" strokeWidth="0.5" strokeOpacity="0.1" strokeDasharray="10 10" className="animate-spin-reverse-slow" />
                     <defs>
                         <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                             <stop offset="0%" stopColor="#0ea5e9" />
