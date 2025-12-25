@@ -110,21 +110,27 @@ export const AIAssistant: React.FC = () => {
     setIsTyping(true);
 
     try {
+        if (!process.env.API_KEY) {
+             throw new Error("API Key is missing. Please add API_KEY to your .env file.");
+        }
+
         if (!chatSessionRef.current) await initChat();
         if (!chatSessionRef.current) throw new Error("AI not initialized");
 
         let response = await chatSessionRef.current.sendMessage({ message: userMsg.text });
         
-        // Handle Function Calls (Navigation)
-        const functionCalls = response.candidates?.[0]?.content?.parts?.filter((part: any) => part.functionCall);
+        // Handle Function Calls
+        const functionCalls = response.functionCalls || response.candidates?.[0]?.content?.parts?.filter((p: any) => p.functionCall).map((p: any) => p.functionCall);
         
         if (functionCalls && functionCalls.length > 0) {
             const toolResponses = [];
             
-            for (const part of functionCalls) {
-                const call = part.functionCall;
+            for (const call of functionCalls) {
                 if (call.name === 'navigate') {
-                    const sectionId = call.args.sectionId;
+                    // Extract args (support both direct property access and args object)
+                    const args = call.args || {};
+                    const sectionId = args.sectionId;
+                    
                     const element = document.getElementById(sectionId);
                     let result = "Section not found";
                     if (element) {
@@ -134,6 +140,7 @@ export const AIAssistant: React.FC = () => {
                     toolResponses.push({
                         functionResponse: {
                             name: 'navigate',
+                            id: call.id, // Include ID for correlation
                             response: { result: result }
                         }
                     });
@@ -142,17 +149,27 @@ export const AIAssistant: React.FC = () => {
 
             // Send tool output back to model
             if (toolResponses.length > 0) {
-                 response = await chatSessionRef.current.sendMessage(toolResponses);
+                 response = await chatSessionRef.current.sendMessage({ message: toolResponses });
             }
         }
 
-        const modelText = response.text || "I navigated to the section for you.";
+        const modelText = response.text || "I've processed that request.";
         
         setMessages(prev => [...prev, { id: (Date.now() + 1).toString(), role: 'model', text: modelText }]);
 
-    } catch (error) {
+    } catch (error: any) {
         console.error("Chat Error:", error);
-        setMessages(prev => [...prev, { id: Date.now().toString(), role: 'model', text: "I'm having trouble connecting right now. Please try again later." }]);
+        let errorMessage = "I'm having trouble connecting right now. Please try again later.";
+        
+        if (error.message.includes("API Key is missing")) {
+            errorMessage = "System Error: API_KEY is missing in configuration.";
+        } else if (error.message.includes("403") || error.message.includes("401")) {
+             errorMessage = "API Error: Access denied. Please check your API Key.";
+        } else if (error.message.includes("429")) {
+             errorMessage = "I'm receiving too many requests. Please try again in a moment.";
+        }
+
+        setMessages(prev => [...prev, { id: Date.now().toString(), role: 'model', text: errorMessage }]);
     } finally {
         setIsTyping(false);
     }
