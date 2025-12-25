@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Linkedin, Twitter, Heart, Code2, Shield, Globe } from 'lucide-react';
+import { Github, Linkedin, Twitter, Heart, Code2, Shield, Globe, Instagram, Facebook, MessageCircle, Send } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
 
 export const Footer: React.FC = () => {
@@ -20,10 +20,14 @@ export const Footer: React.FC = () => {
             <p className="text-slate-500 leading-relaxed">
               Engineering scalable digital experiences and intelligent systems for the enterprise.
             </p>
-            <div className="flex gap-4 pt-2">
+            <div className="flex gap-4 pt-2 flex-wrap">
               <a href="#" className="text-slate-500 hover:text-white transition-colors"><Github className="w-5 h-5" /></a>
               <a href="#" className="text-slate-500 hover:text-white transition-colors"><Linkedin className="w-5 h-5" /></a>
               <a href="#" className="text-slate-500 hover:text-white transition-colors"><Twitter className="w-5 h-5" /></a>
+              <a href="#" className="text-slate-500 hover:text-white transition-colors"><Instagram className="w-5 h-5" /></a>
+              <a href="#" className="text-slate-500 hover:text-white transition-colors"><Facebook className="w-5 h-5" /></a>
+              <a href="#" className="text-slate-500 hover:text-white transition-colors"><MessageCircle className="w-5 h-5" /></a>
+              <a href="#" className="text-slate-500 hover:text-white transition-colors"><Send className="w-5 h-5" /></a>
             </div>
           </div>
 

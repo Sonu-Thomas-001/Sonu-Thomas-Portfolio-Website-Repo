@@ -12,6 +12,13 @@ const navLinks = [
   { name: 'AI Journey', href: '#ai-journey' },
 ];
 
+const ROLES = [
+  "Software Engineer",
+  "AI & Data Science Enthusiast",
+  "Web Developer",
+  "Production Change Manager"
+];
+
 export const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -112,9 +119,21 @@ export const NavBar: React.FC = () => {
                 <span className="text-white font-bold text-lg leading-none tracking-tight group-hover:text-primary transition-colors">
                   Sonu Thomas
                 </span>
-                <span className="text-[10px] text-slate-500 font-medium tracking-widest uppercase opacity-0 group-hover:opacity-100 -translate-y-1 group-hover:translate-y-0 transition-all duration-300">
-                  Portfolio
-                </span>
+                <div className="h-4 overflow-hidden w-[180px] relative flex items-center mask-linear-gradient">
+                  <motion.div
+                     className="flex whitespace-nowrap text-[10px] text-slate-500 font-medium tracking-widest uppercase gap-4"
+                     animate={{ x: "-50%" }}
+                     transition={{
+                       duration: 20,
+                       repeat: Infinity,
+                       ease: "linear",
+                     }}
+                  >
+                     {/* Duplicate content for seamless scrolling */}
+                     <span>{ROLES.join(" • ")} • </span>
+                     <span>{ROLES.join(" • ")} • </span>
+                  </motion.div>
+                </div>
               </div>
             </div>
 
