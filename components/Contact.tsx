@@ -141,7 +141,7 @@ export const Contact: React.FC = () => {
                     required
                     value={formState.name}
                     onChange={handleChange}
-                    className="w-full bg-dark/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-slate-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all duration-300" 
+                    className="w-full bg-white dark:bg-dark/50 border border-slate-200 dark:border-white/10 rounded-xl px-5 py-4 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all duration-300" 
                     placeholder="John Doe" 
                   />
                 </div>
@@ -155,7 +155,7 @@ export const Contact: React.FC = () => {
                     required
                     value={formState.email}
                     onChange={handleChange}
-                    className="w-full bg-dark/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-slate-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all duration-300" 
+                    className="w-full bg-white dark:bg-dark/50 border border-slate-200 dark:border-white/10 rounded-xl px-5 py-4 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all duration-300" 
                     placeholder="john@example.com" 
                   />
                 </div>
@@ -169,7 +169,7 @@ export const Contact: React.FC = () => {
                     rows={4}
                     value={formState.message}
                     onChange={handleChange}
-                    className="w-full bg-dark/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-slate-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all duration-300 resize-none" 
+                    className="w-full bg-white dark:bg-dark/50 border border-slate-200 dark:border-white/10 rounded-xl px-5 py-4 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all duration-300 resize-none" 
                     placeholder="Hi, I'd like to discuss a project..."
                   ></textarea>
                 </div>

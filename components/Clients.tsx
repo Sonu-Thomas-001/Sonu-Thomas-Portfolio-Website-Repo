@@ -50,15 +50,15 @@ export const Clients: React.FC = () => {
               className="group flex flex-col items-center gap-3 cursor-default"
             >
               {/* Icon Container - acts as logo */}
-              <div className="p-4 rounded-2xl bg-white/5 border border-white/5 text-slate-400 group-hover:text-white group-hover:border-white/10 group-hover:bg-white/10 transition-all duration-300">
+              <div className="p-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5 text-slate-400 group-hover:text-primary dark:group-hover:text-white group-hover:border-primary/20 dark:group-hover:border-white/10 group-hover:shadow-lg transition-all duration-300">
                 <brand.icon className="w-8 h-8" strokeWidth={1.5} />
               </div>
               
               <div className="text-center">
-                <h3 className="text-lg font-bold text-slate-400 group-hover:text-white transition-colors duration-300">
+                <h3 className="text-lg font-bold text-slate-500 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white transition-colors duration-300">
                   {brand.name}
                 </h3>
-                <span className="text-[10px] uppercase tracking-wider text-slate-600 group-hover:text-primary transition-colors duration-300 font-medium">
+                <span className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-600 group-hover:text-primary transition-colors duration-300 font-medium">
                   {brand.label}
                 </span>
               </div>

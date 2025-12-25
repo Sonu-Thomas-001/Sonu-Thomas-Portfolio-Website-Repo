@@ -266,7 +266,7 @@ export const Hero: React.FC = () => {
                         <BrainCircuit className="w-6 h-6 text-purple-400" />
                     </div>
                     <div className="font-bold text-cleanWhite mb-1">AI Models</div>
-                    <div className="text-xs text-slate-300 text-center">Predictive analytics & automation logic</div>
+                    <div className="text-xs text-gray-300 text-center">Predictive analytics & automation logic</div>
                 </motion.div>
 
                  {/* Floating Card Bottom Right (Infrastructure) */}
@@ -287,7 +287,7 @@ export const Hero: React.FC = () => {
                         <Server className="w-6 h-6 text-emerald-400" />
                     </div>
                     <div className="font-bold text-cleanWhite mb-1">Infrastructure</div>
-                    <div className="text-xs text-slate-300 text-center">Scalable cloud solutions & DevOps</div>
+                    <div className="text-xs text-gray-300 text-center">Scalable cloud solutions & DevOps</div>
                 </motion.div>
 
                 {/* NEW ELEMENT: Floating Code Snippet (Top Right) - Forced Dark Mode */}
@@ -308,7 +308,7 @@ export const Hero: React.FC = () => {
                     </div>
                     <div className="mt-3 flex items-center gap-2 border-t border-white/5 pt-2">
                         <GitBranch className="w-3 h-3 text-primary" />
-                        <div className="text-[9px] font-mono text-slate-400">
+                        <div className="text-[9px] font-mono text-gray-400">
                              feat: ai-integration
                         </div>
                     </div>
