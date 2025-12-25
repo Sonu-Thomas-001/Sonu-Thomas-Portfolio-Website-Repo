@@ -81,7 +81,7 @@ export const Projects: React.FC = () => {
                 className="group relative bg-surface border border-white/10 rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <div className="absolute inset-0 bg-dark/20 group-hover:bg-dark/0 transition-colors z-10"></div>
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors z-10"></div>
                   <img 
                     src={project.image} 
                     alt={project.title} 

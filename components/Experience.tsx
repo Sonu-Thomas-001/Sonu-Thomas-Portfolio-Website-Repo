@@ -74,7 +74,7 @@ export const Experience: React.FC = () => {
 
                   {/* Content Card */}
                   <div className={`pl-20 md:pl-0 md:w-1/2 ${isEven ? 'md:pr-12' : 'md:pl-12'}`}>
-                    <div className="group relative bg-surface/50 hover:bg-surface border border-white/5 hover:border-primary/30 rounded-2xl p-6 md:p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1">
+                    <div className="group relative bg-surface border border-white/10 hover:border-primary/30 rounded-2xl p-6 md:p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1">
                       {/* Date Badge */}
                       <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 text-primary text-xs font-semibold mb-4 border border-white/5">
                         <Calendar className="w-3.5 h-3.5" />

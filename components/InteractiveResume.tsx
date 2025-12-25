@@ -13,7 +13,7 @@ interface ResumeSectionProps {
 
 const ResumeSection: React.FC<ResumeSectionProps> = ({ title, icon: Icon, isOpen, onClick, children }) => {
   return (
-    <div className={`border rounded-xl transition-all duration-300 overflow-hidden mb-4 ${isOpen ? 'bg-surface/50 border-primary/20 shadow-lg shadow-primary/5' : 'bg-surface/30 border-white/5 hover:border-white/10'}`}>
+    <div className={`border rounded-xl transition-all duration-300 overflow-hidden mb-4 ${isOpen ? 'bg-surface border-primary/20 shadow-lg shadow-primary/5' : 'bg-surface border-white/10 hover:border-primary/20'}`}>
       <button
         onClick={onClick}
         className="w-full flex items-center justify-between p-6 hover:bg-white/5 transition-colors text-left"

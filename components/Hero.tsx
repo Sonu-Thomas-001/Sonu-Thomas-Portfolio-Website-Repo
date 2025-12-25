@@ -46,9 +46,9 @@ export const Hero: React.FC = () => {
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-dark pt-48 pb-24 lg:pt-40 lg:pb-24">
       {/* Dynamic Background Mesh */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-primary/20 rounded-full mix-blend-screen filter blur-[120px] animate-blob"></div>
-        <div className="absolute top-[20%] right-[-20%] w-[60vw] h-[60vw] bg-secondary/10 rounded-full mix-blend-screen filter blur-[120px] animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-[-20%] left-[20%] w-[40vw] h-[40vw] bg-purple-500/10 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000"></div>
+        <div className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-primary/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[120px] animate-blob"></div>
+        <div className="absolute top-[20%] right-[-20%] w-[60vw] h-[60vw] bg-secondary/10 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[120px] animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-[-20%] left-[20%] w-[40vw] h-[40vw] bg-purple-500/10 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000"></div>
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
       </div>
 
@@ -87,7 +87,7 @@ export const Hero: React.FC = () => {
                 <div className="flex items-center gap-6">
                   <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-none">
                     Sonu <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-500">Thomas</span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">Thomas</span>
                   </h1>
                   
                   {/* Dummy Profile Photo */}
@@ -217,7 +217,7 @@ export const Hero: React.FC = () => {
         >
             {/* Orbiting Elements */}
             <div className="relative w-[550px] h-[550px]">
-                {/* Center Core */}
+                {/* Center Core - Forced Dark Mode for Tech Aesthetic */}
                 <motion.div 
                     animate={{ 
                         y: [0, -20, 0],
@@ -228,7 +228,7 @@ export const Hero: React.FC = () => {
                         repeat: Infinity,
                         ease: "easeInOut" 
                     }}
-                    className="absolute inset-0 m-auto w-64 h-80 bg-gradient-to-tr from-dark/80 to-slate-900/80 backdrop-blur-md border border-white/10 rounded-2xl flex flex-col items-center justify-center shadow-2xl z-20"
+                    className="absolute inset-0 m-auto w-64 h-80 bg-slate-900/90 backdrop-blur-md border border-white/10 rounded-2xl flex flex-col items-center justify-center shadow-2xl z-20"
                 >
                     <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-6 shadow-lg shadow-primary/30 relative overflow-hidden group">
                         <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
@@ -236,14 +236,14 @@ export const Hero: React.FC = () => {
                     </div>
                     <div className="text-center">
                         <div className="text-xs font-mono text-primary mb-1">System Architecture</div>
-                        <div className="text-xl font-bold text-white">Full Stack</div>
+                        <div className="text-xl font-bold text-cleanWhite">Full Stack</div>
                     </div>
                     
                     {/* Decor lines */}
-                    <div className="absolute -right-4 top-10 w-8 h-8 rounded-full bg-surface border border-white/10 flex items-center justify-center z-30 shadow-xl animate-bounce">
+                    <div className="absolute -right-4 top-10 w-8 h-8 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center z-30 shadow-xl animate-bounce">
                         <Code2 className="w-4 h-4 text-emerald-400" />
                     </div>
-                    <div className="absolute -left-4 bottom-20 w-8 h-8 rounded-full bg-surface border border-white/10 flex items-center justify-center z-30 shadow-xl animate-bounce delay-150">
+                    <div className="absolute -left-4 bottom-20 w-8 h-8 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center z-30 shadow-xl animate-bounce delay-150">
                         <Database className="w-4 h-4 text-blue-400" />
                     </div>
                 </motion.div>
@@ -260,13 +260,13 @@ export const Hero: React.FC = () => {
                         ease: "easeInOut",
                         delay: 1
                     }}
-                    className="absolute top-10 left-0 w-48 h-56 bg-dark/40 backdrop-blur-sm border border-white/5 rounded-xl z-10 flex flex-col items-center justify-center p-4 hover:border-purple-500/30 transition-colors"
+                    className="absolute top-10 left-0 w-48 h-56 bg-slate-900/60 backdrop-blur-sm border border-white/5 rounded-xl z-10 flex flex-col items-center justify-center p-4 hover:border-purple-500/30 transition-colors"
                 >
                     <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mb-3">
                         <BrainCircuit className="w-6 h-6 text-purple-400" />
                     </div>
-                    <div className="font-bold text-white mb-1">AI Models</div>
-                    <div className="text-xs text-slate-500 text-center">Predictive analytics & automation logic</div>
+                    <div className="font-bold text-cleanWhite mb-1">AI Models</div>
+                    <div className="text-xs text-slate-300 text-center">Predictive analytics & automation logic</div>
                 </motion.div>
 
                  {/* Floating Card Bottom Right (Infrastructure) */}
@@ -281,20 +281,20 @@ export const Hero: React.FC = () => {
                         ease: "easeInOut",
                         delay: 2
                     }}
-                    className="absolute bottom-20 right-0 w-48 h-56 bg-dark/40 backdrop-blur-sm border border-white/5 rounded-xl z-30 flex flex-col items-center justify-center p-4 shadow-xl hover:border-emerald-500/30 transition-colors"
+                    className="absolute bottom-20 right-0 w-48 h-56 bg-slate-900/60 backdrop-blur-sm border border-white/5 rounded-xl z-30 flex flex-col items-center justify-center p-4 shadow-xl hover:border-emerald-500/30 transition-colors"
                 >
                     <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center mb-3">
                         <Server className="w-6 h-6 text-emerald-400" />
                     </div>
-                    <div className="font-bold text-white mb-1">Infrastructure</div>
-                    <div className="text-xs text-slate-500 text-center">Scalable cloud solutions & DevOps</div>
+                    <div className="font-bold text-cleanWhite mb-1">Infrastructure</div>
+                    <div className="text-xs text-slate-300 text-center">Scalable cloud solutions & DevOps</div>
                 </motion.div>
 
-                {/* NEW ELEMENT: Floating Code Snippet (Top Right) */}
+                {/* NEW ELEMENT: Floating Code Snippet (Top Right) - Forced Dark Mode */}
                 <motion.div
                     animate={{ y: [0, -15, 0], x: [0, 10, 0] }}
                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                    className="absolute -top-6 right-8 w-44 p-3 bg-dark/90 backdrop-blur-md border border-white/10 rounded-xl z-20 shadow-2xl"
+                    className="absolute -top-6 right-8 w-44 p-3 bg-slate-900/90 backdrop-blur-md border border-white/10 rounded-xl z-20 shadow-2xl"
                 >
                     <div className="flex gap-1.5 mb-2">
                         <div className="w-2 h-2 rounded-full bg-red-500"></div>

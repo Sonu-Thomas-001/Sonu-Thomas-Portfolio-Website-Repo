@@ -39,7 +39,7 @@ export const Clients: React.FC = () => {
           Privileged to collaborate with
         </motion.p>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 items-center justify-items-center opacity-80">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 items-center justify-items-center">
           {BRANDS.map((brand, idx) => (
             <motion.div
               key={idx}

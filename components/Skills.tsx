@@ -61,7 +61,7 @@ export const Skills: React.FC = () => {
               key={idx}
               variants={cardVariants}
               whileHover={{ y: -5 }}
-              className="bg-dark/50 border border-white/5 rounded-2xl p-8 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300"
+              className="bg-surface border border-white/10 rounded-2xl p-8 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300"
             >
               <div className="flex items-center gap-4 mb-8">
                 <div className="p-3 bg-white/5 rounded-xl border border-white/5">
@@ -74,7 +74,7 @@ export const Skills: React.FC = () => {
                 {category.items.map((skill, sIdx) => (
                   <div 
                     key={sIdx}
-                    className="group relative flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/5 border border-white/5 hover:border-primary/30 hover:bg-white/10 transition-all duration-200 cursor-default"
+                    className="group relative flex items-center gap-2 px-4 py-2.5 rounded-lg bg-dark/50 border border-white/10 hover:border-primary/30 hover:bg-dark transition-all duration-200 cursor-default"
                   >
                     <span className="text-slate-300 font-medium group-hover:text-white transition-colors">
                       {skill.name}
