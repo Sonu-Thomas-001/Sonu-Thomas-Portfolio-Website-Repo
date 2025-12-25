@@ -138,7 +138,7 @@ export const Projects: React.FC = () => {
                         {project.stack.map((tech, i) => (
                           <span 
                             key={i} 
-                            className="px-2.5 py-1 text-xs font-medium text-slate-300 bg-white/5 rounded-md border border-white/5"
+                            className="px-2.5 py-1 text-xs font-medium text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-white/5 rounded-md border border-slate-200 dark:border-white/5"
                           >
                             {tech}
                           </span>

@@ -74,15 +74,15 @@ export const Skills: React.FC = () => {
                 {category.items.map((skill, sIdx) => (
                   <div 
                     key={sIdx}
-                    className="group relative flex items-center gap-2 px-4 py-2.5 rounded-lg bg-dark/50 border border-white/10 hover:border-primary/30 hover:bg-dark transition-all duration-200 cursor-default"
+                    className="group relative flex items-center gap-2 px-4 py-2.5 rounded-lg bg-slate-100 dark:bg-dark/50 border border-slate-200 dark:border-white/10 hover:border-primary/30 hover:bg-white dark:hover:bg-dark transition-all duration-200 cursor-default"
                   >
-                    <span className="text-slate-300 font-medium group-hover:text-white transition-colors">
+                    <span className="text-slate-500 dark:text-slate-300 font-medium group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
                       {skill.name}
                     </span>
                     {skill.proficiency && (
                       <>
-                        <span className="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-primary transition-colors"></span>
-                        <span className="text-xs text-slate-500 group-hover:text-primary/80 transition-colors">
+                        <span className="w-1 h-1 rounded-full bg-slate-400 dark:bg-slate-600 group-hover:bg-primary transition-colors"></span>
+                        <span className="text-xs text-slate-400 dark:text-slate-500 group-hover:text-primary/80 transition-colors">
                           {skill.proficiency}
                         </span>
                       </>

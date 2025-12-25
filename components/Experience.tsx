@@ -102,7 +102,7 @@ export const Experience: React.FC = () => {
                           {item.tech.map((t, i) => (
                             <span 
                               key={i} 
-                              className="px-2.5 py-1 rounded-md bg-dark border border-white/10 text-xs font-medium text-slate-300 group-hover:border-primary/20 transition-colors"
+                              className="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-dark border border-slate-200 dark:border-white/10 text-xs font-medium text-slate-500 dark:text-slate-300 group-hover:border-primary/20 transition-colors"
                             >
                               {t}
                             </span>
