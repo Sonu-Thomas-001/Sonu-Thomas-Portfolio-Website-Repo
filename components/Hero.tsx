@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useInView, animate } from 'framer-motion';
 import { ArrowRight, Download, Linkedin, Github, Globe, ChevronDown, Terminal, Cpu, Database, Server, Code2, BrainCircuit } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
 
@@ -9,6 +9,28 @@ const ROLES = [
   "Web Developer",
   "Production Change Manager"
 ];
+
+const Counter = ({ from, to }: { from: number; to: number }) => {
+  const nodeRef = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(nodeRef, { once: true });
+
+  useEffect(() => {
+    const node = nodeRef.current;
+    if (!node || !isInView) return;
+
+    const controls = animate(from, to, {
+      duration: 1.5,
+      ease: "easeOut",
+      onUpdate(value) {
+        node.textContent = Math.round(value).toString();
+      },
+    });
+
+    return () => controls.stop();
+  }, [from, to, isInView]);
+
+  return <span ref={nodeRef}>{from}</span>;
+};
 
 export const Hero: React.FC = () => {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -21,7 +43,7 @@ export const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-dark pt-20 lg:pt-0">
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-dark pt-48 pb-24 lg:pt-40 lg:pb-24">
       {/* Dynamic Background Mesh */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-primary/20 rounded-full mix-blend-screen filter blur-[120px] animate-blob"></div>
@@ -60,12 +82,33 @@ export const Hero: React.FC = () => {
                  Available for Work
               </motion.div>
 
-              {/* Headline & Roles */}
+              {/* Headline & Profile Photo */}
               <div className="space-y-4">
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-none">
-                  Sonu <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-500">Thomas</span>
-                </h1>
+                <div className="flex items-center gap-6">
+                  <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-none">
+                    Sonu <br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-500">Thomas</span>
+                  </h1>
+                  
+                  {/* Dummy Profile Photo */}
+                  <motion.div 
+                    initial={{ scale: 0, rotate: -20, opacity: 0 }}
+                    animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                    transition={{ delay: 0.5, type: "spring", stiffness: 200, damping: 15 }}
+                    className="relative w-20 h-20 md:w-28 md:h-28 flex-shrink-0"
+                  >
+                     {/* Glow behind the photo */}
+                     <div className="absolute inset-0 bg-gradient-to-tr from-primary to-secondary rounded-2xl blur-xl opacity-50 animate-pulse"></div>
+                     
+                     <div className="relative w-full h-full rounded-2xl border-2 border-white/20 overflow-hidden shadow-2xl bg-dark/50 group/photo cursor-pointer">
+                        <img 
+                          src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&h=300" 
+                          alt="Sonu Thomas"
+                          className="w-full h-full object-cover opacity-90 group-hover/photo:opacity-100 group-hover/photo:scale-110 transition-all duration-500"
+                        />
+                     </div>
+                  </motion.div>
+                </div>
                 
                 <div className="h-8 md:h-10 overflow-hidden flex items-center">
                   <AnimatePresence mode='wait'>
@@ -113,8 +156,36 @@ export const Hero: React.FC = () => {
                 </a>
               </div>
 
+              {/* Stats Counters */}
+              <div className="grid grid-cols-3 gap-4 border-t border-white/5 pt-8 mt-2">
+                <div>
+                  <div className="text-2xl md:text-3xl font-bold text-white tabular-nums flex items-center">
+                    <Counter from={0} to={2} /><span className="text-primary">+</span>
+                  </div>
+                  <div className="text-[10px] md:text-xs text-slate-500 font-medium uppercase tracking-wider mt-1 leading-tight">
+                    Years at HCLTech
+                  </div>
+                </div>
+                <div>
+                  <div className="text-2xl md:text-3xl font-bold text-white tabular-nums flex items-center">
+                    <Counter from={0} to={3} /><span className="text-secondary">+</span>
+                  </div>
+                  <div className="text-[10px] md:text-xs text-slate-500 font-medium uppercase tracking-wider mt-1 leading-tight">
+                    Years Freelancing
+                  </div>
+                </div>
+                <div>
+                  <div className="text-2xl md:text-3xl font-bold text-white flex items-center">
+                    IIT G
+                  </div>
+                  <div className="text-[10px] md:text-xs text-slate-500 font-medium uppercase tracking-wider mt-1 leading-tight">
+                    AI & DS @ IIT Guwahati
+                  </div>
+                </div>
+              </div>
+
               {/* Socials */}
-              <div className="pt-8 border-t border-white/5 flex gap-6">
+              <div className="pt-6 flex gap-6">
                 {[
                     { icon: Linkedin, href: "#" },
                     { icon: Github, href: "#" },
