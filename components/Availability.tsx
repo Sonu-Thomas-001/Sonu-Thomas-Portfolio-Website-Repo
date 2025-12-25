@@ -38,7 +38,7 @@ export const Availability: React.FC = () => {
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                     <a 
                         href="#contact"
-                        className="w-full sm:w-auto px-8 py-4 rounded-xl bg-primary text-white font-bold text-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/25 flex items-center justify-center gap-2 group"
+                        className="w-full sm:w-auto px-8 py-4 rounded-xl bg-primary text-cleanWhite font-bold text-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/25 flex items-center justify-center gap-2 group"
                     >
                         Let's Talk
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

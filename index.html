@@ -10,16 +10,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
+        darkMode: 'class',
         theme: {
           extend: {
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
             },
             colors: {
+              // Primary/Secondary remain constant
               primary: '#0ea5e9', // Sky 500
               secondary: '#6366f1', // Indigo 500
-              dark: '#020617', // Slate 950
-              surface: '#0f172a', // Slate 900
+              
+              // Semantic Colors (Mapped to CSS Variables)
+              dark: 'rgb(var(--c-dark) / <alpha-value>)',
+              surface: 'rgb(var(--c-surface) / <alpha-value>)',
+              
+              // Hijacking standard colors to adapt to theme
+              white: 'rgb(var(--c-white) / <alpha-value>)', 
+              slate: {
+                300: 'rgb(var(--c-slate-300) / <alpha-value>)',
+                400: 'rgb(var(--c-slate-400) / <alpha-value>)',
+                500: '#64748b', // Keep standard
+              },
+              
+              // New utility for text that must stay white (e.g. on blue buttons)
+              cleanWhite: '#ffffff',
             },
             animation: {
               'blob': 'blob 7s infinite',
@@ -37,12 +52,31 @@
       }
     </script>
     <style>
+      /* CSS Variables for Theming */
+      :root {
+        /* Default (Dark Mode) Values - RGB format for Tailwind opacity support */
+        --c-dark: 2 6 23;        /* Slate 950 */
+        --c-surface: 15 23 42;   /* Slate 900 */
+        --c-white: 255 255 255;  /* White */
+        --c-slate-300: 203 213 225; /* Slate 300 */
+        --c-slate-400: 148 163 184; /* Slate 400 */
+      }
+
+      /* Light Mode Overrides */
+      [data-theme="light"] {
+        --c-dark: 248 250 252;   /* Slate 50 (Main BG) */
+        --c-surface: 255 255 255; /* White (Card BG) */
+        --c-white: 15 23 42;     /* Slate 900 (Headings/Borders become dark) */
+        --c-slate-300: 51 65 85; /* Slate 700 (Body text becomes dark gray) */
+        --c-slate-400: 100 116 139; /* Slate 500 (Muted text becomes med gray) */
+      }
+
       /* Custom Scrollbar */
       ::-webkit-scrollbar {
         width: 10px;
       }
       ::-webkit-scrollbar-track {
-        background: #020617;
+        background: rgb(var(--c-dark));
       }
       ::-webkit-scrollbar-thumb {
         background: #1e293b;
@@ -67,7 +101,7 @@
 }
 </script>
 </head>
-  <body class="bg-dark text-slate-300 antialiased selection:bg-primary selection:text-white">
+  <body class="bg-dark text-slate-300 antialiased selection:bg-primary selection:text-white transition-colors duration-300">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

@@ -92,6 +92,8 @@ export const AIAssistant: React.FC = () => {
             config: {
                 systemInstruction: SYSTEM_INSTRUCTION,
                 tools: [{ functionDeclarations: [navigateTool] }],
+                // CRITICAL FIX: Disable thinking to avoid 'thought_signature' errors during tool use
+                thinkingConfig: { thinkingBudget: 0 } 
             }
         });
     } catch (error) {
@@ -167,6 +169,8 @@ export const AIAssistant: React.FC = () => {
              errorMessage = "API Error: Access denied. Please check your 'GEMINI_API_KEY' configuration in Vercel.";
         } else if (error.message.includes("404") || error.message.includes("not found")) {
              errorMessage = "API Error: Model not found. The AI service is temporarily unavailable.";
+        } else if (error.message.includes("400") || error.message.includes("thought_signature") || error.message.includes("INVALID_ARGUMENT")) {
+             errorMessage = "System Error: The AI model encountered a configuration issue. Please refresh the page.";
         } else if (error.message.includes("429")) {
              errorMessage = "Traffic Limit: Too many requests. Please try again later.";
         } else if (error.message.includes("GEMINI_API_KEY might be missing")) {

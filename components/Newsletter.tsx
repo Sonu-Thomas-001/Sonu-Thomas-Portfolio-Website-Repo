@@ -62,7 +62,7 @@ export const Newsletter: React.FC = () => {
                     <button
                         type="submit"
                         disabled={status !== 'idle'}
-                        className="absolute right-1.5 top-1.5 bottom-1.5 px-4 rounded-lg bg-primary hover:bg-primary/90 text-white font-medium transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center gap-2 min-w-[100px] justify-center"
+                        className="absolute right-1.5 top-1.5 bottom-1.5 px-4 rounded-lg bg-primary hover:bg-primary/90 text-cleanWhite font-medium transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center gap-2 min-w-[100px] justify-center"
                     >
                         <AnimatePresence mode="wait">
                             {status === 'idle' && (

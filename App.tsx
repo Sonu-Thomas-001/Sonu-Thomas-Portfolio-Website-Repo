@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import { ThemeProvider } from './components/ThemeContext';
 import { NavBar } from './components/NavBar';
 import { Hero } from './components/Hero';
 import { ValueProp } from './components/ValueProp';
@@ -39,51 +40,53 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="bg-dark min-h-screen text-slate-200 font-sans selection:bg-primary selection:text-white">
-      <AnimatePresence mode="wait">
-        {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
-      </AnimatePresence>
+    <ThemeProvider>
+      <div className="bg-dark min-h-screen text-slate-300 font-sans selection:bg-primary selection:text-white transition-colors duration-300">
+        <AnimatePresence mode="wait">
+          {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+        </AnimatePresence>
 
-      {!isLoading && (
-        <>
-          <NavBar />
-          <main>
-            <Hero />
-            <ValueProp />
-            <Stats />
-            <About />
-            <MissionVision />
-            <Experience />
-            <InteractiveResume />
-            <SystemThinking />
-            <ProblemSolving />
-            <Skills />
-            <Tools />
-            <Projects />
-            <OpenSource />
-            <CaseStudies />
-            <Process />
-            <Blog />
-            <Newsletter />
-            <Talks />
-            <Education />
-            <GrowthTimeline />
-            <Certifications />
-            <AIJourney />
-            <Research />
-            <Experiments />
-            <Testimonials />
-            <Clients />
-            <FAQ />
-            <Availability />
-            <Contact />
-          </main>
-          <ScrollToTop />
-          <AIAssistant />
-          <Footer />
-        </>
-      )}
-    </div>
+        {!isLoading && (
+          <>
+            <NavBar />
+            <main>
+              <Hero />
+              <ValueProp />
+              <Stats />
+              <About />
+              <MissionVision />
+              <Experience />
+              <InteractiveResume />
+              <SystemThinking />
+              <ProblemSolving />
+              <Skills />
+              <Tools />
+              <Projects />
+              <OpenSource />
+              <CaseStudies />
+              <Process />
+              <Blog />
+              <Newsletter />
+              <Talks />
+              <Education />
+              <GrowthTimeline />
+              <Certifications />
+              <AIJourney />
+              <Research />
+              <Experiments />
+              <Testimonials />
+              <Clients />
+              <FAQ />
+              <Availability />
+              <Contact />
+            </main>
+            <ScrollToTop />
+            <AIAssistant />
+            <Footer />
+          </>
+        )}
+      </div>
+    </ThemeProvider>
   );
 }
 

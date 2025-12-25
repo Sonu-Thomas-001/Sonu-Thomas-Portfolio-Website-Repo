@@ -110,12 +110,12 @@ export const Contact: React.FC = () => {
                 <h3 className="text-xl font-bold text-white mb-6">Connect Externally</h3>
                 <div className="flex gap-4">
                     <a href="#" className="flex-1 flex items-center justify-center gap-3 p-4 rounded-xl bg-surface hover:bg-[#0077b5] border border-white/5 hover:border-transparent group transition-all duration-300">
-                        <Linkedin className="w-5 h-5 text-slate-400 group-hover:text-white" />
-                        <span className="font-medium text-slate-400 group-hover:text-white">LinkedIn</span>
+                        <Linkedin className="w-5 h-5 text-slate-400 group-hover:text-cleanWhite" />
+                        <span className="font-medium text-slate-400 group-hover:text-cleanWhite">LinkedIn</span>
                     </a>
                     <a href="#" className="flex-1 flex items-center justify-center gap-3 p-4 rounded-xl bg-surface hover:bg-primary border border-white/5 hover:border-transparent group transition-all duration-300">
-                        <Globe className="w-5 h-5 text-slate-400 group-hover:text-white" />
-                        <span className="font-medium text-slate-400 group-hover:text-white">Website</span>
+                        <Globe className="w-5 h-5 text-slate-400 group-hover:text-cleanWhite" />
+                        <span className="font-medium text-slate-400 group-hover:text-cleanWhite">Website</span>
                     </a>
                 </div>
             </div>
@@ -179,8 +179,8 @@ export const Contact: React.FC = () => {
                     disabled={status !== 'idle'}
                     className={`w-full font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 overflow-hidden relative ${
                         status === 'success' 
-                        ? 'bg-emerald-500 text-white cursor-default' 
-                        : 'bg-primary hover:bg-primary/90 text-white hover:shadow-lg hover:shadow-primary/25 hover:scale-[1.02]'
+                        ? 'bg-emerald-500 text-cleanWhite cursor-default' 
+                        : 'bg-primary hover:bg-primary/90 text-cleanWhite hover:shadow-lg hover:shadow-primary/25 hover:scale-[1.02]'
                     }`}
                 >
                     <AnimatePresence mode='wait'>

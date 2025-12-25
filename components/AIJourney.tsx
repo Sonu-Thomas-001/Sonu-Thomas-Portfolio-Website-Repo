@@ -59,7 +59,7 @@ const ROADMAP = [
 
 export const AIJourney: React.FC = () => {
   return (
-    <section className="py-24 bg-dark relative overflow-hidden">
+    <section id="ai-journey" className="py-24 bg-dark relative overflow-hidden">
       {/* Circuit Board Background Pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none"></div>
       
