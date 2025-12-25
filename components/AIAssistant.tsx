@@ -78,10 +78,18 @@ export const AIAssistant: React.FC = () => {
   // Initialize Chat Session
   const initChat = async () => {
     try {
-        // Use process.env.API_KEY directly as per guidelines
-        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+        // Use process.env.API_KEY directly as per guidelines. 
+        // The build tool (Vite) replaces this string with the actual key.
+        const apiKey = process.env.API_KEY;
+        
+        if (!apiKey) {
+            console.warn("API Key is missing in init.");
+            return;
+        }
+
+        const ai = new GoogleGenAI({ apiKey: apiKey });
         chatSessionRef.current = ai.chats.create({
-            model: 'gemini-2.0-flash-exp', // Using a stable experimental model
+            model: 'gemini-3-flash-preview',
             config: {
                 systemInstruction: SYSTEM_INSTRUCTION,
                 tools: [{ functionDeclarations: [navigateTool] }],
@@ -108,7 +116,12 @@ export const AIAssistant: React.FC = () => {
 
     try {
         if (!chatSessionRef.current) await initChat();
-        if (!chatSessionRef.current) throw new Error("AI could not be initialized.");
+        
+        // Final check to see if initialization worked
+        if (!chatSessionRef.current) {
+             // If process.env.API_KEY was undefined, initChat would have failed silently or logged.
+             throw new Error("AI Client not initialized. API Key might be missing.");
+        }
 
         let response = await chatSessionRef.current.sendMessage({ message: userMsg.text });
         
@@ -152,12 +165,14 @@ export const AIAssistant: React.FC = () => {
         console.error("Chat Error:", error);
         let errorMessage = "I'm having trouble connecting right now.";
         
-        if (error.message.includes("403") || error.message.includes("401")) {
-             errorMessage = "API Error: Access denied. Check your API Key.";
-        } else if (error.message.includes("404")) {
+        if (error.message.includes("403") || error.message.includes("401") || error.message.includes("API key not valid")) {
+             errorMessage = "API Error: Access denied. Please check your API Key configuration in Vercel.";
+        } else if (error.message.includes("404") || error.message.includes("not found")) {
              errorMessage = "API Error: Model not found. The AI service is temporarily unavailable.";
         } else if (error.message.includes("429")) {
              errorMessage = "Traffic Limit: Too many requests. Please try again later.";
+        } else if (error.message.includes("API Key might be missing") || error.message.includes("API key is required")) {
+             errorMessage = "System Error: API Key is missing. Please ensure 'API_KEY' is set in your Vercel Environment Variables and you have redeployed.";
         } else if (error.message.includes("fetch failed")) {
              errorMessage = "Network Error: Could not connect to Gemini API. Check your internet.";
         } else {
