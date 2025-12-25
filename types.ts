@@ -42,6 +42,58 @@ export interface EducationItem {
 }
 
 export interface CertificationItem {
+  id: string;
+  title: string;
+  issuer: string;
+  date: string;
+  link?: string;
+}
+
+export interface BlogItem {
+  id: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  readTime: string;
+  category: string;
+  image: string;
+  link: string;
+}
+
+export interface TalkItem {
+  id: string;
+  title: string;
+  event: string;
+  date: string;
+  type: string;
+  description: string;
+  link?: string;
+}
+
+export interface OpenSourceItem {
+  id: string;
   name: string;
-  issuer?: string;
+  description: string;
+  stars: string;
+  forks: string;
+  language: string;
+  link: string;
+}
+
+export interface ProcessItem {
+  id: string;
+  phase: string;
+  title: string;
+  desc: string;
+  icon: string;
+  tools: string[];
+}
+
+export interface GrowthItem {
+  id: string;
+  year: string;
+  title: string;
+  role: string;
+  description: string;
+  icon: string;
 }

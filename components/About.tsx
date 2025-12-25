@@ -56,22 +56,6 @@ export const About: React.FC = () => {
                 Today, I am bridging the gap between traditional software engineering and the future of technology by pursuing a BSc in <strong>Data Science & AI from IIT Guwahati</strong>. My goal is to build intelligent, automated systems that transform how we work.
               </p>
             </motion.div>
-
-            {/* Highlights Grid */}
-            <motion.div variants={fadeInUp} className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-6">
-              <div className="p-4 bg-white/5 border border-white/5 rounded-xl hover:border-primary/30 transition-colors group">
-                <h4 className="text-3xl font-bold text-white mb-1 group-hover:text-primary transition-colors">3+</h4>
-                <p className="text-xs text-slate-500 uppercase tracking-wide">Years Web Dev</p>
-              </div>
-              <div className="p-4 bg-white/5 border border-white/5 rounded-xl hover:border-primary/30 transition-colors group">
-                <h4 className="text-3xl font-bold text-white mb-1 group-hover:text-primary transition-colors">2+</h4>
-                <p className="text-xs text-slate-500 uppercase tracking-wide">Years Industry</p>
-              </div>
-              <div className="p-4 bg-white/5 border border-white/5 rounded-xl hover:border-primary/30 transition-colors group">
-                <h4 className="text-3xl font-bold text-white mb-1 group-hover:text-primary transition-colors">10+</h4>
-                <p className="text-xs text-slate-500 uppercase tracking-wide">Projects Done</p>
-              </div>
-            </motion.div>
           </div>
 
           {/* Visual Side */}

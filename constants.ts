@@ -4,7 +4,12 @@ import {
   SkillCategory, 
   ProjectItem, 
   EducationItem, 
-  CertificationItem 
+  CertificationItem,
+  BlogItem,
+  TalkItem,
+  OpenSourceItem,
+  ProcessItem,
+  GrowthItem
 } from './types';
 
 export const PERSONAL_DETAILS = {
@@ -116,7 +121,7 @@ export const SKILLS_DATA: SkillCategory[] = [
       { name: "Tamil", proficiency: "Professional" },
       { name: "Hindi", proficiency: "Limited" }
     ]
-  }
+  },
 ];
 
 export const LANGUAGES = [
@@ -199,9 +204,220 @@ export const EDUCATION_DATA: EducationItem[] = [
 ];
 
 export const CERTIFICATIONS_DATA: CertificationItem[] = [
-  { name: "100K Coding Challenge" },
-  { name: "Introduction to Digital Marketing" },
-  { name: "Excel Intermediate" },
-  { name: "Web Designing Challenge" },
-  { name: "Portfolio Website using HTML & CSS" }
+  {
+    id: "c1",
+    title: "HCLTechbee Scholar",
+    issuer: "HCLTech",
+    date: "2023",
+  },
+  {
+    id: "c2",
+    title: "100K Coding Challenge",
+    issuer: "Competitive Coding Platform",
+    date: "2023",
+  },
+  {
+    id: "c3",
+    title: "Web Designing Challenge",
+    issuer: "Tech Community",
+    date: "2022",
+  },
+  {
+    id: "c4",
+    title: "Introduction to Digital Marketing",
+    issuer: "Google Digital Garage",
+    date: "2021",
+  },
+  {
+    id: "c5",
+    title: "Excel Intermediate",
+    issuer: "Online Certification",
+    date: "2021",
+  },
+   {
+    id: "c6",
+    title: "Portfolio Website Design",
+    issuer: "Self-Paced Project",
+    date: "2021",
+  }
+];
+
+export const BLOG_DATA: BlogItem[] = [
+  {
+    id: "b1",
+    title: "AI in IT Operations: Moving from Reactive to Predictive",
+    excerpt: "Exploring how machine learning models are transforming traditional IT service management by predicting incidents before they impact the business.",
+    date: "Oct 12, 2024",
+    readTime: "5 min read",
+    category: "AIOps",
+    image: "https://images.unsplash.com/photo-1555255707-c07966088b7b?q=80&w=1000&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    id: "b2",
+    title: "The Art of Risk-Free Production Changes",
+    excerpt: "A deep dive into rigorous risk assessment frameworks and compliance checklists that ensure 99.99% uptime during complex enterprise deployments.",
+    date: "Sep 28, 2024",
+    readTime: "7 min read",
+    category: "Change Mgmt",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1000&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    id: "b3",
+    title: "Headless WordPress with Next.js: The Ultimate Stack",
+    excerpt: "Building ultra-fast, secure, and scalable websites by decoupling the CMS from the frontend presentation layer. A guide for modern developers.",
+    date: "Aug 15, 2024",
+    readTime: "6 min read",
+    category: "Web Dev",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1000&auto=format&fit=crop",
+    link: "#"
+  }
+];
+
+export const TALKS_DATA: TalkItem[] = [
+  {
+    id: "t1",
+    title: "Zero-Downtime Deployments: A Change Manager's Guide",
+    event: "HCLTech Engineering Summit",
+    date: "Dec 2024",
+    type: "Technical Talk",
+    description: "Strategies for managing complex production changes with 99.99% availability target.",
+    link: "#"
+  },
+  {
+    id: "t2",
+    title: "Introduction to Large Language Models",
+    event: "IIT Guwahati Tech Club",
+    date: "Oct 2024",
+    type: "Workshop",
+    description: "A practical deep dive into transformer architectures and fine-tuning basics for students.",
+    link: "#"
+  },
+  {
+    id: "t3",
+    title: "Freelancing 101: From Code to Cash",
+    event: "Kerala Dev Meetup",
+    date: "Aug 2023",
+    type: "Seminar",
+    description: "Sharing the journey of building a freelance career alongside full-time education.",
+    link: "#"
+  }
+];
+
+export const OPEN_SOURCE_DATA: OpenSourceItem[] = [
+  {
+    id: "os1",
+    name: "react-framer-transitions",
+    description: "A lightweight collection of page transition components for React & Framer Motion.",
+    stars: "124",
+    forks: "35",
+    language: "TypeScript",
+    link: "#"
+  },
+  {
+    id: "os2",
+    name: "change-risk-scorer",
+    description: "Python utility to calculate risk scores for IT changes based on keyword analysis.",
+    stars: "89",
+    forks: "12",
+    language: "Python",
+    link: "#"
+  },
+  {
+    id: "os3",
+    name: "wp-headless-starter",
+    description: "Opinionated Next.js starter kit for Headless WordPress with GraphQL integration.",
+    stars: "256",
+    forks: "60",
+    language: "JavaScript",
+    link: "#"
+  },
+  {
+    id: "os4",
+    name: "linux-server-audit",
+    description: "Shell script suite for automated security auditing and compliance checks.",
+    stars: "45",
+    forks: "8",
+    language: "Shell",
+    link: "#"
+  }
+];
+
+export const PROCESS_DATA: ProcessItem[] = [
+  {
+    id: "wf1",
+    phase: "01",
+    title: "Blueprint & Architecture",
+    desc: "Before a single line of code is written, I spend time in the 'Why' and 'How'. Using Miro and Notion, I map out data flows, API contracts, and potential failure modes to ensure the foundation is solid.",
+    icon: "PenTool",
+    tools: ["Notion", "Miro", "Draw.io"]
+  },
+  {
+    id: "wf2",
+    phase: "02",
+    title: "Deep Work Development",
+    desc: "I believe in the 'Flow State'. I dedicate uninterrupted blocks of time to core engineering, turning complex logic into clean, readable code. Music on, notifications off.",
+    icon: "Code",
+    tools: ["VS Code", "Copilot", "Spotify"]
+  },
+  {
+    id: "wf3",
+    phase: "03",
+    title: "Rigorous Testing",
+    desc: "I act as the first adversary to my own code. From unit tests to edge-case simulations, I ensure the system is resilient before it reaches any staging environment.",
+    icon: "Shield",
+    tools: ["Jest", "Postman", "K6"]
+  },
+  {
+    id: "wf4",
+    phase: "04",
+    title: "Deploy & Monitor",
+    desc: "Shipping is just the beginning. I set up robust logging and real-time alerts to monitor system health, ensuring that performance remains optimal in the wild.",
+    icon: "Activity",
+    tools: ["Docker", "Grafana", "Splunk"]
+  }
+];
+
+export const GROWTH_DATA: GrowthItem[] = [
+  {
+    id: "g1",
+    year: "2021",
+    title: "The Initiation",
+    role: "Freelance Developer",
+    description: "My journey began with a curiosity for the web. I started freelancing during my high school years, learning to translate client needs into digital reality. This phase taught me the value of delivery and resilience.",
+    icon: "Lightbulb"
+  },
+  {
+    id: "g2",
+    year: "2022",
+    title: "The Foundation",
+    role: "Junior Web Developer",
+    description: "At Xbean International, I moved from solo coding to team-based development. I learned version control, code reviews, and the discipline required for professional software engineering.",
+    icon: "Hammer"
+  },
+  {
+    id: "g3",
+    year: "2023",
+    title: "The Deep Dive",
+    role: "HCLTechbee Scholar",
+    description: "I was selected for HCLTech's rigorous early career program. Here, I mastered the core technologies—Java, SQL, and Algorithms—that form the backbone of enterprise systems.",
+    icon: "BookOpen"
+  },
+  {
+    id: "g4",
+    year: "2024",
+    title: "The Professional",
+    role: "Production Change Manager",
+    description: "Entering the corporate world as a Software Engineer. I now manage critical production changes, ensuring stability for large-scale enterprise environments while minimizing risk.",
+    icon: "Briefcase"
+  },
+  {
+    id: "g5",
+    year: "2024+",
+    title: "The Evolution",
+    role: "IIT Guwahati Student",
+    description: "Realizing that the future is data-driven, I enrolled in the BSc in Data Science & AI at IIT Guwahati. I am now synthesizing my practical engineering skills with advanced AI theory.",
+    icon: "GraduationCap"
+  }
 ];

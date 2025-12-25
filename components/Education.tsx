@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap, Award, Calendar, BookOpen, BadgeCheck } from 'lucide-react';
-import { EDUCATION_DATA, CERTIFICATIONS_DATA } from '../constants';
+import { GraduationCap, Calendar, BookOpen } from 'lucide-react';
+import { EDUCATION_DATA } from '../constants';
 
 export const Education: React.FC = () => {
   return (
@@ -11,102 +11,64 @@ export const Education: React.FC = () => {
         <GraduationCap className="w-96 h-96 text-primary" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium mb-4">
+             <GraduationCap className="w-4 h-4" />
+             <span>Academic Foundation</span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Education</h2>
+          <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+            My formal education journey, providing the theoretical and mathematical backbone for my engineering career.
+          </p>
+        </motion.div>
 
-          {/* Education Column */}
-          <div>
+        <div className="space-y-6">
+          {EDUCATION_DATA.map((edu, idx) => (
             <motion.div
+              key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="flex items-center gap-3 mb-10"
+              transition={{ delay: idx * 0.1 }}
+              className="group relative bg-dark border border-white/5 rounded-2xl p-6 md:p-8 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
             >
-              <div className="p-3 rounded-xl bg-primary/10 text-primary">
-                <BookOpen className="w-6 h-6" />
-              </div>
-              <h2 className="text-3xl font-bold text-white">Academic Background</h2>
-            </motion.div>
-
-            <div className="space-y-6">
-              {EDUCATION_DATA.map((edu, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="group relative bg-dark border border-white/5 rounded-2xl p-6 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
-                >
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">
-                      {edu.institution}
-                    </h3>
-                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 text-xs font-medium text-slate-400 border border-white/5">
-                      <Calendar className="w-3 h-3" />
-                      {edu.period}
+              <div className="flex flex-col md:flex-row justify-between md:items-start gap-4 mb-3">
+                <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-xl bg-white/5 text-secondary group-hover:scale-110 transition-transform duration-300">
+                        <BookOpen className="w-6 h-6" />
                     </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-3">
-                    <GraduationCap className="w-5 h-5 text-secondary shrink-0 mt-1" />
                     <div>
-                      <p className="text-base text-slate-200 font-medium leading-snug">
-                        {edu.degree}
-                      </p>
-                      {edu.details && (
-                        <p className="text-sm text-slate-500 mt-2 leading-relaxed">
-                          {edu.details}
+                        <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">
+                        {edu.institution}
+                        </h3>
+                        <p className="text-base text-slate-300 font-medium leading-snug mt-1">
+                            {edu.degree}
                         </p>
-                      )}
                     </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Certifications Column */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="flex items-center gap-3 mb-10"
-            >
-              <div className="p-3 rounded-xl bg-secondary/10 text-secondary">
-                <Award className="w-6 h-6" />
+                </div>
+                
+                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 text-xs font-medium text-slate-400 border border-white/5 self-start">
+                  <Calendar className="w-3.5 h-3.5" />
+                  {edu.period}
+                </div>
               </div>
-              <h2 className="text-3xl font-bold text-white">Certifications & Achievements</h2>
+              
+              {edu.details && (
+                <div className="pl-[4.5rem]">
+                    <p className="text-sm text-slate-500 leading-relaxed border-l-2 border-white/5 pl-4">
+                    {edu.details}
+                    </p>
+                </div>
+              )}
             </motion.div>
-
-            <div className="grid gap-4">
-              {CERTIFICATIONS_DATA.map((cert, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  whileHover={{ scale: 1.02 }}
-                  className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 hover:border-secondary/50 hover:bg-secondary/5 hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] transition-all duration-300 group cursor-default"
-                >
-                  <div className="flex items-center gap-4">
-                     <div className="p-2.5 rounded-full bg-dark border border-white/10 group-hover:border-secondary/50 transition-colors">
-                        <Award className="w-5 h-5 text-slate-400 group-hover:text-secondary transition-colors" />
-                     </div>
-                     <span className="font-medium text-slate-300 group-hover:text-white transition-colors">
-                        {cert.name}
-                     </span>
-                  </div>
-                  <div className="hidden sm:block opacity-0 group-hover:opacity-100 transition-opacity">
-                      <BadgeCheck className="w-5 h-5 text-secondary" />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
+          ))}
         </div>
       </div>
     </section>
