@@ -13,12 +13,10 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: 'dist',
     },
-    // This definition ensures 'process.env.API_KEY' works in the browser
-    // It prioritizes the system environment variable (Vercel) over the .env file
+    // This definition ensures 'process.env.API_KEY' is replaced by the actual string value during build
+    // We targeting the specific key to avoid overwriting the entire process.env object (which breaks NODE_ENV)
     define: {
-      'process.env': {
-        API_KEY: JSON.stringify(process.env.API_KEY || env.API_KEY)
-      }
+      'process.env.API_KEY': JSON.stringify(process.env.API_KEY || env.API_KEY)
     }
   };
 });
