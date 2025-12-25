@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Bot, User, Sparkles, ChevronDown, Minimize2 } from 'lucide-react';
+import { MessageSquare, X, Send, Bot, User, Sparkles, ChevronDown, Minimize2, AlertTriangle } from 'lucide-react';
 import { GoogleGenAI, Type, FunctionDeclaration } from "@google/genai";
 import { PERSONAL_DETAILS, EXPERIENCE_DATA, SKILLS_DATA, PROJECTS_DATA, EDUCATION_DATA, BLOG_DATA } from '../constants';
 
@@ -54,6 +54,7 @@ interface Message {
   role: 'user' | 'model';
   text: string;
   isThinking?: boolean;
+  isError?: boolean;
 }
 
 export const AIAssistant: React.FC = () => {
@@ -76,15 +77,11 @@ export const AIAssistant: React.FC = () => {
 
   // Initialize Chat Session
   const initChat = async () => {
-    if (!process.env.API_KEY) {
-        console.warn("API_KEY is missing. AI features will be disabled.");
-        return;
-    }
-
     try {
+        // Use process.env.API_KEY directly as per guidelines
         const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
         chatSessionRef.current = ai.chats.create({
-            model: 'gemini-3-flash-preview',
+            model: 'gemini-2.0-flash-exp', // Using a stable experimental model
             config: {
                 systemInstruction: SYSTEM_INSTRUCTION,
                 tools: [{ functionDeclarations: [navigateTool] }],
@@ -110,12 +107,8 @@ export const AIAssistant: React.FC = () => {
     setIsTyping(true);
 
     try {
-        if (!process.env.API_KEY) {
-             throw new Error("API Key is missing. Please add API_KEY to your .env file.");
-        }
-
         if (!chatSessionRef.current) await initChat();
-        if (!chatSessionRef.current) throw new Error("AI not initialized");
+        if (!chatSessionRef.current) throw new Error("AI could not be initialized.");
 
         let response = await chatSessionRef.current.sendMessage({ message: userMsg.text });
         
@@ -127,7 +120,6 @@ export const AIAssistant: React.FC = () => {
             
             for (const call of functionCalls) {
                 if (call.name === 'navigate') {
-                    // Extract args (support both direct property access and args object)
                     const args = call.args || {};
                     const sectionId = args.sectionId;
                     
@@ -140,14 +132,13 @@ export const AIAssistant: React.FC = () => {
                     toolResponses.push({
                         functionResponse: {
                             name: 'navigate',
-                            id: call.id, // Include ID for correlation
+                            id: call.id,
                             response: { result: result }
                         }
                     });
                 }
             }
 
-            // Send tool output back to model
             if (toolResponses.length > 0) {
                  response = await chatSessionRef.current.sendMessage({ message: toolResponses });
             }
@@ -159,17 +150,21 @@ export const AIAssistant: React.FC = () => {
 
     } catch (error: any) {
         console.error("Chat Error:", error);
-        let errorMessage = "I'm having trouble connecting right now. Please try again later.";
+        let errorMessage = "I'm having trouble connecting right now.";
         
-        if (error.message.includes("API Key is missing")) {
-            errorMessage = "System Error: API_KEY is missing in configuration.";
-        } else if (error.message.includes("403") || error.message.includes("401")) {
-             errorMessage = "API Error: Access denied. Please check your API Key.";
+        if (error.message.includes("403") || error.message.includes("401")) {
+             errorMessage = "API Error: Access denied. Check your API Key.";
+        } else if (error.message.includes("404")) {
+             errorMessage = "API Error: Model not found. The AI service is temporarily unavailable.";
         } else if (error.message.includes("429")) {
-             errorMessage = "I'm receiving too many requests. Please try again in a moment.";
+             errorMessage = "Traffic Limit: Too many requests. Please try again later.";
+        } else if (error.message.includes("fetch failed")) {
+             errorMessage = "Network Error: Could not connect to Gemini API. Check your internet.";
+        } else {
+             errorMessage = `Error: ${error.message}`;
         }
 
-        setMessages(prev => [...prev, { id: Date.now().toString(), role: 'model', text: errorMessage }]);
+        setMessages(prev => [...prev, { id: Date.now().toString(), role: 'model', text: errorMessage, isError: true }]);
     } finally {
         setIsTyping(false);
     }
@@ -238,14 +233,16 @@ export const AIAssistant: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
                     >
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border ${msg.role === 'user' ? 'bg-white/10 border-white/10' : 'bg-primary/10 border-primary/20'}`}>
-                            {msg.role === 'user' ? <User className="w-4 h-4 text-slate-300" /> : <Sparkles className="w-4 h-4 text-primary" />}
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border ${msg.role === 'user' ? 'bg-white/10 border-white/10' : 'bg-primary/10 border-primary/20'} ${msg.isError ? 'bg-red-500/10 border-red-500/20' : ''}`}>
+                            {msg.role === 'user' ? <User className="w-4 h-4 text-slate-300" /> : msg.isError ? <AlertTriangle className="w-4 h-4 text-red-400" /> : <Sparkles className="w-4 h-4 text-primary" />}
                         </div>
                         <div className={`
                             max-w-[80%] p-3 rounded-2xl text-sm leading-relaxed
                             ${msg.role === 'user' 
                                 ? 'bg-primary text-white rounded-tr-none' 
-                                : 'bg-surface border border-white/10 text-slate-300 rounded-tl-none'}
+                                : msg.isError
+                                    ? 'bg-red-500/10 border border-red-500/20 text-red-200 rounded-tl-none'
+                                    : 'bg-surface border border-white/10 text-slate-300 rounded-tl-none'}
                         `}>
                             {msg.text}
                         </div>
