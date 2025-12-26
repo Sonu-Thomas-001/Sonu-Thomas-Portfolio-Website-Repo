@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Database, LayoutTemplate, Settings, TerminalSquare, Cpu } from 'lucide-react';
+import { Code2, Database, LayoutTemplate, Settings, TerminalSquare, Cpu, Box } from 'lucide-react';
 
 const TOOLS_DATA = [
   {
@@ -8,42 +8,42 @@ const TOOLS_DATA = [
     icon: Code2,
     color: "text-blue-400",
     bg: "bg-blue-400/10",
-    items: ["Java", "Python", "JavaScript", "TypeScript", "React", "HTML5", "CSS3", "PL/SQL", "Shell Scripting"]
+    items: ["Java", "Python", "JavaScript", "TypeScript", "React", "HTML5/CSS3"]
   },
   {
     category: "Databases & Storage",
     icon: Database,
     color: "text-emerald-400",
     bg: "bg-emerald-400/10",
-    items: ["Oracle Database", "MySQL", "PostgreSQL", "JDBC", "Data Structures"]
+    items: ["Oracle DB", "MySQL", "PostgreSQL", "JDBC"]
   },
   {
     category: "Platforms & CMS",
     icon: LayoutTemplate,
     color: "text-purple-400",
     bg: "bg-purple-400/10",
-    items: ["WordPress", "Unix / Linux", "GitHub Pages", "Netlify", "Vercel"]
+    items: ["WordPress", "Linux/Unix", "GitHub Pages", "Vercel"]
   },
   {
-    category: "DevOps & Management",
+    category: "DevOps & Ops",
     icon: Settings,
     color: "text-orange-400",
     bg: "bg-orange-400/10",
-    items: ["Git", "GitHub", "ITIL Process", "Risk Analysis", "Compliance Auditing", "Cron Jobs"]
+    items: ["Git", "ITIL", "Risk Analysis", "Compliance", "Cron"]
   },
   {
-    category: "IDEs & Workflow",
+    category: "Workflow",
     icon: TerminalSquare,
     color: "text-pink-400",
     bg: "bg-pink-400/10",
-    items: ["VS Code", "NetBeans", "IntelliJ IDEA", "MS Excel", "PowerPoint"]
+    items: ["VS Code", "IntelliJ", "NetBeans", "MS Office"]
   },
   {
-    category: "AI & Automation",
+    category: "AI & ML",
     icon: Cpu,
     color: "text-cyan-400",
     bg: "bg-cyan-400/10",
-    items: ["TensorFlow (Basic)", "Pandas", "NumPy", "Scikit-learn", "Automation Scripts"]
+    items: ["TensorFlow", "Pandas", "NumPy", "Scikit-learn"]
   }
 ];
 
@@ -52,15 +52,13 @@ export const Tools: React.FC = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
+      transition: { staggerChildren: 0.1 }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0 }
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1 }
   };
 
   return (
@@ -71,11 +69,17 @@ export const Tools: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16 md:text-center"
+          className="mb-12"
         >
-          <h2 className="text-3xl font-bold text-white mb-4">Tools & Technologies</h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-            My technical arsenal for building scalable applications and managing enterprise systems.
+          {/* Terminal Header */}
+          <div className="flex items-center gap-2 mb-4 font-mono text-sm text-slate-500">
+             <span className="text-primary">$</span>
+             <span>list_tools --verbose --category=all</span>
+             <span className="w-2 h-4 bg-primary animate-pulse ml-1"></span>
+          </div>
+          <h2 className="text-3xl font-bold text-white mb-4">Technical Arsenal</h2>
+          <p className="text-slate-400 max-w-2xl text-lg">
+             The instruments I use to architect solutions and drive automation.
           </p>
         </motion.div>
 
@@ -90,23 +94,28 @@ export const Tools: React.FC = () => {
             <motion.div
               key={idx}
               variants={itemVariants}
-              whileHover={{ y: -5 }}
-              className="bg-surface border border-white/5 rounded-2xl p-6 hover:border-white/10 hover:shadow-xl transition-all duration-300 group"
+              className="bg-dark border border-white/10 rounded-xl p-6 hover:border-primary/40 transition-all duration-300 group relative overflow-hidden"
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className={`p-3 rounded-xl ${group.bg} ${group.color} border border-white/5`}>
-                  <group.icon className="w-6 h-6" />
+              {/* Grid Background inside card */}
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+
+              <div className="flex items-center justify-between mb-6 relative z-10">
+                <div className="flex items-center gap-3">
+                    <div className={`p-2 rounded-lg bg-white/5 ${group.color} border border-white/5`}>
+                        <group.icon className="w-5 h-5" />
+                    </div>
+                    <h3 className="text-base font-bold text-white group-hover:text-primary transition-colors font-mono uppercase tracking-tight">
+                        {group.category}
+                    </h3>
                 </div>
-                <h3 className="text-lg font-bold text-white group-hover:text-primary transition-colors">
-                  {group.category}
-                </h3>
+                <Box className="w-4 h-4 text-slate-600 group-hover:text-primary transition-colors" />
               </div>
 
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 relative z-10">
                 {group.items.map((tool, tIdx) => (
                   <span 
                     key={tIdx}
-                    className="px-3 py-1.5 rounded-lg bg-dark border border-white/10 text-xs font-medium text-slate-300 hover:text-white hover:border-primary/30 hover:bg-white/5 transition-all duration-200 cursor-default"
+                    className="px-2 py-1 rounded-sm bg-surface border border-white/10 text-[10px] font-mono text-slate-400 hover:text-white hover:border-primary/50 hover:bg-primary/10 transition-all cursor-default"
                   >
                     {tool}
                   </span>
