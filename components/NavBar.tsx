@@ -119,7 +119,7 @@ export const NavBar: React.FC = () => {
     if (scrolled) {
       return "fixed top-4 left-0 right-0 z-50 mx-auto w-[95%] max-w-7xl rounded-2xl border border-white/10 bg-dark/70 backdrop-blur-xl shadow-2xl shadow-black/10 py-4 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]";
     }
-    return "fixed top-0 left-0 right-0 z-50 w-full bg-transparent border-transparent py-10 transition-all duration-300";
+    return "fixed top-0 left-0 right-0 z-50 w-full bg-transparent border-transparent py-6 md:py-10 transition-all duration-300";
   };
 
   const isLinkActive = (path: string) => {
@@ -151,7 +151,7 @@ export const NavBar: React.FC = () => {
                 <span className="text-white font-bold text-lg leading-none tracking-tight group-hover:text-primary transition-colors">
                   Sonu Thomas
                 </span>
-                <div className="h-4 overflow-hidden w-[180px] relative flex items-center mask-linear-gradient">
+                <div className="h-4 overflow-hidden w-[180px] relative hidden sm:flex items-center mask-linear-gradient">
                   <motion.div
                      className="flex whitespace-nowrap text-[10px] text-slate-500 font-medium tracking-widest uppercase gap-4"
                      animate={{ x: "-50%" }}
@@ -389,7 +389,7 @@ export const NavBar: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="mt-auto"
+                className="mt-auto pb-4"
               >
                 <div className="p-6 rounded-2xl bg-white/5 border border-white/10 text-center">
                   <h4 className="text-white font-bold mb-2">Ready to collaborate?</h4>

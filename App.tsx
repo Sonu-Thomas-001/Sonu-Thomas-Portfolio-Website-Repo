@@ -11,6 +11,9 @@ import { PageTransition } from './components/PageTransition';
 import { Home } from './pages/Home';
 import { ProjectsPage } from './pages/ProjectsPage';
 import { InsightsPage } from './pages/InsightsPage';
+import { PrivacyPolicy } from './pages/PrivacyPolicy';
+import { TermsOfService } from './pages/TermsOfService';
+import { CookiePolicy } from './pages/CookiePolicy';
 
 // Wrapper component to handle route changes
 const AppContent: React.FC = () => {
@@ -51,6 +54,21 @@ const AppContent: React.FC = () => {
                   <Route path="/insights" element={
                       <PageTransition>
                           <InsightsPage />
+                      </PageTransition>
+                  } />
+                  <Route path="/privacy" element={
+                      <PageTransition>
+                          <PrivacyPolicy />
+                      </PageTransition>
+                  } />
+                  <Route path="/terms" element={
+                      <PageTransition>
+                          <TermsOfService />
+                      </PageTransition>
+                  } />
+                  <Route path="/cookies" element={
+                      <PageTransition>
+                          <CookiePolicy />
                       </PageTransition>
                   } />
                   <Route path="*" element={<Navigate to="/" replace />} />
