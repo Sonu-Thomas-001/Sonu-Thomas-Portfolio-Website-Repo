@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, Code, Layers, Sparkles } from 'lucide-react';
+import { ExternalLink, Github, Code, Layers, Sparkles, TerminalSquare } from 'lucide-react';
 import { PROJECTS_DATA } from '../constants';
 
 export const Projects: React.FC = () => {
@@ -21,8 +21,12 @@ export const Projects: React.FC = () => {
 
   return (
     <section id="projects" className="py-24 bg-dark relative">
-      {/* Background Subtle Grid */}
+      {/* Background Subtle Grid & Code Decoration */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+      <div className="absolute top-10 right-10 opacity-5 pointer-events-none font-mono text-sm hidden lg:block">
+          <div>const portfolio = await buildFuture();</div>
+          <div>if (innovation) return true;</div>
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
@@ -31,9 +35,9 @@ export const Projects: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium mb-4">
-              <Layers className="w-4 h-4" />
-              <span>Portfolio</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium mb-4 font-mono">
+              <TerminalSquare className="w-4 h-4" />
+              <span>~/Projects</span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Featured Works</h2>
             <p className="text-slate-400 max-w-xl">
@@ -80,6 +84,15 @@ export const Projects: React.FC = () => {
                 transition={{ duration: 0.3 }}
                 className="group relative bg-surface border border-white/10 rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5"
               >
+                {/* Tech HUD Corner */}
+                <div className="absolute top-0 right-0 p-4 z-30 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="flex gap-1">
+                        <div className="w-1 h-3 bg-primary/50"></div>
+                        <div className="w-1 h-2 bg-primary/30"></div>
+                        <div className="w-1 h-1 bg-primary/10"></div>
+                    </div>
+                </div>
+
                 <div className="relative h-64 overflow-hidden">
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors z-10"></div>
                   <img 
@@ -90,7 +103,7 @@ export const Projects: React.FC = () => {
                   
                   {/* Floating Category Badge */}
                   <div className="absolute top-4 left-4 z-20">
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-dark/80 backdrop-blur-md border border-white/10 text-white text-xs font-semibold shadow-lg">
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-dark/80 backdrop-blur-md border border-white/10 text-white text-xs font-semibold shadow-lg font-mono">
                       {getCategoryIcon(project.category)}
                       {project.category}
                     </div>
@@ -138,7 +151,7 @@ export const Projects: React.FC = () => {
                         {project.stack.map((tech, i) => (
                           <span 
                             key={i} 
-                            className="px-2.5 py-1 text-xs font-medium text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-white/5 rounded-md border border-slate-200 dark:border-white/5"
+                            className="px-2.5 py-1 text-xs font-medium text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-white/5 rounded-md border border-slate-200 dark:border-white/5 font-mono"
                           >
                             {tech}
                           </span>

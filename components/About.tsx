@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Briefcase, Cpu, Globe, ArrowUpRight } from 'lucide-react';
+import { Briefcase, Cpu, Globe, ArrowUpRight, Binary } from 'lucide-react';
 
 export const About: React.FC = () => {
   // Animation variants
@@ -21,8 +21,11 @@ export const About: React.FC = () => {
 
   return (
     <section id="about" className="py-32 bg-surface relative overflow-hidden">
-      {/* Subtle background element */}
+      {/* Background Tech Elements */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-b from-primary/5 to-transparent -skew-x-12 pointer-events-none" />
+      <div className="absolute top-10 left-10 text-primary/5">
+        <Binary className="w-32 h-32" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
@@ -45,7 +48,8 @@ export const About: React.FC = () => {
               </h2>
             </motion.div>
 
-            <motion.div variants={fadeInUp} className="space-y-6 text-lg text-slate-400 leading-relaxed border-l-2 border-white/5 pl-6">
+            <motion.div variants={fadeInUp} className="space-y-6 text-lg text-slate-400 leading-relaxed border-l-2 border-white/5 pl-6 relative">
+              <div className="absolute -left-[3px] top-0 h-10 w-[4px] bg-primary rounded-full"></div>
               <p>
                 I am a <strong>Software Engineer</strong> at <span className="text-white">HCLTech</span>, currently serving as a <strong>Production Change Manager</strong>. My role involves orchestration of enterprise-scale changes, conducting rigorous risk analysis, and ensuring compliance for mission-critical systems.
               </p>
@@ -62,18 +66,22 @@ export const About: React.FC = () => {
           <motion.div variants={fadeInUp} className="relative mt-8 lg:mt-0">
              {/* Main Card */}
             <div className="relative z-10 bg-dark/80 backdrop-blur-sm border border-white/10 rounded-2xl p-8 shadow-2xl">
+                {/* Holographic Border Effect */}
+                <div className="absolute inset-0 rounded-2xl border border-primary/20 opacity-50"></div>
+                
                 <div className="flex justify-between items-center mb-8">
                     <h3 className="text-xl font-bold text-white">Core Focus</h3>
                     <div className="flex gap-1">
-                        <div className="w-2 h-2 rounded-full bg-red-500/50"></div>
-                        <div className="w-2 h-2 rounded-full bg-yellow-500/50"></div>
-                        <div className="w-2 h-2 rounded-full bg-green-500/50"></div>
+                        <div className="w-2 h-2 rounded-full bg-red-500/50 animate-pulse"></div>
+                        <div className="w-2 h-2 rounded-full bg-yellow-500/50 animate-pulse delay-75"></div>
+                        <div className="w-2 h-2 rounded-full bg-green-500/50 animate-pulse delay-150"></div>
                     </div>
                 </div>
                 
                 <div className="space-y-6">
                     {/* Focus Item 1 */}
-                    <div className="group flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors cursor-default">
+                    <div className="group flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors cursor-default relative overflow-hidden">
+                         <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <div className="p-3 rounded-lg bg-blue-500/10 text-blue-400 group-hover:text-blue-300 group-hover:scale-110 transition-all">
                             <Globe className="w-6 h-6" />
                         </div>
@@ -86,7 +94,8 @@ export const About: React.FC = () => {
                         </div>
                     </div>
                      {/* Focus Item 2 */}
-                    <div className="group flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors cursor-default">
+                    <div className="group flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors cursor-default relative overflow-hidden">
+                        <div className="absolute left-0 top-0 bottom-0 w-1 bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <div className="p-3 rounded-lg bg-purple-500/10 text-purple-400 group-hover:text-purple-300 group-hover:scale-110 transition-all">
                             <Cpu className="w-6 h-6" />
                         </div>
@@ -99,7 +108,8 @@ export const About: React.FC = () => {
                         </div>
                     </div>
                      {/* Focus Item 3 */}
-                    <div className="group flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors cursor-default">
+                    <div className="group flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors cursor-default relative overflow-hidden">
+                        <div className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <div className="p-3 rounded-lg bg-emerald-500/10 text-emerald-400 group-hover:text-emerald-300 group-hover:scale-110 transition-all">
                             <Briefcase className="w-6 h-6" />
                         </div>
@@ -118,6 +128,15 @@ export const About: React.FC = () => {
             <div className="absolute -top-10 -right-10 w-64 h-64 bg-primary/20 rounded-full blur-3xl -z-10 animate-pulse" />
             <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-secondary/20 rounded-full blur-3xl -z-10 animate-pulse animation-delay-2000" />
             <div className="absolute inset-0 border border-white/5 rounded-2xl translate-x-4 translate-y-4 -z-10" />
+            
+            {/* Floating Chip Overlay */}
+            <motion.div 
+               animate={{ y: [0, -10, 0] }}
+               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+               className="absolute -right-6 top-1/2 w-16 h-16 bg-dark border border-white/10 rounded-xl flex items-center justify-center shadow-lg"
+            >
+                <Cpu className="w-8 h-8 text-primary" />
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
