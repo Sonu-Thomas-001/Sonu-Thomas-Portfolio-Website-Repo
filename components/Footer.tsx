@@ -1,5 +1,6 @@
 import React from 'react';
 import { Github, Linkedin, Twitter, Heart, Code2, Shield, Globe, Instagram, Facebook, MessageCircle, Send } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { PERSONAL_DETAILS } from '../constants';
 
 export const Footer: React.FC = () => {
@@ -35,10 +36,9 @@ export const Footer: React.FC = () => {
           <div>
             <h3 className="text-white font-bold mb-4">Explore</h3>
             <ul className="space-y-2 text-slate-500">
-              <li><a href="#about" className="hover:text-primary transition-colors">About</a></li>
-              <li><a href="#experience" className="hover:text-primary transition-colors">Experience</a></li>
-              <li><a href="#projects" className="hover:text-primary transition-colors">Projects</a></li>
-              <li><a href="#blog" className="hover:text-primary transition-colors">Insights</a></li>
+              <li><Link to="/" className="hover:text-primary transition-colors">Home</Link></li>
+              <li><Link to="/projects" className="hover:text-primary transition-colors">Projects</Link></li>
+              <li><Link to="/insights" className="hover:text-primary transition-colors">Insights</Link></li>
             </ul>
           </div>
 

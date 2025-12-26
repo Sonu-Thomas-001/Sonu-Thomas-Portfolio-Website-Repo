@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Terminal, ArrowRight, Sparkles, Briefcase } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const navLinks = [
-  { name: 'Home', href: '#' },
-  { name: 'About', href: '#about' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'AI Journey', href: '#ai-journey' },
+  { name: 'Home', path: '/' },
+  { name: 'Projects', path: '/projects' },
+  { name: 'Insights', path: '/insights' },
 ];
 
 const ROLES = [
@@ -20,41 +19,15 @@ const ROLES = [
 export const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('Home');
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
-      // Trigger float effect earlier for smoother feel
       setScrolled(window.scrollY > 20);
-
-      // Enhanced Scroll Spy Logic
-      const sections = navLinks.map(link => link.href.replace('#', ''));
-      let current = 'Home';
-      
-      // Calculate which section is currently active based on viewport position
-      for (const section of sections) {
-        if (!section) continue; // Skip Home '#'
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          const offset = window.innerHeight * 0.3; // Trigger when section is 30% up the viewport
-          
-          if (rect.top <= offset && rect.bottom >= offset) {
-            current = section;
-          }
-        }
-      }
-      
-      // Explicit check for top of page to activate 'Home'
-      if (window.scrollY < 100) current = 'Home';
-      
-      // Match activeSection state to link name
-      const activeLink = navLinks.find(link => link.href.includes(current) || (current === 'Home' && link.name === 'Home'));
-      if (activeLink) setActiveSection(activeLink.name);
     };
 
     window.addEventListener('scroll', handleScroll);
-    // Initial check
     handleScroll();
     
     return () => window.removeEventListener('scroll', handleScroll);
@@ -69,6 +42,21 @@ export const NavBar: React.FC = () => {
     }
   }, [isOpen]);
 
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById('contact');
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      const element = document.getElementById('contact');
+      if (element) element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsOpen(false);
+  };
+
   const navItemVariants = {
     hidden: { opacity: 0, y: -10 },
     visible: (i: number) => ({
@@ -78,19 +66,16 @@ export const NavBar: React.FC = () => {
     })
   };
 
-  // Dynamic class calculation for the floating effect
   const getNavClasses = () => {
     if (isOpen) {
-      // When menu is open, blend into the background (remove floating borders)
       return "fixed top-0 left-0 right-0 z-50 w-full bg-transparent border-none py-4 transition-all duration-300";
     }
     if (scrolled) {
-      // Floating, detached state
-      // FIX: Changed from transform-based centering to margin-based centering (mx-auto) to prevent "drift" animation
-      return "fixed top-4 left-0 right-0 z-50 mx-auto w-[92%] md:w-[90%] max-w-6xl rounded-2xl border border-white/10 bg-dark/70 backdrop-blur-xl shadow-2xl shadow-black/10 py-3 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]";
+      // Increased py-3 to py-4 for better vertical spacing
+      return "fixed top-4 left-0 right-0 z-50 mx-auto w-[95%] max-w-7xl rounded-2xl border border-white/10 bg-dark/70 backdrop-blur-xl shadow-2xl shadow-black/10 py-4 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]";
     }
-    // Initial Hero state (transparent, full width)
-    return "fixed top-0 left-0 right-0 z-50 w-full bg-transparent border-transparent py-6 transition-all duration-300";
+    // Increased from py-8 to py-10
+    return "fixed top-0 left-0 right-0 z-50 w-full bg-transparent border-transparent py-10 transition-all duration-300";
   };
 
   return (
@@ -107,7 +92,10 @@ export const NavBar: React.FC = () => {
             {/* Logo Section */}
             <div 
               className="flex-shrink-0 flex items-center gap-2 cursor-pointer group" 
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              onClick={() => {
+                navigate('/');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
             >
               <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 border border-white/5 group-hover:border-primary/30 transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(14,165,233,0.3)]">
                  <Terminal className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
@@ -126,7 +114,6 @@ export const NavBar: React.FC = () => {
                        ease: "linear",
                      }}
                   >
-                     {/* Duplicate content for seamless scrolling */}
                      <span>{ROLES.join(" • ")} • </span>
                      <span>{ROLES.join(" • ")} • </span>
                   </motion.div>
@@ -137,11 +124,12 @@ export const NavBar: React.FC = () => {
             {/* Desktop Navigation */}
             <div className={`hidden md:flex items-center gap-1 ${scrolled ? 'bg-white/5' : 'bg-dark/30'} backdrop-blur-sm px-2 py-1.5 rounded-full border border-white/5 transition-colors duration-300`}>
               {navLinks.map((link) => {
-                const isActive = activeSection === link.name;
+                const isActive = location.pathname === link.path;
                 return (
-                  <a
+                  <Link
                     key={link.name}
-                    href={link.href}
+                    to={link.path}
+                    onClick={() => window.scrollTo(0,0)}
                     className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
                       isActive ? 'text-white' : 'text-slate-400 hover:text-white'
                     }`}
@@ -159,17 +147,16 @@ export const NavBar: React.FC = () => {
                       {link.name}
                       {isActive && <motion.span layoutId="active-dot" className="w-1 h-1 rounded-full bg-primary ml-1" />}
                     </span>
-                  </a>
+                  </Link>
                 );
               })}
             </div>
 
             {/* Right Actions */}
             <div className="hidden md:flex items-center gap-4">
-              
-              {/* Animated Gradient CTA Button */}
               <a 
                 href="#contact"
+                onClick={handleContactClick}
                 className="relative inline-flex h-10 overflow-hidden rounded-full p-[1px] group"
               >
                 <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#0ea5e9_0%,#6366f1_50%,#0ea5e9_100%)]" />
@@ -224,48 +211,55 @@ export const NavBar: React.FC = () => {
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed inset-0 z-40 bg-dark/95 backdrop-blur-3xl md:hidden pt-24 px-6 pb-6 flex flex-col"
           >
-            {/* Drawer Header Decoration */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/10 rounded-full blur-[100px] pointer-events-none"></div>
 
             <div className="flex flex-col gap-6 relative z-10 h-full">
               <div className="flex flex-col gap-2">
                 {navLinks.map((link, i) => (
-                  <motion.a
+                  <Link
                     key={link.name}
-                    custom={i}
-                    variants={navItemVariants}
-                    initial="hidden"
-                    animate="visible"
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
+                    to={link.path}
+                    onClick={() => {
+                        setIsOpen(false);
+                        window.scrollTo(0,0);
+                    }}
                     className={`text-2xl font-bold py-3 border-b border-white/5 flex items-center justify-between group ${
-                      activeSection === link.name ? 'text-white' : 'text-slate-400'
+                      location.pathname === link.path ? 'text-white' : 'text-slate-400'
                     }`}
                   >
-                    <span className="group-hover:text-primary transition-colors flex items-center gap-3">
+                    <motion.span 
+                        variants={navItemVariants}
+                        initial="hidden"
+                        animate="visible"
+                        custom={i}
+                        className="group-hover:text-primary transition-colors flex items-center gap-3"
+                    >
                         {link.name}
-                        {activeSection === link.name && (
+                        {location.pathname === link.path && (
                             <motion.span layoutId="mobile-active-dot" className="w-2 h-2 rounded-full bg-primary" />
                         )}
-                    </span>
+                    </motion.span>
                     <ArrowRight className="w-5 h-5 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-primary" />
-                  </motion.a>
+                  </Link>
                 ))}
                 
-                {/* Contact Link in Mobile Menu */}
-                 <motion.a
-                    custom={navLinks.length}
-                    variants={navItemVariants}
-                    initial="hidden"
-                    animate="visible"
+                 <a
                     href="#contact"
-                    onClick={() => setIsOpen(false)}
+                    onClick={handleContactClick}
                     className="text-2xl font-bold py-3 border-b border-white/5 flex items-center justify-between group text-slate-400"
                   >
-                    <span className="group-hover:text-primary transition-colors">Contact</span>
+                    <motion.span 
+                        variants={navItemVariants}
+                        initial="hidden"
+                        animate="visible"
+                        custom={navLinks.length}
+                        className="group-hover:text-primary transition-colors"
+                    >
+                        Contact
+                    </motion.span>
                     <ArrowRight className="w-5 h-5 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-primary" />
-                  </motion.a>
+                  </a>
               </div>
 
               <motion.div 
@@ -279,7 +273,7 @@ export const NavBar: React.FC = () => {
                   <p className="text-sm text-slate-400 mb-4">Let's build something extraordinary together.</p>
                   <a 
                     href="#contact"
-                    onClick={() => setIsOpen(false)}
+                    onClick={handleContactClick}
                     className="relative inline-flex w-full h-12 overflow-hidden rounded-xl p-[1px]"
                   >
                      <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#0ea5e9_0%,#6366f1_50%,#0ea5e9_100%)]" />
