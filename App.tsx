@@ -7,6 +7,7 @@ import { Footer } from './components/Footer';
 import { AIAssistant } from './components/AIAssistant';
 import { ScrollToTop } from './components/ScrollToTop';
 import { Preloader } from './components/Preloader';
+import { PageTransition } from './components/PageTransition';
 import { Home } from './pages/Home';
 import { ProjectsPage } from './pages/ProjectsPage';
 import { InsightsPage } from './pages/InsightsPage';
@@ -16,9 +17,13 @@ const AppContent: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
 
-  // Scroll to top on route change
+  // Scroll to top on route change is handled by AnimatePresence exit/enter usually, 
+  // but explicit scroll ensure top start.
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Small delay to allow transition to cover screen before scrolling
+    setTimeout(() => {
+        window.scrollTo(0, 0);
+    }, 400); 
   }, [location.pathname]);
 
   return (
@@ -31,12 +36,26 @@ const AppContent: React.FC = () => {
         <>
           <NavBar />
           <main className="min-h-screen">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/projects" element={<ProjectsPage />} />
-              <Route path="/insights" element={<InsightsPage />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
+            <AnimatePresence mode="wait">
+                <Routes location={location} key={location.pathname}>
+                  <Route path="/" element={
+                      <PageTransition>
+                          <Home />
+                      </PageTransition>
+                  } />
+                  <Route path="/projects" element={
+                      <PageTransition>
+                          <ProjectsPage />
+                      </PageTransition>
+                  } />
+                  <Route path="/insights" element={
+                      <PageTransition>
+                          <InsightsPage />
+                      </PageTransition>
+                  } />
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+            </AnimatePresence>
           </main>
           <ScrollToTop />
           <AIAssistant />

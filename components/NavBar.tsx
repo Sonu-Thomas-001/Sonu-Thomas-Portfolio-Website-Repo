@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Terminal, ArrowRight, Sparkles, Briefcase } from 'lucide-react';
+import { Menu, X, Terminal, ArrowRight, Sparkles, Briefcase, Github, Linkedin, Download } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { PERSONAL_DETAILS } from '../constants';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -154,6 +155,32 @@ export const NavBar: React.FC = () => {
 
             {/* Right Actions */}
             <div className="hidden md:flex items-center gap-4">
+              
+              {/* Socials & Resume */}
+              <div className="flex items-center gap-3 pr-4 border-r border-white/10">
+                 <a 
+                    href="#" 
+                    className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-full transition-all hover:scale-110" 
+                    aria-label="GitHub"
+                 >
+                    <Github className="w-5 h-5" />
+                 </a>
+                 <a 
+                    href="#" 
+                    className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-full transition-all hover:scale-110" 
+                    aria-label="LinkedIn"
+                 >
+                    <Linkedin className="w-5 h-5" />
+                 </a>
+                 <a 
+                    href={PERSONAL_DETAILS.resumeLink} 
+                    className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-bold text-slate-300 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all uppercase tracking-wider"
+                 >
+                    <Download className="w-3.5 h-3.5" />
+                    CV
+                 </a>
+              </div>
+
               <a 
                 href="#contact"
                 onClick={handleContactClick}
@@ -261,6 +288,33 @@ export const NavBar: React.FC = () => {
                     <ArrowRight className="w-5 h-5 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-primary" />
                   </a>
               </div>
+
+              {/* Mobile Socials Row */}
+              <motion.div 
+                 initial={{ opacity: 0 }}
+                 animate={{ opacity: 1 }}
+                 transition={{ delay: 0.2 }}
+                 className="flex items-center justify-between gap-4 py-6 border-b border-white/5"
+              >
+                  <a href="#" className="flex flex-col items-center gap-2 text-slate-400 hover:text-white transition-colors">
+                      <div className="p-3 rounded-full bg-white/5">
+                        <Github className="w-6 h-6" />
+                      </div>
+                      <span className="text-xs">GitHub</span>
+                  </a>
+                  <a href="#" className="flex flex-col items-center gap-2 text-slate-400 hover:text-white transition-colors">
+                      <div className="p-3 rounded-full bg-white/5">
+                        <Linkedin className="w-6 h-6" />
+                      </div>
+                      <span className="text-xs">LinkedIn</span>
+                  </a>
+                  <a href={PERSONAL_DETAILS.resumeLink} className="flex flex-col items-center gap-2 text-slate-400 hover:text-primary transition-colors">
+                      <div className="p-3 rounded-full bg-white/5">
+                        <Download className="w-6 h-6" />
+                      </div>
+                      <span className="text-xs">Resume</span>
+                  </a>
+              </motion.div>
 
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
