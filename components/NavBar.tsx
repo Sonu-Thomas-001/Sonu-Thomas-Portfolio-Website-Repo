@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Terminal, ArrowRight, Sparkles, Briefcase, Github, Linkedin, Download } from 'lucide-react';
+import { Menu, X, Terminal, ArrowRight, Sparkles, Briefcase, Github, Linkedin, Download, Phone } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { PERSONAL_DETAILS } from '../constants';
 
 const navLinks = [
   { name: 'Home', path: '/' },
+  { name: 'About', path: '/#about' },
+  { name: 'Experience', path: '/#experience' },
+  { name: 'Skills', path: '/#skills' },
   { name: 'Projects', path: '/projects' },
   { name: 'Insights', path: '/insights' },
 ];
@@ -43,6 +46,48 @@ export const NavBar: React.FC = () => {
     }
   }, [isOpen]);
 
+  const handleLinkClick = (path: string, e?: React.MouseEvent) => {
+    // Determine if it's a hash link or home
+    if (path.startsWith('/#') || path === '/') {
+        if (e) e.preventDefault();
+        
+        let targetId = '';
+        if (path.startsWith('/#')) {
+            targetId = path.replace('/#', '');
+        } else {
+            // Path is '/' - scroll to top
+            targetId = 'top'; 
+        }
+
+        const performScroll = () => {
+            if (targetId === 'top') {
+                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                 const element = document.getElementById(targetId);
+                 if (element) {
+                     const navHeight = 85; // slightly more for breathing room
+                     const elementPosition = element.getBoundingClientRect().top;
+                     const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+                     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                 }
+            }
+        };
+
+        if (location.pathname !== '/') {
+            navigate('/');
+            // Wait for transition (approx 600ms-800ms)
+            setTimeout(performScroll, 700);
+        } else {
+            performScroll();
+        }
+        setIsOpen(false);
+    } else {
+        // Standard route navigation (Projects, Insights)
+        window.scrollTo(0,0);
+        setIsOpen(false);
+    }
+  };
+
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();
     if (location.pathname !== '/') {
@@ -50,7 +95,7 @@ export const NavBar: React.FC = () => {
       setTimeout(() => {
         const element = document.getElementById('contact');
         if (element) element.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
+      }, 700);
     } else {
       const element = document.getElementById('contact');
       if (element) element.scrollIntoView({ behavior: 'smooth' });
@@ -72,11 +117,15 @@ export const NavBar: React.FC = () => {
       return "fixed top-0 left-0 right-0 z-50 w-full bg-transparent border-none py-4 transition-all duration-300";
     }
     if (scrolled) {
-      // Increased py-3 to py-4 for better vertical spacing
       return "fixed top-4 left-0 right-0 z-50 mx-auto w-[95%] max-w-7xl rounded-2xl border border-white/10 bg-dark/70 backdrop-blur-xl shadow-2xl shadow-black/10 py-4 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]";
     }
-    // Increased from py-8 to py-10
     return "fixed top-0 left-0 right-0 z-50 w-full bg-transparent border-transparent py-10 transition-all duration-300";
+  };
+
+  const isLinkActive = (path: string) => {
+      if (path === '/') return location.pathname === '/';
+      if (path.startsWith('/#')) return false; // Don't highlight sections to avoid confusion with Home
+      return location.pathname === path;
   };
 
   return (
@@ -93,10 +142,7 @@ export const NavBar: React.FC = () => {
             {/* Logo Section */}
             <div 
               className="flex-shrink-0 flex items-center gap-2 cursor-pointer group" 
-              onClick={() => {
-                navigate('/');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
+              onClick={(e) => handleLinkClick('/', e as any)}
             >
               <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 border border-white/5 group-hover:border-primary/30 transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(14,165,233,0.3)]">
                  <Terminal className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
@@ -125,12 +171,12 @@ export const NavBar: React.FC = () => {
             {/* Desktop Navigation */}
             <div className={`hidden md:flex items-center gap-1 ${scrolled ? 'bg-white/5' : 'bg-dark/30'} backdrop-blur-sm px-2 py-1.5 rounded-full border border-white/5 transition-colors duration-300`}>
               {navLinks.map((link) => {
-                const isActive = location.pathname === link.path;
+                const isActive = isLinkActive(link.path);
                 return (
                   <Link
                     key={link.name}
                     to={link.path}
-                    onClick={() => window.scrollTo(0,0)}
+                    onClick={(e) => handleLinkClick(link.path, e)}
                     className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
                       isActive ? 'text-white' : 'text-slate-400 hover:text-white'
                     }`}
@@ -156,30 +202,47 @@ export const NavBar: React.FC = () => {
             {/* Right Actions */}
             <div className="hidden md:flex items-center gap-4">
               
-              {/* Socials & Resume */}
-              <div className="flex items-center gap-3 pr-4 border-r border-white/10">
-                 <a 
-                    href="#" 
-                    className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-full transition-all hover:scale-110" 
-                    aria-label="GitHub"
-                 >
-                    <Github className="w-5 h-5" />
-                 </a>
-                 <a 
-                    href="#" 
-                    className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-full transition-all hover:scale-110" 
-                    aria-label="LinkedIn"
-                 >
-                    <Linkedin className="w-5 h-5" />
-                 </a>
-                 <a 
-                    href={PERSONAL_DETAILS.resumeLink} 
-                    className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-bold text-slate-300 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all uppercase tracking-wider"
-                 >
-                    <Download className="w-3.5 h-3.5" />
-                    CV
-                 </a>
-              </div>
+              {/* Socials & Resume - Hidden on scroll */}
+              <AnimatePresence>
+                {!scrolled && (
+                    <motion.div 
+                        initial={{ opacity: 0, width: 0 }}
+                        animate={{ opacity: 1, width: 'auto' }}
+                        exit={{ opacity: 0, width: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="flex items-center gap-3 pr-4 border-r border-white/10 overflow-hidden"
+                    >
+                        <a 
+                            href="#" 
+                            className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-full transition-all hover:scale-110" 
+                            aria-label="GitHub"
+                        >
+                            <Github className="w-5 h-5" />
+                        </a>
+                        <a 
+                            href="#" 
+                            className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-full transition-all hover:scale-110" 
+                            aria-label="LinkedIn"
+                        >
+                            <Linkedin className="w-5 h-5" />
+                        </a>
+                        <a 
+                            href={`tel:${PERSONAL_DETAILS.phone}`}
+                            className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-full transition-all hover:scale-110" 
+                            aria-label="Call"
+                        >
+                            <Phone className="w-5 h-5" />
+                        </a>
+                        <a 
+                            href={PERSONAL_DETAILS.resumeLink} 
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-bold text-slate-300 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all uppercase tracking-wider whitespace-nowrap"
+                        >
+                            <Download className="w-3.5 h-3.5" />
+                            CV
+                        </a>
+                    </motion.div>
+                )}
+              </AnimatePresence>
 
               <a 
                 href="#contact"
@@ -236,40 +299,40 @@ export const NavBar: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-40 bg-dark/95 backdrop-blur-3xl md:hidden pt-24 px-6 pb-6 flex flex-col"
+            className="fixed inset-0 z-40 bg-dark/95 backdrop-blur-3xl md:hidden pt-24 px-6 pb-6 flex flex-col overflow-y-auto"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/10 rounded-full blur-[100px] pointer-events-none"></div>
 
             <div className="flex flex-col gap-6 relative z-10 h-full">
               <div className="flex flex-col gap-2">
-                {navLinks.map((link, i) => (
-                  <Link
-                    key={link.name}
-                    to={link.path}
-                    onClick={() => {
-                        setIsOpen(false);
-                        window.scrollTo(0,0);
-                    }}
-                    className={`text-2xl font-bold py-3 border-b border-white/5 flex items-center justify-between group ${
-                      location.pathname === link.path ? 'text-white' : 'text-slate-400'
-                    }`}
-                  >
-                    <motion.span 
-                        variants={navItemVariants}
-                        initial="hidden"
-                        animate="visible"
-                        custom={i}
-                        className="group-hover:text-primary transition-colors flex items-center gap-3"
-                    >
-                        {link.name}
-                        {location.pathname === link.path && (
-                            <motion.span layoutId="mobile-active-dot" className="w-2 h-2 rounded-full bg-primary" />
-                        )}
-                    </motion.span>
-                    <ArrowRight className="w-5 h-5 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-primary" />
-                  </Link>
-                ))}
+                {navLinks.map((link, i) => {
+                    const isActive = isLinkActive(link.path);
+                    return (
+                        <Link
+                            key={link.name}
+                            to={link.path}
+                            onClick={(e) => handleLinkClick(link.path, e)}
+                            className={`text-2xl font-bold py-3 border-b border-white/5 flex items-center justify-between group ${
+                            isActive ? 'text-white' : 'text-slate-400'
+                            }`}
+                        >
+                            <motion.span 
+                                variants={navItemVariants}
+                                initial="hidden"
+                                animate="visible"
+                                custom={i}
+                                className="group-hover:text-primary transition-colors flex items-center gap-3"
+                            >
+                                {link.name}
+                                {isActive && (
+                                    <motion.span layoutId="mobile-active-dot" className="w-2 h-2 rounded-full bg-primary" />
+                                )}
+                            </motion.span>
+                            <ArrowRight className="w-5 h-5 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-primary" />
+                        </Link>
+                    );
+                })}
                 
                  <a
                     href="#contact"
@@ -307,6 +370,12 @@ export const NavBar: React.FC = () => {
                         <Linkedin className="w-6 h-6" />
                       </div>
                       <span className="text-xs">LinkedIn</span>
+                  </a>
+                  <a href={`tel:${PERSONAL_DETAILS.phone}`} className="flex flex-col items-center gap-2 text-slate-400 hover:text-white transition-colors">
+                      <div className="p-3 rounded-full bg-white/5">
+                        <Phone className="w-6 h-6" />
+                      </div>
+                      <span className="text-xs">Call</span>
                   </a>
                   <a href={PERSONAL_DETAILS.resumeLink} className="flex flex-col items-center gap-2 text-slate-400 hover:text-primary transition-colors">
                       <div className="p-3 rounded-full bg-white/5">
