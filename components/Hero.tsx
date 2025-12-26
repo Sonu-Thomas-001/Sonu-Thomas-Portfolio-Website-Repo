@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView, animate } from 'framer-motion';
 import { ArrowRight, Download, Linkedin, Github, Globe, ChevronDown, Terminal, Cpu, Database, Server, Code2, BrainCircuit, Instagram, Facebook, MessageCircle, Send, Activity, Layers, Zap, GitBranch } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { PERSONAL_DETAILS } from '../constants';
 
 const ROLES = [
@@ -43,7 +44,7 @@ export const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-dark pt-48 pb-24 lg:pt-40 lg:pb-24">
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-dark pt-32 pb-24 lg:pt-32 lg:pb-24">
       {/* Dynamic Background Mesh */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-primary/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[120px] animate-blob"></div>
@@ -138,14 +139,14 @@ export const Hero: React.FC = () => {
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <a 
-                  href="#projects"
+                <Link 
+                  to="/projects"
                   className="group relative px-8 py-4 rounded-xl bg-white text-dark font-bold overflow-hidden transition-all hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] flex items-center justify-center gap-2"
                 >
                   <span className="relative z-10">View My Work</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform relative z-10" />
                   <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-10 transition-opacity"></div>
-                </a>
+                </Link>
                 
                 <a 
                   href={PERSONAL_DETAILS.resumeLink}
