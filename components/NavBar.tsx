@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Terminal, ArrowRight, Sparkles, Briefcase } from 'lucide-react';
-import { ThemeToggle } from './ThemeToggle';
-import { useTheme } from './ThemeContext';
 
 const navLinks = [
   { name: 'Home', href: '#' },
@@ -23,7 +21,6 @@ export const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('Home');
-  const { theme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -169,7 +166,6 @@ export const NavBar: React.FC = () => {
 
             {/* Right Actions */}
             <div className="hidden md:flex items-center gap-4">
-              <ThemeToggle />
               
               {/* Animated Gradient CTA Button */}
               <a 
@@ -186,7 +182,6 @@ export const NavBar: React.FC = () => {
 
             {/* Mobile Menu Button */}
             <div className="flex items-center gap-4 md:hidden">
-              <ThemeToggle />
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="relative p-2 rounded-xl bg-white/5 border border-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all active:scale-95"
