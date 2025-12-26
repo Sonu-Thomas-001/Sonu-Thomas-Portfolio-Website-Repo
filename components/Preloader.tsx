@@ -1,238 +1,313 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, Cpu, Zap, CheckCircle2 } from 'lucide-react';
+import { Terminal, Zap, Wifi, Battery, BrainCircuit, Activity, Layers, Cpu } from 'lucide-react';
 
 interface PreloaderProps {
   onComplete: () => void;
 }
 
 const BOOT_SEQUENCE = [
-  "Initializing AI Core...",
+  "Initializing AI Systems...",
   "Loading Neural Modules...",
   "Calibrating Intelligence Layers...",
-  "Optimizing Cognitive Engine...",
-  "System Ready."
+  "Optimizing Cognitive Engine..."
 ];
 
 export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
-  const [stage, setStage] = useState<'checking' | 'opening' | 'booting' | 'zooming' | 'complete'>('checking');
+  const [stage, setStage] = useState<'checking' | 'closed' | 'opening' | 'booting' | 'zooming' | 'complete'>('checking');
   const [textIndex, setTextIndex] = useState(0);
-  const [displayText, setDisplayText] = useState("");
   
-  // Skip logic
-  const handleSkip = () => {
-    setStage('zooming');
-    setTimeout(() => {
-      onComplete();
-    }, 1000);
-  };
-
   useEffect(() => {
-    // Check session storage to run only once per session
+    // Check session storage
     const hasVisited = sessionStorage.getItem('hasVisited');
     if (hasVisited) {
       onComplete();
+      setStage('complete');
       return;
     }
     
-    // Start animation sequence
-    setStage('opening');
+    // Start sequence
+    setStage('closed');
     sessionStorage.setItem('hasVisited', 'true');
+
+    // Sequence Timing
+    // 1. Initial State (0-0.5s) -> Start Opening
+    const openTimer = setTimeout(() => setStage('opening'), 500);
+    
+    // 2. Opening Animation (0.5-1.2s) -> Start Booting
+    // 1.2s mark
+    const bootTimer = setTimeout(() => setStage('booting'), 1200);
+
+    return () => {
+      clearTimeout(openTimer);
+      clearTimeout(bootTimer);
+    };
   }, [onComplete]);
 
-  // Sequence Management
+  // Boot sequence logic
   useEffect(() => {
-    if (stage === 'opening') {
-      // Transition from opening to booting
-      const timer = setTimeout(() => {
-        setStage('booting');
-      }, 1500); // Allow time for lid to open
-      return () => clearTimeout(timer);
-    }
-
     if (stage === 'booting') {
-      if (textIndex >= BOOT_SEQUENCE.length) {
-        // Boot complete, start zoom
-        const timer = setTimeout(() => {
-          setStage('zooming');
-        }, 800);
-        return () => clearTimeout(timer);
-      }
+      const totalBootTime = 1500; // 1.2s to 2.7s
+      const stepTime = totalBootTime / BOOT_SEQUENCE.length;
 
-      // Typewriter effect for current line
-      const currentLine = BOOT_SEQUENCE[textIndex];
-      let charIndex = 0;
-      
-      const typeInterval = setInterval(() => {
-        setDisplayText(currentLine.substring(0, charIndex + 1));
-        charIndex++;
-        if (charIndex > currentLine.length) {
-          clearInterval(typeInterval);
-          setTimeout(() => {
-            setTextIndex(prev => prev + 1);
-            setDisplayText("");
-          }, 400); // Pause between lines
-        }
-      }, 30); // Typing speed
+      const interval = setInterval(() => {
+        setTextIndex(prev => {
+          if (prev < BOOT_SEQUENCE.length - 1) return prev + 1;
+          return prev;
+        });
+      }, stepTime);
 
-      return () => clearInterval(typeInterval);
+      // End of boot phase -> Start Zoom
+      const zoomTimer = setTimeout(() => {
+        setStage('zooming');
+      }, totalBootTime + 200); // Small buffer
+
+      return () => {
+        clearInterval(interval);
+        clearTimeout(zoomTimer);
+      };
     }
+  }, [stage]);
 
+  // Zoom logic
+  useEffect(() => {
     if (stage === 'zooming') {
-      const timer = setTimeout(() => {
-        setStage('complete');
+      const completeTimer = setTimeout(() => {
         onComplete();
-      }, 1200); // Zoom duration
-      return () => clearTimeout(timer);
+      }, 1000); 
+      return () => clearTimeout(completeTimer);
     }
-  }, [stage, textIndex, onComplete]);
+  }, [stage, onComplete]);
+
+  const handleSkip = () => {
+    setStage('zooming');
+  };
 
   if (stage === 'checking' || stage === 'complete') return null;
 
   return (
-    <motion.div
-      className="fixed inset-0 z-[100] bg-[#050505] flex items-center justify-center overflow-hidden perspective-1000"
-      initial={{ opacity: 1 }}
-      exit={{ opacity: 0, pointerEvents: 'none' }}
-      transition={{ duration: 0.5 }}
-    >
-      {/* Ambient Background Glow */}
+    <div className="fixed inset-0 z-[100] bg-[#050505] flex items-center justify-center overflow-hidden font-sans">
+      
+      {/* Cinematic Background with Ambient Glow */}
       <motion.div 
-        animate={{ opacity: [0.3, 0.6, 0.3] }}
-        transition={{ duration: 4, repeat: Infinity }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none"
-      />
-
-      {/* 3D Laptop Container */}
-      <motion.div
-        initial={{ scale: 0.8, rotateX: 20 }}
-        animate={
-          stage === 'zooming' 
-            ? { scale: 40, rotateX: 0, y: 0, opacity: 0 } 
-            : { scale: 1, rotateX: 10, y: 20, opacity: 1 }
-        }
-        transition={
-          stage === 'zooming'
-            ? { duration: 1.5, ease: [0.65, 0, 0.35, 1] }
-            : { duration: 1 }
-        }
-        className="relative w-[300px] md:w-[500px] aspect-[16/10] transform-style-3d"
+        className="absolute inset-0 bg-black"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
       >
-        {/* Laptop Lid (Screen) */}
-        <motion.div
-          initial={{ rotateX: -90 }}
-          animate={{ rotateX: 0 }}
-          transition={{ duration: 1.2, ease: "circOut", delay: 0.2 }}
-          className="absolute inset-0 origin-bottom transform-style-3d bg-slate-900 rounded-t-xl border-t border-l border-r border-slate-700 shadow-2xl"
-          style={{ backfaceVisibility: 'hidden' }}
-        >
-          {/* Screen Bezel & Glass */}
-          <div className="absolute inset-1 bg-black rounded-lg overflow-hidden border border-slate-800 relative">
-            
-            {/* Glossy Reflection */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent z-20 pointer-events-none"></div>
-            
-            {/* Screen Content */}
-            <div className="absolute inset-0 bg-slate-950 flex flex-col items-center justify-center p-8 z-10 font-mono">
-              
-              {/* Boot Content */}
-              <AnimatePresence mode="wait">
-                {stage === 'booting' && (
-                  <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="w-full h-full flex flex-col items-start justify-center text-xs md:text-sm"
-                  >
-                    <div className="flex items-center gap-2 text-primary mb-4 opacity-80">
-                      <Terminal className="w-4 h-4" />
-                      <span>NEXUS_OS v2.4.0</span>
-                    </div>
-
-                    <div className="space-y-2 font-mono text-slate-300 w-full">
-                      {BOOT_SEQUENCE.slice(0, textIndex).map((line, i) => (
-                        <div key={i} className="flex items-center gap-2">
-                           <CheckCircle2 className="w-3 h-3 text-emerald-500" />
-                           <span className="opacity-50">{line}</span>
-                        </div>
-                      ))}
-                      
-                      {textIndex < BOOT_SEQUENCE.length && (
-                        <div className="flex items-center gap-2 text-primary">
-                          <Cpu className="w-3 h-3 animate-spin" />
-                          <span>{displayText}</span>
-                          <span className="w-1.5 h-4 bg-primary animate-pulse"></span>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Progress Visual */}
-                    <div className="mt-auto w-full space-y-1">
-                       <div className="flex justify-between text-[10px] text-slate-500 uppercase">
-                          <span>System Integrity</span>
-                          <span>{Math.min((textIndex / (BOOT_SEQUENCE.length - 1)) * 100, 100).toFixed(0)}%</span>
-                       </div>
-                       <div className="w-full h-0.5 bg-slate-800 rounded-full overflow-hidden">
-                          <motion.div 
-                            className="h-full bg-primary box-shadow-glow"
-                            initial={{ width: 0 }}
-                            animate={{ width: `${(textIndex / (BOOT_SEQUENCE.length - 1)) * 100}%` }}
-                          />
-                       </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {/* Ready State */}
-              {stage === 'zooming' && (
-                <motion.div 
-                   className="absolute inset-0 flex items-center justify-center bg-black"
-                   initial={{ opacity: 0 }}
-                   animate={{ opacity: 1 }}
-                >
-                    <motion.div
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1.2, opacity: 1 }}
-                        transition={{ duration: 0.5 }}
-                        className="text-primary text-4xl font-bold tracking-[0.5em] uppercase text-shadow-glow"
-                    >
-                        Welcome
-                    </motion.div>
-                </motion.div>
-              )}
-
-            </div>
-          </div>
-          
-          {/* Lid Back (for realism if rotated further) */}
-          <div className="absolute inset-0 bg-slate-800 rounded-t-xl transform translate-z-[-1px] rotate-y-180 backface-hidden"></div>
-        </motion.div>
-
-        {/* Laptop Base (Keyboard area) */}
-        <motion.div 
-          className="absolute bottom-[-10px] left-[-5%] w-[110%] h-[12px] bg-slate-800 rounded-b-xl border-t border-slate-600 shadow-2xl"
-          style={{ transform: 'rotateX(90deg) translateZ(5px)' }}
-        >
-            {/* Front Lip Glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/4 h-[2px] bg-primary shadow-[0_0_10px_2px_rgba(14,165,233,0.5)]"></div>
-        </motion.div>
-        
-        {/* Base Shadow */}
-        <div className="absolute bottom-[-40px] left-0 w-full h-[20px] bg-black/50 blur-xl rounded-[50%] transform scale-x-125"></div>
-
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(14,165,233,0.15)_0%,transparent_60%)] animate-pulse"></div>
       </motion.div>
       
+      {/* 3D Scene Container */}
+      <motion.div 
+        className="relative w-[600px] h-[400px] perspective-[1500px]"
+        initial={{ scale: 0.9, rotateX: 20 }}
+        animate={stage === 'zooming' ? { 
+          scale: 45, // Massive scale for immersive entry
+          rotateX: 0,
+          y: 220, // Center into screen
+          z: 500
+        } : { 
+          scale: 1, 
+          y: 0, 
+          rotateX: 15 
+        }}
+        transition={{ 
+          duration: stage === 'zooming' ? 1.2 : 1, 
+          ease: stage === 'zooming' ? [0.7, 0, 0.3, 1] : "easeOut"
+        }}
+        style={{ transformStyle: 'preserve-3d' }}
+      >
+        
+        {/* LAPTOP GROUP */}
+        <motion.div 
+          className="relative w-full h-full transform-style-3d"
+          animate={stage === 'zooming' ? { rotateY: 0 } : { rotateY: -10 }}
+          transition={{ duration: 1.5 }}
+        >
+
+          {/* === LID (Screen) === */}
+          <motion.div
+            className="absolute top-0 left-[10%] w-[80%] h-[90%] origin-bottom transform-style-3d z-20"
+            initial={{ rotateX: -90 }} // Closed
+            animate={{ rotateX: stage === 'closed' ? -90 : 0 }} // Open
+            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }} // Elegant ease
+          >
+            {/* Screen Front Face */}
+            <div className="absolute inset-0 bg-[#121212] rounded-t-xl p-2 shadow-2xl backface-hidden flex flex-col border border-[#2a2a2a]">
+              
+              {/* Webcam Area */}
+              <div className="h-4 flex justify-center items-center gap-2 mb-1 opacity-50">
+                 <div className="w-1 h-1 bg-white/20 rounded-full"></div>
+              </div>
+
+              {/* LCD Display */}
+              <div className="relative flex-1 bg-black rounded overflow-hidden ring-1 ring-white/5">
+                
+                {/* Screen Glow / Reflection */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-transparent to-transparent pointer-events-none z-50 mix-blend-screen"></div>
+
+                {/* --- AI INITIALIZATION CONTENT --- */}
+                <motion.div 
+                  className="absolute inset-0 flex flex-col items-center justify-center p-8 overflow-hidden"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: stage === 'closed' || stage === 'opening' ? 0 : 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                    {/* 1. Grid Background */}
+                    <div className="absolute inset-0 z-0 opacity-20">
+                         <div className="absolute inset-0 bg-[linear-gradient(rgba(14,165,233,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(14,165,233,0.5)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]"></div>
+                    </div>
+
+                    {/* 2. Abstract Neural/Waveform Visuals */}
+                    {stage === 'booting' && (
+                        <div className="absolute inset-0 flex items-center justify-center z-0 opacity-30">
+                           <motion.div 
+                              animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 180] }}
+                              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                              className="w-64 h-64 border border-primary/30 rounded-full border-dashed"
+                           />
+                           <motion.div 
+                              animate={{ scale: [1.2, 1, 1.2], rotate: [0, -45, 0] }}
+                              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                              className="absolute w-48 h-48 border border-secondary/30 rounded-full"
+                           />
+                        </div>
+                    )}
+
+                    {/* 3. Text Sequence */}
+                    <div className="relative z-10 w-full max-w-md space-y-6">
+                        {/* Header Icons */}
+                        <div className="flex justify-center gap-4 mb-8 text-primary/80">
+                            <BrainCircuit className="w-8 h-8 animate-pulse" />
+                            <Cpu className="w-8 h-8 animate-pulse delay-75" />
+                        </div>
+
+                        {/* Boot Text Lines */}
+                        <div className="h-24 flex flex-col items-center justify-center space-y-2">
+                             <AnimatePresence mode='wait'>
+                                <motion.div
+                                    key={textIndex}
+                                    initial={{ opacity: 0, y: 10, filter: 'blur(5px)' }}
+                                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                                    exit={{ opacity: 0, y: -10, filter: 'blur(5px)' }}
+                                    className="text-lg md:text-xl font-mono text-white text-center font-light tracking-wide"
+                                >
+                                    <span className="text-primary mr-2">{">"}</span>
+                                    {BOOT_SEQUENCE[textIndex]}
+                                </motion.div>
+                             </AnimatePresence>
+                        </div>
+
+                        {/* Minimal Progress Bar */}
+                        <div className="w-full max-w-xs mx-auto h-0.5 bg-slate-800 rounded-full overflow-hidden mt-8">
+                             <motion.div 
+                                className="h-full bg-gradient-to-r from-primary to-secondary shadow-[0_0_10px_rgba(14,165,233,0.8)]"
+                                initial={{ width: "0%" }}
+                                animate={{ width: stage === 'booting' ? "100%" : "0%" }}
+                                transition={{ duration: 1.5, ease: "easeInOut" }}
+                             />
+                        </div>
+                    </div>
+
+                    {/* 4. Zoom Final Text */}
+                    {stage === 'zooming' && (
+                        <motion.div 
+                           initial={{ opacity: 0 }} 
+                           animate={{ opacity: 1 }}
+                           transition={{ duration: 0.2 }}
+                           className="absolute inset-0 bg-black flex items-center justify-center z-50"
+                        >
+                           <h1 className="text-5xl font-bold text-white tracking-[0.2em] uppercase glow-text">
+                              System Ready
+                           </h1>
+                        </motion.div>
+                    )}
+
+                    {/* Top Right Status Icons (Mock UI) */}
+                    <div className="absolute top-3 right-3 flex gap-3 text-slate-500/80 scale-75">
+                        <Activity className="w-4 h-4" />
+                        <Wifi className="w-4 h-4" />
+                        <Battery className="w-4 h-4" />
+                    </div>
+
+                </motion.div>
+              </div>
+
+              {/* Branding */}
+              <div className="h-5 flex justify-center items-center mt-1">
+                 <span className="text-[8px] font-bold text-slate-600 uppercase tracking-[0.2em]">MacBook Pro</span>
+              </div>
+            </div>
+
+            {/* Lid Back */}
+            <div 
+              className="absolute inset-0 bg-[#1a1a1a] rounded-t-xl backface-hidden border border-[#252525]"
+              style={{ transform: 'rotateY(180deg) translateZ(1px)' }}
+            >
+               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                   <Terminal className="text-white/10 w-8 h-8" />
+               </div>
+            </div>
+            
+            {/* Lid Thickness */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-[#222] origin-bottom transform -rotateX-90 translate-y-[-0.5px]"></div>
+            <div className="absolute top-0 left-0 w-1 h-full bg-[#222] origin-right transform -rotateY-90 translate-x-[-0.5px]"></div>
+            <div className="absolute top-0 right-0 w-1 h-full bg-[#222] origin-left transform rotateY-90 translate-x-[0.5px]"></div>
+
+          </motion.div>
+
+          {/* === BASE (Keyboard) === */}
+          <div 
+            className="absolute bottom-0 left-[10%] w-[80%] h-[300px] bg-[#1a1a1a] rounded-b-xl origin-top transform-style-3d shadow-2xl"
+            style={{ transform: 'rotateX(90deg)' }}
+          >
+            <div className="absolute inset-0 p-5 flex flex-col">
+               <div className="w-full h-3 bg-[#111] rounded-full mb-4 shadow-inner"></div>
+               {/* Keyboard */}
+               <div className="flex-1 bg-[#121212] rounded p-2 grid grid-rows-6 gap-0.5 border border-white/5 opacity-80">
+                  <div className="grid grid-cols-14 gap-0.5 h-full">
+                     {[...Array(84)].map((_, i) => (
+                         <div key={i} className={`rounded-[1px] bg-[#222] ${i === 75 ? 'col-span-5' : ''}`}></div>
+                     ))}
+                  </div>
+               </div>
+               {/* Trackpad */}
+               <div className="mt-4 mx-auto w-1/3 h-16 bg-[#222] rounded border border-white/5"></div>
+            </div>
+
+            {/* Base Thickness */}
+            <div className="absolute bottom-0 w-full h-3 bg-[#222] origin-top transform rotateX(-90deg) translate-y-[3px] rounded-b-lg flex items-center justify-center">
+                 <div className="w-12 h-0.5 bg-black/50 rounded-full"></div>
+            </div>
+            
+            <div className="absolute top-0 left-0 w-2 h-full bg-[#222] origin-right transform -rotateY-90 translate-x-[-1px]"></div>
+            <div className="absolute top-0 right-0 w-2 h-full bg-[#222] origin-left transform rotateY-90 translate-x-[1px]"></div>
+            
+            {/* Shadow */}
+            <div className="absolute top-0 left-0 w-full h-full bg-black/60 blur-3xl transform translate-z-[-30px] rounded-full scale-90"></div>
+          </div>
+
+        </motion.div>
+      </motion.div>
+
       {/* Skip Button */}
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
+        transition={{ delay: 1 }}
         onClick={handleSkip}
-        className="fixed bottom-8 right-8 text-xs font-mono text-slate-600 hover:text-primary transition-colors flex items-center gap-2 z-[110]"
+        className="fixed bottom-8 right-8 text-[10px] font-mono text-slate-500 hover:text-white transition-colors flex items-center gap-2 z-[110] tracking-widest uppercase"
       >
-        <Zap className="w-3 h-3" /> SKIP_INIT
+        <Zap className="w-3 h-3" /> Skip Intro
       </motion.button>
-    </motion.div>
+
+      {/* CSS Utilities for 3D */}
+      <style>{`
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .perspective-1500px { perspective: 1500px; }
+        .glow-text { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+      `}</style>
+    </div>
   );
 };
