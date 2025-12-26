@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Linkedin, Globe, Check, Loader2, ArrowRight } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Linkedin, Globe, Check, Loader2, ArrowRight, Radio } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
 
 export const Contact: React.FC = () => {
@@ -28,10 +28,18 @@ export const Contact: React.FC = () => {
 
   return (
     <section id="contact" className="py-24 bg-dark relative overflow-hidden">
-        {/* Background Gradients */}
+        {/* Background Gradients & Network Pulse */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
             <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px]" />
             <div className="absolute top-20 left-0 w-[300px] h-[300px] bg-secondary/5 rounded-full blur-[80px]" />
+            
+            {/* Pulsing signal rings */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-white/5 rounded-full opacity-20"></div>
+            <motion.div 
+               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-primary/10 rounded-full opacity-30"
+               animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.1, 0.3] }}
+               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            />
         </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -42,10 +50,10 @@ export const Contact: React.FC = () => {
           className="text-center mb-16"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium mb-4">
-            <Mail className="w-4 h-4" />
-            <span>Get in Touch</span>
+            <Radio className="w-4 h-4" />
+            <span>Signals</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Let's Work Together</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Let's Connect</h2>
           <p className="text-slate-400 max-w-2xl mx-auto text-lg">
             Have a project in mind or want to discuss the latest in AI and Web Dev? 
             I'm always open to new opportunities and professional connections.

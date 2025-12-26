@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Briefcase, GraduationCap, Globe, Code, Building2, CheckCircle2 } from 'lucide-react';
+import { Calendar, Briefcase, GraduationCap, Globe, Code, Building2, CheckCircle2, GitCommit } from 'lucide-react';
 import { EXPERIENCE_DATA } from '../constants';
 
 export const Experience: React.FC = () => {
@@ -23,6 +23,8 @@ export const Experience: React.FC = () => {
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+        {/* Subtle grid line */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px)] bg-[size:40px_100%] opacity-20"></div>
       </div>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -44,8 +46,15 @@ export const Experience: React.FC = () => {
         </motion.div>
 
         <div className="relative">
-          {/* Vertical Line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-secondary/50 to-transparent -translate-x-1/2 md:translate-x-0" />
+          {/* Vertical Data Line */}
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary via-secondary to-transparent -translate-x-1/2 md:translate-x-0 opacity-30" />
+          
+          {/* Animated Data Pulse */}
+          <motion.div 
+            className="absolute left-8 md:left-1/2 top-0 w-1 h-24 bg-gradient-to-b from-transparent via-primary to-transparent -translate-x-1/2 md:translate-x-0 blur-sm z-0"
+            animate={{ top: ["0%", "100%"] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+          />
 
           <div className="space-y-12">
             {EXPERIENCE_DATA.map((item, index) => {
@@ -74,21 +83,26 @@ export const Experience: React.FC = () => {
 
                   {/* Content Card */}
                   <div className={`pl-20 md:pl-0 md:w-1/2 ${isEven ? 'md:pr-12' : 'md:pl-12'}`}>
-                    <div className="group relative bg-surface border border-white/10 hover:border-primary/30 rounded-2xl p-6 md:p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1">
+                    <div className="group relative bg-surface border border-white/10 hover:border-primary/30 rounded-2xl p-6 md:p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1 overflow-hidden">
+                      {/* Circuit Trace Decor */}
+                      <div className="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+                      <div className="absolute -right-10 -bottom-10 w-32 h-32 border border-white/5 rounded-full"></div>
+
                       {/* Date Badge */}
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 text-primary text-xs font-semibold mb-4 border border-white/5">
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 text-primary text-xs font-semibold mb-4 border border-white/5 font-mono">
                         <Calendar className="w-3.5 h-3.5" />
                         {item.period}
                       </div>
 
-                      <h3 className="text-xl font-bold text-white mb-1 group-hover:text-primary transition-colors">
+                      <h3 className="text-xl font-bold text-white mb-1 group-hover:text-primary transition-colors flex items-center gap-2">
                         {item.role}
                       </h3>
                       <div className="text-base text-slate-400 font-medium mb-4 flex items-center gap-2">
+                        <GitCommit className="w-4 h-4 text-slate-600" />
                         {item.company}
                       </div>
 
-                      <ul className="space-y-3 mb-6">
+                      <ul className="space-y-3 mb-6 relative z-10">
                         {item.description.map((desc, i) => (
                           <li key={i} className="flex items-start gap-3 text-slate-400 text-sm leading-relaxed">
                             <CheckCircle2 className="w-4 h-4 text-secondary shrink-0 mt-0.5" />
@@ -98,11 +112,11 @@ export const Experience: React.FC = () => {
                       </ul>
 
                       {item.tech && (
-                        <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+                        <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5 relative z-10">
                           {item.tech.map((t, i) => (
                             <span 
                               key={i} 
-                              className="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-dark border border-slate-200 dark:border-white/10 text-xs font-medium text-slate-500 dark:text-slate-300 group-hover:border-primary/20 transition-colors"
+                              className="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-dark border border-slate-200 dark:border-white/10 text-xs font-medium text-slate-500 dark:text-slate-300 group-hover:border-primary/20 transition-colors font-mono"
                             >
                               {t}
                             </span>

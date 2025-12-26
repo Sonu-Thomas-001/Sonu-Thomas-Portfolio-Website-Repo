@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView, animate } from 'framer-motion';
-import { ArrowRight, Download, Linkedin, Github, Globe, ChevronDown, Terminal, Cpu, Database, Server, Code2, BrainCircuit, Instagram, Facebook, MessageCircle, Send, Activity, Layers, Zap, GitBranch } from 'lucide-react';
+import { ArrowRight, Download, Linkedin, Github, Globe, ChevronDown, Terminal, Cpu, Database, Server, Code2, BrainCircuit, Instagram, Facebook, MessageCircle, Send, Activity, Layers, Zap, GitBranch, ScanFace } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PERSONAL_DETAILS } from '../constants';
 
@@ -45,12 +45,17 @@ export const Hero: React.FC = () => {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-dark pt-32 pb-24 lg:pt-32 lg:pb-24">
-      {/* Dynamic Background Mesh */}
+      {/* Dynamic Background Mesh & Tech Grid */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-primary/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[120px] animate-blob"></div>
         <div className="absolute top-[20%] right-[-20%] w-[60vw] h-[60vw] bg-secondary/10 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[120px] animate-blob animation-delay-2000"></div>
         <div className="absolute bottom-[-20%] left-[20%] w-[40vw] h-[40vw] bg-purple-500/10 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000"></div>
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+        
+        {/* Cyber Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:40px_40px] opacity-20"></div>
+        
+        {/* Scanning Line Effect */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent h-[20%] w-full animate-[scan_5s_linear_infinite] opacity-30 pointer-events-none"></div>
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -80,7 +85,7 @@ export const Hero: React.FC = () => {
                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                  </span>
-                 Available for Work
+                 System Online • Available for Work
               </motion.div>
 
               {/* Headline & Profile Photo */}
@@ -107,23 +112,31 @@ export const Hero: React.FC = () => {
                           alt="Sonu Thomas"
                           className="w-full h-full object-cover opacity-90 group-hover/photo:opacity-100 group-hover/photo:scale-110 transition-all duration-500"
                         />
+                         {/* Tech Overlay on Photo */}
+                         <div className="absolute inset-0 bg-scanlines opacity-20 pointer-events-none"></div>
+                         <div className="absolute bottom-1 right-1">
+                             <div className="w-2 h-2 bg-emerald-500 rounded-full animate-ping"></div>
+                         </div>
                      </div>
                   </motion.div>
                 </div>
                 
                 <div className="h-8 md:h-10 overflow-hidden flex items-center">
-                  <AnimatePresence mode='wait'>
-                    <motion.div
-                      key={roleIndex}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ duration: 0.3 }}
-                      className="text-xl md:text-2xl font-medium text-primary"
-                    >
-                      {ROLES[roleIndex]}
-                    </motion.div>
-                  </AnimatePresence>
+                  <div className="text-xl md:text-2xl font-mono text-primary flex items-center gap-2">
+                    <span className="text-secondary/70">{'>'}</span>
+                    <AnimatePresence mode='wait'>
+                        <motion.span
+                        key={roleIndex}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.3 }}
+                        >
+                        {ROLES[roleIndex]}
+                        </motion.span>
+                    </AnimatePresence>
+                    <span className="w-2 h-5 bg-primary/50 animate-pulse ml-1"></span>
+                  </div>
                 </div>
               </div>
 
@@ -134,7 +147,7 @@ export const Hero: React.FC = () => {
                 transition={{ delay: 0.4 }}
                 className="text-lg text-slate-400 leading-relaxed max-w-lg"
               >
-                I engineer resilient enterprise systems and scalable web solutions, bridging the gap between traditional software development and the future of Artificial Intelligence.
+                I engineer resilient enterprise systems and scalable web solutions, bridging the gap between <span className="text-white font-medium">traditional software development</span> and the future of <span className="text-primary font-medium">Artificial Intelligence</span>.
               </motion.p>
 
               {/* CTAs */}
@@ -163,24 +176,24 @@ export const Hero: React.FC = () => {
                   <div className="text-2xl md:text-3xl font-bold text-white tabular-nums flex items-center">
                     <Counter from={0} to={2} /><span className="text-primary">+</span>
                   </div>
-                  <div className="text-[10px] md:text-xs text-slate-500 font-medium uppercase tracking-wider mt-1 leading-tight">
-                    Years at HCLTech
+                  <div className="text-[10px] md:text-xs text-slate-500 font-medium uppercase tracking-wider mt-1 leading-tight flex items-center gap-1">
+                     <Building2 className="w-3 h-3" /> HCLTech Exp
                   </div>
                 </div>
                 <div>
                   <div className="text-2xl md:text-3xl font-bold text-white tabular-nums flex items-center">
                     <Counter from={0} to={3} /><span className="text-secondary">+</span>
                   </div>
-                  <div className="text-[10px] md:text-xs text-slate-500 font-medium uppercase tracking-wider mt-1 leading-tight">
-                    Years Freelancing
+                  <div className="text-[10px] md:text-xs text-slate-500 font-medium uppercase tracking-wider mt-1 leading-tight flex items-center gap-1">
+                    <Code2 className="w-3 h-3" /> Freelance Yrs
                   </div>
                 </div>
                 <div>
                   <div className="text-2xl md:text-3xl font-bold text-white flex items-center">
                     IIT G
                   </div>
-                  <div className="text-[10px] md:text-xs text-slate-500 font-medium uppercase tracking-wider mt-1 leading-tight">
-                    AI & DS @ IIT Guwahati
+                  <div className="text-[10px] md:text-xs text-slate-500 font-medium uppercase tracking-wider mt-1 leading-tight flex items-center gap-1">
+                    <BrainCircuit className="w-3 h-3" /> AI & Data Science
                   </div>
                 </div>
               </div>
@@ -291,7 +304,7 @@ export const Hero: React.FC = () => {
                     <div className="text-xs text-gray-300 text-center">Scalable cloud solutions & DevOps</div>
                 </motion.div>
 
-                {/* NEW ELEMENT: Floating Code Snippet (Top Right) - Forced Dark Mode */}
+                {/* Floating Code Snippet (Top Right) - Forced Dark Mode */}
                 <motion.div
                     animate={{ y: [0, -15, 0], x: [0, 10, 0] }}
                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
@@ -315,7 +328,7 @@ export const Hero: React.FC = () => {
                     </div>
                 </motion.div>
 
-                {/* NEW ELEMENT: Activity Badge (Left Center/Bottom) */}
+                {/* Activity Badge (Left Center/Bottom) */}
                 <motion.div
                     animate={{ x: [0, -10, 0], opacity: [0.8, 1, 0.8] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
@@ -331,7 +344,7 @@ export const Hero: React.FC = () => {
                     </div>
                 </motion.div>
 
-                {/* NEW ELEMENT: Tech Stack Node (Right Center) */}
+                {/* Tech Stack Node (Right Center) */}
                 <motion.div
                    animate={{ y: [0, 20, 0], rotate: [0, 10, 0] }}
                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
@@ -375,6 +388,24 @@ export const Hero: React.FC = () => {
             <ChevronDown className="w-5 h-5 text-primary/50" />
         </motion.div>
       </motion.div>
+
+      {/* Import additional icon for Stats if needed */}
+      <div className="hidden">
+        <Building2 className="w-0 h-0" />
+      </div>
     </section>
   );
 };
+
+// Simple Icon fallback
+const Building2 = ({ className }: { className?: string }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+        <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/>
+        <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/>
+        <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/>
+        <path d="M10 6h4"/>
+        <path d="M10 10h4"/>
+        <path d="M10 14h4"/>
+        <path d="M10 18h4"/>
+    </svg>
+);
