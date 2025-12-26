@@ -131,7 +131,7 @@ export const Footer: React.FC = () => {
              </span>
              <span className="hidden md:inline text-slate-600">|</span>
              <span className="flex items-center gap-1">
-                Hosted on <Globe className="w-3 h-3" /> GitHub Pages
+                Hosted on <Globe className="w-3 h-3" /> Vercel
              </span>
           </div>
         </div>
