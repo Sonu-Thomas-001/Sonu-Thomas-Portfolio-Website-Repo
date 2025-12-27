@@ -58,7 +58,7 @@ export const InteractiveResume: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-dark relative border-t border-white/5">
+    <section className="py-24 bg-dark relative border-t border-white/5 overflow-hidden">
         {/* Background Gradients */}
         <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-surface to-transparent pointer-events-none"></div>
 

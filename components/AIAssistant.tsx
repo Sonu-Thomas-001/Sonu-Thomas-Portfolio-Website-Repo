@@ -14,7 +14,7 @@ const PORTFOLIO_CONTEXT = JSON.stringify({
   blog: BLOG_DATA
 });
 
-const SYSTEM_INSTRUCTION = `You are "Nexus", an advanced AI assistant for Sonu Thomas's portfolio website. 
+const SYSTEM_INSTRUCTION = `You are "Qubi", an advanced AI assistant for Sonu Thomas's portfolio website. 
 Your goal is to impress recruiters and managers by answering questions about Sonu's background, skills, and projects.
 You have access to his full portfolio data in the context below.
 
@@ -60,7 +60,7 @@ interface Message {
 export const AIAssistant: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { id: 'init', role: 'model', text: "Hello! I'm Nexus, Sonu's AI assistant. Ask me anything about his engineering skills, experience, or projects." }
+    { id: 'init', role: 'model', text: "Hello! I'm Qubi, Sonu's AI assistant. Ask me anything about his engineering skills, experience, or projects." }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -224,7 +224,7 @@ export const AIAssistant: React.FC = () => {
                     <Bot className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                    <h3 className="font-bold text-white text-sm">Nexus AI</h3>
+                    <h3 className="font-bold text-white text-sm">Qubi AI</h3>
                     <div className="flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                         <span className="text-[10px] text-emerald-400 font-medium">Online</span>

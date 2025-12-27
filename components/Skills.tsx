@@ -28,7 +28,7 @@ export const Skills: React.FC = () => {
   };
 
   return (
-    <section id="skills" className="py-24 bg-surface/30 relative">
+    <section id="skills" className="py-24 bg-surface/30 relative overflow-hidden">
       {/* Background decoration - Network Pattern */}
       <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">

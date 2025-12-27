@@ -39,7 +39,7 @@ const SERVICES = [
 
 export const ValueProp: React.FC = () => {
   return (
-    <section className="py-24 bg-dark border-b border-white/5 relative">
+    <section className="py-24 bg-dark border-b border-white/5 relative overflow-hidden">
       {/* Circuit Pattern Overlay */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '24px 24px' }}></div>
       

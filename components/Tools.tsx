@@ -62,7 +62,7 @@ export const Tools: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-dark relative border-t border-white/5">
+    <section className="py-24 bg-dark relative border-t border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <motion.div

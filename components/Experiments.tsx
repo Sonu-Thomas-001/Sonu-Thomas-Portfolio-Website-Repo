@@ -31,7 +31,7 @@ const EXPERIMENTS = [
 
 export const Experiments: React.FC = () => {
   return (
-    <section className="py-24 bg-dark relative border-t border-white/5">
+    <section className="py-24 bg-dark relative border-t border-white/5 overflow-hidden">
       {/* Background Decoration */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent opacity-50 pointer-events-none"></div>
 

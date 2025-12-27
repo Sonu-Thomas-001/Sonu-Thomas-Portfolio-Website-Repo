@@ -5,7 +5,7 @@ import { PERSONAL_DETAILS } from '../constants';
 
 export const Availability: React.FC = () => {
   return (
-    <section className="py-20 bg-dark relative">
+    <section className="py-20 bg-dark relative overflow-hidden">
         {/* Background Accent */}
         <div className="absolute inset-0 bg-gradient-to-b from-dark via-surface to-dark pointer-events-none"></div>
         

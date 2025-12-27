@@ -121,8 +121,8 @@ export const Hero: React.FC = () => {
                   </motion.div>
                 </div>
                 
-                <div className="h-8 md:h-10 overflow-hidden flex items-center">
-                  <div className="text-xl md:text-2xl font-mono text-primary flex items-center gap-2">
+                <div className="min-h-[2.5rem] md:min-h-[3rem] h-auto overflow-hidden flex items-center">
+                  <div className="text-lg sm:text-xl md:text-2xl font-mono text-primary flex flex-wrap items-center gap-2">
                     <span className="text-secondary/70">{'>'}</span>
                     <AnimatePresence mode='wait'>
                         <motion.span
