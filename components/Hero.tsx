@@ -108,7 +108,7 @@ export const Hero: React.FC = () => {
                      
                      <div className="relative w-full h-full rounded-2xl border-2 border-white/20 overflow-hidden shadow-2xl bg-dark/50 group/photo cursor-pointer">
                         <img 
-                          src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&h=300" 
+                          src="/profile.jpg" 
                           alt="Sonu Thomas"
                           className="w-full h-full object-cover opacity-90 group-hover/photo:opacity-100 group-hover/photo:scale-110 transition-all duration-500"
                         />
