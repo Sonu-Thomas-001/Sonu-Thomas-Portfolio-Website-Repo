@@ -35,6 +35,7 @@ const Counter = ({ from, to }: { from: number; to: number }) => {
 
 export const Hero: React.FC = () => {
   const [roleIndex, setRoleIndex] = useState(0);
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -96,7 +97,7 @@ export const Hero: React.FC = () => {
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">Thomas</span>
                   </h1>
                   
-                  {/* Dummy Profile Photo */}
+                  {/* Profile Photo with Fallback */}
                   <motion.div 
                     initial={{ scale: 0, rotate: -20, opacity: 0 }}
                     animate={{ scale: 1, rotate: 0, opacity: 1 }}
@@ -107,11 +108,19 @@ export const Hero: React.FC = () => {
                      <div className="absolute inset-0 bg-gradient-to-tr from-primary to-secondary rounded-2xl blur-xl opacity-50 animate-pulse"></div>
                      
                      <div className="relative w-full h-full rounded-2xl border-2 border-white/20 overflow-hidden shadow-2xl bg-dark/50 group/photo cursor-pointer">
-                        <img 
-                          src="/profile.jpg" 
-                          alt="Sonu Thomas"
-                          className="w-full h-full object-cover opacity-90 group-hover/photo:opacity-100 group-hover/photo:scale-110 transition-all duration-500"
-                        />
+                        {!imgError ? (
+                            <img 
+                              src="/profile.jpg" 
+                              alt="Sonu Thomas"
+                              className="w-full h-full object-cover opacity-90 group-hover/photo:opacity-100 group-hover/photo:scale-110 transition-all duration-500"
+                              onError={() => setImgError(true)}
+                            />
+                        ) : (
+                            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950">
+                                <span className="text-2xl font-bold text-slate-600 group-hover/photo:text-primary transition-colors">ST</span>
+                            </div>
+                        )}
+                         
                          {/* Tech Overlay on Photo */}
                          <div className="absolute inset-0 bg-scanlines opacity-20 pointer-events-none"></div>
                          <div className="absolute bottom-1 right-1">
