@@ -136,88 +136,68 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
 
 export const SKILLS_DATA: SkillCategory[] = [
   {
-    category: "Programming Languages",
+    category: "Core Stack",
     items: [
-      { name: "Python" },
-      { name: "Java" },
-      { name: "C" },
-      { name: "C++" },
-      { name: "JavaScript" },
-      { name: "SQL" },
-      { name: "PL/SQL" }
+      { name: "Python", proficiency: "Expert" },
+      { name: "Java", proficiency: "Advanced" },
+      { name: "TypeScript", proficiency: "Advanced" },
+      { name: "React", proficiency: "Advanced" },
+      { name: "SQL / PL/SQL", proficiency: "Advanced" },
+      { name: "C / C++", proficiency: "Intermediate" }
     ]
   },
   {
-    category: "AI & Data Intelligence",
+    category: "AI & Intelligence",
     items: [
-      { name: "Artificial Intelligence" },
       { name: "Generative AI" },
-      { name: "NLP" },
       { name: "LLMs & Agents" },
-      { name: "AI App Development" },
-      { name: "GenAI Tools" }
+      { name: "NLP" },
+      { name: "AI App Dev" },
+      { name: "RAG Pipelines" },
+      { name: "Gemini API" }
     ]
   },
   {
-    category: "Software Engineering",
+    category: "Development Environment",
     items: [
-      { name: "Software Engineering" },
-      { name: "System Design" },
-      { name: "Computer Organization" },
-      { name: "Web Applications" },
-      { name: "DBMS" },
-      { name: "JDBC" }
+      { name: "VS Code" },
+      { name: "IntelliJ IDEA" },
+      { name: "Postman" },
+      { name: "Git / GitHub" },
+      { name: "Jupyter" },
+      { name: "Docker" }
     ]
   },
   {
-    category: "Web & API Ecosystem",
+    category: "Infrastructure & Ops",
     items: [
-      { name: "Web Development" },
-      { name: "HTML5 & HTML" },
-      { name: "CSS" },
-      { name: "Bootstrap" },
-      { name: "WordPress" }
-    ]
-  },
-  {
-    category: "Infrastructure & Tools",
-    items: [
-      { name: "Oracle Database" },
-      { name: "SQL Databases" },
+      { name: "Oracle DB" },
       { name: "Linux / Unix" },
-      { name: "Windows" },
-      { name: "Git" },
-      { name: "GitHub" }
-    ]
-  },
-  {
-    category: "Enterprise & Operations",
-    items: [
       { name: "Production Support" },
       { name: "Change Management" },
-      { name: "Process Consulting" },
-      { name: "Project Management" }
+      { name: "CI/CD Concepts" }
     ]
   },
   {
-    category: "Professional & Digital",
+    category: "Web Ecosystem",
     items: [
-      { name: "Digital Marketing" },
-      { name: "SEO" },
-      { name: "Leadership" },
+      { name: "Next.js" },
+      { name: "Tailwind CSS" },
+      { name: "WordPress (CMS)" },
+      { name: "HTML5 / CSS3" },
+      { name: "Bootstrap" }
+    ]
+  },
+  {
+    category: "Professional Capabilities",
+    items: [
+      { name: "System Design" },
       { name: "Problem Solving" },
-      { name: "Team Collaboration" }
+      { name: "Technical Writing" },
+      { name: "Team Leadership" },
+      { name: "Agile / Scrum" }
     ]
-  },
-  {
-    category: "Communication Languages",
-    items: [
-      { name: "English", proficiency: "Full Professional" },
-      { name: "Malayalam", proficiency: "Native" },
-      { name: "Tamil", proficiency: "Professional" },
-      { name: "Hindi", proficiency: "Limited" }
-    ]
-  },
+  }
 ];
 
 export const LANGUAGES = [

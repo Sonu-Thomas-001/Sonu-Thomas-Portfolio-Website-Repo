@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, BrainCircuit, Globe, Database, Terminal, Briefcase, Users, Languages as LangIcon, Share2, Layers, Monitor, Server } from 'lucide-react';
+import { Terminal, Cpu, Database, Globe, Monitor, Code2, Briefcase, Layers } from 'lucide-react';
 import { SKILLS_DATA } from '../constants';
 
 export const Skills: React.FC = () => {
@@ -9,47 +9,44 @@ export const Skills: React.FC = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
+      transition: { staggerChildren: 0.1 }
     }
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } }
   };
 
-  const getCategoryIcon = (category: string) => {
+  const getIcon = (category: string) => {
     const cat = category.toLowerCase();
-    if (cat.includes('programming')) return <Terminal className="w-6 h-6 text-blue-400" />;
-    if (cat.includes('ai & data')) return <BrainCircuit className="w-6 h-6 text-purple-400" />;
-    if (cat.includes('software')) return <Layers className="w-6 h-6 text-emerald-400" />;
-    if (cat.includes('web')) return <Globe className="w-6 h-6 text-cyan-400" />;
-    if (cat.includes('infrastructure')) return <Server className="w-6 h-6 text-orange-400" />;
-    if (cat.includes('enterprise')) return <Briefcase className="w-6 h-6 text-amber-400" />;
-    if (cat.includes('professional')) return <Users className="w-6 h-6 text-pink-400" />;
-    if (cat.includes('communication')) return <LangIcon className="w-6 h-6 text-indigo-400" />;
-    return <Code2 className="w-6 h-6 text-slate-400" />;
+    if (cat.includes('core')) return <Code2 className="w-5 h-5 text-blue-400" />;
+    if (cat.includes('ai')) return <Cpu className="w-5 h-5 text-purple-400" />;
+    if (cat.includes('dev')) return <Terminal className="w-5 h-5 text-emerald-400" />;
+    if (cat.includes('infrastructure')) return <Database className="w-5 h-5 text-orange-400" />;
+    if (cat.includes('web')) return <Globe className="w-5 h-5 text-cyan-400" />;
+    if (cat.includes('professional')) return <Briefcase className="w-5 h-5 text-pink-400" />;
+    return <Layers className="w-5 h-5 text-slate-400" />;
+  };
+
+  const getColor = (category: string) => {
+      const cat = category.toLowerCase();
+      if (cat.includes('core')) return 'border-blue-500/20 bg-blue-500/5 hover:border-blue-500/40';
+      if (cat.includes('ai')) return 'border-purple-500/20 bg-purple-500/5 hover:border-purple-500/40';
+      if (cat.includes('dev')) return 'border-emerald-500/20 bg-emerald-500/5 hover:border-emerald-500/40';
+      if (cat.includes('infrastructure')) return 'border-orange-500/20 bg-orange-500/5 hover:border-orange-500/40';
+      if (cat.includes('web')) return 'border-cyan-500/20 bg-cyan-500/5 hover:border-cyan-500/40';
+      return 'border-white/10 bg-white/5 hover:border-white/20';
   };
 
   return (
-    <section id="skills" className="py-24 bg-surface/30 relative overflow-hidden">
-      {/* Background decoration - Network Pattern */}
-      <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-              <pattern id="network-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <circle cx="2" cy="2" r="1" fill="currentColor" className="text-slate-500" />
-                  <line x1="2" y1="2" x2="42" y2="2" stroke="currentColor" className="text-slate-500" strokeWidth="0.5" strokeOpacity="0.2" />
-                  <line x1="2" y1="2" x2="2" y2="42" stroke="currentColor" className="text-slate-500" strokeWidth="0.5" strokeOpacity="0.2" />
-              </pattern>
-              <rect width="100%" height="100%" fill="url(#network-pattern)" />
-          </svg>
-      </div>
-      
-      <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+    <section id="skills" className="py-24 bg-dark relative overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-dark to-dark pointer-events-none"></div>
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -57,12 +54,12 @@ export const Skills: React.FC = () => {
           className="mb-16 md:text-center"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium mb-4">
-            <Share2 className="w-4 h-4" />
-            <span>Neural Toolkit</span>
+            <Monitor className="w-4 h-4" />
+            <span>Tech Ecosystem</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Skills & Tools</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Technical Arsenal & Expertise</h2>
           <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-            A comprehensive toolkit spanning software engineering, data science, creative media, and communication.
+             A holistic view of the languages, frameworks, and intelligent tools I leverage to engineer scalable solutions.
           </p>
         </motion.div>
 
@@ -71,55 +68,49 @@ export const Skills: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid md:grid-cols-2 gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {SKILLS_DATA.map((category, idx) => (
             <motion.div
               key={idx}
               variants={cardVariants}
-              whileHover={{ y: -5 }}
-              className="bg-surface border border-white/10 rounded-2xl p-8 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 relative overflow-hidden group"
+              className={`group relative rounded-2xl border p-6 transition-all duration-300 ${getColor(category.category)}`}
             >
-              {/* Corner Tech Accents */}
-              <div className="absolute top-0 right-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="flex gap-1">
-                      <div className="w-1 h-1 bg-slate-500 rounded-full"></div>
-                      <div className="w-1 h-1 bg-slate-500 rounded-full"></div>
-                      <div className="w-1 h-1 bg-slate-500 rounded-full"></div>
-                  </div>
-              </div>
-
-              <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 bg-white/5 rounded-xl border border-white/5 relative">
-                   <div className="absolute inset-0 bg-primary/20 blur-md rounded-xl opacity-0 group-hover:opacity-50 transition-opacity"></div>
-                  {getCategoryIcon(category.category)}
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2.5 rounded-lg bg-dark border border-white/10 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                   {getIcon(category.category)}
                 </div>
-                <h3 className="text-xl font-bold text-white">{category.category}</h3>
+                <h3 className="text-lg font-bold text-white group-hover:text-primary transition-colors">
+                    {category.category}
+                </h3>
               </div>
 
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2">
                 {category.items.map((skill, sIdx) => (
                   <div 
-                    key={sIdx}
-                    className="group/skill relative flex items-center gap-2 px-4 py-2.5 rounded-lg bg-slate-100 dark:bg-dark/50 border border-slate-200 dark:border-white/10 hover:border-primary/30 hover:bg-white dark:hover:bg-dark transition-all duration-200 cursor-default"
+                    key={sIdx} 
+                    className="relative px-3 py-1.5 rounded-md bg-dark/50 border border-white/10 text-xs font-medium text-slate-300 hover:text-white hover:border-white/20 transition-colors cursor-default"
                   >
-                    <span className="text-slate-500 dark:text-slate-300 font-medium group-hover/skill:text-slate-900 dark:group-hover/skill:text-white transition-colors">
-                      {skill.name}
-                    </span>
-                    {skill.proficiency && (
-                      <>
-                        <span className="w-1 h-1 rounded-full bg-slate-400 dark:bg-slate-600 group-hover/skill:bg-primary transition-colors"></span>
-                        <span className="text-xs text-slate-400 dark:text-slate-500 group-hover/skill:text-primary/80 transition-colors">
-                          {skill.proficiency}
-                        </span>
-                      </>
+                    {skill.name}
+                    {skill.proficiency === 'Expert' && (
+                        <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full border-2 border-dark"></span>
                     )}
                   </div>
                 ))}
               </div>
+              
+              {/* Scanline Effect on Hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_1s_infinite] pointer-events-none rounded-2xl"></div>
             </motion.div>
           ))}
         </motion.div>
+
+        <div className="mt-12 text-center">
+            <p className="text-xs text-slate-500 font-mono">
+                <span className="text-primary">*</span> Indicates high proficiency / daily usage.
+            </p>
+        </div>
+
       </div>
     </section>
   );
