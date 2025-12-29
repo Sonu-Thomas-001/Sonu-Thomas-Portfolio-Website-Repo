@@ -36,6 +36,7 @@ const Counter = ({ from, to }: { from: number; to: number }) => {
 export const Hero: React.FC = () => {
   const [roleIndex, setRoleIndex] = useState(0);
   const [imgError, setImgError] = useState(false);
+  const imgSrc = 'https://cdn.jsdelivr.net/gh/Sonu-Thomas-001/image-host@master/Sonu-Thomas-Portfolio-Website-Repo/ProfilePic.jpg';
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -102,7 +103,7 @@ export const Hero: React.FC = () => {
                     initial={{ scale: 0, rotate: -20, opacity: 0 }}
                     animate={{ scale: 1, rotate: 0, opacity: 1 }}
                     transition={{ delay: 0.5, type: "spring", stiffness: 200, damping: 15 }}
-                    className="relative w-20 h-20 md:w-28 md:h-28 flex-shrink-0"
+                    className="relative w-32 h-32 md:w-48 md:h-48 flex-shrink-0"
                   >
                      {/* Glow behind the photo */}
                      <div className="absolute inset-0 bg-gradient-to-tr from-primary to-secondary rounded-2xl blur-xl opacity-50 animate-pulse"></div>
@@ -110,20 +111,20 @@ export const Hero: React.FC = () => {
                      <div className="relative w-full h-full rounded-2xl border-2 border-white/20 overflow-hidden shadow-2xl bg-dark/50 group/photo cursor-pointer">
                         {!imgError ? (
                             <img 
-                              src="/profile.jpg" 
+                              src={imgSrc} 
                               alt="Sonu Thomas"
-                              className="w-full h-full object-cover opacity-90 group-hover/photo:opacity-100 group-hover/photo:scale-110 transition-all duration-500"
+                              className="w-full h-full object-cover opacity-90 group-hover/photo:opacity-100 group-hover/photo:scale-110 transition-all duration-500 relative z-0"
                               onError={() => setImgError(true)}
                             />
                         ) : (
-                            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950">
+                            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950 relative z-0">
                                 <span className="text-2xl font-bold text-slate-600 group-hover/photo:text-primary transition-colors">ST</span>
                             </div>
                         )}
                          
                          {/* Tech Overlay on Photo */}
-                         <div className="absolute inset-0 bg-scanlines opacity-20 pointer-events-none"></div>
-                         <div className="absolute bottom-1 right-1">
+                         <div className="absolute inset-0 bg-scanlines opacity-20 pointer-events-none z-10"></div>
+                         <div className="absolute bottom-1 right-1 z-20">
                              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-ping"></div>
                          </div>
                      </div>
