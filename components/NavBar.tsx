@@ -23,9 +23,11 @@ const ROLES = [
 export const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('/');
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Scroll styling handler
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -36,6 +38,50 @@ export const NavBar: React.FC = () => {
     
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Scroll Spy Handler
+  useEffect(() => {
+    if (location.pathname !== '/') {
+        setActiveSection(location.pathname);
+        return;
+    }
+
+    const handleScrollSpy = () => {
+        const scrollPosition = window.scrollY + 200; // Offset to trigger active state earlier
+
+        // Define sections mapped to paths
+        const sections = [
+            { id: 'hero', path: '/' },
+            { id: 'about', path: '/#about' },
+            { id: 'experience', path: '/#experience' },
+            { id: 'skills', path: '/#skills' },
+            { id: 'contact', path: '/#contact' } // Explicitly handling contact if needed, though usually handled via button
+        ];
+
+        // Find the current section
+        for (const section of sections) {
+            const element = document.getElementById(section.id);
+            if (element) {
+                const offsetTop = element.offsetTop;
+                const height = element.offsetHeight;
+
+                if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
+                    setActiveSection(section.path);
+                }
+            }
+        }
+        
+        // Safety check for top of page
+        if (window.scrollY < 100) {
+            setActiveSection('/');
+        }
+    };
+
+    window.addEventListener('scroll', handleScrollSpy);
+    handleScrollSpy(); // Initial check
+
+    return () => window.removeEventListener('scroll', handleScrollSpy);
+  }, [location.pathname]);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -55,34 +101,35 @@ export const NavBar: React.FC = () => {
         if (path.startsWith('/#')) {
             targetId = path.replace('/#', '');
         } else {
-            // Path is '/' - scroll to top
-            targetId = 'top'; 
+            targetId = 'hero'; // Home maps to hero section
         }
 
         const performScroll = () => {
-            if (targetId === 'top') {
-                 window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                 const element = document.getElementById(targetId);
-                 if (element) {
-                     const navHeight = 85; // slightly more for breathing room
+             const element = document.getElementById(targetId === 'hero' ? 'hero' : targetId);
+             if (element) {
+                 // Adjust for navbar height
+                 const navHeight = 85; 
+                 // If target is hero/top, scroll to 0
+                 if (targetId === 'hero') {
+                     window.scrollTo({ top: 0, behavior: 'smooth' });
+                 } else {
                      const elementPosition = element.getBoundingClientRect().top;
                      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
                      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                  }
-            }
+             }
         };
 
         if (location.pathname !== '/') {
             navigate('/');
-            // Wait for transition (approx 600ms-800ms)
+            // Wait for transition
             setTimeout(performScroll, 700);
         } else {
             performScroll();
         }
         setIsOpen(false);
     } else {
-        // Standard route navigation (Projects, Insights)
+        // Standard route navigation
         window.scrollTo(0,0);
         setIsOpen(false);
     }
@@ -122,10 +169,14 @@ export const NavBar: React.FC = () => {
     return "fixed top-0 left-0 right-0 z-50 w-full bg-transparent border-transparent py-6 md:py-10 transition-all duration-300";
   };
 
+  // Logic to determine active state
   const isLinkActive = (path: string) => {
-      if (path === '/') return location.pathname === '/';
-      if (path.startsWith('/#')) return false; // Don't highlight sections to avoid confusion with Home
-      return location.pathname === path;
+      // If we are on a separate page (Projects/Insights), match pathname
+      if (location.pathname !== '/') {
+          return location.pathname === path;
+      }
+      // On home page, use scroll spy state
+      return activeSection === path;
   };
 
   return (

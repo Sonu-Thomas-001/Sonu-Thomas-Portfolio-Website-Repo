@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Download } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
+import { SectionMarquee } from './TechMarquee';
 
 export const Availability: React.FC = () => {
   return (
@@ -16,8 +17,16 @@ export const Availability: React.FC = () => {
                 viewport={{ once: true }}
                 className="bg-gradient-to-r from-primary/10 via-surface to-secondary/10 border border-white/10 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden shadow-2xl shadow-primary/5"
             >
+                {/* Background Marquee for texture */}
+                <div className="absolute top-8 left-0 w-full opacity-10 pointer-events-none">
+                    <SectionMarquee className="bg-transparent border-none" />
+                </div>
+                <div className="absolute bottom-8 left-0 w-full opacity-10 pointer-events-none rotate-180">
+                    <SectionMarquee className="bg-transparent border-none" />
+                </div>
+
                 {/* Status Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-bold uppercase tracking-wide mb-6">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-bold uppercase tracking-wide mb-6 relative z-10">
                     <span className="relative flex h-2.5 w-2.5">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
@@ -25,17 +34,17 @@ export const Availability: React.FC = () => {
                     Available for Work
                 </div>
 
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight relative z-10">
                     Ready to Build Something <br className="hidden md:block" />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Extraordinary?</span>
                 </h2>
 
-                <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+                <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed relative z-10">
                     I am currently open to <span className="text-white font-medium">freelance projects</span> and <span className="text-white font-medium">consulting opportunities</span>. 
                     Whether you need a complex web platform, AI integration, or enterprise-grade system optimization, let's discuss how I can add value to your team.
                 </p>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
                     <a 
                         href="#contact"
                         className="w-full sm:w-auto px-8 py-4 rounded-xl bg-primary text-cleanWhite font-bold text-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/25 flex items-center justify-center gap-2 group"

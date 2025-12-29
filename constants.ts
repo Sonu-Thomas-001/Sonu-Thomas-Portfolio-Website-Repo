@@ -67,27 +67,29 @@ export const ABOUT_STORY = [
 export const EXPERIENCE_DATA: ExperienceItem[] = [
   {
     id: "hcl-eng",
-    role: "Software Engineer (Production Change Manager)",
+    role: "Software Engineer",
     company: "HCLTech",
-    period: "2024 – Present",
+    period: "Jun 2024 – Present",
     description: [
-      "Managing Production Change Management lifecycle for enterprise clients.",
-      "Conducting risk analysis, compliance checks, and cross-team coordination.",
-      "Working with Java, SQL, and Oracle DB to maintain system integrity."
+      "Engineering production-grade enterprise systems using Java, SQL, and Unix, ensuring operational stability and compliance.",
+      "Implementing AI-aligned workflows by leveraging Generative AI and NLP tools for intelligent automation and data processing.",
+      "Driving risk-aware engineering and structured delivery models through cross-functional collaboration and Git-based version control.",
+      "Optimizing backend logic and database interactions (Oracle DB, PL/SQL) to support business-critical applications."
     ],
-    tech: ["Java", "SQL", "Oracle DB", "ITIL"]
+    tech: ["Java", "Python", "GenAI", "SQL", "Unix", "Oracle DB", "Git"]
   },
   {
     id: "hcl-intern",
     role: "HCLTechbee Intern",
     company: "HCLTech",
-    period: "2024",
+    period: "Jan 2024 – Jun 2024",
     description: [
-      "Worked on debugging and real-world project simulations.",
-      "Gained hands-on experience with JDBC connectivity and NetBeans IDE.",
-      "Developed foundational logic using Scratch and flow-based programming."
+      "Supported enterprise application workflows by debugging and maintaining production-level codebases.",
+      "Implemented backend connectivity and data logic using Java, JDBC, and Oracle PL/SQL within NetBeans IDE.",
+      "Analyzed system behavior and data flow across Unix-based environments to ensure execution reliability.",
+      "Collaborated with senior engineers to apply core software engineering principles to real-world delivery cycles."
     ],
-    tech: ["JDBC", "NetBeans", "Debugging"]
+    tech: ["Java", "SQL", "PL/SQL", "Oracle DB", "Unix", "JDBC"]
   },
   {
     id: "hcl-scholar",
