@@ -14,13 +14,13 @@ import {
 
 export const PERSONAL_DETAILS = {
   name: "Sonu Thomas",
-  role: "Software Engineer | Production Change Manager",
-  tagline: "Software Engineer | AI & Data Science Enthusiast | Web Developer | Production Change Manager",
+  role: "AI Software Engineer | Production Change Manager",
+  tagline: "AI Software Engineer | Building Scalable Intelligent Systems",
   location: "Kannur, Kerala, India",
   email: "sonuthomaswork@gmail.com",
   phone: "+91 8921 526656",
-  about: "A passionate Software Engineer at HCLTech with strong expertise in web development, production change management, and a growing focus on AI and Data Science. I build scalable digital experiences and intelligent systems that transform the way people work.",
-  expandedAbout: "I am a Software Engineer at HCLTech with 2+ years of experience in the industry. Currently serving as a Production Change Manager, I handle enterprise-scale changes ensuring minimal risk and maximum compliance. My journey began early; I started freelance web development during my Plus Two years, giving me a practical edge in client communication and delivery. Today, my vision is to bridge the gap between robust software engineering and the future of Artificial Intelligence.",
+  about: "I am an AI Software Engineer with over 3+ years of hands-on experience in software development, web technologies, and building production-ready digital systems, combined with a strong and growing focus on Artificial Intelligence, intelligent automation, and applied AI engineering.",
+  expandedAbout: "My technology journey began early at Xbean International and evolved through 3+ years of freelance development. Today, at HCLTech, I focus on AI engineering—treating intelligent automation not just as experimentation, but as a disciplined engineering practice emphasizing system design, scalability, and business impact.",
   resumeLink: "https://cdn.jsdelivr.net/gh/Sonu-Thomas-001/image-host/Sonu-Thomas-Portfolio-Website-Repo/Resume.pdf",
   social: {
     linkedin: "https://www.linkedin.com/in/sonuthomas001/",
@@ -30,6 +30,39 @@ export const PERSONAL_DETAILS = {
     website: "https://sonuthomas.vercel.app/"
   }
 };
+
+export const ABOUT_STORY = [
+  {
+    id: "01",
+    title: "Current Execution Context",
+    content: "I am currently associated with HCLTech, working within a large-scale enterprise environment that emphasizes engineering discipline, reliability, and operational excellence. My experience here has exposed me to production-grade systems, structured delivery models, cross-functional collaboration, and quality-driven software practices, all of which are critical when building scalable AI-enabled solutions.",
+    highlight: "Enterprise Reliability"
+  },
+  {
+    id: "02",
+    title: "Initialization Sequence",
+    content: "My technology journey began early during my Plus Two Computer Science education, where I worked as a Junior Web Developer at Xbean International. This early exposure allowed me to work on real client projects, understand end-to-end development lifecycles, and develop a strong problem-solving mindset that continues to shape my approach to engineering.",
+    highlight: "Early Start"
+  },
+  {
+    id: "03",
+    title: "Parallel Processing",
+    content: "In parallel, I have 3+ years of freelance development experience, delivering custom-built websites and digital solutions for diverse clients. This hands-on work strengthened my ability to translate abstract requirements into working software, optimize performance, ensure maintainability, and deliver user-focused solutions under real-world constraints.",
+    highlight: "Freelance Agility"
+  },
+  {
+    id: "04",
+    title: "System Upgrade: AI Integration",
+    content: "Over the past few years, my focus has progressively shifted toward Artificial Intelligence and AI-powered software systems. I actively upskill in areas such as machine learning fundamentals, LLM-based applications, intelligent agents, prompt engineering, and AI-assisted automation workflows. I am particularly interested in how AI can be integrated into existing software platforms to enhance decision-making and create smarter user experiences.",
+    highlight: "AI Transformation"
+  },
+  {
+    id: "05",
+    title: "Engineering Philosophy",
+    content: "I approach AI not as experimentation alone, but as an engineering discipline—placing strong emphasis on system design, data flow, scalability, observability, and real-world applicability. My goal is to build AI solutions that are reliable, explainable, and business-impact driven, rather than purely theoretical.",
+    highlight: "Applied Engineering"
+  }
+];
 
 export const EXPERIENCE_DATA: ExperienceItem[] = [
   {

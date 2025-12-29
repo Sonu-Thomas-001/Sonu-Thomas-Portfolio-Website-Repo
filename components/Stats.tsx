@@ -14,7 +14,7 @@ interface StatItem {
 const STATS_DATA: StatItem[] = [
   { id: 1, value: 2, suffix: "Yrs", label: "HCLTech Exp", sub: "Enterprise Grade" },
   { id: 2, value: 3, suffix: "Yrs", label: "Freelance", sub: "Client Success" },
-  { id: 3, value: 10, suffix: "+", label: "Projects", sub: "Delivered" },
+  { id: 3, value: 20, suffix: "+", label: "Projects", sub: "Delivered" },
   { id: 4, text: "IIT-G", label: "AI & Data", sub: "Research Focus" },
 ];
 
