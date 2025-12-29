@@ -118,5 +118,5 @@ This project is in active development, with plans to expand its capabilities:
 
 <div align="center">
   <h3>Engineered with precision. Designed for impact.</h3>
-  <sub>© 2024 Sonu Thomas</sub>
+  <sub>© 2025 Sonu Thomas</sub>
 </div>
