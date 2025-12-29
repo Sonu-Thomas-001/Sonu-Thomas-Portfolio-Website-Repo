@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, BadgeCheck, Calendar, Trophy } from 'lucide-react';
+import { Award, BadgeCheck, Calendar, Trophy, Hash } from 'lucide-react';
 import { CERTIFICATIONS_DATA } from '../constants';
 
 export const CertificationsPage: React.FC = () => {
@@ -33,7 +33,7 @@ export const CertificationsPage: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="bg-surface/50 border border-white/5 rounded-xl p-6 md:p-8 hover:border-secondary/30 hover:bg-surface hover:shadow-lg transition-all duration-300 flex flex-col md:flex-row gap-6 md:items-center group"
+                  className="bg-surface/50 border border-white/5 rounded-xl p-6 md:p-8 hover:border-secondary/30 hover:bg-surface hover:shadow-lg transition-all duration-300 flex flex-col md:flex-row gap-6 md:items-start group"
                 >
                    <div className="shrink-0">
                        <div className="w-16 h-16 rounded-full bg-dark border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
@@ -41,19 +41,27 @@ export const CertificationsPage: React.FC = () => {
                        </div>
                    </div>
                    
-                   <div className="flex-grow">
+                   <div className="flex-grow w-full">
                         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-2">
                              <h3 className="text-xl font-bold text-white group-hover:text-secondary transition-colors">
                                 {cert.title}
                              </h3>
-                             <span className="text-xs font-mono text-slate-500 bg-white/5 px-3 py-1 rounded border border-white/5 whitespace-nowrap flex items-center gap-2">
+                             <span className="text-xs font-mono text-slate-500 bg-white/5 px-3 py-1 rounded border border-white/5 whitespace-nowrap flex items-center gap-2 self-start">
                                 <Calendar className="w-3 h-3" />
                                 {cert.date}
                              </span>
                         </div>
-                        <div className="flex items-center gap-2 text-base text-slate-400">
-                           <Award className="w-4 h-4 text-slate-500" />
-                           Issued by <span className="text-white font-medium">{cert.issuer}</span>
+                        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-base text-slate-400">
+                           <div className="flex items-center gap-2">
+                               <Award className="w-4 h-4 text-slate-500" />
+                               <span>Issued by <span className="text-white font-medium">{cert.issuer}</span></span>
+                           </div>
+                           {cert.credentialId && (
+                               <div className="flex items-center gap-2 text-sm font-mono text-slate-500 bg-black/20 px-2 py-0.5 rounded">
+                                   <Hash className="w-3 h-3" />
+                                   ID: {cert.credentialId}
+                               </div>
+                           )}
                         </div>
                    </div>
                 </motion.div>

@@ -8,7 +8,6 @@ import { About } from '../components/About';
 import { MissionVision } from '../components/MissionVision';
 import { Experience } from '../components/Experience';
 import { Education } from '../components/Education';
-import { Certifications } from '../components/Certifications';
 import { ProblemSolving } from '../components/ProblemSolving';
 import { Skills } from '../components/Skills';
 import { Tools } from '../components/Tools';
@@ -26,7 +25,6 @@ export const Home: React.FC = () => {
       <MissionVision />
       <Experience />
       <Education />
-      <Certifications />
       <ProblemSolving />
       <Skills />
       <Tools />

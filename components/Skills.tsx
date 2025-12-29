@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, BrainCircuit, Aperture, Languages as LangIcon, Sparkles, Share2 } from 'lucide-react';
+import { Code2, BrainCircuit, Globe, Database, Terminal, Briefcase, Users, Languages as LangIcon, Share2, Layers, Monitor, Server } from 'lucide-react';
 import { SKILLS_DATA } from '../constants';
 
 export const Skills: React.FC = () => {
@@ -20,11 +21,16 @@ export const Skills: React.FC = () => {
   };
 
   const getCategoryIcon = (category: string) => {
-    if (category.includes('Technical')) return <Code2 className="w-6 h-6 text-primary" />;
-    if (category.includes('AI')) return <BrainCircuit className="w-6 h-6 text-purple-400" />;
-    if (category.includes('Creative')) return <Aperture className="w-6 h-6 text-pink-400" />;
-    if (category.includes('Languages')) return <LangIcon className="w-6 h-6 text-emerald-400" />;
-    return <Sparkles className="w-6 h-6 text-yellow-400" />;
+    const cat = category.toLowerCase();
+    if (cat.includes('programming')) return <Terminal className="w-6 h-6 text-blue-400" />;
+    if (cat.includes('ai & data')) return <BrainCircuit className="w-6 h-6 text-purple-400" />;
+    if (cat.includes('software')) return <Layers className="w-6 h-6 text-emerald-400" />;
+    if (cat.includes('web')) return <Globe className="w-6 h-6 text-cyan-400" />;
+    if (cat.includes('infrastructure')) return <Server className="w-6 h-6 text-orange-400" />;
+    if (cat.includes('enterprise')) return <Briefcase className="w-6 h-6 text-amber-400" />;
+    if (cat.includes('professional')) return <Users className="w-6 h-6 text-pink-400" />;
+    if (cat.includes('communication')) return <LangIcon className="w-6 h-6 text-indigo-400" />;
+    return <Code2 className="w-6 h-6 text-slate-400" />;
   };
 
   return (

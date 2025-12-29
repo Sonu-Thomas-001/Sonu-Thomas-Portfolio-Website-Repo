@@ -47,6 +47,7 @@ export interface CertificationItem {
   issuer: string;
   date: string;
   link?: string;
+  credentialId?: string;
 }
 
 export interface BlogItem {
@@ -96,4 +97,23 @@ export interface GrowthItem {
   role: string;
   description: string;
   icon: string;
+}
+
+export interface VolunteeringItem {
+  id: string;
+  role: string;
+  organization: string;
+  period: string;
+  domain: string;
+  description: string[];
+  impact: string[];
+  skills: string[];
+}
+
+export interface AwardItem {
+  id: string;
+  title: string;
+  issuer: string;
+  date: string;
+  description: string[];
 }

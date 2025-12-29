@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Terminal, ArrowRight, Sparkles, Briefcase, Github, Linkedin, Download, Phone, ChevronDown, Trophy, HandHeart, BadgeCheck } from 'lucide-react';
+import { Menu, X, Terminal, ArrowRight, Sparkles, Briefcase, Github, Linkedin, Download, Phone, ChevronDown, Trophy, HandHeart, BadgeCheck, Lightbulb } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { PERSONAL_DETAILS } from '../constants';
 
@@ -22,11 +22,11 @@ const navLinks: NavLink[] = [
   { name: 'Education', path: '/#education' },
   { name: 'Skills', path: '/#skills' },
   { name: 'Projects', path: '/projects' },
-  { name: 'Insights', path: '/insights' },
   { 
       name: 'Resources', 
       path: '#',
       children: [
+          { name: 'Insights', path: '/insights', icon: Lightbulb },
           { name: 'Certifications', path: '/certifications', icon: BadgeCheck },
           { name: 'Volunteering', path: '/volunteering', icon: HandHeart },
           { name: 'Honors & Awards', path: '/awards', icon: Trophy },

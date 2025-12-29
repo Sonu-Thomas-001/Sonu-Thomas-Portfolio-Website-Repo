@@ -9,7 +9,9 @@ import {
   TalkItem,
   OpenSourceItem,
   ProcessItem,
-  GrowthItem
+  GrowthItem,
+  VolunteeringItem,
+  AwardItem
 } from './types';
 
 export const PERSONAL_DETAILS = {
@@ -134,36 +136,81 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
 
 export const SKILLS_DATA: SkillCategory[] = [
   {
-    category: "Technical Skills",
+    category: "Programming Languages",
+    items: [
+      { name: "Python" },
+      { name: "Java" },
+      { name: "C" },
+      { name: "C++" },
+      { name: "JavaScript" },
+      { name: "SQL" },
+      { name: "PL/SQL" }
+    ]
+  },
+  {
+    category: "AI & Data Intelligence",
+    items: [
+      { name: "Artificial Intelligence" },
+      { name: "Generative AI" },
+      { name: "NLP" },
+      { name: "LLMs & Agents" },
+      { name: "AI App Development" },
+      { name: "GenAI Tools" }
+    ]
+  },
+  {
+    category: "Software Engineering",
+    items: [
+      { name: "Software Engineering" },
+      { name: "System Design" },
+      { name: "Computer Organization" },
+      { name: "Web Applications" },
+      { name: "DBMS" },
+      { name: "JDBC" }
+    ]
+  },
+  {
+    category: "Web & API Ecosystem",
     items: [
       { name: "Web Development" },
-      { name: "WordPress" },
-      { name: "Unix / Shell Scripting" },
-      { name: "Java" },
-      { name: "SQL" },
-      { name: "Oracle Database" }
+      { name: "HTML5 & HTML" },
+      { name: "CSS" },
+      { name: "Bootstrap" },
+      { name: "WordPress" }
     ]
   },
   {
-    category: "AI & Data",
+    category: "Infrastructure & Tools",
     items: [
-      { name: "AI Fundamentals" },
-      { name: "Data Science (Ongoing)" },
-      { name: "Automation Thinking" },
-      { name: "Gemini API" },
-      { name: "Generative AI" }
+      { name: "Oracle Database" },
+      { name: "SQL Databases" },
+      { name: "Linux / Unix" },
+      { name: "Windows" },
+      { name: "Git" },
+      { name: "GitHub" }
     ]
   },
   {
-    category: "Creative Skills",
+    category: "Enterprise & Operations",
     items: [
-      { name: "Videography" },
-      { name: "Photography" },
-      { name: "Video Editing" }
+      { name: "Production Support" },
+      { name: "Change Management" },
+      { name: "Process Consulting" },
+      { name: "Project Management" }
     ]
   },
   {
-    category: "Languages",
+    category: "Professional & Digital",
+    items: [
+      { name: "Digital Marketing" },
+      { name: "SEO" },
+      { name: "Leadership" },
+      { name: "Problem Solving" },
+      { name: "Team Collaboration" }
+    ]
+  },
+  {
+    category: "Communication Languages",
     items: [
       { name: "English", proficiency: "Full Professional" },
       { name: "Malayalam", proficiency: "Native" },
@@ -375,78 +422,180 @@ export const EDUCATION_DATA: EducationItem[] = [
 
 export const CERTIFICATIONS_DATA: CertificationItem[] = [
   {
-    id: "c1",
-    title: "HCLTechbee Scholar",
-    issuer: "HCLTech",
-    date: "2023",
+    id: "gc-vertex",
+    title: "Prompt Design in Vertex AI",
+    issuer: "Google Cloud Skills Boost",
+    date: "May 2025",
+    credentialId: "15478363"
   },
   {
-    id: "c2",
-    title: "100K Coding Challenge",
-    issuer: "Competitive Coding Platform",
-    date: "2023",
+    id: "gc-leader",
+    title: "Cloud Digital Leader",
+    issuer: "Google Cloud Skills Boost",
+    date: "Sep 2024",
+    credentialId: "5122267686b949689ab761e0005a769d"
   },
   {
-    id: "c3",
-    title: "Web Designing Challenge",
-    issuer: "Tech Community",
-    date: "2022",
+    id: "gl-ds",
+    title: "Data Science Foundations",
+    issuer: "Great Learning Academy",
+    date: "Jun 2024",
+    credentialId: "JJIOMJTY"
   },
   {
-    id: "c4",
+    id: "gl-ai",
+    title: "Introduction to Artificial Intelligence",
+    issuer: "Great Learning Academy",
+    date: "Jun 2024",
+    credentialId: "OPCYHCVS"
+  },
+  {
+    id: "gl-dm",
     title: "Introduction to Digital Marketing",
-    issuer: "Google Digital Garage",
-    date: "2021",
+    issuer: "Great Learning Academy",
+    date: "Jun 2024",
+    credentialId: "GEBIFRNQ"
   },
   {
-    id: "c5",
-    title: "Excel Intermediate",
-    issuer: "Online Certification",
-    date: "2021",
+    id: "gl-excel-int",
+    title: "Excel for Intermediate Level",
+    issuer: "Great Learning Academy",
+    date: "Jun 2024",
+    credentialId: "TCGVAYIP"
   },
-   {
-    id: "c6",
-    title: "Portfolio Website Design",
-    issuer: "Self-Paced Project",
-    date: "2021",
+  {
+    id: "gl-excel-beg",
+    title: "Excel for Beginners",
+    issuer: "Great Learning Academy",
+    date: "Jun 2024",
+    credentialId: "PTWXOAOX"
+  },
+  {
+    id: "brototype-100k",
+    title: "100K Coding Challenge",
+    issuer: "Brototype",
+    date: "Nov 2021",
+    credentialId: "100KCC79797"
+  },
+  {
+    id: "brototype-web",
+    title: "Web Designing Challenge",
+    issuer: "Brototype",
+    date: "Nov 2021",
+  },
+  {
+    id: "devtown-port",
+    title: "Portfolio Website using HTML & CSS",
+    issuer: "DevTown",
+    date: "Nov 2021",
   }
 ];
 
-export const VOLUNTEERING_DATA = [
+export const VOLUNTEERING_DATA: VolunteeringItem[] = [
   {
-    id: "v1",
-    role: "Tech Mentor",
-    organization: "Local Coding Bootcamp",
-    period: "2023 - Present",
-    description: "Mentoring high school students in basics of web development and programming logic."
+    id: "kite",
+    role: "Student Technology Leader",
+    organization: "KITE – Kerala Infrastructure and Technology for Education",
+    period: "Jun 2019 – Mar 2020",
+    domain: "Science & Technology",
+    description: [
+      "Volunteered with Little KITEs, India’s largest student ICT network, empowering students to transition from technology consumers to creators.",
+      "Contributed to digital literacy, logical thinking, and creative problem-solving initiatives for school students.",
+      "Actively engaged in coding fundamentals, AI basics, robotics (Arduino), 2D/3D animation, video production, and basic web development.",
+      "Supported awareness programs on safe, ethical, and responsible internet usage.",
+      "Assisted community outreach initiatives such as “Amma Ariyan”, extending digital awareness to parents.",
+      "Gained exposure to large-scale educational technology programs aligned with UN Sustainable Development Goals (SDGs)."
+    ],
+    impact: [
+      "Improved student confidence in using and creating technology.",
+      "Contributed to a statewide initiative impacting hundreds of thousands of students.",
+      "Built early leadership, communication, and technical foundations."
+    ],
+    skills: ["Digital Literacy", "Programming Basics", "Robotics", "Creative Technology", "Leadership", "Team Collaboration", "Problem Solving", "Educational Technology"]
   },
   {
-    id: "v2",
-    role: "Event Organizer",
-    organization: "College Tech Fest",
-    period: "2022",
-    description: "Organized coding competitions and technical workshops for over 200 participants."
+    id: "hcl-ai-club",
+    role: "Core Member – AI Club",
+    organization: "HCLTech",
+    period: "Aug 2025 – Present",
+    domain: "Science & Technology",
+    description: [
+      "Core member of the AI Club at HCLTech Madurai, contributing to internal AI awareness and hands-on exploration.",
+      "Participated in discussions, learning sessions, and internal forums to promote AI literacy across teams.",
+      "Explored Generative AI, Agentic AI, automation use cases, and AI-driven enterprise solutions.",
+      "Collaborated with cross-functional teams to analyze business problems and ideate AI-based solutions.",
+      "Supported knowledge sharing through presentations, demos, and internal tech discussions."
+    ],
+    impact: [
+      "Strengthened practical AI understanding among peers.",
+      "Helped bridge enterprise operations with modern AI capabilities.",
+      "Improved collaboration between technical and non-technical stakeholders."
+    ],
+    skills: ["Artificial Intelligence", "Generative AI", "Agentic AI", "Automation", "Technical Communication", "Collaboration", "Innovation Mindset"]
+  },
+  {
+    id: "scouts",
+    role: "Scout Volunteer",
+    organization: "The Bharat Scouts & Guides",
+    period: "Jun 2021 – Mar 2023",
+    domain: "Civil Rights & Social Action",
+    description: [
+      "Served as a Scout during Plus One and Plus Two, engaging in structured programs focused on discipline, leadership, and community service.",
+      "Participated in awareness campaigns, social responsibility initiatives, camps, and drills.",
+      "Developed resilience, teamwork, ethical values, and crisis-readiness skills.",
+      "Supported school and local community events through organized volunteering."
+    ],
+    impact: [
+      "Built a strong leadership mindset and civic responsibility early on.",
+      "Gained practical experience working within structured team environments.",
+      "Strengthened discipline, confidence, and service-oriented thinking."
+    ],
+    skills: ["Leadership", "Teamwork", "Discipline", "Community Engagement", "Responsibility", "Time Management", "Crisis Awareness"]
+  },
+  {
+    id: "hcl-sparks",
+    role: "Member – Sparks",
+    organization: "HCLTech",
+    period: "Jun 2024 – Present",
+    domain: "Arts & Culture",
+    description: [
+      "Active member of Sparks, HCLTech’s employee engagement initiative promoting well-being, collaboration, and passion-driven growth.",
+      "Participated in passion clubs and employee-driven events including sports, team-building, technical treasure hunts, and cultural programs.",
+      "Supported a culture of inclusivity, collaboration, and continuous engagement.",
+      "Contributed to initiatives aligned with HCLTech’s “Find Your Spark” philosophy and recognition frameworks."
+    ],
+    impact: [
+      "Enhanced team morale and cross-team interaction.",
+      "Strengthened employee connection beyond project boundaries.",
+      "Contributed to a positive, people-first workplace culture."
+    ],
+    skills: ["Collaboration", "Community Building", "Team Engagement", "Communication", "Leadership Mindset", "Workplace Culture", "Initiative Ownership"]
   }
 ];
 
-export const AWARDS_DATA = [
+export const AWARDS_DATA: AwardItem[] = [
   {
-    id: "a1",
-    title: "Best Innovation Award",
-    event: "HCLTech Hackathon 2024",
-    description: "Awarded for creating an AI-driven automated testing tool for legacy systems."
+    id: "star-techbee",
+    title: "Star TechBee Award",
+    issuer: "HCLTech – TechBee Program (TSS Team)",
+    date: "November 2025",
+    description: [
+      "Awarded for outstanding performance, consistent growth, and impactful contributions during a two-year journey as a TechBee at HCLTech.",
+      "Recognized for hands-on involvement in real-time enterprise projects, effective handling of production change activities, and strong ownership in delivery.",
+      "Highlighted strengths in team collaboration, adaptability, and problem-solving within a dynamic IT environment.",
+      "Reflects continuous learning, professional maturity, and growth under the TechBee program."
+    ]
   },
   {
-    id: "a2",
-    title: "Star Performer",
-    event: "HCLTech Annual Review 2023",
-    description: "Recognized for consistent delivery and zero-defect code in production environments."
-  },
-  {
-    id: "a3",
-    title: "1st Runner Up",
-    event: "State Level Coding Championship",
-    description: "Competed against 50+ teams in algorithmic problem solving."
+    id: "rising-star",
+    title: "Rising Star Award",
+    issuer: "St. Joseph’s HSS Vayattupparamba",
+    date: "June 2021",
+    description: [
+      "Recognized for outstanding academic growth, consistent performance, and active participation in academic and co-curricular activities.",
+      "Acknowledged initiative, leadership potential, and positive contributions to school programs and student communities.",
+      "Awarded during higher secondary education for overall excellence and engagement."
+    ]
   }
 ];
 
