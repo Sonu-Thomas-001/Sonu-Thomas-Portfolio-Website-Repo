@@ -1,5 +1,6 @@
 import React from 'react';
 import { Hero } from '../components/Hero';
+import { TechMarquee } from '../components/TechMarquee';
 import { ValueProp } from '../components/ValueProp';
 import { Stats } from '../components/Stats';
 import { About } from '../components/About';
@@ -17,6 +18,7 @@ export const Home: React.FC = () => {
   return (
     <div>
       <Hero />
+      <TechMarquee />
       <ValueProp />
       <Stats />
       <About />
