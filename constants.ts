@@ -95,35 +95,40 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     id: "hcl-scholar",
     role: "HCLTechbee Scholar",
     company: "HCLTech",
-    period: "2023",
+    period: "Jun 2023 – Dec 2023",
     description: [
-      "Intensive training in Java, PL/SQL, and Data Structures & Algorithms.",
-      "Mastered system fundamentals and enterprise software architecture."
+      "Completed a rigorous industry-aligned apprenticeship focused on core software engineering, Java programming, and database management.",
+      "Mastered backend logic and data handling through hands-on training in PL/SQL, JDBC, and Relational DBMS concepts.",
+      "Developed foundational skills in Algorithm design, Unix-based environments, and Computer Organization.",
+      "Built a strong technical base in structured programming that facilitated the transition to enterprise-level software engineering."
     ],
-    tech: ["Java", "PL/SQL", "DSA"]
+    tech: ["Java", "SQL", "PL/SQL", "JDBC", "Unix", "DBMS"]
   },
   {
     id: "freelance",
-    role: "Freelance Web Developer",
-    company: "Self-Employed",
-    period: "2021 – Present",
+    role: "Web Designer and Developer",
+    company: "Freelance",
+    period: "Dec 2021 – Present",
     description: [
-      "Developing client-focused solutions using WordPress and custom CMS.",
-      " optimizing website performance and handling long-term maintenance.",
-      "Delivered projects for various local businesses and portfolios."
+      "Delivering end-to-end website design and development solutions for businesses, startups, and individual clients across multiple domains.",
+      "Building responsive, performance-optimized websites using WordPress and modern CMS platforms with a focus on clean UI/UX and scalability.",
+      "Providing ongoing support, security hardening, and SEO implementation to ensure stable and visible web platforms.",
+      "Managing the full software delivery lifecycle, stakeholder communication, and version control using Git/GitHub."
     ],
-    tech: ["WordPress", "HTML/CSS", "SEO"]
+    tech: ["WordPress", "Bootstrap", "SEO", "Git", "GitHub", "HTML/CSS"]
   },
   {
     id: "xbean",
     role: "Junior Web Developer",
     company: "Xbean International",
-    period: "2022",
+    period: "Aug 2022 – Dec 2022",
     description: [
-      "Assisted in WordPress development and theme customization.",
-      "Implemented feature enhancements based on client requirements."
+      "Collaborated with senior developers to design, develop, and maintain client-facing web applications.",
+      "Implemented feature enhancements and deployed WordPress websites with responsive layouts and content structures.",
+      "Utilized Git and GitHub for version control, ensuring code quality and efficient software collaboration.",
+      "Applied Bootstrap for frontend styling and implemented SEO-friendly architecture for improved visibility."
     ],
-    tech: ["WordPress", "PHP"]
+    tech: ["WordPress", "Bootstrap", "Git", "GitHub", "SEO", "HTML/CSS"]
   }
 ];
 
