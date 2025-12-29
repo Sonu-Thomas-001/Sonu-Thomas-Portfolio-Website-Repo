@@ -3,6 +3,40 @@ import { motion } from 'framer-motion';
 import { Calendar, Briefcase, GraduationCap, Globe, Code, Building2, CheckCircle2, GitCommit } from 'lucide-react';
 import { EXPERIENCE_DATA } from '../constants';
 
+// Helper component to render a company logo placeholder based on name
+const CompanyLogo = ({ company }: { company: string }) => {
+  const companyLower = company.toLowerCase();
+  
+  if (companyLower.includes('hcl')) {
+    return (
+      <div className="w-8 h-8 rounded-md bg-[#005eb8] flex items-center justify-center text-white font-bold text-[10px] shadow-sm border border-white/10" title="HCLTech">
+        HCL
+      </div>
+    );
+  }
+  if (companyLower.includes('self') || companyLower.includes('freelance')) {
+    return (
+      <div className="w-8 h-8 rounded-md bg-emerald-600 flex items-center justify-center text-white shadow-sm border border-white/10" title="Freelance">
+        <Globe className="w-4 h-4" />
+      </div>
+    );
+  }
+  if (companyLower.includes('xbean')) {
+    return (
+      <div className="w-8 h-8 rounded-md bg-purple-600 flex items-center justify-center text-white font-bold text-[10px] shadow-sm border border-white/10" title="Xbean International">
+        XB
+      </div>
+    );
+  }
+  
+  // Default fallback
+  return (
+    <div className="w-8 h-8 rounded-md bg-slate-700 flex items-center justify-center text-white shadow-sm border border-white/10">
+      <Building2 className="w-4 h-4" />
+    </div>
+  );
+};
+
 export const Experience: React.FC = () => {
   const getIcon = (role: string) => {
     if (role.toLowerCase().includes('intern') || role.toLowerCase().includes('scholar')) {
@@ -88,10 +122,13 @@ export const Experience: React.FC = () => {
                       <div className="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
                       <div className="absolute -right-10 -bottom-10 w-32 h-32 border border-white/5 rounded-full"></div>
 
-                      {/* Date Badge */}
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 text-primary text-xs font-semibold mb-4 border border-white/5 font-mono">
-                        <Calendar className="w-3.5 h-3.5" />
-                        {item.period}
+                      {/* Date Badge & Logo */}
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 text-primary text-xs font-semibold border border-white/5 font-mono">
+                          <Calendar className="w-3.5 h-3.5" />
+                          {item.period}
+                        </div>
+                        <CompanyLogo company={item.company} />
                       </div>
 
                       <h3 className="text-xl font-bold text-white mb-1 group-hover:text-primary transition-colors flex items-center gap-2">

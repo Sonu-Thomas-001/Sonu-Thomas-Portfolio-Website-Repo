@@ -213,14 +213,18 @@ export const NavBar: React.FC = () => {
                         className="flex items-center gap-3 pr-4 border-r border-white/10 overflow-hidden"
                     >
                         <a 
-                            href="#" 
+                            href={PERSONAL_DETAILS.social.github} 
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-full transition-all hover:scale-110" 
                             aria-label="GitHub"
                         >
                             <Github className="w-5 h-5" />
                         </a>
                         <a 
-                            href="#" 
+                            href={PERSONAL_DETAILS.social.linkedin} 
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-full transition-all hover:scale-110" 
                             aria-label="LinkedIn"
                         >
@@ -359,13 +363,13 @@ export const NavBar: React.FC = () => {
                  transition={{ delay: 0.2 }}
                  className="flex items-center justify-between gap-4 py-6 border-b border-white/5"
               >
-                  <a href="#" className="flex flex-col items-center gap-2 text-slate-400 hover:text-white transition-colors">
+                  <a href={PERSONAL_DETAILS.social.github} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 text-slate-400 hover:text-white transition-colors">
                       <div className="p-3 rounded-full bg-white/5">
                         <Github className="w-6 h-6" />
                       </div>
                       <span className="text-xs">GitHub</span>
                   </a>
-                  <a href="#" className="flex flex-col items-center gap-2 text-slate-400 hover:text-white transition-colors">
+                  <a href={PERSONAL_DETAILS.social.linkedin} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 text-slate-400 hover:text-white transition-colors">
                       <div className="p-3 rounded-full bg-white/5">
                         <Linkedin className="w-6 h-6" />
                       </div>

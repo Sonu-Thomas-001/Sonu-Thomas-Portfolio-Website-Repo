@@ -211,17 +211,18 @@ export const Hero: React.FC = () => {
               {/* Socials */}
               <div className="pt-6 flex gap-6 flex-wrap">
                 {[
-                    { icon: Linkedin, href: "#" },
-                    { icon: Github, href: "#" },
-                    { icon: Instagram, href: "#" },
-                    { icon: Facebook, href: "#" },
-                    { icon: MessageCircle, href: "#" },
-                    { icon: Send, href: "#" },
-                    { icon: Globe, href: "#" }
+                    { icon: Linkedin, href: PERSONAL_DETAILS.social.linkedin },
+                    { icon: Github, href: PERSONAL_DETAILS.social.github },
+                    { icon: Instagram, href: PERSONAL_DETAILS.social.instagram },
+                    { icon: MessageCircle, href: PERSONAL_DETAILS.social.whatsapp },
+                    { icon: Send, href: `mailto:${PERSONAL_DETAILS.email}` },
+                    { icon: Globe, href: PERSONAL_DETAILS.social.website }
                 ].map((social, idx) => (
                     <a 
                         key={idx}
                         href={social.href}
+                        target={social.href.startsWith('http') ? "_blank" : undefined}
+                        rel={social.href.startsWith('http') ? "noopener noreferrer" : undefined}
                         className="text-slate-500 hover:text-white transition-colors transform hover:scale-110"
                     >
                         <social.icon className="w-5 h-5" />

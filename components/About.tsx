@@ -129,11 +129,11 @@ export const About: React.FC = () => {
             <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-secondary/20 rounded-full blur-3xl -z-10 animate-pulse animation-delay-2000" />
             <div className="absolute inset-0 border border-white/5 rounded-2xl translate-x-4 translate-y-4 -z-10" />
             
-            {/* Floating Chip Overlay */}
+            {/* Floating Chip Overlay - Increased z-index to bring to front */}
             <motion.div 
                animate={{ y: [0, -10, 0] }}
                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-               className="absolute -right-6 top-1/2 w-16 h-16 bg-dark border border-white/10 rounded-xl flex items-center justify-center shadow-lg"
+               className="absolute -right-6 top-1/2 w-16 h-16 bg-dark border border-white/10 rounded-xl flex items-center justify-center shadow-lg z-20"
             >
                 <Cpu className="w-8 h-8 text-primary" />
             </motion.div>
