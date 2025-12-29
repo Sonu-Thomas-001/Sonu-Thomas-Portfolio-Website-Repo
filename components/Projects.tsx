@@ -1,11 +1,12 @@
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, Code, Layers, Sparkles, TerminalSquare } from 'lucide-react';
+import { ExternalLink, Github, Code, Layers, Sparkles, TerminalSquare, Cpu, Monitor, Box } from 'lucide-react';
 import { PROJECTS_DATA } from '../constants';
 
 export const Projects: React.FC = () => {
   const [filter, setFilter] = useState('All');
-  const categories = ['All', 'Web Dev', 'AI & Data', 'Automation'];
+  const categories = ['All', 'Generative AI', 'AI Tools', 'Web Apps'];
 
   const filteredProjects = filter === 'All' 
     ? PROJECTS_DATA 
@@ -13,9 +14,10 @@ export const Projects: React.FC = () => {
 
   const getCategoryIcon = (cat: string) => {
     switch(cat) {
-      case 'Web Dev': return <Code className="w-4 h-4" />;
-      case 'AI & Data': return <Sparkles className="w-4 h-4" />;
-      default: return <Layers className="w-4 h-4" />;
+      case 'Web Apps': return <Monitor className="w-4 h-4" />;
+      case 'Generative AI': return <Sparkles className="w-4 h-4" />;
+      case 'AI Tools': return <Cpu className="w-4 h-4" />;
+      default: return <Box className="w-4 h-4" />;
     }
   };
 
@@ -41,8 +43,7 @@ export const Projects: React.FC = () => {
             </div>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Featured Works</h2>
             <p className="text-slate-400 max-w-xl">
-              A collection of projects showcasing my expertise in building scalable web applications, 
-              automating workflows, and exploring AI solutions.
+              A comprehensive collection of my open-source contributions, AI experiments, and full-stack applications.
             </p>
           </motion.div>
 
@@ -71,7 +72,7 @@ export const Projects: React.FC = () => {
 
         <motion.div 
           layout
-          className="grid md:grid-cols-2 lg:grid-cols-2 gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <AnimatePresence mode='popLayout'>
             {filteredProjects.map((project) => (
@@ -82,7 +83,7 @@ export const Projects: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
-                className="group relative bg-surface border border-white/10 rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5"
+                className="group relative bg-surface border border-white/10 rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5 flex flex-col"
               >
                 {/* Tech HUD Corner */}
                 <div className="absolute top-0 right-0 p-4 z-30 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -93,7 +94,7 @@ export const Projects: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-48 overflow-hidden shrink-0">
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors z-10"></div>
                   <img 
                     src={project.image} 
@@ -132,30 +133,33 @@ export const Projects: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="p-8">
-                  <div className="flex flex-col gap-4">
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="flex flex-col gap-2 h-full">
                     <div>
-                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                      <h3 className="text-xl font-bold text-white mb-1 group-hover:text-primary transition-colors">
                         {project.title}
                       </h3>
-                      <p className="text-sm font-medium text-primary mb-3">
+                      <p className="text-xs font-medium text-primary mb-2 uppercase tracking-wide">
                         {project.role}
                       </p>
-                      <p className="text-slate-400 leading-relaxed text-sm">
+                      <p className="text-slate-400 leading-relaxed text-sm line-clamp-3 mb-4">
                         {project.description}
                       </p>
                     </div>
 
                     <div className="pt-4 border-t border-white/5 mt-auto">
-                      <div className="flex flex-wrap gap-2">
-                        {project.stack.map((tech, i) => (
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.stack.slice(0, 4).map((tech, i) => (
                           <span 
                             key={i} 
-                            className="px-2.5 py-1 text-xs font-medium text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-white/5 rounded-md border border-slate-200 dark:border-white/5 font-mono"
+                            className="px-2 py-0.5 text-[10px] font-medium text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-white/5 rounded border border-slate-200 dark:border-white/5 font-mono"
                           >
                             {tech}
                           </span>
                         ))}
+                        {project.stack.length > 4 && (
+                            <span className="px-2 py-0.5 text-[10px] font-medium text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-white/5 rounded border border-slate-200 dark:border-white/5 font-mono">+{project.stack.length - 4}</span>
+                        )}
                       </div>
                     </div>
                   </div>

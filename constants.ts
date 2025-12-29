@@ -102,7 +102,9 @@ export const SKILLS_DATA: SkillCategory[] = [
     items: [
       { name: "AI Fundamentals" },
       { name: "Data Science (Ongoing)" },
-      { name: "Automation Thinking" }
+      { name: "Automation Thinking" },
+      { name: "Gemini API" },
+      { name: "Generative AI" }
     ]
   },
   {
@@ -133,53 +135,174 @@ export const LANGUAGES = [
 
 export const PROJECTS_DATA: ProjectItem[] = [
   {
-    id: "p1",
-    title: "Premium Portfolio Website",
-    category: "Web Dev",
-    role: "Frontend Engineer",
-    stack: ["React", "TypeScript", "Tailwind", "Framer Motion"],
-    description: "A high-performance personal brand website featuring smooth animations, responsive design, and SEO optimization. Designed to showcase enterprise-ready engineering skills.",
-    links: {
-      demo: "#",
-      github: "#"
-    },
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000&auto=format&fit=crop"
+    id: "chronolens",
+    title: "ChronoLens Public",
+    category: "Generative AI",
+    role: "Lead Engineer",
+    stack: ["TypeScript", "Gemini AI", "React", "Tailwind"],
+    description: "A premium time-travel photo booth experience. Upload your photo and transport yourself across history and into the future using advanced generative AI.",
+    links: { demo: "#", github: "#" },
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop"
   },
   {
-    id: "p2",
-    title: "Client Business Platform",
-    category: "Web Dev",
-    role: "Freelance Developer",
-    stack: ["WordPress", "PHP", "MySQL", "Custom Theme"],
-    description: "Developed a custom WordPress solution for a local business, resulting in a 40% increase in lead generation through optimized performance and structure.",
-    links: {
-      demo: "#"
-    },
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop"
+    id: "codifyui",
+    title: "CodifyUI",
+    category: "AI Tools",
+    role: "Developer",
+    stack: ["TypeScript", "Gemini 3 Flash", "React", "Tailwind"],
+    description: "Transform UI screenshots into production-ready React & Tailwind code instantly using Gemini 3 Flash multimodal capabilities.",
+    links: { demo: "#", github: "#" },
+    image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1000&auto=format&fit=crop"
   },
   {
-    id: "p3",
-    title: "AI Change Risk Analyzer",
-    category: "AI & Data",
-    role: "AI Researcher (Concept)",
-    stack: ["Python", "TensorFlow", "Scikit-learn"],
-    description: "A conceptual AI model designed to analyze historical production change data to predict failure risks and suggest mitigation strategies for enterprise environments.",
-    links: {
-      github: "#"
-    },
-    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=1000&auto=format&fit=crop"
+    id: "winos",
+    title: "WinOS-Web",
+    category: "Web Apps",
+    role: "Frontend Architect",
+    stack: ["React", "TypeScript", "Tailwind CSS"],
+    description: "A fully interactive, responsive Windows-11 style desktop environment running entirely in the browser using React and Tailwind CSS.",
+    links: { demo: "#", github: "#" },
+    image: "https://images.unsplash.com/photo-1531297461136-82lw9z28y?q=80&w=1000&auto=format&fit=crop"
   },
   {
-    id: "p4",
-    title: "Auto-Compliance Bot",
-    category: "Automation",
-    role: "Automation Engineer",
-    stack: ["Shell Scripting", "Unix", "Cron"],
-    description: "Automated server compliance checking tool that runs periodic scans and generates alerts for configuration drifts, reducing manual audit time by 70%.",
-    links: {
-      github: "#"
-    },
-    image: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?q=80&w=1000&auto=format&fit=crop"
+    id: "intellexa",
+    title: "Intellexa-Visuals",
+    category: "AI Tools",
+    role: "AI Engineer",
+    stack: ["TypeScript", "Google Search Grounding", "Gemini"],
+    description: "An advanced research tool that uses Google Search Grounding to research topics and instantly generates fact-checked summaries, data visualizations, and illustrations.",
+    links: { demo: "#", github: "#" },
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    id: "brandiq",
+    title: "BrandIQ",
+    category: "Generative AI",
+    role: "Full Stack Dev",
+    stack: ["TypeScript", "GenAI", "React"],
+    description: "An AI-powered brand identity generator that creates a complete brand bible including logos, color palettes, and typography from a simple description.",
+    links: { demo: "#", github: "#" },
+    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    id: "carvix",
+    title: "Carvix-AI",
+    category: "Web Apps",
+    role: "Developer",
+    stack: ["TypeScript", "React", "Gemini AI"],
+    description: "A premium custom car build visualizer powered by Gemini AI. Design your dream vehicle with custom body kits, colors, wheels, and accessories in real-time.",
+    links: { demo: "#", github: "#" },
+    image: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    id: "wondertales",
+    title: "WonderTales-AI",
+    category: "Generative AI",
+    role: "Creative Developer",
+    stack: ["TypeScript", "Gemini AI", "React"],
+    description: "An interactive AI storybook that generates magical stories, illustrations, and narration in real-time based on user input.",
+    links: { demo: "#", github: "#" },
+    image: "https://images.unsplash.com/photo-1535905557558-afc4877a26fc?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    id: "platedai",
+    title: "PlatedAI",
+    category: "Generative AI",
+    role: "AI Specialist",
+    stack: ["TypeScript", "Gemini Vision", "React"],
+    description: "A high-end virtual photography studio for restaurateurs. Transform text menus into stunning, photorealistic food imagery using advanced generative AI.",
+    links: { demo: "#", github: "#" },
+    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    id: "lingualive",
+    title: "LinguaLive-AI",
+    category: "AI Tools",
+    role: "Developer",
+    stack: ["TypeScript", "Gemini Live API", "Audio Processing"],
+    description: "A real-time conversational AI language tutor that helps you practice speaking with live voice interaction and feedback.",
+    links: { demo: "#", github: "#" },
+    image: "https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    id: "3dify",
+    title: "3Dify-Studio",
+    category: "Generative AI",
+    role: "Graphics Engineer",
+    stack: ["TypeScript", "Gemini Vision", "Three.js"],
+    description: "Transform 2D photos into 3D models instantly using Gemini Vision and generative geometry algorithms.",
+    links: { demo: "#", github: "#" },
+    image: "https://images.unsplash.com/photo-1617791160505-6f00504e3519?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    id: "vectora",
+    title: "Vectora-AI",
+    category: "AI Tools",
+    role: "Developer",
+    stack: ["TypeScript", "Gemini 2.5 Flash", "Gemini 3 Flash"],
+    description: "A premium design tool that generates high-quality PNG assets and SVG vectors using Gemini 2.5 Flash and Gemini 3 Flash.",
+    links: { demo: "#", github: "#" },
+    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    id: "mockmate",
+    title: "MockMate-AI",
+    category: "AI Tools",
+    role: "Full Stack Dev",
+    stack: ["TypeScript", "Gemini AI", "React"],
+    description: "A professional AI-powered interview simulator that provides real-time feedback, scoring, and improvement tips for technical and behavioral interviews.",
+    links: { demo: "#", github: "#" },
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    id: "mixora",
+    title: "Mixora-AI",
+    category: "AI Tools",
+    role: "Audio Engineer",
+    stack: ["TypeScript", "Audio API", "React"],
+    description: "Your AI DJ. Perfectly Mixed. Mixora AI turns tracks into professional DJ sets in real time using beat matching and transition algorithms.",
+    links: { demo: "#", github: "#" },
+    image: "https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    id: "stylesync",
+    title: "StyleSync-AI",
+    category: "AI Tools",
+    role: "Developer",
+    stack: ["TypeScript", "Vision API", "React"],
+    description: "An AI-powered personal stylist that analyzes your clothing items and generates complete outfit visualizations for different occasions.",
+    links: { demo: "#", github: "#" },
+    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    id: "merchify",
+    title: "Merchify-Studio",
+    category: "Generative AI",
+    role: "Developer",
+    stack: ["TypeScript", "GenAI", "React"],
+    description: "On-demand AI merch mockups generator and editor. Upload your logo, generate product shots, and refine with natural language editing.",
+    links: { demo: "#", github: "#" },
+    image: "https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    id: "colorfolio",
+    title: "Colorfolio-Kids",
+    category: "Web Apps",
+    role: "Developer",
+    stack: ["TypeScript", "PDF Generation", "React"],
+    description: "Create personalized, magical coloring books for children in seconds. Enter a theme and a name to generate a unique, printable PDF coloring book.",
+    links: { demo: "#", github: "#" },
+    image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    id: "logomotion",
+    title: "LogoMotion-AI",
+    category: "Generative AI",
+    role: "Developer",
+    stack: ["TypeScript", "Gemini AI", "SVG"],
+    description: "Generate professional, animated SVG logos for your brand instantly using Gemini AI.",
+    links: { demo: "#", github: "#" },
+    image: "https://images.unsplash.com/photo-1626785774573-4b799312c95d?q=80&w=1000&auto=format&fit=crop"
   }
 ];
 
