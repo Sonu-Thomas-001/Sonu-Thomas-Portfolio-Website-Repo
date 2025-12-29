@@ -1,7 +1,7 @@
 import React from 'react';
-import { Github, Linkedin, Twitter, Heart, Code2, Shield, Globe, Instagram, Facebook, MessageCircle, Send, Briefcase, Cpu, Layout, TrendingUp } from 'lucide-react';
+import { Github, Linkedin, Twitter, Heart, Code2, Shield, Globe, Instagram, Facebook, MessageCircle, Send, Briefcase, Cpu, Layout, TrendingUp, ArrowRight } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { PERSONAL_DETAILS } from '../constants';
+import { PERSONAL_DETAILS, PROJECTS_DATA } from '../constants';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -38,13 +38,11 @@ export const Footer: React.FC = () => {
               Engineering scalable digital experiences and intelligent systems for the enterprise.
             </p>
             <div className="flex gap-4 pt-2 flex-wrap">
-              <a href="#" className="text-slate-500 hover:text-white transition-colors"><Github className="w-5 h-5" /></a>
-              <a href="#" className="text-slate-500 hover:text-white transition-colors"><Linkedin className="w-5 h-5" /></a>
-              <a href="#" className="text-slate-500 hover:text-white transition-colors"><Twitter className="w-5 h-5" /></a>
-              <a href="#" className="text-slate-500 hover:text-white transition-colors"><Instagram className="w-5 h-5" /></a>
-              <a href="#" className="text-slate-500 hover:text-white transition-colors"><Facebook className="w-5 h-5" /></a>
-              <a href="#" className="text-slate-500 hover:text-white transition-colors"><MessageCircle className="w-5 h-5" /></a>
-              <a href="#" className="text-slate-500 hover:text-white transition-colors"><Send className="w-5 h-5" /></a>
+              <a href={PERSONAL_DETAILS.social.github} target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition-colors"><Github className="w-5 h-5" /></a>
+              <a href={PERSONAL_DETAILS.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition-colors"><Linkedin className="w-5 h-5" /></a>
+              <a href={PERSONAL_DETAILS.social.instagram} target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition-colors"><Instagram className="w-5 h-5" /></a>
+              <a href={PERSONAL_DETAILS.social.whatsapp} target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition-colors"><MessageCircle className="w-5 h-5" /></a>
+              <a href={`mailto:${PERSONAL_DETAILS.email}`} className="text-slate-500 hover:text-white transition-colors"><Send className="w-5 h-5" /></a>
             </div>
           </div>
 
@@ -62,30 +60,18 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Services (New Section) */}
+          {/* Recent Projects (Dynamic) */}
           <div>
-            <h3 className="text-white font-bold mb-4">Services</h3>
+            <h3 className="text-white font-bold mb-4">Recent Projects</h3>
             <ul className="space-y-2 text-slate-500">
-              <li>
-                <a href="#contact" onClick={(e) => handleScroll(e, 'contact')} className="hover:text-primary transition-colors cursor-pointer flex items-center gap-2">
-                  <Briefcase className="w-3 h-3" /> Enterprise Systems
-                </a>
-              </li>
-              <li>
-                <a href="#contact" onClick={(e) => handleScroll(e, 'contact')} className="hover:text-primary transition-colors cursor-pointer flex items-center gap-2">
-                  <Cpu className="w-3 h-3" /> AI Integration
-                </a>
-              </li>
-              <li>
-                <a href="#contact" onClick={(e) => handleScroll(e, 'contact')} className="hover:text-primary transition-colors cursor-pointer flex items-center gap-2">
-                   <Layout className="w-3 h-3" /> Web Development
-                </a>
-              </li>
-              <li>
-                <a href="#contact" onClick={(e) => handleScroll(e, 'contact')} className="hover:text-primary transition-colors cursor-pointer flex items-center gap-2">
-                   <TrendingUp className="w-3 h-3" /> Tech Consultancy
-                </a>
-              </li>
+              {PROJECTS_DATA.slice(0, 4).map((project) => (
+                <li key={project.id}>
+                  <Link to="/projects" className="hover:text-primary transition-colors cursor-pointer flex items-center gap-2">
+                    <ArrowRight className="w-3 h-3" />
+                    {project.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

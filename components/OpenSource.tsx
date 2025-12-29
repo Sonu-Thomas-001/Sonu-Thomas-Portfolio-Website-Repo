@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Star, GitFork, Terminal, ExternalLink } from 'lucide-react';
-import { OPEN_SOURCE_DATA } from '../constants';
+import { OPEN_SOURCE_DATA, PERSONAL_DETAILS } from '../constants';
 
 export const OpenSource: React.FC = () => {
   const getLanguageColor = (lang: string) => {
@@ -35,7 +35,7 @@ export const OpenSource: React.FC = () => {
             </p>
           </div>
           
-          <a href="#" className="flex items-center gap-2 text-primary font-medium hover:text-white transition-colors">
+          <a href={PERSONAL_DETAILS.social.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-primary font-medium hover:text-white transition-colors">
             View Github Profile <ExternalLink className="w-4 h-4" />
           </a>
         </motion.div>

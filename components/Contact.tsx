@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Linkedin, Globe, Check, Loader2, ArrowRight, Radio } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Linkedin, Globe, Check, Loader2, ArrowRight, Radio, MessageCircle } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
 
 export const Contact: React.FC = () => {
@@ -117,13 +117,13 @@ export const Contact: React.FC = () => {
             <div className="bg-gradient-to-br from-white/5 to-transparent p-6 md:p-8 rounded-2xl md:rounded-3xl border border-white/5">
                 <h3 className="text-lg md:text-xl font-bold text-white mb-4 md:mb-6">Connect Externally</h3>
                 <div className="flex flex-col sm:flex-row gap-4">
-                    <a href="#" className="flex-1 flex items-center justify-center gap-3 p-4 rounded-xl bg-surface hover:bg-[#0077b5] border border-white/5 hover:border-transparent group transition-all duration-300">
+                    <a href={PERSONAL_DETAILS.social.linkedin} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-3 p-4 rounded-xl bg-surface hover:bg-[#0077b5] border border-white/5 hover:border-transparent group transition-all duration-300">
                         <Linkedin className="w-5 h-5 text-slate-400 group-hover:text-cleanWhite" />
                         <span className="font-medium text-slate-400 group-hover:text-cleanWhite">LinkedIn</span>
                     </a>
-                    <a href="#" className="flex-1 flex items-center justify-center gap-3 p-4 rounded-xl bg-surface hover:bg-primary border border-white/5 hover:border-transparent group transition-all duration-300">
-                        <Globe className="w-5 h-5 text-slate-400 group-hover:text-cleanWhite" />
-                        <span className="font-medium text-slate-400 group-hover:text-cleanWhite">Website</span>
+                    <a href={PERSONAL_DETAILS.social.whatsapp} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-3 p-4 rounded-xl bg-surface hover:bg-[#25D366] border border-white/5 hover:border-transparent group transition-all duration-300">
+                        <MessageCircle className="w-5 h-5 text-slate-400 group-hover:text-cleanWhite" />
+                        <span className="font-medium text-slate-400 group-hover:text-cleanWhite">WhatsApp</span>
                     </a>
                 </div>
             </div>

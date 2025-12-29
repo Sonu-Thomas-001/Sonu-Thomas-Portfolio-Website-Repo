@@ -18,10 +18,17 @@ export const PERSONAL_DETAILS = {
   tagline: "Software Engineer | AI & Data Science Enthusiast | Web Developer | Production Change Manager",
   location: "Kannur, Kerala, India",
   email: "sonuthomaswork@gmail.com",
-  phone: "+91 9074480697",
+  phone: "+91 8921 526656",
   about: "A passionate Software Engineer at HCLTech with strong expertise in web development, production change management, and a growing focus on AI and Data Science. I build scalable digital experiences and intelligent systems that transform the way people work.",
   expandedAbout: "I am a Software Engineer at HCLTech with 2+ years of experience in the industry. Currently serving as a Production Change Manager, I handle enterprise-scale changes ensuring minimal risk and maximum compliance. My journey began early; I started freelance web development during my Plus Two years, giving me a practical edge in client communication and delivery. Today, my vision is to bridge the gap between robust software engineering and the future of Artificial Intelligence.",
-  resumeLink: "#"
+  resumeLink: "#",
+  social: {
+    linkedin: "https://www.linkedin.com/in/sonuthomas001/",
+    github: "https://github.com/Sonu-Thomas-001",
+    instagram: "https://www.instagram.com/sonu_thomz/",
+    whatsapp: "https://wa.me/918921526656",
+    website: "https://sonuthomas.vercel.app/"
+  }
 };
 
 export const EXPERIENCE_DATA: ExperienceItem[] = [
