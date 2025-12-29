@@ -412,6 +412,44 @@ export const CERTIFICATIONS_DATA: CertificationItem[] = [
   }
 ];
 
+export const VOLUNTEERING_DATA = [
+  {
+    id: "v1",
+    role: "Tech Mentor",
+    organization: "Local Coding Bootcamp",
+    period: "2023 - Present",
+    description: "Mentoring high school students in basics of web development and programming logic."
+  },
+  {
+    id: "v2",
+    role: "Event Organizer",
+    organization: "College Tech Fest",
+    period: "2022",
+    description: "Organized coding competitions and technical workshops for over 200 participants."
+  }
+];
+
+export const AWARDS_DATA = [
+  {
+    id: "a1",
+    title: "Best Innovation Award",
+    event: "HCLTech Hackathon 2024",
+    description: "Awarded for creating an AI-driven automated testing tool for legacy systems."
+  },
+  {
+    id: "a2",
+    title: "Star Performer",
+    event: "HCLTech Annual Review 2023",
+    description: "Recognized for consistent delivery and zero-defect code in production environments."
+  },
+  {
+    id: "a3",
+    title: "1st Runner Up",
+    event: "State Level Coding Championship",
+    description: "Competed against 50+ teams in algorithmic problem solving."
+  }
+];
+
 export const BLOG_DATA: BlogItem[] = [
   {
     id: "b1",

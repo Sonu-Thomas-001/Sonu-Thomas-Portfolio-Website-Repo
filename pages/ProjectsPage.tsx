@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { Projects } from '../components/Projects';
 import { CaseStudies } from '../components/CaseStudies';
+import { Process } from '../components/Process';
 
 export const ProjectsPage: React.FC = () => {
   return (
@@ -17,7 +19,7 @@ export const ProjectsPage: React.FC = () => {
       </div>
       
       <Projects />
-      <div className="py-12"></div>
+      <Process />
       <CaseStudies />
     </div>
   );

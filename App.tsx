@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { HashRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
@@ -11,6 +12,9 @@ import { PageTransition } from './components/PageTransition';
 import { Home } from './pages/Home';
 import { ProjectsPage } from './pages/ProjectsPage';
 import { InsightsPage } from './pages/InsightsPage';
+import { CertificationsPage } from './pages/CertificationsPage';
+import { VolunteeringPage } from './pages/VolunteeringPage';
+import { HonorsAwardsPage } from './pages/HonorsAwardsPage';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { TermsOfService } from './pages/TermsOfService';
 import { CookiePolicy } from './pages/CookiePolicy';
@@ -54,6 +58,21 @@ const AppContent: React.FC = () => {
                   <Route path="/insights" element={
                       <PageTransition>
                           <InsightsPage />
+                      </PageTransition>
+                  } />
+                  <Route path="/certifications" element={
+                      <PageTransition>
+                          <CertificationsPage />
+                      </PageTransition>
+                  } />
+                  <Route path="/volunteering" element={
+                      <PageTransition>
+                          <VolunteeringPage />
+                      </PageTransition>
+                  } />
+                  <Route path="/awards" element={
+                      <PageTransition>
+                          <HonorsAwardsPage />
                       </PageTransition>
                   } />
                   <Route path="/privacy" element={

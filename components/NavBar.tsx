@@ -1,16 +1,37 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Terminal, ArrowRight, Sparkles, Briefcase, Github, Linkedin, Download, Phone } from 'lucide-react';
+import { Menu, X, Terminal, ArrowRight, Sparkles, Briefcase, Github, Linkedin, Download, Phone, ChevronDown, Trophy, HandHeart, BadgeCheck } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { PERSONAL_DETAILS } from '../constants';
 
-const navLinks = [
+interface NavLink {
+    name: string;
+    path: string;
+    children?: {
+        name: string;
+        path: string;
+        icon?: any;
+    }[];
+}
+
+const navLinks: NavLink[] = [
   { name: 'Home', path: '/' },
   { name: 'About', path: '/#about' },
   { name: 'Experience', path: '/#experience' },
+  { name: 'Education', path: '/#education' },
   { name: 'Skills', path: '/#skills' },
   { name: 'Projects', path: '/projects' },
   { name: 'Insights', path: '/insights' },
+  { 
+      name: 'Resources', 
+      path: '#',
+      children: [
+          { name: 'Certifications', path: '/certifications', icon: BadgeCheck },
+          { name: 'Volunteering', path: '/volunteering', icon: HandHeart },
+          { name: 'Honors & Awards', path: '/awards', icon: Trophy },
+      ]
+  }
 ];
 
 const ROLES = [
@@ -24,6 +45,9 @@ export const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('/');
+  const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -54,8 +78,9 @@ export const NavBar: React.FC = () => {
             { id: 'hero', path: '/' },
             { id: 'about', path: '/#about' },
             { id: 'experience', path: '/#experience' },
+            { id: 'education', path: '/#education' },
             { id: 'skills', path: '/#skills' },
-            { id: 'contact', path: '/#contact' } // Explicitly handling contact if needed, though usually handled via button
+            { id: 'contact', path: '/#contact' }
         ];
 
         // Find the current section
@@ -93,6 +118,11 @@ export const NavBar: React.FC = () => {
   }, [isOpen]);
 
   const handleLinkClick = (path: string, e?: React.MouseEvent) => {
+    if (path === '#') {
+        e?.preventDefault();
+        return;
+    }
+
     // Determine if it's a hash link or home
     if (path.startsWith('/#') || path === '/') {
         if (e) e.preventDefault();
@@ -170,7 +200,12 @@ export const NavBar: React.FC = () => {
   };
 
   // Logic to determine active state
-  const isLinkActive = (path: string) => {
+  const isLinkActive = (path: string, children?: any[]) => {
+      // Check children
+      if (children) {
+          return children.some(child => location.pathname === child.path);
+      }
+
       // If we are on a separate page (Projects/Insights), match pathname
       if (location.pathname !== '/') {
           return location.pathname === path;
@@ -222,30 +257,67 @@ export const NavBar: React.FC = () => {
             {/* Desktop Navigation */}
             <div className={`hidden md:flex items-center gap-1 ${scrolled ? 'bg-white/5' : 'bg-dark/30'} backdrop-blur-sm px-2 py-1.5 rounded-full border border-white/5 transition-colors duration-300`}>
               {navLinks.map((link) => {
-                const isActive = isLinkActive(link.path);
+                const isActive = isLinkActive(link.path, link.children);
+                const hasChildren = link.children && link.children.length > 0;
+
                 return (
-                  <Link
-                    key={link.name}
-                    to={link.path}
-                    onClick={(e) => handleLinkClick(link.path, e)}
-                    className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
-                      isActive ? 'text-white' : 'text-slate-400 hover:text-white'
-                    }`}
+                  <div 
+                    key={link.name} 
+                    className="relative"
+                    onMouseEnter={() => hasChildren && setHoveredDropdown(link.name)}
+                    onMouseLeave={() => hasChildren && setHoveredDropdown(null)}
                   >
-                    {isActive && (
-                      <motion.div
-                        layoutId="nav-pill"
-                        className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full border border-white/10"
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                      >
-                         <div className="absolute inset-0 bg-white/5 rounded-full blur-[2px]" />
-                      </motion.div>
-                    )}
-                    <span className="relative z-10 flex items-center gap-1">
-                      {link.name}
-                      {isActive && <motion.span layoutId="active-dot" className="w-1 h-1 rounded-full bg-primary ml-1" />}
-                    </span>
-                  </Link>
+                    <Link
+                        to={link.path}
+                        onClick={(e) => handleLinkClick(link.path, e)}
+                        className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 flex items-center gap-1 ${
+                        isActive ? 'text-white' : 'text-slate-400 hover:text-white'
+                        }`}
+                    >
+                        {isActive && !hasChildren && (
+                        <motion.div
+                            layoutId="nav-pill"
+                            className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full border border-white/10"
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        >
+                            <div className="absolute inset-0 bg-white/5 rounded-full blur-[2px]" />
+                        </motion.div>
+                        )}
+                        <span className="relative z-10 flex items-center gap-1">
+                            {link.name}
+                            {hasChildren && <ChevronDown className="w-3 h-3 mt-0.5" />}
+                            {isActive && !hasChildren && <motion.span layoutId="active-dot" className="w-1 h-1 rounded-full bg-primary ml-1" />}
+                        </span>
+                    </Link>
+                    
+                    {/* Dropdown Menu */}
+                    <AnimatePresence>
+                        {hasChildren && hoveredDropdown === link.name && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 10 }}
+                                transition={{ duration: 0.2 }}
+                                className="absolute top-full left-0 mt-2 w-56 bg-dark/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden py-2"
+                            >
+                                {link.children?.map((child) => (
+                                    <Link
+                                        key={child.name}
+                                        to={child.path}
+                                        onClick={(e) => {
+                                            handleLinkClick(child.path, e);
+                                            setHoveredDropdown(null);
+                                        }}
+                                        className="flex items-center gap-3 px-4 py-3 text-sm text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
+                                    >
+                                        {child.icon && <child.icon className="w-4 h-4 text-primary" />}
+                                        {child.name}
+                                    </Link>
+                                ))}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                  </div>
                 );
               })}
             </div>
@@ -362,7 +434,54 @@ export const NavBar: React.FC = () => {
             <div className="flex flex-col gap-6 relative z-10 h-full">
               <div className="flex flex-col gap-2">
                 {navLinks.map((link, i) => {
-                    const isActive = isLinkActive(link.path);
+                    const isActive = isLinkActive(link.path, link.children);
+                    const hasChildren = link.children && link.children.length > 0;
+                    const isExpanded = mobileExpanded === link.name;
+
+                    if (hasChildren) {
+                        return (
+                            <div key={link.name} className="border-b border-white/5">
+                                <button
+                                    onClick={() => setMobileExpanded(isExpanded ? null : link.name)}
+                                    className={`w-full text-2xl font-bold py-3 flex items-center justify-between group ${isActive ? 'text-white' : 'text-slate-400'}`}
+                                >
+                                    <motion.span 
+                                        variants={navItemVariants}
+                                        initial="hidden"
+                                        animate="visible"
+                                        custom={i}
+                                        className="group-hover:text-primary transition-colors flex items-center gap-3"
+                                    >
+                                        {link.name}
+                                    </motion.span>
+                                    <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+                                </button>
+                                <AnimatePresence>
+                                    {isExpanded && (
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: 'auto', opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            className="overflow-hidden pl-4 pb-4"
+                                        >
+                                            {link.children?.map((child) => (
+                                                <Link
+                                                    key={child.name}
+                                                    to={child.path}
+                                                    onClick={(e) => handleLinkClick(child.path, e)}
+                                                    className="flex items-center gap-3 py-3 text-lg text-slate-500 hover:text-white transition-colors"
+                                                >
+                                                    {child.icon && <child.icon className="w-5 h-5 text-primary" />}
+                                                    {child.name}
+                                                </Link>
+                                            ))}
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        );
+                    }
+
                     return (
                         <Link
                             key={link.name}
