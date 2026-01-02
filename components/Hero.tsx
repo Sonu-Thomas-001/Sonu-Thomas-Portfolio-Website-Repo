@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView, animate } from 'framer-motion';
 import { ArrowRight, Download, Linkedin, Github, Globe, ChevronDown, Terminal, Cpu, Database, Server, Code2, BrainCircuit, Instagram, Facebook, MessageCircle, Send, Activity, Layers, Zap, GitBranch, ScanFace } from 'lucide-react';
@@ -46,7 +47,7 @@ export const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-dark pt-32 pb-24 lg:pt-32 lg:pb-24">
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-dark pt-28 pb-20 lg:pt-32 lg:pb-24">
       {/* Dynamic Background Mesh & Tech Grid */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-primary/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[120px] animate-blob"></div>
@@ -69,41 +70,62 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative"
         >
-          <div className="backdrop-blur-xl bg-white/[0.03] border border-white/10 rounded-3xl p-8 md:p-10 shadow-2xl ring-1 ring-white/5 relative overflow-hidden group">
+          <div className="backdrop-blur-xl bg-white/[0.03] border border-white/10 rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl ring-1 ring-white/5 relative overflow-hidden group">
             
             {/* Glass Shine Effect */}
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
             <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-transparent to-secondary/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg"></div>
 
-            <div className="relative z-10 space-y-8">
+            <div className="relative z-10 space-y-6 sm:space-y-8">
               {/* Status Badge */}
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest"
+                className="flex justify-center sm:justify-start"
               >
-                 <span className="relative flex h-2 w-2">
-                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                   <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                 </span>
-                 System Online • Available for Work
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest">
+                    <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                    </span>
+                    System Online • Available for Work
+                  </div>
               </motion.div>
 
               {/* Headline & Profile Photo */}
-              <div className="space-y-4">
-                <div className="flex items-center gap-6">
-                  <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-none">
-                    Sonu <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">Thomas</span>
-                  </h1>
+              <div className="flex flex-col-reverse sm:flex-row items-center sm:items-start gap-6 sm:gap-8">
+                  <div className="flex flex-col items-center sm:items-start space-y-4 w-full">
+                      <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-white leading-none text-center sm:text-left">
+                        Sonu <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">Thomas</span>
+                      </h1>
+                      
+                      <div className="min-h-[2.5rem] md:min-h-[3rem] h-auto overflow-hidden flex items-center justify-center sm:justify-start">
+                        <div className="text-lg sm:text-xl md:text-2xl font-mono text-primary flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                            <span className="text-secondary/70">{'>'}</span>
+                            <AnimatePresence mode='wait'>
+                                <motion.span
+                                key={roleIndex}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.3 }}
+                                >
+                                {ROLES[roleIndex]}
+                                </motion.span>
+                            </AnimatePresence>
+                            <span className="w-2 h-5 bg-primary/50 animate-pulse ml-1"></span>
+                        </div>
+                      </div>
+                  </div>
                   
                   {/* Profile Photo with Fallback */}
                   <motion.div 
                     initial={{ scale: 0, rotate: -20, opacity: 0 }}
                     animate={{ scale: 1, rotate: 0, opacity: 1 }}
                     transition={{ delay: 0.5, type: "spring", stiffness: 200, damping: 15 }}
-                    className="relative w-32 h-32 md:w-48 md:h-48 flex-shrink-0"
+                    className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-48 md:h-48 flex-shrink-0"
                   >
                      {/* Glow behind the photo */}
                      <div className="absolute inset-0 bg-gradient-to-tr from-primary to-secondary rounded-2xl blur-xl opacity-50 animate-pulse"></div>
@@ -129,25 +151,6 @@ export const Hero: React.FC = () => {
                          </div>
                      </div>
                   </motion.div>
-                </div>
-                
-                <div className="min-h-[2.5rem] md:min-h-[3rem] h-auto overflow-hidden flex items-center">
-                  <div className="text-lg sm:text-xl md:text-2xl font-mono text-primary flex flex-wrap items-center gap-2">
-                    <span className="text-secondary/70">{'>'}</span>
-                    <AnimatePresence mode='wait'>
-                        <motion.span
-                        key={roleIndex}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.3 }}
-                        >
-                        {ROLES[roleIndex]}
-                        </motion.span>
-                    </AnimatePresence>
-                    <span className="w-2 h-5 bg-primary/50 animate-pulse ml-1"></span>
-                  </div>
-                </div>
               </div>
 
               {/* Description */}
@@ -155,13 +158,13 @@ export const Hero: React.FC = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="text-lg text-slate-400 leading-relaxed max-w-lg"
+                className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-lg mx-auto sm:mx-0 text-center sm:text-left"
               >
                 I engineer resilient enterprise systems and scalable web solutions, bridging the gap between <span className="text-white font-medium">traditional software development</span> and the future of <span className="text-primary font-medium">Artificial Intelligence</span>.
               </motion.p>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row gap-4 pt-2 justify-center sm:justify-start">
                 <Link 
                   to="/projects"
                   className="group relative px-8 py-4 rounded-xl bg-white text-dark font-bold overflow-hidden transition-all hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] flex items-center justify-center gap-2"
@@ -181,35 +184,35 @@ export const Hero: React.FC = () => {
               </div>
 
               {/* Stats Counters */}
-              <div className="grid grid-cols-3 gap-4 border-t border-white/5 pt-8 mt-2">
+              <div className="grid grid-cols-3 gap-2 sm:gap-4 border-t border-white/5 pt-6 sm:pt-8 mt-2 text-center sm:text-left">
                 <div>
-                  <div className="text-2xl md:text-3xl font-bold text-white tabular-nums flex items-center">
+                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white tabular-nums flex items-center justify-center sm:justify-start">
                     <Counter from={0} to={2} /><span className="text-primary">+</span>
                   </div>
-                  <div className="text-[10px] md:text-xs text-slate-500 font-medium uppercase tracking-wider mt-1 leading-tight flex items-center gap-1">
-                     <Building2 className="w-3 h-3" /> HCLTech Exp
+                  <div className="text-[10px] md:text-xs text-slate-500 font-medium uppercase tracking-wider mt-1 leading-tight flex flex-col sm:flex-row items-center gap-1 justify-center sm:justify-start">
+                     <Building2 className="w-3 h-3" /> <span>HCLTech Exp</span>
                   </div>
                 </div>
                 <div>
-                  <div className="text-2xl md:text-3xl font-bold text-white tabular-nums flex items-center">
+                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white tabular-nums flex items-center justify-center sm:justify-start">
                     <Counter from={0} to={3} /><span className="text-secondary">+</span>
                   </div>
-                  <div className="text-[10px] md:text-xs text-slate-500 font-medium uppercase tracking-wider mt-1 leading-tight flex items-center gap-1">
-                    <Code2 className="w-3 h-3" /> Freelance Yrs
+                  <div className="text-[10px] md:text-xs text-slate-500 font-medium uppercase tracking-wider mt-1 leading-tight flex flex-col sm:flex-row items-center gap-1 justify-center sm:justify-start">
+                    <Code2 className="w-3 h-3" /> <span>Freelance Yrs</span>
                   </div>
                 </div>
                 <div>
-                  <div className="text-2xl md:text-3xl font-bold text-white flex items-center">
+                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white flex items-center justify-center sm:justify-start">
                     IIT G
                   </div>
-                  <div className="text-[10px] md:text-xs text-slate-500 font-medium uppercase tracking-wider mt-1 leading-tight flex items-center gap-1">
-                    <BrainCircuit className="w-3 h-3" /> AI & Data Science
+                  <div className="text-[10px] md:text-xs text-slate-500 font-medium uppercase tracking-wider mt-1 leading-tight flex flex-col sm:flex-row items-center gap-1 justify-center sm:justify-start">
+                    <BrainCircuit className="w-3 h-3" /> <span>AI & Data</span>
                   </div>
                 </div>
               </div>
 
               {/* Socials */}
-              <div className="pt-6 flex gap-6 flex-wrap">
+              <div className="pt-4 sm:pt-6 flex gap-6 flex-wrap justify-center sm:justify-start">
                 {[
                     { icon: Linkedin, href: PERSONAL_DETAILS.social.linkedin },
                     { icon: Github, href: PERSONAL_DETAILS.social.github },
@@ -250,7 +253,7 @@ export const Hero: React.FC = () => {
                     }}
                     transition={{ 
                         duration: 6, 
-                        repeat: Infinity,
+                        repeat: Infinity, 
                         ease: "easeInOut" 
                     }}
                     className="absolute inset-0 m-auto w-64 h-80 bg-slate-900/90 backdrop-blur-md border border-white/10 rounded-2xl flex flex-col items-center justify-center shadow-2xl z-20"
