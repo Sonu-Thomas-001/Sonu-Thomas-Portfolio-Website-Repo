@@ -1,10 +1,19 @@
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { ExternalLink, Github, Code, Layers, Sparkles, TerminalSquare, Cpu, Monitor, Box } from 'lucide-react';
 import { PROJECTS_DATA } from '../constants';
 
 export const Projects: React.FC = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
+
   const [filter, setFilter] = useState('All');
   const categories = ['All', 'Generative AI', 'AI Tools', 'Web Apps'];
 
@@ -22,15 +31,15 @@ export const Projects: React.FC = () => {
   };
 
   return (
-    <section id="projects" className="py-24 bg-dark relative overflow-hidden">
+    <section ref={containerRef} id="projects" className="py-24 bg-dark relative overflow-hidden">
       {/* Background Subtle Grid & Code Decoration */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
-      <div className="absolute top-10 right-10 opacity-5 pointer-events-none font-mono text-sm hidden lg:block">
+      <motion.div style={{ y: bgY }} className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></motion.div>
+      <motion.div style={{ y: bgY }} className="absolute top-10 right-10 opacity-5 pointer-events-none font-mono text-sm hidden lg:block">
           <div>const portfolio = await buildFuture();</div>
           <div>if (innovation) return true;</div>
-      </div>
+      </motion.div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <motion.div style={{ y: cardsY }} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -168,7 +177,7 @@ export const Projects: React.FC = () => {
             ))}
           </AnimatePresence>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };

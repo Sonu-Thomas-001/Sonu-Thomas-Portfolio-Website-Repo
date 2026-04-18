@@ -1,16 +1,24 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Download } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
 import { SectionMarquee } from './TechMarquee';
 
 export const Availability: React.FC = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
+
   return (
-    <section className="py-20 bg-dark relative overflow-hidden">
+    <section ref={containerRef} className="py-20 bg-dark relative overflow-hidden">
         {/* Background Accent */}
         <div className="absolute inset-0 bg-gradient-to-b from-dark via-surface to-dark pointer-events-none"></div>
         
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div style={{ y: cardsY }} className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -68,7 +76,7 @@ export const Availability: React.FC = () => {
                 <div className="absolute -top-20 -left-20 w-64 h-64 bg-primary/20 rounded-full blur-[80px] pointer-events-none"></div>
 
             </motion.div>
-        </div>
+        </motion.div>
     </section>
   );
 };

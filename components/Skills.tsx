@@ -1,10 +1,19 @@
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Terminal, Cpu, Database, Globe, Monitor, Code2, Briefcase, Layers } from 'lucide-react';
 import { SKILLS_DATA } from '../constants';
 
 export const Skills: React.FC = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -40,12 +49,12 @@ export const Skills: React.FC = () => {
   };
 
   return (
-    <section id="skills" className="py-24 bg-dark relative overflow-hidden">
+    <section ref={containerRef} id="skills" className="py-24 bg-dark relative overflow-hidden">
       {/* Background Decor */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-dark to-dark pointer-events-none"></div>
+      <motion.div style={{ y: bgY }} className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-dark to-dark pointer-events-none"></motion.div>
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <motion.div style={{ y: cardsY }} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -111,7 +120,7 @@ export const Skills: React.FC = () => {
             </p>
         </div>
 
-      </div>
+      </motion.div>
     </section>
   );
 };

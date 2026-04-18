@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Search, Scale, PenTool, Rocket, BarChart3, ChevronRight, ChevronDown } from 'lucide-react';
 
 const STEPS = [
@@ -51,13 +51,22 @@ const STEPS = [
 ];
 
 export const ProblemSolving: React.FC = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
+
   return (
-    <section className="py-24 bg-surface relative overflow-hidden">
+    <section ref={containerRef} className="py-24 bg-surface relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-dark/50" />
-      <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-t from-primary/5 to-transparent opacity-50 pointer-events-none" />
+      <motion.div style={{ y: bgY }} className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-t from-primary/5 to-transparent opacity-50 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <motion.div style={{ y: cardsY }} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -124,7 +133,7 @@ export const ProblemSolving: React.FC = () => {
           </div>
         </div>
 
-      </div>
+      </motion.div>
     </section>
   );
 };

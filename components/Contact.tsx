@@ -1,25 +1,56 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Linkedin, Globe, Check, Loader2, ArrowRight, Radio, MessageCircle } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
+import { SuccessModal } from './SuccessModal';
 
 export const Contact: React.FC = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
+
   const [formState, setFormState] = useState({
     name: '',
     email: '',
+    phone: '',
     message: ''
   });
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [status, setStatus] = useState<'idle' | 'submitting'>('idle');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [submittedName, setSubmittedName] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
-    // Simulate API call
-    setTimeout(() => {
-      setStatus('success');
-      setFormState({ name: '', email: '', message: '' });
-      setTimeout(() => setStatus('idle'), 3000);
-    }, 1500);
+    
+    const formData = new FormData();
+    formData.append('entry.1613475426', formState.name);
+    formData.append('entry.772609247', formState.email);
+    formData.append('entry.1138590408', formState.phone);
+    formData.append('entry.954219206', formState.message);
+
+    try {
+      await fetch(
+        'https://docs.google.com/forms/d/e/1FAIpQLScpY_oNEAMrUIeEyZxsPlY9JpWgTp8JnJSjkqb3A1lJ0VfN3g/formResponse',
+        {
+          method: 'POST',
+          mode: 'no-cors',
+          body: formData,
+        }
+      );
+      setSubmittedName(formState.name);
+      setIsModalOpen(true);
+      setFormState({ name: '', email: '', phone: '', message: '' });
+      setStatus('idle');
+    } catch (error) {
+      console.error('Form submission error', error);
+      setStatus('idle');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -27,9 +58,9 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-24 bg-dark relative overflow-hidden">
+    <section ref={containerRef} id="contact" className="py-20 md:py-24 bg-dark relative overflow-hidden">
         {/* Background Gradients & Network Pulse */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
+        <motion.div style={{ y: bgY }} className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
             <div className="absolute bottom-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-primary/5 rounded-full blur-[80px] md:blur-[100px]" />
             <div className="absolute top-20 left-0 w-[200px] md:w-[300px] h-[200px] md:h-[300px] bg-secondary/5 rounded-full blur-[60px] md:blur-[80px]" />
             
@@ -40,9 +71,9 @@ export const Contact: React.FC = () => {
                animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.1, 0.3] }}
                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
-        </div>
+        </motion.div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <motion.div style={{ y: cardsY }} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -167,6 +198,19 @@ export const Contact: React.FC = () => {
                     placeholder="john@example.com" 
                   />
                 </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="phone" className="text-sm font-medium text-slate-400 ml-1">Phone Number (Optional)</label>
+                  <input 
+                    type="tel" 
+                    id="phone"
+                    name="phone"
+                    value={formState.phone}
+                    onChange={handleChange}
+                    className="w-full bg-white dark:bg-dark/50 border border-slate-200 dark:border-white/10 rounded-xl px-5 py-3.5 md:py-4 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all duration-300" 
+                    placeholder="+1 (555) 000-0000" 
+                  />
+                </div>
                 
                 <div className="space-y-2">
                   <label htmlFor="message" className="text-sm font-medium text-slate-400 ml-1">Message</label>
@@ -185,11 +229,7 @@ export const Contact: React.FC = () => {
                 <button 
                     type="submit" 
                     disabled={status !== 'idle'}
-                    className={`w-full font-bold py-3.5 md:py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 overflow-hidden relative ${
-                        status === 'success' 
-                        ? 'bg-emerald-500 text-cleanWhite cursor-default' 
-                        : 'bg-primary hover:bg-primary/90 text-cleanWhite hover:shadow-lg hover:shadow-primary/25 hover:scale-[1.02]'
-                    }`}
+                    className={`w-full font-bold py-3.5 md:py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 overflow-hidden relative bg-primary hover:bg-primary/90 text-cleanWhite hover:shadow-lg hover:shadow-primary/25 hover:scale-[1.02]`}
                 >
                     <AnimatePresence mode='wait'>
                         {status === 'idle' && (
@@ -215,24 +255,19 @@ export const Contact: React.FC = () => {
                                 Sending...
                             </motion.div>
                         )}
-                        {status === 'success' && (
-                            <motion.div 
-                                key="success"
-                                initial={{ y: 20, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                className="flex items-center gap-2"
-                            >
-                                <Check className="w-5 h-5" />
-                                Message Sent!
-                            </motion.div>
-                        )}
                     </AnimatePresence>
                 </button>
               </div>
             </form>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
+
+      <SuccessModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        name={submittedName} 
+      />
     </section>
   );
 };
