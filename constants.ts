@@ -29,7 +29,7 @@ export const PERSONAL_DETAILS = {
     github: "https://github.com/Sonu-Thomas-001",
     instagram: "https://www.instagram.com/sonu_thomz/",
     whatsapp: "https://wa.me/918921526656",
-    website: "https://sonuthomas.vercel.app/"
+    website: "https://www.sonuthomas.me/"
   }
 };
 
@@ -215,6 +215,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
     role: "Developer",
     stack: ["TypeScript", "GenAI", "React"],
     description: "On-demand AI merch mockups generator and editor. Upload your logo, generate product shots, and refine with natural language editing.",
+    detailedDescription: `## 🚀 Features
+- **AI Logo Placement**: Auto-detects optimal placement zones on apparel.
+- **Natural Language Editing**: Type "make the design subtle and vintage" and watch the mockup adjust.
+- **High-Res Export**: Download production-ready 4K mockups.
+
+## 🧠 How It Works
+Uses Stable Diffusion and ControlNet to align logos with fabric folds and textures accurately.
+
+## 🧩 Tech Stack
+React, TypeScript, FastAPI, Stable Diffusion API.`,
     links: { demo: "#", github: "https://github.com/Sonu-Thomas-001/Merchify-Studio" },
     image: "https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?q=80&w=1000&auto=format&fit=crop"
   },
@@ -225,6 +235,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
     role: "Developer",
     stack: ["TypeScript", "React"],
     description: "A web app that generates architecture diagrams from text input.",
+    detailedDescription: `## 🚀 Features
+- **Text-to-Diagram**: Describe your AWS/GCP architecture in plain English.
+- **Live Previews**: Adjust the text and see the architecture re-render instantly.
+- **Export**: Download as SVG or PNG.
+
+## 🧠 How It Works
+Parses natural language into Mermaid.js or PlantUML syntax using an LLM, then renders it onto a canvas.
+
+## 🧩 Tech Stack
+React, TypeScript, Mermaid.js, OpenAI.`,
     links: { demo: "#", github: "https://github.com/Sonu-Thomas-001/DiagramOps" },
     image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1000&auto=format&fit=crop"
   },
@@ -235,6 +255,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
     role: "Audio Engineer",
     stack: ["TypeScript", "Audio API", "React"],
     description: "Your AI DJ. Perfectly Mixed. Mixora AI turns tracks into professional DJ sets in real time.",
+    detailedDescription: `## 🚀 Features
+- **🎶 Intelligent Mixing Engine**: Auto-detects BPM, key, and energy to align tracks perfectly.
+- **⚡ Real-time Transitions**: Performs beat-matched crossfades, drops, and build-ups automatically.
+- **🧠 AI DJ Personalities**: Choose from "Club", "Radio", or "Chill" personas.
+
+## 🧠 How It Works
+Mixora uses DSP to map beats and key signatures, then aligns tempos phase-to-phase.
+
+## 🧩 Tech Stack
+React, Web Audio API, Python (FastAPI), Google Gemini 1.5 Flash.`,
     links: { demo: "#", github: "https://github.com/Sonu-Thomas-001/Mixora-AI" },
     image: "https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=1000&auto=format&fit=crop"
   },
@@ -245,6 +275,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
     role: "Developer",
     stack: ["TypeScript", "React", "Gemini AI"],
     description: "A premium custom car build visualizer powered by Gemini AI. Design your dream vehicle with custom body kits, colors, wheels, and accessories in real-time.",
+    detailedDescription: `## 🚀 Features
+- **Real-Time Visualizer**: Rotate to see your modifications in 3D.
+- **AI-Driven Parts**: Suggests body kits and colors based on a text prompt.
+- **Cost Estimation**: Estimates the real-world build cost based on selected parts.
+
+## 🧠 How It Works
+Connects a 3D WebGL renderer with Gemini AI to map user prompts (e.g., "Cyberpunk JDM") to compatible modification presets.
+
+## 🧩 Tech Stack
+React, Three.js, TypeScript, Gemini AI.`,
     links: { demo: "#", github: "https://github.com/Sonu-Thomas-001/Carvix-AI" },
     image: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=1000&auto=format&fit=crop"
   },
@@ -255,6 +295,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
     role: "Backend Developer",
     stack: ["Java"],
     description: "A Java-based ticketing management and tracking system.",
+    detailedDescription: `## 🚀 Features
+- **Role-Based Access**: Admins, Agents, and Customers with distinct portals.
+- **Automated Routing**: Tickets are assigned via round-robin or skill-based logic.
+- **SLA Tracking**: Monitors response times with escalations.
+
+## 🧠 How It Works
+A robust enterprise Java backend handling concurrency, transaction management, and real-time socket connections.
+
+## 🧩 Tech Stack
+Java, Spring Boot, MySQL, WebSockets.`,
     links: { demo: "#", github: "https://github.com/Sonu-Thomas-001/TicketWave" },
     image: "https://images.unsplash.com/photo-1540317580384-e5d43616b9aa?q=80&w=1000&auto=format&fit=crop"
   },
@@ -265,6 +315,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
     role: "Frontend Developer",
     stack: ["TypeScript", "React", "3D"],
     description: "The next-generation presentation platform. Create stunning, interactive 3D slide decks with parallax depth, smooth transitions, and cinematic animations directly in the browser.",
+    detailedDescription: `## 🚀 Features
+- **3D Canvas**: Place text and images in a z-index space for parallax depth.
+- **Cinematic Camera**: Smooth transitions panning across the presentation universe.
+- **Export to Web**: Share presentations as lightweight web links.
+
+## 🧠 How It Works
+Uses WebGL to convert traditional 2D slides into 3D objects mapped onto a spatial coordinate system.
+
+## 🧩 Tech Stack
+TypeScript, React, Three.js, React Three Fiber.`,
     links: { demo: "#", github: "https://github.com/Sonu-Thomas-001/Preso3D" },
     image: "https://images.unsplash.com/photo-1555255707-c07966088b7b?q=80&w=1000&auto=format&fit=crop"
   },
@@ -275,6 +335,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
     role: "Full Stack Dev",
     stack: ["TypeScript", "Gemini AI", "React"],
     description: "A professional AI-powered interview simulator that provides real-time feedback, scoring, and improvement tips for technical and behavioral interviews.",
+    detailedDescription: `## 🚀 Features
+- **Voice Interviews**: Converse naturally with an AI interviewer.
+- **Live Coding Interface**: Integrated IDE for technical rounds.
+- **Detailed Scorecard**: Get actionable feedback on communication, accuracy, and structure.
+
+## 🧠 How It Works
+Leverages Web Speech API for TTS/STT and Gemini for understanding technical nuance and behavioral contexts.
+
+## 🧩 Tech Stack
+TypeScript, React, Gemini AI, Web Audio.`,
     links: { demo: "#", github: "https://github.com/Sonu-Thomas-001/MockMate-AI" },
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop"
   },
@@ -285,6 +355,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
     role: "AI Specialist",
     stack: ["TypeScript", "Gemini Vision", "React"],
     description: "A high-end virtual photography studio for restaurateurs. Transform text menus into stunning, photorealistic food imagery using advanced generative AI.",
+    detailedDescription: `## 🚀 Features
+- **Menu Reader**: Upload a menu PDF to generate a full visual directory.
+- **Style Transfer**: Keep food photography consistent with your brand's lighting and mood.
+- **Social Ready**: One-click formatting for Instagram and UberEats.
+
+## 🧠 How It Works
+Integrates Gemini Vision to extract menu text and stable-diffusion pipelines to generate the food imagery.
+
+## 🧩 Tech Stack
+TypeScript, React, Gemini Vision, GenAI.`,
     links: { demo: "#", github: "https://github.com/Sonu-Thomas-001/PlatedAI" },
     image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000&auto=format&fit=crop"
   },
@@ -295,6 +375,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
     role: "Lead Engineer",
     stack: ["TypeScript", "Gemini AI", "React", "Tailwind"],
     description: "A premium time-travel photo booth experience. Upload your photo and transport yourself across history and into the future using advanced generative AI.",
+    detailedDescription: `## 🚀 Features
+- **Historical Eras**: Turn yourself into a Victorian noble, a 1920s mobster, or an Egyptian Pharaoh.
+- **Cyberpunk Futures**: See how you'd look in 2077.
+- **High Fidelity**: Preserves facial features accurately.
+
+## 🧠 How It Works
+Implements FaceID preservation using custom LoRA models layered over Generative AI image pipelines.
+
+## 🧩 Tech Stack
+React, TypeScript, Gemini AI, Tailwind CSS.`,
     links: { demo: "#", github: "https://github.com/Sonu-Thomas-001/ChronoLens" },
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop"
   },
@@ -305,6 +395,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
     role: "Full Stack Dev",
     stack: ["TypeScript", "GenAI", "React"],
     description: "An AI-powered brand identity generator that creates a complete brand bible including logos, color palettes, and typography from a simple description.",
+    detailedDescription: `## 🚀 Features
+- **Full Identity Generation**: Get a logo, typography pairing, and color hex codes.
+- **Mockup Previews**: See your new brand on business cards and websites.
+- **Exportable Brand Guidelines**: Download a PDF manual.
+
+## 🧠 How It Works
+Translates descriptive brand values (e.g., "minimalist, eco-friendly") into design constraints fed to GenAI models.
+
+## 🧩 Tech Stack
+TypeScript, GenAI APIs, SVG Manipulation, React.`,
     links: { demo: "#", github: "https://github.com/Sonu-Thomas-001/BrandIQ" },
     image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop"
   },
@@ -315,6 +415,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
     role: "Creative Developer",
     stack: ["TypeScript", "Gemini AI", "React"],
     description: "An interactive AI storybook that generates magical stories, illustrations, and narration in real-time.",
+    detailedDescription: `## 🚀 Features
+- **Interactive Narratives**: The reader's choices change the story.
+- **Dynamic Illustrations**: AI draws the scene based on the current context.
+- **Voice Narration**: High-quality TTS reads the story.
+
+## 🧠 How It Works
+Maintains a conversational state with Gemini while concurrently generating image prompts for each scene.
+
+## 🧩 Tech Stack
+TypeScript, React, Gemini AI, ElevenLabs TTS.`,
     links: { demo: "#", github: "https://github.com/Sonu-Thomas-001/WonderTales-AI" },
     image: "https://images.unsplash.com/photo-1535905557558-afc4877a26fc?q=80&w=1000&auto=format&fit=crop"
   },
@@ -325,6 +435,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
     role: "Developer",
     stack: ["TypeScript", "PDF Generation", "React"],
     description: "Create personalized, magical coloring books for children in seconds. Enter a theme and a name to generate a unique, printable PDF coloring book.",
+    detailedDescription: `## 🚀 Features
+- **Theme Customization**: "Dinosaurs in space" or "Underwater castles".
+- **Name Personalization**: The child's name is integrated into the drawings.
+- **Ready-to-Print**: Automatically formats into a standard A4/Letter PDF.
+
+## 🧠 How It Works
+Generates vector-style black-and-white line art via AI, compiled into a PDF using client-side libraries.
+
+## 🧩 Tech Stack
+TypeScript, React, jsPDF, GenAI.`,
     links: { demo: "#", github: "https://github.com/Sonu-Thomas-001/Colorfolio-Kids" },
     image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1000&auto=format&fit=crop"
   },
@@ -335,6 +455,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
     role: "Developer",
     stack: ["TypeScript", "Gemini AI", "SVG"],
     description: "Generate professional, animated SVG logos for your brand instantly using Gemini AI.",
+    detailedDescription: `## 🚀 Features
+- **Motion Export**: Download as Lottie, GIF, or MP4.
+- **Generative SVGs**: Creates crisp vector paths instead of raster images.
+- **Style Presets**: Glitch, Liquid, Minimalist drawing effects.
+
+## 🧠 How It Works
+Uses Gemini to generate raw SVG code, then applies CSS/SMIL animations to paths for smooth motion.
+
+## 🧩 Tech Stack
+TypeScript, React, Gemini AI, SVG.`,
     links: { demo: "#", github: "https://github.com/Sonu-Thomas-001/LogoMotion-AI" },
     image: "https://images.unsplash.com/photo-1626785774573-4b799312c95d?q=80&w=1000&auto=format&fit=crop"
   },
@@ -345,6 +475,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
     role: "AI Engineer",
     stack: ["TypeScript", "Google Search Grounding", "Gemini"],
     description: "An advanced research tool that uses Google Search Grounding to research topics and instantly generates fact-checked summaries, data visualizations, and illustrations tailored to your audience.",
+    detailedDescription: `## 🚀 Features
+- **Instant Research Briefs**: Synthesizes hours of reading into minutes.
+- **Grounding and Citations**: Links directly to verified sources to prevent hallucinations.
+- **Auto-Charting**: Generates D3 charts from tabular data found during research.
+
+## 🧠 How It Works
+Utilizes Google Search Grounding with Gemini to ensure factual accuracy and extracts data structs for charting.
+
+## 🧩 Tech Stack
+TypeScript, Gemini, Google Search API.`,
     links: { demo: "#", github: "https://github.com/Sonu-Thomas-001/Intellexa-Visuals" },
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop"
   },
@@ -355,6 +495,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
     role: "Graphics Engineer",
     stack: ["TypeScript", "Gemini Vision", "Three.js"],
     description: "Transform 2D photos into 3D models instantly using Gemini Vision and generative geometry.",
+    detailedDescription: `## 🚀 Features
+- **Instant Depth Mapping**: Extracts a 3D depth map from a flat image.
+- **Object Extraction**: Isolates subjects from backgrounds seamlessly.
+- **Export Formats**: .obj and .gltf downloads.
+
+## 🧠 How It Works
+Uses Gemini Vision to estimate depth perception, generating a point cloud that is triangulated into a mesh.
+
+## 🧩 Tech Stack
+TypeScript, React, Three.js, Gemini Vision.`,
     links: { demo: "#", github: "https://github.com/Sonu-Thomas-001/3Dify-Studio" },
     image: "https://images.unsplash.com/photo-1617791160505-6f00504e3519?q=80&w=1000&auto=format&fit=crop"
   },
@@ -365,6 +515,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
     role: "Developer",
     stack: ["TypeScript", "Gemini 2.5 Flash", "Gemini 3 Flash"],
     description: "A premium design tool that generates high-quality PNG assets and SVG vectors using Gemini 2.5 Flash and Gemini 3 Flash.",
+    detailedDescription: `## 🚀 Features
+- **Vector Up-scaling**: Turns pixelated icons into scalable SVG.
+- **Multi-Model Support**: Compare results from Gemini 2.5 Flash and Gemini 3 Flash.
+- **In-Browser Editor**: Tweak path points natively.
+
+## 🧠 How It Works
+Leverages the visual reasoning capabilities of Gemini to reconstruct geometry from pixel data.
+
+## 🧩 Tech Stack
+TypeScript, Gemini 3 Flash, React.`,
     links: { demo: "#", github: "https://github.com/Sonu-Thomas-001/Vectora-AI" },
     image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1000&auto=format&fit=crop"
   },
@@ -375,6 +535,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
     role: "Developer",
     stack: ["TypeScript", "Gemini Live API", "Audio Processing"],
     description: "A real-time conversational AI language tutor that helps you practice speaking with live voice interaction and feedback.",
+    detailedDescription: `## 🚀 Features
+- **Live Conversation**: Low-latency voice discussions.
+- **Accent Scoring**: Real-time feedback on pronunciation.
+- **Vocabulary Suggestions**: In-context hints if you struggle for a word.
+
+## 🧠 How It Works
+Streams audio via WebSockets to Gemini Live API for bidirectional, sub-second latency conversation.
+
+## 🧩 Tech Stack
+TypeScript, Gemini Live API, React, Audio Context.`,
     links: { demo: "#", github: "https://github.com/Sonu-Thomas-001/LinguaLive-AI" },
     image: "https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=1000&auto=format&fit=crop"
   },
@@ -385,6 +555,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
     role: "Developer",
     stack: ["TypeScript", "Gemini 3 Flash", "React", "Tailwind"],
     description: "Transform UI screenshots into production-ready React & Tailwind code using Gemini 3 Flash.",
+    detailedDescription: `## 🚀 Features
+- **Screenshot to Code**: Convert a mockup image into React components.
+- **Tailwind Ready**: Outputs standard utility classes.
+- **Live Live Preview**: See the rendered code instantly alongside your image.
+
+## 🧠 How It Works
+Passes the UI image to Gemini 3 Flash with strict system prompts enforcing React/Tailwind syntax output.
+
+## 🧩 Tech Stack
+TypeScript, Gemini 3 Flash, React, Tailwind CSS.`,
     links: { demo: "#", github: "https://github.com/Sonu-Thomas-001/CodifyUI" },
     image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1000&auto=format&fit=crop"
   },
@@ -395,6 +575,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
     role: "Developer",
     stack: ["TypeScript", "Vision API", "React"],
     description: "An AI-powered personal stylist that analyzes your clothing items and generates complete outfit visualizations for different occasions.",
+    detailedDescription: `## 🚀 Features
+- **Wardrobe Digitization**: Snap pictures of clothes to build a virtual closet.
+- **Occasion Matching**: "Outfits for a summer wedding".
+- **Color Coordination**: Ensures matching palettes.
+
+## 🧠 How It Works
+Uses Vision API to tag clothing items (color, style, fabric) and Gemini to reason about fashion styling rules.
+
+## 🧩 Tech Stack
+TypeScript, Vision API, React.`,
     links: { demo: "#", github: "https://github.com/Sonu-Thomas-001/StyleSync-AI" },
     image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000&auto=format&fit=crop"
   }

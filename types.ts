@@ -27,6 +27,7 @@ export interface ProjectItem {
   role: string;
   stack: string[];
   description: string;
+  detailedDescription?: string;
   links?: {
     demo?: string;
     github?: string;

@@ -14,7 +14,7 @@ export const SEO: React.FC<SEOProps> = ({ title, description, keywords, url }) =
     "@context": "https://schema.org/",
     "@type": "Person",
     "name": "Sonu Thomas",
-    "url": "https://sonuthomas.vercel.app",
+    "url": "https://www.sonuthomas.me",
     "image": "https://cdn.jsdelivr.net/gh/Sonu-Thomas-001/image-host@master/Sonu-Thomas-Portfolio-Website-Repo/ProfilePic.jpg",
     "sameAs": [
       PERSONAL_DETAILS.social.linkedin,
@@ -43,14 +43,14 @@ export const SEO: React.FC<SEOProps> = ({ title, description, keywords, url }) =
       {/* Open Graph / Facebook */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      {url && <meta property="og:url" content={`https://sonuthomas.vercel.app${url}`} />}
+      {url && <meta property="og:url" content={`https://www.sonuthomas.me${url}`} />}
       <meta property="og:type" content="website" />
       
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
-      {url && <meta property="twitter:url" content={`https://sonuthomas.vercel.app${url}`} />}
+      {url && <meta property="twitter:url" content={`https://www.sonuthomas.me${url}`} />}
 
       <script type="application/ld+json">
         {JSON.stringify(jsonLd)}
