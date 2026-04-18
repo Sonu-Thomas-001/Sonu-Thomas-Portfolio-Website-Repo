@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ShieldCheck, BrainCircuit, Layout, TrendingUp, Cpu } from 'lucide-react';
 
 const SERVICES = [
@@ -38,12 +38,21 @@ const SERVICES = [
 ];
 
 export const ValueProp: React.FC = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
+
   return (
-    <section className="py-24 bg-dark border-b border-white/5 relative overflow-hidden">
+    <section ref={containerRef} className="py-24 bg-dark border-b border-white/5 relative overflow-hidden">
       {/* Circuit Pattern Overlay */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '24px 24px' }}></div>
+      <motion.div style={{ y: bgY, backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '24px 24px' }} className="absolute inset-0 opacity-[0.03] pointer-events-none"></motion.div>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <motion.div style={{ y: cardsY }} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Value Statement */}
         <motion.div 
@@ -98,7 +107,7 @@ export const ValueProp: React.FC = () => {
           ))}
         </div>
 
-      </div>
+      </motion.div>
     </section>
   );
 };

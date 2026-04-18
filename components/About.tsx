@@ -1,9 +1,19 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Briefcase, Cpu, Globe, ArrowUpRight, Binary, MapPin, Radio, Terminal, Activity, Zap, BarChart3, ChevronRight } from 'lucide-react';
 import { ABOUT_STORY, PERSONAL_DETAILS } from '../constants';
 
 export const About: React.FC = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const leftColY = useTransform(scrollYProgress, [0, 1], ["0%", "-5%"]);
+  const rightColY = useTransform(scrollYProgress, [0, 1], ["5%", "-10%"]);
+
   // Animation variants
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
@@ -21,12 +31,12 @@ export const About: React.FC = () => {
   };
 
   return (
-    <section id="about" className="py-32 bg-surface relative overflow-hidden">
+    <section ref={containerRef} id="about" className="py-32 bg-surface relative overflow-hidden">
       {/* Background Tech Elements */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-b from-primary/5 to-transparent -skew-x-12 pointer-events-none" />
-      <div className="absolute top-10 left-10 text-primary/5">
+      <motion.div style={{ y: bgY }} className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-b from-primary/5 to-transparent -skew-x-12 pointer-events-none" />
+      <motion.div style={{ y: bgY }} className="absolute top-10 left-10 text-primary/5">
         <Binary className="w-32 h-32" />
-      </div>
+      </motion.div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
@@ -37,7 +47,7 @@ export const About: React.FC = () => {
           className="grid lg:grid-cols-2 gap-16 items-start"
         >
           {/* Left Column: Logic Blocks Narrative */}
-          <div className="space-y-8">
+          <motion.div style={{ y: leftColY }} className="space-y-8">
             <motion.div variants={fadeInUp}>
               <div className="flex items-center gap-3 mb-4">
                  <div className="h-px w-8 bg-primary"></div>
@@ -81,11 +91,12 @@ export const About: React.FC = () => {
                     <span className="text-emerald-400">Open to Global Opportunities</span>
                 </div>
             </motion.div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Visual Cards & Focus Areas - Sticky Container */}
           <motion.div 
             variants={fadeInUp} 
+            style={{ y: rightColY }}
             className="relative mt-8 lg:mt-0 lg:sticky lg:top-24 z-30 space-y-6"
           >
              {/* Floating Chip Overlay (Decor) */}

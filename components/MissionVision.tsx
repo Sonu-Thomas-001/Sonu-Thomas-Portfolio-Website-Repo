@@ -1,12 +1,21 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Target, Lightbulb, ShieldCheck, Rocket, Compass, ScanFace, Radar } from 'lucide-react';
 
 export const MissionVision: React.FC = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
+
   return (
-    <section className="py-24 bg-dark relative overflow-hidden">
+    <section ref={containerRef} className="py-24 bg-dark relative overflow-hidden">
       {/* Tech Background - Rotating Radar & Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none"></div>
+      <motion.div style={{ y: bgY }} className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none"></motion.div>
       
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none opacity-20">
          <div className="absolute inset-0 rounded-full border border-primary/20 animate-[spin_10s_linear_infinite]"></div>
@@ -14,7 +23,7 @@ export const MissionVision: React.FC = () => {
          <div className="absolute inset-32 rounded-full border border-white/5"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <motion.div style={{ y: cardsY }} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <motion.div 
@@ -125,7 +134,7 @@ export const MissionVision: React.FC = () => {
             </motion.div>
         </div>
 
-      </div>
+      </motion.div>
     </section>
   );
 };

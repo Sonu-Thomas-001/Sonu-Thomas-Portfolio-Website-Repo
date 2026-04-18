@@ -1,25 +1,31 @@
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { GraduationCap, Calendar, Award, BookOpen, Hash, MapPin } from 'lucide-react';
 import { EDUCATION_DATA } from '../constants';
 
 export const Education: React.FC = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
+
   return (
-    <section id="education" className="py-24 bg-[#0B1120] relative overflow-hidden border-t border-white/5">
+    <section ref={containerRef} id="education" className="py-24 bg-[#0B1120] relative overflow-hidden border-t border-white/5">
       {/* Blueprint Grid Background */}
-      <div 
+      <motion.div 
+        style={{ y: bgY, backgroundImage: `linear-gradient(#0ea5e9 1px, transparent 1px), linear-gradient(90deg, #0ea5e9 1px, transparent 1px)`, backgroundSize: '40px 40px' }}
         className="absolute inset-0 opacity-[0.15] pointer-events-none"
-        style={{ 
-            backgroundImage: `linear-gradient(#0ea5e9 1px, transparent 1px), linear-gradient(90deg, #0ea5e9 1px, transparent 1px)`,
-            backgroundSize: '40px 40px'
-        }}
-      ></div>
+      ></motion.div>
       
       {/* Vignette Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0B1120] via-transparent to-[#0B1120] pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <motion.div style={{ y: cardsY }} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <motion.div
@@ -125,7 +131,7 @@ export const Education: React.FC = () => {
             </div>
         </div>
 
-      </div>
+      </motion.div>
     </section>
   );
 };

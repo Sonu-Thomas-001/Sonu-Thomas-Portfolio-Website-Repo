@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Calendar, Briefcase, GraduationCap, Globe, Code, Building2, CheckCircle2, GitCommit } from 'lucide-react';
 import { EXPERIENCE_DATA } from '../constants';
 
@@ -38,6 +38,15 @@ const CompanyLogo = ({ company }: { company: string }) => {
 };
 
 export const Experience: React.FC = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
+
   const getIcon = (role: string) => {
     if (role.toLowerCase().includes('intern') || role.toLowerCase().includes('scholar')) {
       return <GraduationCap className="w-5 h-5 text-white" />;
@@ -52,16 +61,16 @@ export const Experience: React.FC = () => {
   };
 
   return (
-    <section id="experience" className="py-24 bg-dark relative overflow-hidden">
+    <section ref={containerRef} id="experience" className="py-24 bg-dark relative overflow-hidden">
       {/* Background accents */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+      <motion.div style={{ y: bgY }} className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
         {/* Subtle grid line */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px)] bg-[size:40px_100%] opacity-20"></div>
-      </div>
+      </motion.div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <motion.div style={{ y: contentY }} className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -170,7 +179,7 @@ export const Experience: React.FC = () => {
             })}
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

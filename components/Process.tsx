@@ -1,9 +1,17 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { PenTool, Code, Shield, Activity, Terminal, GitBranch, ArrowRight } from 'lucide-react';
 import { PROCESS_DATA } from '../constants';
 
 export const Process: React.FC = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
+
   const getIcon = (iconName: string) => {
     switch(iconName) {
       case 'PenTool': return <PenTool className="w-5 h-5" />;
@@ -15,8 +23,8 @@ export const Process: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-dark relative border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section ref={containerRef} className="py-24 bg-dark relative border-t border-white/5">
+      <motion.div style={{ y: cardsY }} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -93,7 +101,7 @@ export const Process: React.FC = () => {
           ))}
         </div>
 
-      </div>
+      </motion.div>
     </section>
   );
 };

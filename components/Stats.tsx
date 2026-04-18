@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { motion, useInView, animate } from 'framer-motion';
+import { motion, useInView, animate, useScroll, useTransform } from 'framer-motion';
 import { Activity } from 'lucide-react';
 
 interface StatItem {
@@ -39,12 +39,21 @@ const Counter: React.FC<{ from: number; to: number }> = ({ from, to }) => {
 };
 
 export const Stats: React.FC = () => {
-  return (
-    <section className="py-12 bg-dark border-b border-white/5 relative overflow-hidden">
-      {/* Moving scanline background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent,rgba(14,165,233,0.05),transparent)] w-[200%] h-full animate-[shimmer_5s_infinite] pointer-events-none"></div>
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
+
+  return (
+    <section ref={containerRef} className="py-12 bg-dark border-b border-white/5 relative overflow-hidden">
+      {/* Moving scanline background */}
+      <motion.div style={{ y: bgY }} className="absolute inset-0 bg-[linear-gradient(to_right,transparent,rgba(14,165,233,0.05),transparent)] w-[200%] h-full animate-[shimmer_5s_infinite] pointer-events-none"></motion.div>
+
+      <motion.div style={{ y: cardsY }} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex items-center gap-2 mb-8 text-xs font-mono text-primary/50 uppercase tracking-widest justify-center md:justify-start">
              <Activity className="w-3 h-3 animate-pulse" />
              System Metrics
@@ -88,7 +97,7 @@ export const Stats: React.FC = () => {
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

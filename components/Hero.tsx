@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useInView, animate } from 'framer-motion';
+import { motion, AnimatePresence, useInView, animate, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Download, Linkedin, Github, Globe, ChevronDown, Terminal, Cpu, Database, Server, Code2, BrainCircuit, Instagram, Facebook, MessageCircle, Send, Activity, Layers, Zap, GitBranch, ScanFace } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PERSONAL_DETAILS } from '../constants';
@@ -38,6 +38,12 @@ export const Hero: React.FC = () => {
   const [roleIndex, setRoleIndex] = useState(0);
   const [imgError, setImgError] = useState(false);
   const imgSrc = 'https://cdn.jsdelivr.net/gh/Sonu-Thomas-001/image-host@master/Sonu-Thomas-Portfolio-Website-Repo/ProfilePic.jpg';
+  
+  const { scrollY } = useScroll();
+  const bgY = useTransform(scrollY, [0, 1000], [0, 300]);
+  const textY = useTransform(scrollY, [0, 1000], [0, -100]);
+  const artY = useTransform(scrollY, [0, 1000], [0, -200]);
+  const opacityFade = useTransform(scrollY, [0, 600], [1, 0]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -49,7 +55,7 @@ export const Hero: React.FC = () => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-dark pt-28 pb-20 lg:pt-32 lg:pb-24">
       {/* Dynamic Background Mesh & Tech Grid */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      <motion.div style={{ y: bgY, opacity: opacityFade }} className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-primary/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[120px] animate-blob"></div>
         <div className="absolute top-[20%] right-[-20%] w-[60vw] h-[60vw] bg-secondary/10 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[120px] animate-blob animation-delay-2000"></div>
         <div className="absolute bottom-[-20%] left-[20%] w-[40vw] h-[40vw] bg-purple-500/10 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000"></div>
@@ -59,7 +65,7 @@ export const Hero: React.FC = () => {
         
         {/* Scanning Line Effect */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent h-[20%] w-full animate-[scan_5s_linear_infinite] opacity-30 pointer-events-none"></div>
-      </div>
+      </motion.div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         
@@ -68,6 +74,7 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
+          style={{ y: textY }}
           className="relative"
         >
           <div className="backdrop-blur-xl bg-white/[0.03] border border-white/10 rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl ring-1 ring-white/5 relative overflow-hidden group">
@@ -241,6 +248,7 @@ export const Hero: React.FC = () => {
            initial={{ opacity: 0, scale: 0.8 }}
            animate={{ opacity: 1, scale: 1 }}
            transition={{ duration: 1, delay: 0.2 }}
+           style={{ y: artY }}
            className="hidden lg:flex items-center justify-center relative perspective-1000 h-full min-h-[500px]"
         >
             {/* Orbiting Elements */}

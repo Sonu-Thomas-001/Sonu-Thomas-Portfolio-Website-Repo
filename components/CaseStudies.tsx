@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { X, ArrowRight, TrendingUp, AlertTriangle, Lightbulb, CheckCircle2, FileText, XCircle, Database, Target } from 'lucide-react';
 
 interface CaseStudy {
@@ -59,6 +59,15 @@ const CASE_STUDIES: CaseStudy[] = [
 ];
 
 export const CaseStudies: React.FC = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
+
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   // Lock body scroll when modal is open
@@ -76,11 +85,11 @@ export const CaseStudies: React.FC = () => {
   const selectedStudy = CASE_STUDIES.find(cs => cs.id === selectedId);
 
   return (
-    <section className="py-24 bg-surface relative">
+    <section ref={containerRef} className="py-24 bg-surface relative">
        {/* Background Decoration */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-dark to-transparent pointer-events-none" />
+      <motion.div style={{ y: bgY }} className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-dark to-transparent pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <motion.div style={{ y: cardsY }} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -253,7 +262,7 @@ export const CaseStudies: React.FC = () => {
           )}
         </AnimatePresence>
 
-      </div>
+      </motion.div>
     </section>
   );
 };
