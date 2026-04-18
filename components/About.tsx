@@ -57,6 +57,10 @@ export const About: React.FC = () => {
                 Engineering Scalable Solutions & <br />
                 <span className="text-slate-500">Intelligent Systems.</span>
               </h2>
+              <h3 className="sr-only">About Sonu Thomas</h3>
+              <p className="text-slate-400 text-lg mb-8">
+                <strong>Sonu Thomas</strong> is a Software Engineer based in India, currently building enterprise-scale applications at HCLTech. Leveraging a strong foundation from IIT Guwahati, Sonu Thomas specializes in full-stack web development, intelligent automation, and integrating cutting-edge AI features into robust infrastructures.
+              </p>
             </motion.div>
 
             <motion.div variants={fadeInUp} className="space-y-8">

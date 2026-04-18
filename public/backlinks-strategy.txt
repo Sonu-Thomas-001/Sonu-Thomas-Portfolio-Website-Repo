@@ -1,0 +1,21 @@
+BACKLINK STRATEGY FOR SONU THOMAS
+Goal: Improve Domain Authority (DA) and visibility for "Sonu Thomas" portfolio.
+
+1. GitHub Profile & Repositories
+   Action: Add the portfolio link (https://sonuthomas.vercel.app/) to your main GitHub bio and readmes of popular open-source projects.
+   Why: High DA (90+), helps bots index the portfolio immediately.
+
+2. LinkedIn & Tech Communities
+   Action: Update your LinkedIn profile’s "Website" field to point to your new portfolio. Share insights linking back to deep pages (/insights/article-name). Also submit to Dev.to and Medium with canonical tags pointing back here.
+   Why: Generates contextual referring domains and drives targeted traffic.
+
+3. HCLTech & IIT Guwahati Alumni Directories
+   Action: Ensure your profile on the IIT Guwahati alumni network (if available) links back to your portfolio. Try getting featured on HCLTech internal blogs or community showcases if permitted. 
+   Why: Highly authoritative domains (.edu or enterprise) provide massive trust signals.
+
+4. Guest Blogging & Podcast Appearances
+   Action: Reach out to AI and Data Science newsletters, podcasts, or web development blogs. Offer free, high-value content (like your automation case studies) in exchange for an author backlink.
+
+5. Portfolio Showcases & Directories
+   Action: Submit your portfolio to directories like Awwwards, CSS Design Awards, or Product Hunt (if launching a specific side project featured on the site).
+   Why: These sites are crawled heavily and exist explicitly to distribute DOFOLLOW and NOFOLLOW link juice to innovative portfolios.
