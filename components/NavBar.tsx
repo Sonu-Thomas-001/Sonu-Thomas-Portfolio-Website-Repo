@@ -22,6 +22,7 @@ const navLinks: NavLink[] = [
   { name: 'Education', path: '/#education' },
   { name: 'Skills', path: '/#skills' },
   { name: 'Projects', path: '/projects' },
+  { name: 'Contact', path: '/contact' },
   { 
       name: 'Resources', 
       path: '#',
@@ -167,16 +168,8 @@ export const NavBar: React.FC = () => {
 
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (location.pathname !== '/') {
-      navigate('/');
-      setTimeout(() => {
-        const element = document.getElementById('contact');
-        if (element) element.scrollIntoView({ behavior: 'smooth' });
-      }, 700);
-    } else {
-      const element = document.getElementById('contact');
-      if (element) element.scrollIntoView({ behavior: 'smooth' });
-    }
+    navigate('/contact');
+    window.scrollTo(0, 0);
     setIsOpen(false);
   };
 
@@ -507,23 +500,6 @@ export const NavBar: React.FC = () => {
                         </Link>
                     );
                 })}
-                
-                 <a
-                    href="#contact"
-                    onClick={handleContactClick}
-                    className="text-2xl font-bold py-3 border-b border-white/5 flex items-center justify-between group text-slate-400"
-                  >
-                    <motion.span 
-                        variants={navItemVariants}
-                        initial="hidden"
-                        animate="visible"
-                        custom={navLinks.length}
-                        className="group-hover:text-primary transition-colors"
-                    >
-                        Contact
-                    </motion.span>
-                    <ArrowRight className="w-5 h-5 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-primary" />
-                  </a>
               </div>
 
               {/* Mobile Socials Row */}

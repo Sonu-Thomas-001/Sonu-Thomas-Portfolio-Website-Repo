@@ -12,10 +12,16 @@ import { ProblemSolving } from '../components/ProblemSolving';
 import { Skills } from '../components/Skills';
 import { Availability } from '../components/Availability';
 import { Contact } from '../components/Contact';
+import { SEO } from '../components/SEO';
 
 export const Home: React.FC = () => {
   return (
     <div>
+      <SEO 
+        title="Sonu Thomas | Software Engineer | AI & Data Science | HCLTech"
+        description="Sonu Thomas is a Software Engineer at HCLTech specializing in AI, web development, and automation. Explore projects, experience, and insights."
+        url="/"
+      />
       <Hero />
       <TechMarquee />
       <ValueProp />

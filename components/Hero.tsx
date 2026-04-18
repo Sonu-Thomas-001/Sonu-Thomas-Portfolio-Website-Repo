@@ -6,10 +6,9 @@ import { Link } from 'react-router-dom';
 import { PERSONAL_DETAILS } from '../constants';
 
 const ROLES = [
-  "Software Engineer",
+  "Software Engineer at HCLTech",
   "AI & Data Science Enthusiast",
-  "Web Developer",
-  "Production Change Manager"
+  "Web Developer & Automation Specialist"
 ];
 
 const Counter = ({ from, to }: { from: number; to: number }) => {
@@ -37,7 +36,8 @@ const Counter = ({ from, to }: { from: number; to: number }) => {
 export const Hero: React.FC = () => {
   const [roleIndex, setRoleIndex] = useState(0);
   const [imgError, setImgError] = useState(false);
-  const imgSrc = 'https://cdn.jsdelivr.net/gh/Sonu-Thomas-001/image-host@master/Sonu-Thomas-Portfolio-Website-Repo/ProfilePic.jpg';
+  // Image SEO: Using optimized filename. Fallback handled in standard way.
+  const imgSrc = '/profile-sonu-thomas.jpg';
   
   const { scrollY } = useScroll();
   const bgY = useTransform(scrollY, [0, 1000], [0, 300]);
@@ -104,12 +104,11 @@ export const Hero: React.FC = () => {
               <div className="flex flex-col-reverse sm:flex-row items-center sm:items-start gap-6 sm:gap-8">
                   <div className="flex flex-col items-center sm:items-start space-y-4 w-full">
                       <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-white leading-none text-center sm:text-left">
-                        Sonu <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">Thomas</span>
+                        Sonu Thomas
                       </h1>
                       
                       <div className="min-h-[2.5rem] md:min-h-[3rem] h-auto overflow-hidden flex items-center justify-center sm:justify-start">
-                        <div className="text-lg sm:text-xl md:text-2xl font-mono text-primary flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                        <h2 className="text-lg sm:text-xl md:text-2xl font-mono text-primary flex flex-wrap items-center justify-center sm:justify-start gap-2 m-0">
                             <span className="text-secondary/70">{'>'}</span>
                             <AnimatePresence mode='wait'>
                                 <motion.span
@@ -123,7 +122,7 @@ export const Hero: React.FC = () => {
                                 </motion.span>
                             </AnimatePresence>
                             <span className="w-2 h-5 bg-primary/50 animate-pulse ml-1"></span>
-                        </div>
+                        </h2>
                       </div>
                   </div>
                   
@@ -141,9 +140,15 @@ export const Hero: React.FC = () => {
                         {!imgError ? (
                             <img 
                               src={imgSrc} 
-                              alt="Sonu Thomas"
+                              alt="Sonu Thomas, Software Engineer at HCLTech"
                               className="w-full h-full object-cover opacity-90 group-hover/photo:opacity-100 group-hover/photo:scale-110 transition-all duration-500 relative z-0"
-                              onError={() => setImgError(true)}
+                              onError={(e) => {
+                                if (e.currentTarget.src.endsWith('profile-sonu-thomas.jpg')) {
+                                  e.currentTarget.src = 'https://cdn.jsdelivr.net/gh/Sonu-Thomas-001/image-host@master/Sonu-Thomas-Portfolio-Website-Repo/ProfilePic.jpg';
+                                } else {
+                                  setImgError(true);
+                                }
+                              }}
                             />
                         ) : (
                             <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950 relative z-0">

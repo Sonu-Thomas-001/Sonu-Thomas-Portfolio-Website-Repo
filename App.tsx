@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { HashRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from './components/ThemeContext';
 import { NavBar } from './components/NavBar';
 import { Footer } from './components/Footer';
@@ -18,6 +19,7 @@ import { HonorsAwardsPage } from './pages/HonorsAwardsPage';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { TermsOfService } from './pages/TermsOfService';
 import { CookiePolicy } from './pages/CookiePolicy';
+import { ContactPage } from './pages/ContactPage';
 
 // Wrapper component to handle route changes
 const AppContent: React.FC = () => {
@@ -90,6 +92,11 @@ const AppContent: React.FC = () => {
                           <CookiePolicy />
                       </PageTransition>
                   } />
+                  <Route path="/contact" element={
+                      <PageTransition>
+                          <ContactPage />
+                      </PageTransition>
+                  } />
                   <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </AnimatePresence>
@@ -105,11 +112,13 @@ const AppContent: React.FC = () => {
 
 function App() {
   return (
-    <ThemeProvider>
-      <HashRouter>
-        <AppContent />
-      </HashRouter>
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider>
+        <BrowserRouter>
+          <AppContent />
+        </BrowserRouter>
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }
 
