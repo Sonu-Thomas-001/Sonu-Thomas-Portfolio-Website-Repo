@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sonuthomas.vercel.app/sitemap.xml
+Sitemap: https://www.sonuthomas.me/sitemap.xml

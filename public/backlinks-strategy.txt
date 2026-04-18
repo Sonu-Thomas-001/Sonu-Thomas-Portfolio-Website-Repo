@@ -2,7 +2,7 @@ BACKLINK STRATEGY FOR SONU THOMAS
 Goal: Improve Domain Authority (DA) and visibility for "Sonu Thomas" portfolio.
 
 1. GitHub Profile & Repositories
-   Action: Add the portfolio link (https://sonuthomas.vercel.app/) to your main GitHub bio and readmes of popular open-source projects.
+   Action: Add the portfolio link (https://www.sonuthomas.me/) to your main GitHub bio and readmes of popular open-source projects.
    Why: High DA (90+), helps bots index the portfolio immediately.
 
 2. LinkedIn & Tech Communities
