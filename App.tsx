@@ -20,6 +20,9 @@ import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { TermsOfService } from './pages/TermsOfService';
 import { CookiePolicy } from './pages/CookiePolicy';
 import { ContactPage } from './pages/ContactPage';
+import { WebDeveloperKannur } from './pages/WebDeveloperKannur';
+import { AIDeveloperKerala } from './pages/AIDeveloperKerala';
+import { SoftwareEngineerKerala } from './pages/SoftwareEngineerKerala';
 
 // Wrapper component to handle route changes
 const AppContent: React.FC = () => {
@@ -96,6 +99,15 @@ const AppContent: React.FC = () => {
                       <PageTransition>
                           <ContactPage />
                       </PageTransition>
+                  } />
+                  <Route path="/web-developer-kannur" element={
+                      <WebDeveloperKannur />
+                  } />
+                  <Route path="/ai-developer-kerala" element={
+                      <AIDeveloperKerala />
+                  } />
+                  <Route path="/software-engineer-kerala" element={
+                      <SoftwareEngineerKerala />
                   } />
                   <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
