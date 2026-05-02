@@ -18,8 +18,8 @@ export const Home: React.FC = () => {
   return (
     <div>
       <SEO 
-        title="Sonu Thomas | Software Engineer | AI & Data Science | HCLTech"
-        description="Sonu Thomas is a Software Engineer at HCLTech specializing in AI, web development, and automation. Explore projects, experience, and insights."
+        title="Sonu Thomas | Software Engineer in Kerala | AI & Web Developer"
+        description="Sonu Thomas is a Software Engineer based in Kannur, Kerala, specializing in AI, web development, and automation. Explore projects, experience, and insights."
         url="/"
       />
       <Hero />

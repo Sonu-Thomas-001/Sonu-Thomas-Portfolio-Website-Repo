@@ -36,8 +36,8 @@ const Counter = ({ from, to }: { from: number; to: number }) => {
 export const Hero: React.FC = () => {
   const [roleIndex, setRoleIndex] = useState(0);
   const [imgError, setImgError] = useState(false);
-  // Image SEO: Using optimized filename. Fallback handled in standard way.
-  const imgSrc = '/profile-sonu-thomas.jpg';
+  // Image SEO: Using optimized filename.
+  const imgSrc = '/sonu-thomas-web-developer-kannur.jpg';
   
   const { scrollY } = useScroll();
   const bgY = useTransform(scrollY, [0, 1000], [0, 300]);
@@ -143,7 +143,7 @@ export const Hero: React.FC = () => {
                               alt="Sonu Thomas, Software Engineer at HCLTech"
                               className="w-full h-full object-cover opacity-90 group-hover/photo:opacity-100 group-hover/photo:scale-110 transition-all duration-500 relative z-0"
                               onError={(e) => {
-                                if (e.currentTarget.src.endsWith('profile-sonu-thomas.jpg')) {
+                                if (e.currentTarget.src.endsWith('sonu-thomas-web-developer-kannur.jpg')) {
                                   e.currentTarget.src = 'https://cdn.jsdelivr.net/gh/Sonu-Thomas-001/image-host@master/Sonu-Thomas-Portfolio-Website-Repo/ProfilePic.jpg';
                                 } else {
                                   setImgError(true);

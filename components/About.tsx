@@ -51,15 +51,15 @@ export const About: React.FC = () => {
             <motion.div variants={fadeInUp}>
               <div className="flex items-center gap-3 mb-4">
                  <div className="h-px w-8 bg-primary"></div>
-                 <span className="text-primary font-medium tracking-wider uppercase text-sm">Profile Configuration</span>
+                 <span className="text-primary font-medium tracking-wider uppercase text-sm">Who is Sonu Thomas?</span>
               </div>
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                Engineering Scalable Solutions & <br />
-                <span className="text-slate-500">Intelligent Systems.</span>
-              </h2>
-              <h3 className="sr-only">About Sonu Thomas</h3>
+              <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                Sonu Thomas <br />
+                <span className="text-slate-500 text-2xl md:text-4xl mt-2 block">AI & Web Developer</span>
+              </h1>
+              <h2 className="sr-only">Software Engineer in Kerala</h2>
               <p className="text-slate-400 text-lg mb-8">
-                <strong>Sonu Thomas</strong> is a Software Engineer based in India, currently building enterprise-scale applications at HCLTech. Leveraging a strong foundation from IIT Guwahati, Sonu Thomas specializes in full-stack web development, intelligent automation, and integrating cutting-edge AI features into robust infrastructures.
+                <strong>Sonu Thomas</strong> is a Software Engineer based in Kannur, Kerala, specializing in AI, web development, and automation. Currently building enterprise-scale applications at HCLTech. Leveraging a strong foundation from IIT Guwahati, Sonu Thomas delivers modern software solutions.
               </p>
             </motion.div>
 

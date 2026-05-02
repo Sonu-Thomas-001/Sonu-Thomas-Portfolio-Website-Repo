@@ -792,33 +792,33 @@ export const AWARDS_DATA: AwardItem[] = [
 export const BLOG_DATA: BlogItem[] = [
   {
     id: "b1",
-    title: "AI in IT Operations: Moving from Reactive to Predictive",
-    excerpt: "Exploring how machine learning models are transforming traditional IT service management by predicting incidents before they impact the business.",
-    date: "Oct 12, 2024",
-    readTime: "5 min read",
-    category: "AIOps",
-    image: "https://images.unsplash.com/photo-1555255707-c07966088b7b?q=80&w=1000&auto=format&fit=crop",
-    link: "#"
+    title: "Best Web Developer in Kannur – What to Look For",
+    excerpt: "When hiring a web developer in Kerala, what are the key traits that distinguish a generic coder from a software engineer who builds scalable products? A comprehensive guide.",
+    date: "May 2, 2026",
+    readTime: "7 min read",
+    category: "Web Development",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1000&auto=format&fit=crop",
+    link: "/insights"
   },
   {
     id: "b2",
-    title: "The Art of Risk-Free Production Changes",
-    excerpt: "A deep dive into rigorous risk assessment frameworks and compliance checklists that ensure 99.99% uptime during complex enterprise deployments.",
-    date: "Sep 28, 2024",
-    readTime: "7 min read",
-    category: "Change Mgmt",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1000&auto=format&fit=crop",
-    link: "#"
+    title: "How AI is Transforming Web Development in Kerala",
+    excerpt: "From AI-powered code generation to intelligent user interfaces, discover how Artificial Intelligence is reshaping the web development landscape specifically for businesses in Kerala.",
+    date: "Aug 15, 2026",
+    readTime: "6 min read",
+    category: "AI & Web",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop",
+    link: "/insights"
   },
   {
     id: "b3",
-    title: "Headless WordPress with Next.js: The Ultimate Stack",
-    excerpt: "Building ultra-fast, secure, and scalable websites by decoupling the CMS from the frontend presentation layer. A guide for modern developers.",
-    date: "Aug 15, 2024",
-    readTime: "6 min read",
-    category: "Web Dev",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1000&auto=format&fit=crop",
-    link: "#"
+    title: "Top Software Development Trends in Kerala",
+    excerpt: "As Kerala emerges as a significant IT hub, local and international businesses are adopting new architectures. Here are the top software engineering trends to watch.",
+    date: "Dec 10, 2026",
+    readTime: "8 min read",
+    category: "Software Engineering",
+    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1000&auto=format&fit=crop",
+    link: "/insights"
   }
 ];
 

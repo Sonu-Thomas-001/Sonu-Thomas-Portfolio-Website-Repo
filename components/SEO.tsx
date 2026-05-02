@@ -30,6 +30,12 @@ export const SEO: React.FC<SEOProps> = ({ title, description, keywords, url }) =
     "alumniOf": {
       "@type": "CollegeOrUniversity",
       "name": "IIT Guwahati"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kannur",
+      "addressRegion": "Kerala",
+      "addressCountry": "India"
     }
   };
 
