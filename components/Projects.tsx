@@ -1,65 +1,63 @@
-
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { ExternalLink, Github, Code, Layers, Sparkles, TerminalSquare, Cpu, Monitor, Box, Info, X } from 'lucide-react';
+import { ExternalLink, Github, Code, Layers, Sparkles, TerminalSquare, Cpu, Monitor, Box, Info, X, ArrowRight } from 'lucide-react';
 import { PROJECTS_DATA } from '../constants';
 import { ProjectItem } from '../types';
 import Markdown from 'react-markdown';
 
-export const Projects: React.FC = () => {
+export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = false }) => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
   });
 
-  const bgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-  const cardsY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["3%", "-3%"]);
 
   const [filter, setFilter] = useState('All');
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const categories = ['All', 'Generative AI', 'AI Tools', 'Web Apps'];
 
+  const displayedList = isHomepage ? PROJECTS_DATA.slice(0, 6) : PROJECTS_DATA;
   const filteredProjects = filter === 'All' 
-    ? PROJECTS_DATA 
-    : PROJECTS_DATA.filter(project => project.category === filter);
+    ? displayedList 
+    : displayedList.filter(project => project.category === filter);
 
   const getCategoryIcon = (cat: string) => {
     switch(cat) {
-      case 'Web Apps': return <Monitor className="w-4 h-4" />;
-      case 'Generative AI': return <Sparkles className="w-4 h-4" />;
-      case 'AI Tools': return <Cpu className="w-4 h-4" />;
-      default: return <Box className="w-4 h-4" />;
+      case 'Web Apps': return <Monitor className="w-3.5 h-3.5 text-violet-600" />;
+      case 'Generative AI': return <Sparkles className="w-3.5 h-3.5 text-primary" />;
+      case 'AI Tools': return <Cpu className="w-3.5 h-3.5 text-indigo-600" />;
+      default: return <Box className="w-3.5 h-3.5 text-slate-600" />;
     }
   };
 
   return (
-    <section ref={containerRef} id="projects" className="py-24 bg-dark relative overflow-hidden">
-      {/* Background Subtle Grid & Code Decoration */}
-      <motion.div style={{ y: bgY }} className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></motion.div>
-      <motion.div style={{ y: bgY }} className="absolute top-10 right-10 opacity-5 pointer-events-none font-mono text-sm hidden lg:block">
-          <div>const portfolio = await buildFuture();</div>
-          <div>if (innovation) return true;</div>
-      </motion.div>
-
+    <section ref={containerRef} id="projects" className="py-24 lg:py-32 bg-page relative overflow-hidden">
+      
       <motion.div style={{ y: cardsY }} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        
+        {/* Section Header & Filter Row */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            className="max-w-xl"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium mb-4 font-mono">
-              <TerminalSquare className="w-4 h-4" />
-              <span>~/Projects</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 border border-primary/20 text-primary text-xs font-mono font-semibold uppercase tracking-wider mb-4">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Engineered Solutions</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Featured Works</h2>
-            <p className="text-slate-400 max-w-xl">
-              A comprehensive collection of my open-source contributions, AI experiments, and full-stack applications.
+            <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight">
+              Featured Works & AI Projects
+            </h2>
+            <p className="text-slate-600 text-base sm:text-lg mt-3 leading-relaxed">
+              Open-source contributions, autonomous AI agent workflows, and scalable full-stack applications.
             </p>
           </motion.div>
 
-          {/* Filter Tabs */}
+          {/* Filter Pills */}
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -70,10 +68,10 @@ export const Projects: React.FC = () => {
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${
+                className={`px-4 py-2 rounded-full text-xs font-mono font-semibold transition-all duration-200 cursor-pointer ${
                   filter === cat 
-                    ? 'bg-primary text-white border-primary shadow-lg shadow-primary/25' 
-                    : 'bg-white/5 text-slate-400 border-white/10 hover:bg-white/10 hover:text-white'
+                    ? 'bg-primary text-white shadow-soft-sm shadow-primary/30 scale-105' 
+                    : 'bg-white text-slate-600 border border-slate-200/90 hover:border-primary/40 hover:text-slate-900 shadow-soft-sm'
                 }`}
               >
                 {cat}
@@ -82,69 +80,66 @@ export const Projects: React.FC = () => {
           </motion.div>
         </div>
 
+        {/* Projects Grid */}
         <motion.div 
           layout
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           <AnimatePresence mode='popLayout'>
             {filteredProjects.map((project) => (
               <motion.div
                 layout
                 key={project.id}
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
+                exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
-                className="group relative bg-surface border border-white/10 rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5 flex flex-col"
+                className="group relative bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-soft-md hover:shadow-soft-lg hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
               >
-                {/* Tech HUD Corner */}
-                <div className="absolute top-0 right-0 p-4 z-30 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="flex gap-1">
-                        <div className="w-1 h-3 bg-primary/50"></div>
-                        <div className="w-1 h-2 bg-primary/30"></div>
-                        <div className="w-1 h-1 bg-primary/10"></div>
-                    </div>
-                </div>
-
-                <div className="relative h-48 overflow-hidden shrink-0">
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors z-10"></div>
+                {/* Project Image Box */}
+                <div className="relative h-52 overflow-hidden bg-slate-100 shrink-0">
                   <img 
                     src={project.image} 
                     alt={project.title} 
-                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
                   />
                   
-                  {/* Floating Category Badge */}
+                  {/* Category Badge */}
                   <div className="absolute top-4 left-4 z-20">
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-dark/80 backdrop-blur-md border border-white/10 text-white text-xs font-semibold shadow-lg font-mono">
+                    <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/80 text-slate-800 text-xs font-mono font-semibold shadow-soft-sm">
                       {getCategoryIcon(project.category)}
-                      {project.category}
+                      <span>{project.category}</span>
                     </div>
                   </div>
 
-                  {/* Hover Overlay with Buttons */}
-                  <div className="absolute inset-0 bg-dark/80 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 z-20">
+                  {/* Hover Quick Action Buttons Overlay */}
+                  <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-3 z-20">
                     <button 
                       onClick={() => setSelectedProject(project)}
-                      className="p-3 bg-white rounded-full text-dark hover:bg-primary hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0 duration-300"
-                      title="Project Details"
+                      className="p-3 bg-white rounded-xl text-slate-800 hover:text-primary hover:bg-primary-50 shadow-soft-md transition-all transform translate-y-2 group-hover:translate-y-0"
+                      title="View Details"
                     >
                       <Info className="w-5 h-5" />
                     </button>
                     {project.links?.github && (
                       <a 
                         href={project.links.github}
-                        className="p-3 bg-white rounded-full text-dark hover:bg-primary hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0 duration-300 delay-75"
-                        title="View Code"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-3 bg-white rounded-xl text-slate-800 hover:text-primary hover:bg-primary-50 shadow-soft-md transition-all transform translate-y-2 group-hover:translate-y-0 delay-75"
+                        title="Source Code"
                       >
                         <Github className="w-5 h-5" />
                       </a>
                     )}
-                    {project.links?.demo && (
+                    {project.links?.demo && project.links.demo !== '#' && (
                       <a 
                         href={project.links.demo}
-                        className="p-3 bg-white rounded-full text-dark hover:bg-primary hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0 duration-300 delay-150"
-                        title="Live Demo"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-3 bg-white rounded-xl text-slate-800 hover:text-primary hover:bg-primary-50 shadow-soft-md transition-all transform translate-y-2 group-hover:translate-y-0 delay-100"
+                        title="Live Demonstration"
                       >
                         <ExternalLink className="w-5 h-5" />
                       </a>
@@ -152,34 +147,34 @@ export const Projects: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="p-6 flex flex-col flex-grow">
-                  <div className="flex flex-col gap-2 h-full">
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-1 group-hover:text-primary transition-colors">
+                {/* Project Copy */}
+                <div className="p-6 sm:p-7 flex flex-col flex-grow justify-between">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-display font-bold text-xl text-slate-900 group-hover:text-primary transition-colors">
                         {project.title}
                       </h3>
-                      <p className="text-xs font-medium text-primary mb-2 uppercase tracking-wide">
+                      <span className="text-xs font-mono text-slate-400 font-medium">
                         {project.role}
-                      </p>
-                      <p className="text-slate-400 leading-relaxed text-sm line-clamp-3 mb-4">
-                        {project.description}
-                      </p>
+                      </span>
                     </div>
 
-                    <div className="pt-4 border-t border-white/5 mt-auto">
-                      <div className="flex flex-wrap gap-1.5">
-                        {project.stack.slice(0, 4).map((tech, i) => (
-                          <span 
-                            key={i} 
-                            className="px-2 py-0.5 text-[10px] font-medium text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-white/5 rounded border border-slate-200 dark:border-white/5 font-mono"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                        {project.stack.length > 4 && (
-                            <span className="px-2 py-0.5 text-[10px] font-medium text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-white/5 rounded border border-slate-200 dark:border-white/5 font-mono">+{project.stack.length - 4}</span>
-                        )}
-                      </div>
+                    <p className="text-slate-600 text-sm leading-relaxed line-clamp-3">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  {/* Tech Stack Pills */}
+                  <div className="pt-5 border-t border-slate-100 mt-5">
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.stack.map((tech, i) => (
+                        <span 
+                          key={i} 
+                          className="px-2.5 py-1 text-[11px] font-mono font-medium text-slate-600 bg-slate-50 rounded-lg border border-slate-200/70"
+                        >
+                          {tech}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -187,69 +182,86 @@ export const Projects: React.FC = () => {
             ))}
           </AnimatePresence>
         </motion.div>
+
       </motion.div>
 
       {/* Project Details Modal */}
       <AnimatePresence>
         {selectedProject && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          <div 
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm"
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
-              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              initial={{ scale: 0.95, opacity: 0, y: 16 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              exit={{ scale: 0.95, opacity: 0, y: 16 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-surface border border-white/10 rounded-2xl w-full max-w-3xl max-h-[85vh] overflow-hidden flex flex-col relative shadow-2xl"
+              className="bg-white border border-slate-200 rounded-3xl w-full max-w-2xl max-h-[85vh] overflow-hidden flex flex-col relative shadow-soft-lg"
             >
-              {/* Header */}
-              <div className="flex justify-between items-center p-6 border-b border-white/10">
-                <h3 className="text-2xl font-bold text-white shrink-0 pr-4">{selectedProject.title}</h3>
+              {/* Modal Header */}
+              <div className="flex justify-between items-center p-6 border-b border-slate-100">
+                <div>
+                  <h3 className="font-display font-bold text-2xl text-slate-900">{selectedProject.title}</h3>
+                  <p className="text-xs font-mono text-primary font-semibold mt-0.5">{selectedProject.category} • {selectedProject.role}</p>
+                </div>
                 <button 
                   onClick={() => setSelectedProject(null)}
-                  className="p-2 bg-white/5 rounded-full hover:bg-white/10 text-slate-400 hover:text-white transition-colors flex-shrink-0"
+                  className="p-2 rounded-xl hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
               
-              {/* Content */}
-              <div className="p-6 overflow-y-auto custom-scrollbar flex-grow text-slate-300">
+              {/* Modal Body */}
+              <div className="p-6 sm:p-8 overflow-y-auto space-y-4 text-slate-600 text-sm leading-relaxed">
                 {selectedProject.detailedDescription ? (
-                  <div className="markdown-body">
-                    <style>{`
-                      .markdown-body h2 { font-size: 1.5rem; font-weight: bold; color: white; margin-top: 1.5rem; margin-bottom: 0.75rem; }
-                      .markdown-body ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
-                      .markdown-body li { margin-bottom: 0.5rem; }
-                      .markdown-body p { margin-bottom: 1rem; line-height: 1.6; }
-                      .markdown-body strong { color: white; font-weight: 600; }
-                    `}</style>
+                  <div className="prose prose-slate max-w-none">
                     <Markdown>{selectedProject.detailedDescription}</Markdown>
                   </div>
                 ) : (
-                  <p className="text-slate-400">Detailed description coming soon.</p>
+                  <p>{selectedProject.description}</p>
                 )}
+
+                <div className="pt-4 border-t border-slate-100">
+                  <h4 className="font-mono text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Technologies Used</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProject.stack.map((t, idx) => (
+                      <span key={idx} className="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-mono font-medium rounded-lg">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
               
-              {/* Footer */}
-              <div className="p-6 border-t border-white/10 flex gap-4 bg-dark/30 justify-end">
+              {/* Modal Footer */}
+              <div className="p-6 border-t border-slate-100 flex gap-3 bg-slate-50/80 justify-end">
                 {selectedProject.links?.github && (
-                  <a href={selectedProject.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 border border-white/10 rounded-lg hover:bg-white/5 transition-colors text-white text-sm font-medium">
-                    <Github className="w-4 h-4" /> View Code
+                  <a 
+                    href={selectedProject.links.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-800 text-xs font-semibold shadow-soft-sm transition-all"
+                  >
+                    <Github className="w-4 h-4" /> 
+                    <span>Source Code</span>
                   </a>
                 )}
-                {selectedProject.links?.demo && (
-                  <a href={selectedProject.links.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-primary rounded-lg hover:bg-primary/90 transition-colors text-white text-sm font-medium shadow-lg shadow-primary/25">
-                    <ExternalLink className="w-4 h-4" /> Live Demo
+                {selectedProject.links?.demo && selectedProject.links.demo !== '#' && (
+                  <a 
+                    href={selectedProject.links.demo} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary hover:bg-primary-600 text-white text-xs font-semibold shadow-soft-md transition-all"
+                  >
+                    <ExternalLink className="w-4 h-4" /> 
+                    <span>Live Demo</span>
                   </a>
                 )}
               </div>
             </motion.div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </section>

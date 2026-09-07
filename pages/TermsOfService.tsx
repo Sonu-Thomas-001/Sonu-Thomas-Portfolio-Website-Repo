@@ -1,93 +1,86 @@
 import React from 'react';
-import { FileText, Scale, AlertTriangle, Copyright } from 'lucide-react';
+import { FileText, Scale, ArrowLeft, Shield, Copyright } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { SEO } from '../components/SEO';
 
 export const TermsOfService: React.FC = () => {
   return (
-    <div className="pt-32 pb-24 min-h-screen bg-dark relative overflow-hidden">
-       {/* Background Decor */}
-       <div className="absolute top-0 left-0 w-1/3 h-[50vh] bg-gradient-to-r from-secondary/5 to-transparent pointer-events-none"></div>
-
+    <div className="pt-28 pb-24 min-h-screen bg-page relative overflow-hidden">
+      <SEO 
+        title="Terms of Service | Sonu Thomas"
+        description="Terms and conditions for accessing the website of Sonu Thomas."
+        url="/terms"
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
+        <Link 
+          to="/" 
+          className="inline-flex items-center gap-2 text-primary hover:text-primary-600 font-semibold text-sm mb-6 group"
+        >
+          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
+          <span>Back to Home</span>
+        </Link>
+
         {/* Header */}
-        <div className="mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-secondary text-sm font-medium mb-6">
-             <Scale className="w-4 h-4" />
-             <span>Legal Documentation</span>
+        <div className="mb-14">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 border border-primary/20 text-primary text-xs font-mono font-semibold uppercase tracking-wider mb-4">
+            <Scale className="w-3.5 h-3.5" />
+            <span>Legal Agreement</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Terms of Service</h1>
-          <p className="text-xl text-slate-400 leading-relaxed">
-            By accessing this website, you agree to be bound by these terms and conditions.
+          <h1 className="font-display font-bold text-4xl sm:text-5xl text-slate-900 tracking-tight mb-4">Terms of Service</h1>
+          <p className="text-lg text-slate-600 leading-relaxed">
+            By accessing and browsing this website, you accept and agree to comply with the terms and conditions outlined below.
           </p>
-          <div className="mt-4 text-sm font-mono text-slate-500">
-             Last Updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+          <div className="mt-3 text-xs font-mono text-slate-400">
+            Last Updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
           </div>
         </div>
 
         {/* Content */}
-        <div className="space-y-12">
+        <div className="space-y-8">
           
-          <section className="bg-surface/30 border border-white/5 rounded-2xl p-8 hover:border-white/10 transition-colors">
+          <section className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-soft-sm">
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-indigo-500/10 text-indigo-400">
+              <div className="p-3 rounded-2xl bg-indigo-50 text-indigo-600 shrink-0">
                 <FileText className="w-6 h-6" />
               </div>
-              <div>
-                <h2 className="text-2xl font-bold text-white mb-4">1. Acceptance of Terms</h2>
-                <p className="text-slate-400 leading-relaxed">
-                   By accessing and using the website of Sonu Thomas, you accept and agree to be bound by the terms and provision of this agreement. In addition, when using this website's particular services, you shall be subject to any posted guidelines or rules applicable to such services.
+              <div className="space-y-2">
+                <h2 className="font-display font-bold text-xl text-slate-900">1. Acceptance of Terms</h2>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  By accessing and utilizing the website of Sonu Thomas, you acknowledge and consent to these terms. If you do not agree with any portion of these provisions, you should refrain from utilizing this platform.
                 </p>
               </div>
             </div>
           </section>
 
-          <section className="bg-surface/30 border border-white/5 rounded-2xl p-8 hover:border-white/10 transition-colors">
+          <section className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-soft-sm">
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-amber-500/10 text-amber-400">
+              <div className="p-3 rounded-2xl bg-amber-50 text-amber-600 shrink-0">
                 <Copyright className="w-6 h-6" />
               </div>
-              <div>
-                <h2 className="text-2xl font-bold text-white mb-4">2. Intellectual Property</h2>
-                <div className="space-y-4 text-slate-400 leading-relaxed">
-                   <p>
-                     The content, organization, graphics, design, compilation, magnetic translation, digital conversion and other matters related to the Site are protected under applicable copyrights, trademarks and other proprietary (including but not limited to intellectual property) rights.
-                   </p>
-                   <p>
-                     <strong>Source Code:</strong> Portions of the code demonstrated in the "Open Source" or "Projects" sections may be available under specific licenses (e.g., MIT, Apache). Please refer to the specific repositories for license details.
-                   </p>
+              <div className="space-y-2">
+                <h2 className="font-display font-bold text-xl text-slate-900">2. Intellectual Property</h2>
+                <div className="space-y-3 text-slate-600 text-sm leading-relaxed">
+                  <p>
+                    All brand assets, site architecture, design systems, and original copy on this site are protected under applicable copyright laws.
+                  </p>
+                  <p>
+                    <strong>Open-Source Repositories:</strong> Code projects showcased on this portfolio and hosted on GitHub are subject to their respective licenses (e.g. MIT, Apache 2.0).
+                  </p>
                 </div>
               </div>
             </div>
           </section>
 
-          <section className="bg-surface/30 border border-white/5 rounded-2xl p-8 hover:border-white/10 transition-colors">
+          <section className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-soft-sm">
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-red-500/10 text-red-400">
-                <AlertTriangle className="w-6 h-6" />
+              <div className="p-3 rounded-2xl bg-slate-100 text-slate-700 shrink-0">
+                <Shield className="w-6 h-6" />
               </div>
-              <div>
-                <h2 className="text-2xl font-bold text-white mb-4">3. Disclaimer</h2>
-                <div className="space-y-4 text-slate-400 leading-relaxed">
-                   <p>
-                     The materials on this website are provided on an 'as is' basis. Sonu Thomas makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
-                   </p>
-                   <p>
-                     Further, Sonu Thomas does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on his website or otherwise relating to such materials or on any sites linked to this site.
-                   </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-           <section className="bg-surface/30 border border-white/5 rounded-2xl p-8 hover:border-white/10 transition-colors">
-            <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-slate-500/10 text-slate-400">
-                <Scale className="w-6 h-6" />
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold text-white mb-4">4. Governing Law</h2>
-                <p className="text-slate-400 leading-relaxed">
-                   Any claim relating to this website shall be governed by the laws of India and the state of Kerala without regard to its conflict of law provisions.
+              <div className="space-y-2">
+                <h2 className="font-display font-bold text-xl text-slate-900">3. Disclaimer of Warranty</h2>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  The materials on this website are provided on an "as is" basis for informational and portfolio review purposes. While best engineering practices are followed, no representations are made regarding complete continuous availability.
                 </p>
               </div>
             </div>

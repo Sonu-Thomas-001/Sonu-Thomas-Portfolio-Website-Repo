@@ -1,18 +1,17 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Terminal, ArrowRight, Sparkles, Briefcase, Github, Linkedin, Download, Phone, ChevronDown, Trophy, HandHeart, BadgeCheck, Lightbulb } from 'lucide-react';
+import { Menu, X, ArrowRight, Sparkles, Github, Linkedin, Download, Phone, ChevronDown, Trophy, HandHeart, BadgeCheck, Lightbulb, BrainCircuit } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { PERSONAL_DETAILS } from '../constants';
 
 interface NavLink {
+  name: string;
+  path: string;
+  children?: {
     name: string;
     path: string;
-    children?: {
-        name: string;
-        path: string;
-        icon?: any;
-    }[];
+    icon?: any;
+  }[];
 }
 
 const navLinks: NavLink[] = [
@@ -22,24 +21,17 @@ const navLinks: NavLink[] = [
   { name: 'Education', path: '/#education' },
   { name: 'Skills', path: '/#skills' },
   { name: 'Projects', path: '/projects' },
-  { name: 'Contact', path: '/contact' },
   { 
-      name: 'Resources', 
-      path: '#',
-      children: [
-          { name: 'Insights', path: '/insights', icon: Lightbulb },
-          { name: 'Certifications', path: '/certifications', icon: BadgeCheck },
-          { name: 'Volunteering', path: '/volunteering', icon: HandHeart },
-          { name: 'Honors & Awards', path: '/awards', icon: Trophy },
-      ]
-  }
-];
-
-const ROLES = [
-  "Software Engineer",
-  "AI & Data Science Enthusiast",
-  "Web Developer",
-  "Production Change Manager"
+    name: 'Resources', 
+    path: '#',
+    children: [
+      { name: 'Insights', path: '/insights', icon: Lightbulb },
+      { name: 'Certifications', path: '/certifications', icon: BadgeCheck },
+      { name: 'Volunteering', path: '/volunteering', icon: HandHeart },
+      { name: 'Honors & Awards', path: '/awards', icon: Trophy },
+    ]
+  },
+  { name: 'Contact', path: '/contact' },
 ];
 
 export const NavBar: React.FC = () => {
@@ -50,7 +42,7 @@ export const NavBar: React.FC = () => {
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   
   const location = useLocation();
-  const navigate = useNavigate();
+  const useNavigateHook = useNavigate();
 
   // Scroll styling handler
   useEffect(() => {
@@ -67,44 +59,41 @@ export const NavBar: React.FC = () => {
   // Scroll Spy Handler
   useEffect(() => {
     if (location.pathname !== '/') {
-        setActiveSection(location.pathname);
-        return;
+      setActiveSection(location.pathname);
+      return;
     }
 
     const handleScrollSpy = () => {
-        const scrollPosition = window.scrollY + 200; // Offset to trigger active state earlier
+      const scrollPosition = window.scrollY + 200;
 
-        // Define sections mapped to paths
-        const sections = [
-            { id: 'hero', path: '/' },
-            { id: 'about', path: '/#about' },
-            { id: 'experience', path: '/#experience' },
-            { id: 'education', path: '/#education' },
-            { id: 'skills', path: '/#skills' },
-            { id: 'contact', path: '/#contact' }
-        ];
+      const sections = [
+        { id: 'hero', path: '/' },
+        { id: 'about', path: '/#about' },
+        { id: 'experience', path: '/#experience' },
+        { id: 'education', path: '/#education' },
+        { id: 'skills', path: '/#skills' },
+        { id: 'contact', path: '/#contact' }
+      ];
 
-        // Find the current section
-        for (const section of sections) {
-            const element = document.getElementById(section.id);
-            if (element) {
-                const offsetTop = element.offsetTop;
-                const height = element.offsetHeight;
+      for (const section of sections) {
+        const element = document.getElementById(section.id);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const height = element.offsetHeight;
 
-                if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
-                    setActiveSection(section.path);
-                }
-            }
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
+            setActiveSection(section.path);
+          }
         }
-        
-        // Safety check for top of page
-        if (window.scrollY < 100) {
-            setActiveSection('/');
-        }
+      }
+      
+      if (window.scrollY < 100) {
+        setActiveSection('/');
+      }
     };
 
     window.addEventListener('scroll', handleScrollSpy);
-    handleScrollSpy(); // Initial check
+    handleScrollSpy();
 
     return () => window.removeEventListener('scroll', handleScrollSpy);
   }, [location.pathname]);
@@ -120,135 +109,112 @@ export const NavBar: React.FC = () => {
 
   const handleLinkClick = (path: string, e?: React.MouseEvent) => {
     if (path === '#') {
-        e?.preventDefault();
-        return;
+      e?.preventDefault();
+      return;
     }
 
-    // Determine if it's a hash link or home
     if (path.startsWith('/#') || path === '/') {
-        if (e) e.preventDefault();
-        
-        let targetId = '';
-        if (path.startsWith('/#')) {
-            targetId = path.replace('/#', '');
-        } else {
-            targetId = 'hero'; // Home maps to hero section
-        }
+      if (e) e.preventDefault();
+      
+      let targetId = '';
+      if (path.startsWith('/#')) {
+        targetId = path.replace('/#', '');
+      } else {
+        targetId = 'hero';
+      }
 
-        const performScroll = () => {
-             const element = document.getElementById(targetId === 'hero' ? 'hero' : targetId);
-             if (element) {
-                 // Adjust for navbar height
-                 const navHeight = 85; 
-                 // If target is hero/top, scroll to 0
-                 if (targetId === 'hero') {
-                     window.scrollTo({ top: 0, behavior: 'smooth' });
-                 } else {
-                     const elementPosition = element.getBoundingClientRect().top;
-                     const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-                     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                 }
-             }
-        };
-
-        if (location.pathname !== '/') {
-            navigate('/');
-            // Wait for transition
-            setTimeout(performScroll, 700);
-        } else {
-            performScroll();
+      const performScroll = () => {
+        const element = document.getElementById(targetId === 'hero' ? 'hero' : targetId);
+        if (element) {
+          const navHeight = 90; 
+          if (targetId === 'hero') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          } else {
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+          }
         }
-        setIsOpen(false);
+      };
+
+      if (location.pathname !== '/') {
+        useNavigateHook('/');
+        setTimeout(performScroll, 700);
+      } else {
+        performScroll();
+      }
+      setIsOpen(false);
     } else {
-        // Standard route navigation
-        window.scrollTo(0,0);
-        setIsOpen(false);
+      window.scrollTo(0, 0);
+      setIsOpen(false);
     }
   };
 
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    navigate('/contact');
-    window.scrollTo(0, 0);
+    if (location.pathname === '/') {
+      handleLinkClick('/#contact', e);
+    } else {
+      useNavigateHook('/contact');
+      window.scrollTo(0, 0);
+    }
     setIsOpen(false);
   };
 
+  const isLinkActive = (path: string, children?: any[]) => {
+    if (children) {
+      return children.some(child => location.pathname === child.path);
+    }
+    if (location.pathname !== '/') {
+      return location.pathname === path;
+    }
+    return activeSection === path;
+  };
+
   const navItemVariants = {
-    hidden: { opacity: 0, y: -10 },
+    hidden: { opacity: 0, y: -8 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.05, duration: 0.3 }
+      transition: { delay: i * 0.04, duration: 0.25 }
     })
-  };
-
-  const getNavClasses = () => {
-    if (isOpen) {
-      return "fixed top-0 left-0 right-0 z-50 w-full bg-transparent border-none py-4 transition-all duration-300";
-    }
-    if (scrolled) {
-      return "fixed top-4 left-0 right-0 z-50 mx-auto w-[95%] max-w-7xl rounded-2xl border border-white/10 bg-dark/70 backdrop-blur-xl shadow-2xl shadow-black/10 py-4 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]";
-    }
-    return "fixed top-0 left-0 right-0 z-50 w-full bg-transparent border-transparent py-6 md:py-10 transition-all duration-300";
-  };
-
-  // Logic to determine active state
-  const isLinkActive = (path: string, children?: any[]) => {
-      // Check children
-      if (children) {
-          return children.some(child => location.pathname === child.path);
-      }
-
-      // If we are on a separate page (Projects/Insights), match pathname
-      if (location.pathname !== '/') {
-          return location.pathname === path;
-      }
-      // On home page, use scroll spy state
-      return activeSection === path;
   };
 
   return (
     <>
       <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: "circOut" }}
-        className={getNavClasses()}
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled 
+            ? 'top-3 mx-auto w-[94%] max-w-7xl rounded-2xl bg-white/85 backdrop-blur-xl border border-slate-200/80 shadow-soft-lg py-3' 
+            : 'top-0 w-full bg-page/70 backdrop-blur-md border-b border-slate-200/50 py-4 lg:py-5'
+        }`}
       >
-        <div className={`mx-auto px-4 sm:px-6 lg:px-8 ${scrolled ? 'w-full' : 'max-w-7xl'}`}>
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex items-center justify-between">
             
-            {/* Logo Section */}
+            {/* Brand Logo */}
             <div 
-              className="flex-shrink-0 flex items-center gap-2 cursor-pointer group" 
+              className="flex-shrink-0 flex items-center gap-3 cursor-pointer group" 
               onClick={(e) => handleLinkClick('/', e as any)}
             >
-              <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 border border-white/5 group-hover:border-primary/30 transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(14,165,233,0.3)]">
-                 <Terminal className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+              <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-primary-50 via-indigo-100 to-purple-100 border border-primary/20 text-primary shadow-soft-sm group-hover:scale-105 group-hover:shadow-glow-primary transition-all duration-300">
+                <BrainCircuit className="w-5 h-5 text-primary" />
               </div>
               <div className="flex flex-col">
-                <span className="text-white font-bold text-lg leading-none tracking-tight group-hover:text-primary transition-colors">
+                <span className="font-display font-bold text-lg text-slate-900 leading-tight group-hover:text-primary transition-colors">
                   Sonu Thomas
                 </span>
-                <div className="h-4 overflow-hidden w-[180px] relative hidden sm:flex items-center mask-linear-gradient">
-                  <motion.div
-                     className="flex whitespace-nowrap text-[10px] text-slate-500 font-medium tracking-widest uppercase gap-4"
-                     animate={{ x: "-50%" }}
-                     transition={{
-                       duration: 20,
-                       repeat: Infinity,
-                       ease: "linear",
-                     }}
-                  >
-                     <span>{ROLES.join(" • ")} • </span>
-                     <span>{ROLES.join(" • ")} • </span>
-                  </motion.div>
-                </div>
+                <span className="text-[11px] font-mono font-medium text-slate-500 tracking-tight">
+                  AI Software Engineer
+                </span>
               </div>
             </div>
 
-            {/* Desktop Navigation */}
-            <div className={`hidden md:flex items-center gap-1 ${scrolled ? 'bg-white/5' : 'bg-dark/30'} backdrop-blur-sm px-2 py-1.5 rounded-full border border-white/5 transition-colors duration-300`}>
+            {/* Desktop Navigation Links */}
+            <div className="hidden lg:flex items-center gap-1 bg-slate-100/70 p-1.5 rounded-full border border-slate-200/60 shadow-inner">
               {navLinks.map((link) => {
                 const isActive = isLinkActive(link.path, link.children);
                 const hasChildren = link.children && link.children.length > 0;
@@ -261,152 +227,114 @@ export const NavBar: React.FC = () => {
                     onMouseLeave={() => hasChildren && setHoveredDropdown(null)}
                   >
                     <Link
-                        to={link.path}
-                        onClick={(e) => handleLinkClick(link.path, e)}
-                        className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 flex items-center gap-1 ${
-                        isActive ? 'text-white' : 'text-slate-400 hover:text-white'
-                        }`}
+                      to={link.path}
+                      onClick={(e) => handleLinkClick(link.path, e)}
+                      className={`relative px-4 py-1.5 text-sm font-medium rounded-full transition-all duration-200 flex items-center gap-1 ${
+                        isActive 
+                          ? 'text-primary font-semibold' 
+                          : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                      }`}
                     >
-                        {isActive && !hasChildren && (
+                      {isActive && !hasChildren && (
                         <motion.div
-                            layoutId="nav-pill"
-                            className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full border border-white/10"
-                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                        >
-                            <div className="absolute inset-0 bg-white/5 rounded-full blur-[2px]" />
-                        </motion.div>
+                          layoutId="nav-pill"
+                          className="absolute inset-0 bg-white rounded-full shadow-soft-sm border border-slate-200/60"
+                          transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                        />
+                      )}
+                      <span className="relative z-10 flex items-center gap-1">
+                        {link.name}
+                        {hasChildren && <ChevronDown className="w-3.5 h-3.5 opacity-60" />}
+                        {isActive && !hasChildren && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary ml-1" />
                         )}
-                        <span className="relative z-10 flex items-center gap-1">
-                            {link.name}
-                            {hasChildren && <ChevronDown className="w-3 h-3 mt-0.5" />}
-                            {isActive && !hasChildren && <motion.span layoutId="active-dot" className="w-1 h-1 rounded-full bg-primary ml-1" />}
-                        </span>
+                      </span>
                     </Link>
                     
                     {/* Dropdown Menu */}
                     <AnimatePresence>
-                        {hasChildren && hoveredDropdown === link.name && (
-                            <motion.div
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: 10 }}
-                                transition={{ duration: 0.2 }}
-                                className="absolute top-full left-0 mt-2 w-56 bg-dark/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden py-2"
+                      {hasChildren && hoveredDropdown === link.name && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                          transition={{ duration: 0.15 }}
+                          className="absolute top-full left-0 mt-2 w-60 bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-2xl shadow-soft-lg overflow-hidden p-2"
+                        >
+                          {link.children?.map((child) => (
+                            <Link
+                              key={child.name}
+                              to={child.path}
+                              onClick={(e) => {
+                                handleLinkClick(child.path, e);
+                                setHoveredDropdown(null);
+                              }}
+                              className="flex items-center gap-3 px-3.5 py-2.5 text-sm text-slate-600 hover:text-primary hover:bg-primary-50/70 rounded-xl transition-colors"
                             >
-                                {link.children?.map((child) => (
-                                    <Link
-                                        key={child.name}
-                                        to={child.path}
-                                        onClick={(e) => {
-                                            handleLinkClick(child.path, e);
-                                            setHoveredDropdown(null);
-                                        }}
-                                        className="flex items-center gap-3 px-4 py-3 text-sm text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
-                                    >
-                                        {child.icon && <child.icon className="w-4 h-4 text-primary" />}
-                                        {child.name}
-                                    </Link>
-                                ))}
-                            </motion.div>
-                        )}
+                              {child.icon && <child.icon className="w-4 h-4 text-primary" />}
+                              <span className="font-medium">{child.name}</span>
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
                     </AnimatePresence>
                   </div>
                 );
               })}
             </div>
 
-            {/* Right Actions */}
-            <div className="hidden md:flex items-center gap-4">
-              
-              {/* Socials & Resume - Hidden on scroll */}
-              <AnimatePresence>
-                {!scrolled && (
-                    <motion.div 
-                        initial={{ opacity: 0, width: 0 }}
-                        animate={{ opacity: 1, width: 'auto' }}
-                        exit={{ opacity: 0, width: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="flex items-center gap-3 pr-4 border-r border-white/10 overflow-hidden"
-                    >
-                        <a 
-                            href={PERSONAL_DETAILS.social.github} 
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-full transition-all hover:scale-110" 
-                            aria-label="GitHub"
-                        >
-                            <Github className="w-5 h-5" />
-                        </a>
-                        <a 
-                            href={PERSONAL_DETAILS.social.linkedin} 
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-full transition-all hover:scale-110" 
-                            aria-label="LinkedIn"
-                        >
-                            <Linkedin className="w-5 h-5" />
-                        </a>
-                        <a 
-                            href={`tel:${PERSONAL_DETAILS.phone}`}
-                            className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-full transition-all hover:scale-110" 
-                            aria-label="Call"
-                        >
-                            <Phone className="w-5 h-5" />
-                        </a>
-                        <a 
-                            href={PERSONAL_DETAILS.resumeLink} 
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-bold text-slate-300 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all uppercase tracking-wider whitespace-nowrap"
-                        >
-                            <Download className="w-3.5 h-3.5" />
-                            CV
-                        </a>
-                    </motion.div>
-                )}
-              </AnimatePresence>
+            {/* Right CTAs */}
+            <div className="hidden md:flex items-center gap-3">
+              <a 
+                href={PERSONAL_DETAILS.social.github} 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all" 
+                aria-label="GitHub"
+              >
+                <Github className="w-4 h-4" />
+              </a>
+              <a 
+                href={PERSONAL_DETAILS.social.linkedin} 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-slate-500 hover:text-primary hover:bg-slate-100 rounded-xl transition-all" 
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+
+              <a 
+                href={PERSONAL_DETAILS.resumeLink} 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:text-primary hover:border-primary/40 hover:bg-primary-50/40 transition-all shadow-soft-sm"
+              >
+                <Download className="w-3.5 h-3.5" />
+                Resume
+              </a>
 
               <a 
                 href="#contact"
                 onClick={handleContactClick}
-                className="relative inline-flex h-10 overflow-hidden rounded-full p-[1px] group"
+                className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary-600 active:scale-95 shadow-soft-sm hover:shadow-glow-primary transition-all duration-200"
               >
-                <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#0ea5e9_0%,#6366f1_50%,#0ea5e9_100%)]" />
-                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-dark px-6 py-1 text-sm font-bold text-white backdrop-blur-3xl gap-2 transition-all group-hover:bg-dark/80">
-                  <Sparkles className="w-4 h-4 text-primary group-hover:text-white transition-colors" />
-                  <span>Hire Me</span>
-                </span>
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Let's Talk</span>
               </a>
             </div>
 
-            {/* Mobile Menu Button */}
-            <div className="flex items-center gap-4 md:hidden">
+            {/* Mobile Menu Toggle Button */}
+            <div className="flex items-center gap-2 lg:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="relative p-2 rounded-xl bg-white/5 border border-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all active:scale-95"
-                aria-label="Toggle menu"
+                className="p-2.5 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 hover:text-primary transition-all active:scale-95"
+                aria-label="Toggle navigation menu"
               >
-                <AnimatePresence mode="wait">
-                  {isOpen ? (
-                    <motion.div
-                      key="close"
-                      initial={{ opacity: 0, rotate: -90 }}
-                      animate={{ opacity: 1, rotate: 0 }}
-                      exit={{ opacity: 0, rotate: 90 }}
-                    >
-                      <X className="w-6 h-6" />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="menu"
-                      initial={{ opacity: 0, rotate: 90 }}
-                      animate={{ opacity: 1, rotate: 0 }}
-                      exit={{ opacity: 0, rotate: -90 }}
-                    >
-                      <Menu className="w-6 h-6" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
             </div>
+
           </div>
         </div>
       </motion.nav>
@@ -415,148 +343,110 @@ export const NavBar: React.FC = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-40 bg-dark/95 backdrop-blur-3xl md:hidden pt-24 px-6 pb-6 flex flex-col overflow-y-auto"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-40 bg-white/98 backdrop-blur-2xl lg:hidden pt-24 px-6 pb-8 flex flex-col overflow-y-auto"
           >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/10 rounded-full blur-[100px] pointer-events-none"></div>
-
-            <div className="flex flex-col gap-6 relative z-10 h-full">
-              <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-4 relative z-10 h-full">
+              <div className="flex flex-col gap-1 divide-y divide-slate-100">
                 {navLinks.map((link, i) => {
-                    const isActive = isLinkActive(link.path, link.children);
-                    const hasChildren = link.children && link.children.length > 0;
-                    const isExpanded = mobileExpanded === link.name;
+                  const isActive = isLinkActive(link.path, link.children);
+                  const hasChildren = link.children && link.children.length > 0;
+                  const isExpanded = mobileExpanded === link.name;
 
-                    if (hasChildren) {
-                        return (
-                            <div key={link.name} className="border-b border-white/5">
-                                <button
-                                    onClick={() => setMobileExpanded(isExpanded ? null : link.name)}
-                                    className={`w-full text-2xl font-bold py-3 flex items-center justify-between group ${isActive ? 'text-white' : 'text-slate-400'}`}
-                                >
-                                    <motion.span 
-                                        variants={navItemVariants}
-                                        initial="hidden"
-                                        animate="visible"
-                                        custom={i}
-                                        className="group-hover:text-primary transition-colors flex items-center gap-3"
-                                    >
-                                        {link.name}
-                                    </motion.span>
-                                    <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
-                                </button>
-                                <AnimatePresence>
-                                    {isExpanded && (
-                                        <motion.div
-                                            initial={{ height: 0, opacity: 0 }}
-                                            animate={{ height: 'auto', opacity: 1 }}
-                                            exit={{ height: 0, opacity: 0 }}
-                                            className="overflow-hidden pl-4 pb-4"
-                                        >
-                                            {link.children?.map((child) => (
-                                                <Link
-                                                    key={child.name}
-                                                    to={child.path}
-                                                    onClick={(e) => handleLinkClick(child.path, e)}
-                                                    className="flex items-center gap-3 py-3 text-lg text-slate-500 hover:text-white transition-colors"
-                                                >
-                                                    {child.icon && <child.icon className="w-5 h-5 text-primary" />}
-                                                    {child.name}
-                                                </Link>
-                                            ))}
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </div>
-                        );
-                    }
-
+                  if (hasChildren) {
                     return (
-                        <Link
-                            key={link.name}
-                            to={link.path}
-                            onClick={(e) => handleLinkClick(link.path, e)}
-                            className={`text-2xl font-bold py-3 border-b border-white/5 flex items-center justify-between group ${
-                            isActive ? 'text-white' : 'text-slate-400'
-                            }`}
+                      <div key={link.name} className="py-2">
+                        <button
+                          onClick={() => setMobileExpanded(isExpanded ? null : link.name)}
+                          className={`w-full text-xl font-display font-semibold py-2 flex items-center justify-between ${
+                            isActive ? 'text-primary' : 'text-slate-800'
+                          }`}
                         >
-                            <motion.span 
-                                variants={navItemVariants}
-                                initial="hidden"
-                                animate="visible"
-                                custom={i}
-                                className="group-hover:text-primary transition-colors flex items-center gap-3"
+                          <span>{link.name}</span>
+                          <ChevronDown className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                        </button>
+                        <AnimatePresence>
+                          {isExpanded && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              className="overflow-hidden pl-4 flex flex-col gap-2 pt-2"
                             >
-                                {link.name}
-                                {isActive && (
-                                    <motion.span layoutId="mobile-active-dot" className="w-2 h-2 rounded-full bg-primary" />
-                                )}
-                            </motion.span>
-                            <ArrowRight className="w-5 h-5 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-primary" />
-                        </Link>
+                              {link.children?.map((child) => (
+                                <Link
+                                  key={child.name}
+                                  to={child.path}
+                                  onClick={(e) => handleLinkClick(child.path, e)}
+                                  className="flex items-center gap-3 py-2 text-base text-slate-600 hover:text-primary font-medium"
+                                >
+                                  {child.icon && <child.icon className="w-4 h-4 text-primary" />}
+                                  {child.name}
+                                </Link>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
                     );
+                  }
+
+                  return (
+                    <Link
+                      key={link.name}
+                      to={link.path}
+                      onClick={(e) => handleLinkClick(link.path, e)}
+                      className={`text-xl font-display font-semibold py-3 flex items-center justify-between ${
+                        isActive ? 'text-primary font-bold' : 'text-slate-800 hover:text-primary'
+                      }`}
+                    >
+                      <span>{link.name}</span>
+                      <ArrowRight className="w-4 h-4 text-slate-400" />
+                    </Link>
+                  );
                 })}
               </div>
 
-              {/* Mobile Socials Row */}
-              <motion.div 
-                 initial={{ opacity: 0 }}
-                 animate={{ opacity: 1 }}
-                 transition={{ delay: 0.2 }}
-                 className="flex items-center justify-between gap-4 py-6 border-b border-white/5"
-              >
-                  <a href={PERSONAL_DETAILS.social.github} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 text-slate-400 hover:text-white transition-colors">
-                      <div className="p-3 rounded-full bg-white/5">
-                        <Github className="w-6 h-6" />
-                      </div>
-                      <span className="text-xs">GitHub</span>
-                  </a>
-                  <a href={PERSONAL_DETAILS.social.linkedin} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 text-slate-400 hover:text-white transition-colors">
-                      <div className="p-3 rounded-full bg-white/5">
-                        <Linkedin className="w-6 h-6" />
-                      </div>
-                      <span className="text-xs">LinkedIn</span>
-                  </a>
-                  <a href={`tel:${PERSONAL_DETAILS.phone}`} className="flex flex-col items-center gap-2 text-slate-400 hover:text-white transition-colors">
-                      <div className="p-3 rounded-full bg-white/5">
-                        <Phone className="w-6 h-6" />
-                      </div>
-                      <span className="text-xs">Call</span>
-                  </a>
-                  <a href={PERSONAL_DETAILS.resumeLink} className="flex flex-col items-center gap-2 text-slate-400 hover:text-primary transition-colors">
-                      <div className="p-3 rounded-full bg-white/5">
-                        <Download className="w-6 h-6" />
-                      </div>
-                      <span className="text-xs">Resume</span>
-                  </a>
-              </motion.div>
-
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="mt-auto pb-4"
-              >
-                <div className="p-6 rounded-2xl bg-white/5 border border-white/10 text-center">
-                  <h4 className="text-white font-bold mb-2">Ready to collaborate?</h4>
-                  <p className="text-sm text-slate-400 mb-4">Let's build something extraordinary together.</p>
+              {/* Mobile Socials & CV */}
+              <div className="mt-auto pt-6 border-t border-slate-100 flex flex-col gap-4">
+                <div className="grid grid-cols-3 gap-2 text-center">
                   <a 
-                    href="#contact"
-                    onClick={handleContactClick}
-                    className="relative inline-flex w-full h-12 overflow-hidden rounded-xl p-[1px]"
+                    href={PERSONAL_DETAILS.social.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 hover:text-primary"
                   >
-                     <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#0ea5e9_0%,#6366f1_50%,#0ea5e9_100%)]" />
-                     <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-xl bg-dark px-6 py-1 text-base font-bold text-white backdrop-blur-3xl gap-2 transition-colors">
-                        <Briefcase className="w-4 h-4" />
-                        Hire Me
-                     </span>
+                    GitHub
+                  </a>
+                  <a 
+                    href={PERSONAL_DETAILS.social.linkedin} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 hover:text-primary"
+                  >
+                    LinkedIn
+                  </a>
+                  <a 
+                    href={PERSONAL_DETAILS.resumeLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-xl bg-primary-50 border border-primary/20 text-xs font-semibold text-primary"
+                  >
+                    Resume
                   </a>
                 </div>
-              </motion.div>
+
+                <a 
+                  href="#contact"
+                  onClick={handleContactClick}
+                  className="w-full py-3 text-center rounded-xl bg-primary text-white font-semibold shadow-soft-md"
+                >
+                  Contact Me
+                </a>
+              </div>
             </div>
           </motion.div>
         )}

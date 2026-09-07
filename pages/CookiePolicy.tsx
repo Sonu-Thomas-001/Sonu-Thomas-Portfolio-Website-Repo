@@ -1,90 +1,75 @@
 import React from 'react';
-import { Cookie, Settings, ShieldCheck, List } from 'lucide-react';
+import { Cookie, Settings, ShieldCheck, List, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { SEO } from '../components/SEO';
 
 export const CookiePolicy: React.FC = () => {
   return (
-    <div className="pt-32 pb-24 min-h-screen bg-dark relative overflow-hidden">
-       {/* Background Decor */}
-       <div className="absolute top-0 right-0 w-1/2 h-[50vh] bg-gradient-to-b from-primary/5 to-transparent pointer-events-none"></div>
-
+    <div className="pt-28 pb-24 min-h-screen bg-page relative overflow-hidden">
+      <SEO 
+        title="Cookie Policy | Sonu Thomas"
+        description="Understanding how cookies and storage mechanisms are utilized on the website of Sonu Thomas."
+        url="/cookies"
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
+        <Link 
+          to="/" 
+          className="inline-flex items-center gap-2 text-primary hover:text-primary-600 font-semibold text-sm mb-6 group"
+        >
+          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
+          <span>Back to Home</span>
+        </Link>
+
         {/* Header */}
-        <div className="mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium mb-6">
-             <Cookie className="w-4 h-4" />
-             <span>Legal Documentation</span>
+        <div className="mb-14">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 border border-primary/20 text-primary text-xs font-mono font-semibold uppercase tracking-wider mb-4">
+            <Cookie className="w-3.5 h-3.5" />
+            <span>Storage & Preferences</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Cookie Policy</h1>
-          <p className="text-xl text-slate-400 leading-relaxed">
-            Understanding how and why we use cookies to improve your experience.
+          <h1 className="font-display font-bold text-4xl sm:text-5xl text-slate-900 tracking-tight mb-4">Cookie Policy</h1>
+          <p className="text-lg text-slate-600 leading-relaxed">
+            Transparent information on local storage and browser cookies utilized across this site.
           </p>
-          <div className="mt-4 text-sm font-mono text-slate-500">
-             Last Updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+          <div className="mt-3 text-xs font-mono text-slate-400">
+            Last Updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
           </div>
         </div>
 
         {/* Content */}
-        <div className="space-y-12">
+        <div className="space-y-8">
           
-          <section className="bg-surface/30 border border-white/5 rounded-2xl p-8 hover:border-white/10 transition-colors">
+          <section className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-soft-sm">
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-orange-500/10 text-orange-400">
+              <div className="p-3 rounded-2xl bg-amber-50 text-amber-600 shrink-0">
                 <ShieldCheck className="w-6 h-6" />
               </div>
-              <div>
-                <h2 className="text-2xl font-bold text-white mb-4">1. What Are Cookies?</h2>
-                <p className="text-slate-400 leading-relaxed">
-                   Cookies are small text files that are placed on your computer or mobile device by websites that you visit. They are widely used in order to make websites work, or work more efficiently, as well as to provide information to the owners of the site.
+              <div className="space-y-2">
+                <h2 className="font-display font-bold text-xl text-slate-900">1. What Are Cookies?</h2>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  Cookies and local web storage items are lightweight key-value pairs stored in your browser to remember user preferences (such as visited states for intro animations) and maintain session continuity.
                 </p>
               </div>
             </div>
           </section>
 
-          <section className="bg-surface/30 border border-white/5 rounded-2xl p-8 hover:border-white/10 transition-colors">
+          <section className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-soft-sm">
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-blue-500/10 text-blue-400">
+              <div className="p-3 rounded-2xl bg-blue-50 text-blue-600 shrink-0">
                 <List className="w-6 h-6" />
               </div>
-              <div>
-                <h2 className="text-2xl font-bold text-white mb-4">2. Cookies We Use</h2>
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-lg font-bold text-white mb-2">Essential Cookies</h3>
-                    <p className="text-slate-400 text-sm">
-                      These are necessary for the website to function properly. For example, we use <code>sessionStorage</code> to determine if you have seen the introductory animation sequence, ensuring it doesn't play every time you refresh the page.
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white mb-2">Performance & Analytics</h3>
-                    <p className="text-slate-400 text-sm">
-                      We may use anonymous analytics cookies to understand how visitors interact with the website. This helps us identify which projects are viewed most often and improve navigation.
-                    </p>
-                  </div>
-                   <div>
-                    <h3 className="text-lg font-bold text-white mb-2">Functionality</h3>
-                    <p className="text-slate-400 text-sm">
-                      Used to recognize you when you return to our website. This enables us to personalize our content for you (e.g., maintaining your preferred theme if applicable).
-                    </p>
-                  </div>
+              <div className="space-y-2">
+                <h2 className="font-display font-bold text-xl text-slate-900">2. Cookies We Utilize</h2>
+                <div className="space-y-3 text-slate-600 text-sm leading-relaxed">
+                  <p>This site utilizes strictly essential functional storage:</p>
+                  <ul className="list-disc pl-5 space-y-1.5">
+                    <li><strong>Animation Cache:</strong> Stores a flag in <code className="bg-slate-100 px-1.5 py-0.5 rounded text-xs">sessionStorage</code> to prevent repetitive preloader intro plays during a single browsing session.</li>
+                    <li><strong>Performance Telemetry:</strong> Non-identifying CDN caches on Vercel to optimize global edge routing.</li>
+                  </ul>
+                  <p className="text-xs text-slate-500 italic mt-2">
+                    We do not use invasive third-party cross-site advertising trackers.
+                  </p>
                 </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="bg-surface/30 border border-white/5 rounded-2xl p-8 hover:border-white/10 transition-colors">
-            <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-slate-500/10 text-slate-400">
-                <Settings className="w-6 h-6" />
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold text-white mb-4">3. Managing Preferences</h2>
-                <p className="text-slate-400 leading-relaxed mb-4">
-                   Most web browsers allow some control of most cookies through the browser settings. To find out more about cookies, including how to see what cookies have been set, visit <a href="https://www.aboutcookies.org" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">www.aboutcookies.org</a>.
-                </p>
-                <p className="text-slate-400 leading-relaxed">
-                  Please note that blocking some types of cookies may impact your experience of the site and the services we are able to offer.
-                </p>
               </div>
             </div>
           </section>

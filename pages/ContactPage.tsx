@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Contact } from '../components/Contact';
 import { SEO } from '../components/SEO';
-import { Availability } from '../components/Availability';
-import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { ArrowLeft, Sparkles } from 'lucide-react';
 
 export const ContactPage: React.FC = () => {
   useEffect(() => {
@@ -10,24 +10,23 @@ export const ContactPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="pt-20">
+    <div className="pt-28 min-h-screen bg-page">
       <SEO 
-        title="Contact Sonu Thomas | Let's Connect"
-        description="Get in touch with Sonu Thomas, Software Engineer based in India. Open to new opportunities, collaborations, and discussions on AI and Web Engineering."
+        title="Contact Sonu Thomas | AI Software Engineer"
+        description="Get in touch with Sonu Thomas, AI Software Engineer based in India. Available for collaborations, consultations, and enterprise engineering."
         url="/contact"
-        keywords="Contact Sonu Thomas, Hire Software Engineer, HCLTech Engineer, Web Developer India"
+        keywords="Contact Sonu Thomas, Hire AI Software Engineer, Machine Learning Engineer, HCLTech Engineer, Kannur Kerala"
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-8"
-          >
-             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Contact Sonu Thomas</h1>
-          </motion.div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
+        <Link 
+          to="/" 
+          className="inline-flex items-center gap-2 text-primary hover:text-primary-600 font-semibold text-sm mb-6 group"
+        >
+          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
+          <span>Back to Home</span>
+        </Link>
       </div>
       <Contact />
-      <Availability />
     </div>
   );
 };

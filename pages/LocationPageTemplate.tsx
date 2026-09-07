@@ -30,11 +30,11 @@ export const LocationPageTemplate: React.FC<{
             <span className="font-mono text-sm uppercase tracking-wider">Sonu Thomas</span>
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+          <h1 className="font-display text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">
             {h1}
           </h1>
 
-          <div className="prose prose-invert prose-lg max-w-none prose-p:text-slate-400 prose-headings:text-white prose-a:text-primary hover:prose-a:text-primary/80">
+          <div className="prose prose-slate prose-lg max-w-none prose-p:text-slate-600 prose-headings:text-slate-900 prose-a:text-primary hover:prose-a:text-primary-600">
             {content}
           </div>
         </motion.div>

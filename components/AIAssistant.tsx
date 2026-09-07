@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Bot, User, Sparkles, ChevronDown, Minimize2, AlertTriangle } from 'lucide-react';
+import { Send, Bot, User, Sparkles, X, BrainCircuit, AlertTriangle } from 'lucide-react';
 import { GoogleGenAI, Type, FunctionDeclaration } from "@google/genai";
 import { PERSONAL_DETAILS, EXPERIENCE_DATA, SKILLS_DATA, PROJECTS_DATA, EDUCATION_DATA, BLOG_DATA } from '../constants';
 
@@ -19,12 +19,12 @@ Your goal is to impress recruiters and managers by answering questions about Son
 You have access to his full portfolio data in the context below.
 
 Key Personality Traits:
-- Professional, confident, and futuristic.
+- Professional, confident, articulate, and futuristic.
 - Concise and helpful.
-- Enthusiastic about AI, Data Science, and Engineering.
+- Enthusiastic about AI, Data Science, and Software Engineering.
 
 Capabilities:
-- You can answer specific questions about his role at HCLTech, his freelance work, or his education at IIT Guwahati.
+- You can answer specific questions about his role at HCLTech, freelance work, or education at IIT Guwahati.
 - You can navigate the user to specific sections of the website using the 'navigate' tool. If a user asks to "see projects" or "go to contact", use the tool.
 
 Context Data:
@@ -33,7 +33,6 @@ ${PORTFOLIO_CONTEXT}
 Keep responses under 3 sentences unless asked for details.
 `;
 
-// --- Tool Definition ---
 const navigateTool: FunctionDeclaration = {
   name: 'navigate',
   description: 'Scroll to a specific section of the portfolio website.',
@@ -42,7 +41,7 @@ const navigateTool: FunctionDeclaration = {
     properties: {
       sectionId: {
         type: Type.STRING,
-        description: 'The ID of the section to scroll to. Valid IDs: "hero", "about", "experience", "skills", "projects", "education", "contact", "blog".',
+        description: 'The ID of the section to scroll to. Valid IDs: "hero", "about", "experience", "skills", "projects", "education", "contact".',
       },
     },
     required: ['sectionId'],
@@ -60,7 +59,7 @@ interface Message {
 export const AIAssistant: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { id: 'init', role: 'model', text: "Hello! I'm Qubi, Sonu's AI assistant. Ask me anything about his engineering skills, experience, or projects." }
+    { id: 'init', role: 'model', text: "Hi! I'm Qubi, Sonu's AI assistant. Ask me anything about his AI engineering, enterprise experience at HCLTech, or projects." }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -75,35 +74,28 @@ export const AIAssistant: React.FC = () => {
     scrollToBottom();
   }, [messages, isOpen]);
 
-  // Initialize Chat Session
   const initChat = async () => {
     try {
-        // Updated to use GEMINI_API_KEY
-        const apiKey = process.env.GEMINI_API_KEY;
-        
-        if (!apiKey) {
-            console.warn("GEMINI_API_KEY is missing in init.");
-            return;
-        }
+      const apiKey = process.env.GEMINI_API_KEY;
+      if (!apiKey) return;
 
-        const ai = new GoogleGenAI({ apiKey: apiKey });
-        chatSessionRef.current = ai.chats.create({
-            model: 'gemini-3-flash-preview',
-            config: {
-                systemInstruction: SYSTEM_INSTRUCTION,
-                tools: [{ functionDeclarations: [navigateTool] }],
-                // CRITICAL FIX: Disable thinking to avoid 'thought_signature' errors during tool use
-                thinkingConfig: { thinkingBudget: 0 } 
-            }
-        });
+      const ai = new GoogleGenAI({ apiKey });
+      chatSessionRef.current = ai.chats.create({
+        model: 'gemini-2.5-flash',
+        config: {
+          systemInstruction: SYSTEM_INSTRUCTION,
+          tools: [{ functionDeclarations: [navigateTool] }],
+          thinkingConfig: { thinkingBudget: 0 }
+        }
+      });
     } catch (error) {
-        console.error("Failed to init AI:", error);
+      console.error("Failed to initialize AI Chat:", error);
     }
   };
 
   useEffect(() => {
     if (isOpen && !chatSessionRef.current) {
-        initChat();
+      initChat();
     }
   }, [isOpen]);
 
@@ -116,74 +108,50 @@ export const AIAssistant: React.FC = () => {
     setIsTyping(true);
 
     try {
-        if (!chatSessionRef.current) await initChat();
-        
-        // Final check to see if initialization worked
-        if (!chatSessionRef.current) {
-             throw new Error("AI Client not initialized. GEMINI_API_KEY might be missing.");
-        }
+      if (!chatSessionRef.current) await initChat();
+      
+      if (!chatSessionRef.current) {
+        throw new Error("API Key is not configured for local dev.");
+      }
 
-        let response = await chatSessionRef.current.sendMessage({ message: userMsg.text });
-        
-        // Handle Function Calls
-        const functionCalls = response.functionCalls || response.candidates?.[0]?.content?.parts?.filter((p: any) => p.functionCall).map((p: any) => p.functionCall);
-        
-        if (functionCalls && functionCalls.length > 0) {
-            const toolResponses = [];
-            
-            for (const call of functionCalls) {
-                if (call.name === 'navigate') {
-                    const args = call.args || {};
-                    const sectionId = args.sectionId;
-                    
-                    const element = document.getElementById(sectionId);
-                    let result = "Section not found";
-                    if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                        result = `Navigated to ${sectionId}`;
-                    }
-                    toolResponses.push({
-                        functionResponse: {
-                            name: 'navigate',
-                            id: call.id,
-                            response: { result: result }
-                        }
-                    });
-                }
+      let response = await chatSessionRef.current.sendMessage({ message: userMsg.text });
+      const functionCalls = response.functionCalls || response.candidates?.[0]?.content?.parts?.filter((p: any) => p.functionCall).map((p: any) => p.functionCall);
+      
+      if (functionCalls && functionCalls.length > 0) {
+        const toolResponses = [];
+        for (const call of functionCalls) {
+          if (call.name === 'navigate') {
+            const sectionId = call.args?.sectionId;
+            const element = document.getElementById(sectionId);
+            let result = "Section not found";
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+              result = `Navigated to ${sectionId}`;
             }
-
-            if (toolResponses.length > 0) {
-                 response = await chatSessionRef.current.sendMessage({ message: toolResponses });
-            }
+            toolResponses.push({
+              functionResponse: {
+                name: 'navigate',
+                id: call.id,
+                response: { result }
+              }
+            });
+          }
         }
+        if (toolResponses.length > 0) {
+          response = await chatSessionRef.current.sendMessage({ message: toolResponses });
+        }
+      }
 
-        const modelText = response.text || "I've processed that request.";
-        
-        setMessages(prev => [...prev, { id: (Date.now() + 1).toString(), role: 'model', text: modelText }]);
-
+      const modelText = response.text || "I've processed your inquiry.";
+      setMessages(prev => [...prev, { id: (Date.now() + 1).toString(), role: 'model', text: modelText }]);
     } catch (error: any) {
-        console.error("Chat Error:", error);
-        let errorMessage = "I'm having trouble connecting right now.";
-        
-        if (error.message.includes("403") || error.message.includes("401") || error.message.includes("API key not valid")) {
-             errorMessage = "API Error: Access denied. Please check your 'GEMINI_API_KEY' configuration in Vercel.";
-        } else if (error.message.includes("404") || error.message.includes("not found")) {
-             errorMessage = "API Error: Model not found. The AI service is temporarily unavailable.";
-        } else if (error.message.includes("400") || error.message.includes("thought_signature") || error.message.includes("INVALID_ARGUMENT")) {
-             errorMessage = "System Error: The AI model encountered a configuration issue. Please refresh the page.";
-        } else if (error.message.includes("429")) {
-             errorMessage = "Traffic Limit: Too many requests. Please try again later.";
-        } else if (error.message.includes("GEMINI_API_KEY might be missing")) {
-             errorMessage = "System Error: API Key is missing. Please ensure 'GEMINI_API_KEY' is set in your Vercel Environment Variables and you have redeployed.";
-        } else if (error.message.includes("fetch failed")) {
-             errorMessage = "Network Error: Could not connect to Gemini API. Check your internet.";
-        } else {
-             errorMessage = `Error: ${error.message}`;
-        }
-
-        setMessages(prev => [...prev, { id: Date.now().toString(), role: 'model', text: errorMessage, isError: true }]);
+      let errorMessage = "I'm having trouble connecting right now.";
+      if (error.message?.includes("API Key is not configured")) {
+        errorMessage = "Gemini API Key is not set up in the local environment.";
+      }
+      setMessages(prev => [...prev, { id: Date.now().toString(), role: 'model', text: errorMessage, isError: true }]);
     } finally {
-        setIsTyping(false);
+      setIsTyping(false);
     }
   };
 
@@ -196,116 +164,127 @@ export const AIAssistant: React.FC = () => {
 
   return (
     <>
-      {/* Floating Action Button */}
+      {/* Floating Launcher Button */}
       <motion.button
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 p-4 rounded-full shadow-2xl shadow-primary/30 text-white transition-all duration-300 ${isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100 bg-gradient-to-r from-primary to-secondary'}`}
+        className={`fixed bottom-6 left-6 z-40 px-4 py-2.5 rounded-2xl bg-white border border-slate-200/90 text-slate-800 shadow-soft-lg hover:border-primary/40 flex items-center gap-2.5 cursor-pointer group transition-all duration-200 ${
+          isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
+        }`}
+        aria-label="Open AI Assistant"
       >
-        <Sparkles className="w-6 h-6 animate-pulse" />
+        <div className="w-7 h-7 rounded-xl bg-primary-50 text-primary flex items-center justify-center border border-primary/20 group-hover:scale-105 transition-transform">
+          <BrainCircuit className="w-4 h-4" />
+        </div>
+        <div className="text-left">
+          <span className="font-display font-bold text-xs text-slate-900 block group-hover:text-primary transition-colors">
+            Ask Qubi
+          </span>
+          <span className="text-[10px] font-mono text-slate-400 block -mt-0.5">
+            AI Assistant
+          </span>
+        </div>
       </motion.button>
 
-      {/* Chat Window */}
+      {/* Light Mode Chat Window */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-6 right-6 z-50 w-[90vw] md:w-[400px] h-[500px] md:h-[600px] bg-surface/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed bottom-6 left-6 z-50 w-[90vw] sm:w-[380px] h-[520px] bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-3xl shadow-soft-lg flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="p-4 bg-gradient-to-r from-primary/20 to-secondary/20 border-b border-white/10 flex justify-between items-center">
+            <div className="p-4 bg-slate-50 border-b border-slate-100 flex justify-between items-center">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-primary/20 rounded-lg border border-primary/30">
-                    <Bot className="w-5 h-5 text-primary" />
+                <div className="w-9 h-9 rounded-xl bg-primary-50 border border-primary/20 flex items-center justify-center text-primary">
+                  <BrainCircuit className="w-5 h-5" />
                 </div>
                 <div>
-                    <h3 className="font-bold text-white text-sm">Qubi AI</h3>
-                    <div className="flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                        <span className="text-[10px] text-emerald-400 font-medium">Online</span>
-                    </div>
+                  <h3 className="font-display font-bold text-slate-900 text-sm">Qubi AI Assistant</h3>
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="text-[10px] font-mono text-emerald-700 font-semibold">Online & Context-Aware</span>
+                  </div>
                 </div>
               </div>
-              <div className="flex gap-2">
-                <button 
-                    onClick={() => setIsOpen(false)} 
-                    className="p-2 hover:bg-white/10 rounded-full text-slate-400 hover:text-white transition-colors"
+              <button 
+                onClick={() => setIsOpen(false)} 
+                className="p-1.5 rounded-xl hover:bg-slate-200/60 text-slate-400 hover:text-slate-700 transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Messages Container */}
+            <div className="flex-grow overflow-y-auto p-4 space-y-3.5 bg-slate-50/50">
+              {messages.map((msg) => (
+                <div 
+                  key={msg.id}
+                  className={`flex gap-2.5 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
                 >
-                    <Minimize2 className="w-4 h-4" />
+                  <div className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 text-xs ${
+                    msg.role === 'user' 
+                      ? 'bg-slate-200 text-slate-700' 
+                      : msg.isError 
+                        ? 'bg-red-50 text-red-600 border border-red-200' 
+                        : 'bg-primary-50 text-primary border border-primary/20'
+                  }`}>
+                    {msg.role === 'user' ? <User className="w-3.5 h-3.5" /> : msg.isError ? <AlertTriangle className="w-3.5 h-3.5" /> : <Sparkles className="w-3.5 h-3.5" />}
+                  </div>
+                  <div className={`
+                    max-w-[80%] p-3.5 rounded-2xl text-xs leading-relaxed
+                    ${msg.role === 'user' 
+                      ? 'bg-primary text-white rounded-tr-sm shadow-soft-sm' 
+                      : msg.isError
+                        ? 'bg-red-50 border border-red-200 text-red-700 rounded-tl-sm'
+                        : 'bg-white border border-slate-200/80 text-slate-700 rounded-tl-sm shadow-soft-sm'}
+                  `}>
+                    {msg.text}
+                  </div>
+                </div>
+              ))}
+              
+              {isTyping && (
+                <div className="flex gap-2.5">
+                  <div className="w-7 h-7 rounded-xl bg-primary-50 border border-primary/20 flex items-center justify-center text-primary">
+                    <Sparkles className="w-3.5 h-3.5" />
+                  </div>
+                  <div className="bg-white border border-slate-200/80 p-3 rounded-2xl rounded-tl-sm flex items-center gap-1 shadow-soft-sm">
+                    <span className="w-1.5 h-1.5 bg-primary/60 rounded-full animate-bounce" />
+                    <span className="w-1.5 h-1.5 bg-primary/60 rounded-full animate-bounce delay-100" />
+                    <span className="w-1.5 h-1.5 bg-primary/60 rounded-full animate-bounce delay-200" />
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Input Footer */}
+            <div className="p-3.5 border-t border-slate-100 bg-white">
+              <div className="relative">
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Ask about AI engineering, HCLTech..."
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-3.5 pr-10 py-2.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-primary focus:bg-white transition-all"
+                  disabled={isTyping}
+                />
+                <button 
+                  onClick={handleSend}
+                  disabled={!input.trim() || isTyping}
+                  className="absolute right-1.5 top-1/2 -translate-y-1/2 p-1.5 rounded-lg bg-primary text-white disabled:opacity-40 hover:bg-primary-600 transition-colors"
+                >
+                  <Send className="w-3.5 h-3.5" />
                 </button>
               </div>
-            </div>
-
-            {/* Messages Area */}
-            <div className="flex-grow overflow-y-auto p-4 space-y-4 custom-scrollbar bg-dark/50">
-                {messages.map((msg) => (
-                    <motion.div 
-                        key={msg.id}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
-                    >
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border ${msg.role === 'user' ? 'bg-white/10 border-white/10' : 'bg-primary/10 border-primary/20'} ${msg.isError ? 'bg-red-500/10 border-red-500/20' : ''}`}>
-                            {msg.role === 'user' ? <User className="w-4 h-4 text-slate-300" /> : msg.isError ? <AlertTriangle className="w-4 h-4 text-red-400" /> : <Sparkles className="w-4 h-4 text-primary" />}
-                        </div>
-                        <div className={`
-                            max-w-[80%] p-3 rounded-2xl text-sm leading-relaxed
-                            ${msg.role === 'user' 
-                                ? 'bg-primary text-white rounded-tr-none' 
-                                : msg.isError
-                                    ? 'bg-red-500/10 border border-red-500/20 text-red-200 rounded-tl-none'
-                                    : 'bg-surface border border-white/10 text-slate-300 rounded-tl-none'}
-                        `}>
-                            {msg.text}
-                        </div>
-                    </motion.div>
-                ))}
-                
-                {isTyping && (
-                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-3">
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-primary/10 border border-primary/20">
-                            <Sparkles className="w-4 h-4 text-primary" />
-                        </div>
-                        <div className="bg-surface border border-white/10 p-3 rounded-2xl rounded-tl-none flex items-center gap-1">
-                            <span className="w-1.5 h-1.5 bg-slate-500 rounded-full animate-bounce"></span>
-                            <span className="w-1.5 h-1.5 bg-slate-500 rounded-full animate-bounce delay-100"></span>
-                            <span className="w-1.5 h-1.5 bg-slate-500 rounded-full animate-bounce delay-200"></span>
-                        </div>
-                     </motion.div>
-                )}
-                <div ref={messagesEndRef} />
-            </div>
-
-            {/* Input Area */}
-            <div className="p-4 border-t border-white/10 bg-surface/50">
-                <div className="relative">
-                    <input
-                        type="text"
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                        placeholder="Ask about Sonu's skills..."
-                        className="w-full bg-dark/50 border border-white/10 rounded-xl pl-4 pr-12 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all"
-                        disabled={isTyping}
-                    />
-                    <button 
-                        onClick={handleSend}
-                        disabled={!input.trim() || isTyping}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-lg bg-primary text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/90 transition-colors"
-                    >
-                        <Send className="w-4 h-4" />
-                    </button>
-                </div>
-                <div className="text-center mt-2">
-                    <p className="text-[10px] text-slate-600">
-                        Powered by Gemini AI • Does not store personal data
-                    </p>
-                </div>
             </div>
 
           </motion.div>

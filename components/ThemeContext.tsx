@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect } from 'react';
 
-type Theme = 'dark';
+type Theme = 'light';
 
 interface ThemeContextType {
   theme: Theme;
@@ -10,21 +10,18 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const theme: Theme = 'dark';
+  const theme: Theme = 'light';
 
   useEffect(() => {
-    // Force dark mode
     const root = document.documentElement;
-    root.setAttribute('data-theme', 'dark');
-    root.classList.add('dark');
-    root.classList.remove('light');
-    
-    // Override any existing persistence
-    localStorage.setItem('theme', 'dark');
+    root.setAttribute('data-theme', 'light');
+    root.classList.add('light');
+    root.classList.remove('dark');
+    localStorage.setItem('theme', 'light');
   }, []);
 
   const toggleTheme = () => {
-    // No-op: Theme switching is disabled
+    // Theme is permanent light mode
   };
 
   return (

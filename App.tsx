@@ -39,7 +39,7 @@ const AppContent: React.FC = () => {
   }, [location.pathname]);
 
   return (
-    <div className="bg-dark min-h-screen text-slate-300 font-sans selection:bg-primary selection:text-white transition-colors duration-300">
+    <div className="bg-page min-h-screen text-slate-800 font-sans selection:bg-primary/20 selection:text-primary transition-colors duration-300">
       <AnimatePresence mode="wait">
         {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
       </AnimatePresence>

@@ -8,29 +8,26 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Primary Meta Tags -->
-    <title>Sonu Thomas | Software Engineer in Kerala | AI & Web Developer</title>
-    <meta name="title" content="Sonu Thomas | Software Engineer in Kerala | AI & Web Developer" />
-    <meta name="description" content="Sonu Thomas is a Software Engineer based in Kannur, Kerala, specializing in AI, web development, and automation." />
-    <meta name="keywords" content="Sonu Thomas, Software Engineer in Kerala, Web Developer in Kannur, AI Developer Kerala, Web Development, Automation" />
+    <title>Sonu Thomas | AI Software Engineer | Intelligent Systems & Web Apps</title>
+    <meta name="title" content="Sonu Thomas | AI Software Engineer | Intelligent Systems & Web Apps" />
+    <meta name="description" content="Sonu Thomas is an AI Software Engineer based in Kannur, Kerala, specializing in Artificial Intelligence, LLM solutions, full-stack systems, and intelligent automation." />
+    <meta name="keywords" content="Sonu Thomas, AI Software Engineer, Machine Learning, Full Stack Developer, Kerala, AI Engineer Kannur, Intelligent Systems" />
     <meta name="author" content="Sonu Thomas" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#020617" />
+    <meta name="theme-color" content="#FAFBFD" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.sonuthomas.me/" />
-    <meta property="og:title" content="Sonu Thomas | Software Engineer in Kerala | AI & Web Developer" />
-    <meta property="og:description" content="Sonu Thomas is a Software Engineer based in Kannur, Kerala, specializing in AI, web development, and automation." />
+    <meta property="og:title" content="Sonu Thomas | AI Software Engineer" />
+    <meta property="og:description" content="Explore AI projects, production architectures, and enterprise engineering by Sonu Thomas." />
     <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Sonu-Thomas-001/image-host@master/Sonu-Thomas-Portfolio-Website-Repo/ProfilePic.jpg" />
-    <meta property="og:image:alt" content="Sonu Thomas software engineer portfolio" />
     <meta property="og:site_name" content="Sonu Thomas Portfolio" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://www.sonuthomas.me/" />
-    <meta property="twitter:title" content="Sonu Thomas | Software Engineer in Kerala | AI & Web Developer" />
-    <meta property="twitter:description" content="Sonu Thomas is a Software Engineer based in Kannur, Kerala, specializing in AI, web development, and automation." />
-    <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/Sonu-Thomas-001/image-host@master/Sonu-Thomas-Portfolio-Website-Repo/ProfilePic.jpg" />
+    <!-- Google Fonts: Inter, Space Grotesk, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -39,7 +36,7 @@
       "@type": "Person",
       "name": "Sonu Thomas",
       "url": "https://www.sonuthomas.me/",
-      "jobTitle": "Software Engineer",
+      "jobTitle": "AI Software Engineer",
       "worksFor": {
         "@type": "Organization",
         "name": "HCLTech"
@@ -56,46 +53,76 @@
     </script>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
-        darkMode: 'class',
         theme: {
           extend: {
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
+              display: ['"Space Grotesk"', 'sans-serif'],
+              mono: ['"JetBrains Mono"', 'monospace'],
             },
             colors: {
-              // Primary/Secondary remain constant
-              primary: '#0ea5e9', // Sky 500
-              secondary: '#6366f1', // Indigo 500
-              
-              // Semantic Colors (Mapped to CSS Variables)
-              dark: 'rgb(var(--c-dark) / <alpha-value>)',
-              surface: 'rgb(var(--c-surface) / <alpha-value>)',
-              
-              // Hijacking standard colors to adapt to theme
-              white: 'rgb(var(--c-white) / <alpha-value>)', 
-              slate: {
-                300: 'rgb(var(--c-slate-300) / <alpha-value>)',
-                400: 'rgb(var(--c-slate-400) / <alpha-value>)',
-                500: '#64748b', // Keep standard
+              primary: {
+                DEFAULT: '#4F46E5',
+                50: '#EEF2FF',
+                100: '#E0E7FF',
+                200: '#C7D2FE',
+                500: '#6366F1',
+                600: '#4F46E5',
+                700: '#4338CA',
               },
-              
-              // New utility for text that must stay white (e.g. on blue buttons)
-              cleanWhite: '#ffffff',
+              secondary: {
+                DEFAULT: '#7C3AED',
+                50: '#F5F3FF',
+                500: '#8B5CF6',
+                600: '#7C3AED',
+              },
+              accent: '#0EA5E9',
+              page: '#FAFBFD',
+              surface: '#FFFFFF',
+              surfaceAlt: '#F8FAFC',
+              dark: '#FAFBFD',
+              slate: {
+                50: '#F8FAFC',
+                100: '#F1F5F9',
+                200: '#E2E8F0',
+                300: '#CBD5E1',
+                400: '#94A3B8',
+                500: '#64748B',
+                600: '#475569',
+                700: '#334155',
+                800: '#1E293B',
+                900: '#0F172A',
+                950: '#020617',
+              },
+              cleanWhite: '#FFFFFF',
+              cleanDark: '#0F172A',
+            },
+            boxShadow: {
+              'soft-sm': '0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02)',
+              'soft-md': '0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.03)',
+              'soft-lg': '0 12px 32px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04)',
+              'glow-primary': '0 0 25px -5px rgba(99, 102, 241, 0.25)',
             },
             animation: {
-              'blob': 'blob 7s infinite',
+              'blob': 'blob 10s infinite',
+              'pulse-subtle': 'pulseSubtle 3s ease-in-out infinite',
+              'shimmer': 'shimmer 2.5s infinite',
             },
             keyframes: {
               blob: {
                 '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '33%': { transform: 'translate(25px, -35px) scale(1.08)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.94)' },
                 '100%': { transform: 'translate(0px, 0px) scale(1)' },
+              },
+              pulseSubtle: {
+                '0%, 100%': { opacity: 1, transform: 'scale(1)' },
+                '50%': { opacity: 0.85, transform: 'scale(1.02)' },
+              },
+              shimmer: {
+                '100%': { transform: 'translateX(100%)' }
               }
             }
           },
@@ -103,69 +130,70 @@
       }
     </script>
     <style>
-      /* CSS Variables for Theming */
       :root {
-        /* Default (Dark Mode) Values - RGB format for Tailwind opacity support */
-        --c-dark: 2 6 23;        /* Slate 950 */
-        --c-surface: 15 23 42;   /* Slate 900 */
-        --c-white: 255 255 255;  /* White */
-        --c-slate-300: 203 213 225; /* Slate 300 */
-        --c-slate-400: 148 163 184; /* Slate 400 */
+        --bg-page: #FAFBFD;
+        --bg-surface: #FFFFFF;
+        --color-primary: #4F46E5;
+        --color-secondary: #7C3AED;
+        --border-color: #E2E8F0;
       }
 
-      /* Light Mode Overrides */
-      [data-theme="light"] {
-        --c-dark: 241 245 249;   /* Slate 100 (Main BG - darker than white for contrast) */
-        --c-surface: 255 255 255; /* White (Card BG) */
-        --c-white: 15 23 42;     /* Slate 900 (Headings/Borders become dark) */
-        --c-slate-300: 51 65 85; /* Slate 700 (Body text becomes dark gray) */
-        --c-slate-400: 71 85 105; /* Slate 600 (Muted text becomes medium-dark gray) */
+      html {
+        background-color: #FAFBFD;
+        color: #0F172A;
       }
 
-      /* Mask for gradients */
-      .mask-linear-gradient {
-        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      body {
+        background-color: #FAFBFD;
+        color: #334155;
       }
 
-      /* Scanlines Effect for Profile Photo */
-      .bg-scanlines {
-        background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
-        background-size: 100% 4px;
-      }
-
-      /* Custom Scrollbar */
+      /* Custom Light Theme Scrollbar */
       ::-webkit-scrollbar {
-        width: 10px;
+        width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: rgb(var(--c-dark));
+        background: #F1F5F9;
       }
       ::-webkit-scrollbar-thumb {
-        background: #1e293b;
-        border-radius: 5px;
+        background: #CBD5E1;
+        border-radius: 9999px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #334155;
+        background: #94A3B8;
+      }
+
+      /* Gradient text utility */
+      .gradient-text {
+        background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #0EA5E9 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Subtle grid background for modern AI tech feel */
+      .bg-ai-grid {
+        background-size: 32px 32px;
+        background-image: 
+          linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+      }
+
+      /* Dot grid */
+      .bg-ai-dots {
+        background-image: radial-gradient(rgba(99, 102, 241, 0.12) 1px, transparent 1px);
+        background-size: 24px 24px;
+      }
+
+      /* Glass card utility */
+      .glass-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(226, 232, 240, 0.8);
       }
     </style>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react-router-dom": "https://esm.sh/react-router-dom@6.22.3",
-    "framer-motion": "https://esm.sh/framer-motion@^12.23.26",
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
-    "vite": "https://esm.sh/vite@^7.3.0",
-    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
-  }
-}
-</script>
-</head>
-  <body class="bg-dark text-slate-300 antialiased selection:bg-primary selection:text-white transition-colors duration-300 overflow-x-hidden">
+  </head>
+  <body class="bg-page text-slate-700 antialiased selection:bg-primary/20 selection:text-primary font-sans overflow-x-hidden">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

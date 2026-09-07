@@ -1,34 +1,41 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Zap } from 'lucide-react';
+import { Sparkles, BrainCircuit, Cpu, Database, Network } from 'lucide-react';
 
 const MAIN_SKILLS = [
-  "Artificial Intelligence (AI)",
-  "Python Programming",
-  "AI Application Development (LLMs & Agents)",
-  "Software Engineering & System Design",
-  "Web & API Development"
+  "Artificial Intelligence & Agents",
+  "LLM Fine-Tuning & Prompt Engineering",
+  "Python & PyTorch",
+  "Enterprise System Architecture",
+  "Full-Stack Web Development",
+  "Data Pipelines & Vector DBs"
 ];
 
 const MINI_ITEMS = [
-  "Open for Collaboration",
-  "System Architecture",
-  "AI Integration",
-  "Full Stack Engineering",
-  "React & Next.js",
-  "Production Ready"
+  "Production Scalability",
+  "Enterprise Change Management",
+  "Applied AI Engineering",
+  "React & TypeScript",
+  "Clean Code & Reliability",
+  "IIT Guwahati Alumni"
 ];
 
-// Reusable Glitch-Free Loop Component
-const InfiniteLoop = ({ children, duration = 30, direction = 'left' }: { children?: React.ReactNode, duration?: number, direction?: 'left' | 'right' }) => {
+const InfiniteLoop = ({ 
+  children, 
+  duration = 35, 
+  direction = 'left' 
+}: { 
+  children?: React.ReactNode, 
+  duration?: number, 
+  direction?: 'left' | 'right' 
+}) => {
   return (
-    <div className="flex overflow-hidden w-full select-none mask-linear-gradient">
+    <div className="flex overflow-hidden w-full select-none">
       <motion.div
         initial={{ x: direction === 'left' ? "0%" : "-100%" }}
         animate={{ x: direction === 'left' ? "-100%" : "0%" }}
         transition={{ duration: duration, repeat: Infinity, ease: "linear" }}
-        className="flex flex-shrink-0 min-w-full"
-        style={{ willChange: "transform" }} // Hardware acceleration hint
+        className="flex flex-shrink-0 min-w-full items-center"
       >
         {children}
       </motion.div>
@@ -36,8 +43,7 @@ const InfiniteLoop = ({ children, duration = 30, direction = 'left' }: { childre
         initial={{ x: direction === 'left' ? "0%" : "-100%" }}
         animate={{ x: direction === 'left' ? "-100%" : "0%" }}
         transition={{ duration: duration, repeat: Infinity, ease: "linear" }}
-        className="flex flex-shrink-0 min-w-full"
-        style={{ willChange: "transform" }}
+        className="flex flex-shrink-0 min-w-full items-center"
       >
         {children}
       </motion.div>
@@ -45,7 +51,6 @@ const InfiniteLoop = ({ children, duration = 30, direction = 'left' }: { childre
   );
 };
 
-// 1. Main Hero Marquee (Big, Outline Style)
 export const TechMarquee: React.FC = () => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -53,47 +58,43 @@ export const TechMarquee: React.FC = () => {
     offset: ["start end", "end start"]
   });
 
-  const cardsY = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
 
   return (
-    <div ref={containerRef} className="relative border-y border-white/5 bg-dark overflow-hidden py-10 z-20">
-       {/* Background Noise */}
-       <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
-
-       <motion.div style={{ y: cardsY }}>
-           <InfiniteLoop duration={45}>
-              {MAIN_SKILLS.map((skill, index) => (
-                 <div key={index} className="flex items-center gap-12 md:gap-24 px-6 md:px-12 group">
-                    <span className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.15)] group-hover:text-white group-hover:[-webkit-text-stroke:0px] group-hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all duration-500 cursor-default whitespace-nowrap">
-                      {skill}
-                    </span>
-                    <div className="relative">
-                        <div className="w-2 h-2 md:w-3 md:h-3 bg-primary/30 rounded-full group-hover:bg-primary group-hover:scale-150 transition-all duration-500 shadow-[0_0_10px_rgba(14,165,233,0.5)]"></div>
-                        <div className="absolute inset-0 bg-primary rounded-full animate-ping opacity-0 group-hover:opacity-100"></div>
-                    </div>
-                 </div>
-               ))}
-           </InfiniteLoop>
-       </motion.div>
+    <div 
+      ref={containerRef} 
+      className="relative border-y border-slate-200/80 bg-white/60 backdrop-blur-sm overflow-hidden py-8 z-20"
+    >
+      <motion.div style={{ y: cardsY }}>
+        <InfiniteLoop duration={40}>
+          {MAIN_SKILLS.map((skill, index) => (
+            <div key={index} className="flex items-center gap-8 md:gap-14 px-6 md:px-10 group cursor-default">
+              <span className="font-display text-2xl md:text-4xl font-bold tracking-tight text-slate-400 group-hover:text-primary transition-colors duration-300 whitespace-nowrap">
+                {skill}
+              </span>
+              <div className="w-2 h-2 rounded-full bg-primary/40 group-hover:bg-primary group-hover:scale-125 transition-all" />
+            </div>
+          ))}
+        </InfiniteLoop>
+      </motion.div>
     </div>
   );
 };
 
-// 2. Mini Section Marquee (Small, Divider Style)
 export const SectionMarquee: React.FC<{ className?: string }> = ({ className = "" }) => {
   return (
-    <div className={`relative bg-primary/5 border-y border-primary/10 overflow-hidden py-3 ${className}`}>
-        <InfiniteLoop duration={25} direction="right">
-          {MINI_ITEMS.map((item, index) => (
-             <div key={index} className="flex items-center gap-8 px-4">
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary/70 whitespace-nowrap flex items-center gap-2">
-                  <Zap className="w-3 h-3 text-primary/40" />
-                  {item}
-                </span>
-                <div className="w-1 h-1 bg-primary/20 rounded-full"></div>
-             </div>
-           ))}
-       </InfiniteLoop>
+    <div className={`relative bg-primary-50/60 border-y border-primary/10 overflow-hidden py-3 ${className}`}>
+      <InfiniteLoop duration={30} direction="right">
+        {MINI_ITEMS.map((item, index) => (
+          <div key={index} className="flex items-center gap-6 px-4">
+            <span className="text-xs font-mono font-semibold tracking-wider uppercase text-primary/80 whitespace-nowrap flex items-center gap-2">
+              <Sparkles className="w-3 h-3 text-primary" />
+              {item}
+            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-primary/30" />
+          </div>
+        ))}
+      </InfiniteLoop>
     </div>
   );
 };

@@ -1,38 +1,29 @@
-
 import React from 'react';
 import { Hero } from '../components/Hero';
 import { TechMarquee } from '../components/TechMarquee';
-import { ValueProp } from '../components/ValueProp';
-import { Stats } from '../components/Stats';
 import { About } from '../components/About';
-import { MissionVision } from '../components/MissionVision';
 import { Experience } from '../components/Experience';
 import { Education } from '../components/Education';
-import { ProblemSolving } from '../components/ProblemSolving';
 import { Skills } from '../components/Skills';
-import { Availability } from '../components/Availability';
+import { Projects } from '../components/Projects';
 import { Contact } from '../components/Contact';
 import { SEO } from '../components/SEO';
 
 export const Home: React.FC = () => {
   return (
-    <div>
+    <div className="bg-page">
       <SEO 
-        title="Sonu Thomas | Software Engineer in Kerala | AI & Web Developer"
-        description="Sonu Thomas is a Software Engineer based in Kannur, Kerala, specializing in AI, web development, and automation. Explore projects, experience, and insights."
+        title="Sonu Thomas | AI Software Engineer | Intelligent Systems & Web Apps"
+        description="Sonu Thomas is an AI Software Engineer at HCLTech specializing in AI agents, enterprise systems, full-stack web engineering, and machine learning."
         url="/"
       />
       <Hero />
       <TechMarquee />
-      <ValueProp />
-      <Stats />
       <About />
-      <MissionVision />
       <Experience />
       <Education />
-      <ProblemSolving />
       <Skills />
-      <Availability />
+      <Projects isHomepage={true} />
       <Contact />
     </div>
   );

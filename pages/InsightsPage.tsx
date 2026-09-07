@@ -7,29 +7,38 @@ import { Newsletter } from '../components/Newsletter';
 import { Talks } from '../components/Talks';
 import { SEO } from '../components/SEO';
 import { Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Sparkles } from 'lucide-react';
 
 export const InsightsPage: React.FC = () => {
   return (
-    <div className="pt-24 min-h-screen bg-dark">
+    <div className="pt-28 min-h-screen bg-page">
       <SEO 
-        title="AI & Tech Insights | Sonu Thomas"
-        description="Insights, research, and technical writing on AI, Machine Learning, and Web Engineering from Sonu Thomas."
+        title="AI Engineering Insights, Research & Articles | Sonu Thomas"
+        description="Technical writing, AI research, and architecture blueprints by Sonu Thomas, AI Software Engineer at HCLTech."
         url="/insights"
       />
-       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <Link to="/" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8 font-medium">
-          <ArrowLeft className="w-4 h-4" /> Back to Home
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+        <Link 
+          to="/" 
+          className="inline-flex items-center gap-2 text-primary hover:text-primary-600 font-semibold text-sm mb-6 group"
+        >
+          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
+          <span>Back to Home</span>
         </Link>
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-          Sonu Thomas Insights, Research <br/>
-          <span className="text-secondary">& Future Vision</span>
-        </h1>
-        <h2 className="text-2xl text-slate-300 font-semibold mb-4">AI & Data Science Enthusiast</h2>
-        <p className="text-xl text-slate-400 max-w-2xl">
-          Exploring the intersection of software engineering and artificial intelligence. 
-          Here I share my learning journey, experimental concepts, and technical writing as an engineer at HCLTech.
-        </p>
+        <div className="max-w-3xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 border border-primary/20 text-primary text-xs font-mono font-semibold uppercase tracking-wider mb-4">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Research & Exploration</span>
+          </div>
+          <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-tight">
+            AI Engineering Insights & <br/>
+            <span className="gradient-text">Future Systems</span>
+          </h1>
+          <p className="text-slate-600 text-lg mt-4 leading-relaxed">
+            Technical writing, research syntheses, and experiments at the intersection of enterprise software, 
+            machine learning, and autonomous agentic workflows.
+          </p>
+        </div>
       </div>
 
       <Blog />

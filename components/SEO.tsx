@@ -22,7 +22,7 @@ export const SEO: React.FC<SEOProps> = ({ title, description, keywords, url }) =
       PERSONAL_DETAILS.social.instagram,
       PERSONAL_DETAILS.social.website
     ],
-    "jobTitle": "Software Engineer",
+    "jobTitle": "AI Software Engineer",
     "worksFor": {
       "@type": "Organization",
       "name": "HCLTech"
@@ -44,6 +44,7 @@ export const SEO: React.FC<SEOProps> = ({ title, description, keywords, url }) =
       <title>{title}</title>
       <meta name="title" content={title} />
       <meta name="description" content={description} />
+      <meta name="theme-color" content="#FAFBFD" />
       {keywords && <meta name="keywords" content={keywords} />}
       
       {/* Open Graph / Facebook */}

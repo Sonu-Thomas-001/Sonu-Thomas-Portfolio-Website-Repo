@@ -1,14 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X, Check } from 'lucide-react';
 
 interface SuccessModalProps {
   isOpen: boolean;
   onClose: () => void;
   name?: string;
+  userName?: string;
 }
 
-export const SuccessModal: React.FC<SuccessModalProps> = ({ isOpen, onClose, name }) => {
+export const SuccessModal: React.FC<SuccessModalProps> = ({ isOpen, onClose, name, userName }) => {
+  const displayName = userName || name;
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -16,11 +18,9 @@ export const SuccessModal: React.FC<SuccessModalProps> = ({ isOpen, onClose, nam
       if (e.key === 'Escape') onClose();
     };
 
-    // Prevent background scrolling when open
     if (isOpen) {
       document.addEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'hidden';
-      // Trap focus basic implementation (focus the modal first element if we wanted, but autoFocus on a ref is easier)
     } else {
       document.body.style.overflow = 'unset';
     }
@@ -32,9 +32,9 @@ export const SuccessModal: React.FC<SuccessModalProps> = ({ isOpen, onClose, nam
   }, [isOpen, onClose]);
 
   useEffect(() => {
-     if (isOpen && modalRef.current) {
-         modalRef.current.focus();
-     }
+    if (isOpen && modalRef.current) {
+      modalRef.current.focus();
+    }
   }, [isOpen]);
 
   const handleBackdropClick = (e: React.MouseEvent) => {
@@ -47,7 +47,7 @@ export const SuccessModal: React.FC<SuccessModalProps> = ({ isOpen, onClose, nam
     <AnimatePresence>
       {isOpen && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-dark/60 backdrop-blur-md"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm"
           onClick={handleBackdropClick}
           aria-modal="true"
           role="dialog"
@@ -56,63 +56,47 @@ export const SuccessModal: React.FC<SuccessModalProps> = ({ isOpen, onClose, nam
           <motion.div
             ref={modalRef}
             tabIndex={-1}
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.4, type: "spring", stiffness: 300, damping: 25 }}
-            className="w-full max-w-sm sm:max-w-md bg-surface/90 backdrop-blur-2xl border border-white/10 p-8 pt-10 rounded-3xl shadow-2xl relative shadow-primary/20 outline-none"
+            exit={{ opacity: 0, scale: 0.95, y: 16 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full max-w-sm sm:max-w-md bg-white border border-slate-200/90 p-8 pt-10 rounded-3xl shadow-soft-lg relative outline-none"
           >
-            {/* Border glow */}
-            <div className="absolute inset-0 rounded-3xl shadow-[inset_0_0_50px_rgba(14,165,233,0.05)] pointer-events-none" />
-
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 p-2 rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+              className="absolute top-4 right-4 p-2 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none"
               aria-label="Close dialog"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div className="flex flex-col items-center text-center">
-              {/* Success Icon Container */}
+              {/* Success Icon */}
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
-                className="w-20 h-20 bg-emerald-500/10 border border-emerald-500/20 rounded-full flex items-center justify-center mb-6 relative shadow-[0_0_30px_rgba(16,185,129,0.2)]"
+                transition={{ type: "spring", stiffness: 220, damping: 16, delay: 0.1 }}
+                className="w-16 h-16 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-center justify-center mb-5 text-emerald-600 shadow-soft-sm"
               >
-                {/* Ping animation behind */}
-                <div className="absolute inset-0 rounded-full animate-ping bg-emerald-500/20 animation-delay-2000" style={{ animationDuration: '3s' }} />
-                
-                {/* Animated SVG Check */}
-                <svg className="w-10 h-10 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <motion.polyline 
-                    initial={{ pathLength: 0 }} 
-                    animate={{ pathLength: 1 }} 
-                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }} 
-                    points="20 6 9 17 4 12" 
-                  />
-                </svg>
+                <Check className="w-8 h-8" />
               </motion.div>
 
-              <h2 id="success-modal-title" className="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight">
-                Message Sent
+              <h2 id="success-modal-title" className="font-display text-2xl font-bold text-slate-900 mb-2">
+                Transmission Received
               </h2>
               
-              <p className="text-slate-400 mb-8 leading-relaxed text-sm sm:text-base">
-                {name ? `Thanks, ${name.split(' ')[0]}! ` : "Thanks for reaching out. "}
-                I've received your message and will get back to you shortly.
+              <p className="text-slate-600 mb-8 text-sm leading-relaxed">
+                {displayName ? `Thank you, ${displayName.split(' ')[0]}! ` : "Thank you for reaching out. "}
+                Your message has been safely delivered. I will respond to your inquiry shortly.
               </p>
 
-              <div className="flex flex-col w-full gap-3">
-                <button
-                  onClick={onClose}
-                  className="w-full py-3.5 px-4 bg-primary hover:bg-primary/90 text-white rounded-xl font-semibold transition-all shadow-lg hover:shadow-primary/25 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark hover:-translate-y-0.5 active:translate-y-0"
-                >
-                  Continue Browsing
-                </button>
-              </div>
+              <button
+                onClick={onClose}
+                className="w-full py-3.5 px-4 bg-primary hover:bg-primary-600 text-white rounded-xl font-semibold transition-all shadow-soft-md hover:shadow-glow-primary active:scale-[0.99]"
+              >
+                Return to Site
+              </button>
             </div>
           </motion.div>
         </div>

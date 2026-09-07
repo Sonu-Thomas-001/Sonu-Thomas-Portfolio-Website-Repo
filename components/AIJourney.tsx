@@ -59,14 +59,7 @@ const ROADMAP = [
 
 export const AIJourney: React.FC = () => {
   return (
-    <section id="ai-journey" className="py-24 bg-dark relative overflow-hidden">
-      {/* Circuit Board Background Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none"></div>
-      
-      {/* Glowing Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-[100px] pointer-events-none"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-[100px] pointer-events-none"></div>
-
+    <section id="ai-journey" className="py-24 bg-page relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <motion.div
@@ -75,19 +68,19 @@ export const AIJourney: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium mb-4">
-            <BrainCircuit className="w-4 h-4" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 border border-primary/20 text-primary text-xs font-mono font-semibold uppercase tracking-wider mb-4">
+            <Sparkles className="w-3.5 h-3.5" />
             <span>Future Roadmap</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">My AI Journey</h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-            A strategic progression from software engineering roots to becoming an architect of intelligent, autonomous systems.
+          <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-slate-900 mb-4 tracking-tight">AI Architecture Trajectory</h2>
+          <p className="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg">
+            A deliberate progression from software engineering roots to designing intelligent, autonomous production systems.
           </p>
         </motion.div>
 
         <div className="relative">
           {/* Vertical Connecting Line (Desktop) */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/20 via-purple-500/20 to-pink-500/20 -translate-x-1/2 md:translate-x-0 hidden md:block"></div>
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 -translate-x-1/2 md:translate-x-0 hidden md:block"></div>
 
           <div className="space-y-12">
             {ROADMAP.map((item, idx) => {
@@ -104,8 +97,8 @@ export const AIJourney: React.FC = () => {
                   }`}
                 >
                   {/* Timeline Node (Desktop Center) */}
-                  <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-12 bg-dark border-4 border-dark rounded-full items-center justify-center z-20">
-                    <div className={`w-4 h-4 rounded-full ${isEven ? 'bg-slate-700' : 'bg-slate-700'} ring-4 ring-white/5`}></div>
+                  <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-10 h-10 bg-white border-2 border-slate-300 rounded-full items-center justify-center z-20 shadow-soft-sm">
+                    <div className="w-3 h-3 rounded-full bg-primary"></div>
                   </div>
 
                   {/* Spacer */}
@@ -113,7 +106,7 @@ export const AIJourney: React.FC = () => {
 
                   {/* Content Card */}
                   <div className="w-full md:w-1/2 relative">
-                    <div className="group bg-surface/50 backdrop-blur-sm border border-white/5 rounded-2xl p-6 md:p-8 hover:bg-surface hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300">
+                    <div className="group bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 hover:border-primary/40 shadow-soft-md hover:shadow-soft-lg transition-all duration-300">
                       
                       {/* Header */}
                       <div className="flex justify-between items-start mb-6">
@@ -123,24 +116,24 @@ export const AIJourney: React.FC = () => {
                             </div>
                             <div>
                                 <span className="text-xs font-bold tracking-wider text-slate-500 uppercase block mb-1">{item.phase}</span>
-                                <h3 className="text-xl font-bold text-white">{item.title}</h3>
+                                <h3 className="font-display text-xl font-bold text-slate-900">{item.title}</h3>
                             </div>
                         </div>
-                        <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/5 text-xs font-medium ${item.statusColor}`}>
+                        <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-xs font-semibold ${item.statusColor}`}>
                             <item.statusIcon className="w-3.5 h-3.5" />
                             {item.status}
                         </div>
                       </div>
 
                       {/* Description */}
-                      <p className="text-slate-400 leading-relaxed mb-6">
+                      <p className="text-slate-600 text-sm leading-relaxed mb-6">
                         {item.desc}
                       </p>
 
                       {/* Skills/Items Grid */}
                       <div className="grid grid-cols-2 gap-3">
                         {item.items.map((skill, sIdx) => (
-                            <div key={sIdx} className="flex items-center gap-2 text-sm text-slate-300">
+                            <div key={sIdx} className="flex items-center gap-2 text-xs font-mono text-slate-700">
                                 <div className={`w-1.5 h-1.5 rounded-full ${item.color.replace('text-', 'bg-')}`}></div>
                                 {skill}
                             </div>
@@ -148,7 +141,7 @@ export const AIJourney: React.FC = () => {
                       </div>
 
                       {/* Decorative Period Badge */}
-                      <div className="absolute -top-3 right-8 px-3 py-1 bg-dark border border-white/10 rounded-full text-xs font-mono text-slate-400 shadow-sm">
+                      <div className="absolute -top-3 right-8 px-3 py-0.5 bg-white border border-slate-200/90 rounded-full text-xs font-mono text-slate-600 shadow-soft-sm">
                         {item.period}
                       </div>
 
