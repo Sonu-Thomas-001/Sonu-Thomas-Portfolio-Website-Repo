@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowUpRight, Loader2, Send } from 'lucide-react';
+import { ArrowUpRight, Loader2, Send, Sparkles } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
 import { SuccessModal } from './SuccessModal';
 
@@ -11,8 +11,8 @@ export const Contact: React.FC = () => {
     offset: ["start end", "end start"],
   });
 
-  const ambientOrbY = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
-  const copyY = useTransform(scrollYProgress, [0, 1], ["3%", "-3%"]);
+  const ambientOrbY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
+  const copyY = useTransform(scrollYProgress, [0, 1], ["2%", "-2%"]);
 
   const [formState, setFormState] = useState({
     name: '',
@@ -61,92 +61,105 @@ export const Contact: React.FC = () => {
     <section
       ref={containerRef}
       id="contact"
-      className="py-24 sm:py-36 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-slate-200/80 relative overflow-hidden"
+      className="py-28 sm:py-36 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-[#E8E0D8] relative overflow-hidden"
     >
-      {/* Subtle Floating Ambient Light Layer */}
+      {/* Subtle Floating Ambient Warm Copper Layer */}
       <motion.div
         style={{ y: ambientOrbY }}
-        className="absolute -bottom-20 -right-20 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none -z-10"
+        className="absolute -bottom-20 -right-20 w-[450px] h-[450px] bg-copper/5 rounded-full blur-[120px] pointer-events-none -z-10"
       />
 
       <div className="grid lg:grid-cols-12 gap-16 lg:gap-20 items-start relative z-10">
         
-        {/* Left Column (5 cols): Large Personal Warm Headline & Details with Parallax */}
+        {/* Left Column (5 cols): Editorial Invitation */}
         <motion.div style={{ y: copyY }} className="lg:col-span-5 space-y-8">
           <div>
-            <span className="font-mono text-xs text-primary font-semibold tracking-widest uppercase block mb-1">
-              06 // Get in Touch
+            <span className="font-mono text-xs text-copper font-semibold tracking-widest uppercase block mb-1">
+              06 // The Open Door
             </span>
-            <h2 className="font-display font-semibold text-4xl sm:text-6xl text-slate-900 tracking-tight leading-[1.08]">
-              Let's build something together.
+            <h2 className="font-display font-bold text-4xl sm:text-6xl text-ink tracking-tight leading-[1.06]">
+              Let's create something remarkable.
             </h2>
           </div>
 
-          <p className="text-base sm:text-lg text-slate-600 font-light leading-relaxed">
-            Whether you have a specific AI product in mind, an enterprise engineering initiative, or simply want to connect — my inbox is always open.
+          <p className="text-base sm:text-lg text-ink-secondary font-light leading-relaxed">
+            Whether you are building mission-critical AI systems, planning an enterprise modernization, or exploring collaborative research — my channel is always open.
           </p>
 
+          {/* Availability Card */}
+          <div className="p-5 rounded-2xl bg-[#FEFCF9] border border-[#E8E0D8] shadow-soft-sm space-y-2.5">
+            <div className="flex items-center gap-2 text-xs font-mono text-copper font-semibold uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Currently Open For:</span>
+            </div>
+            <div className="flex flex-wrap gap-2 text-xs font-mono">
+              <span className="px-3 py-1 rounded-full bg-[#F5F0EB] text-ink border border-[#E8E0D8]">AI Systems Consulting</span>
+              <span className="px-3 py-1 rounded-full bg-[#F5F0EB] text-ink border border-[#E8E0D8]">Production LLMs</span>
+              <span className="px-3 py-1 rounded-full bg-[#F5F0EB] text-ink border border-[#E8E0D8]">Full-Stack Platforms</span>
+            </div>
+          </div>
+
           {/* Clean Text-Based Contact Details */}
-          <div className="space-y-4 pt-4 border-t border-slate-200">
+          <div className="space-y-4 pt-4 border-t border-[#E8E0D8]">
             <div>
-              <span className="text-xs font-mono uppercase tracking-wider text-slate-400 block">Direct Email</span>
+              <span className="text-xs font-mono uppercase tracking-wider text-[#78716C] block">Direct Email</span>
               <a
                 href={`mailto:${PERSONAL_DETAILS.email}`}
-                className="font-display text-lg sm:text-xl text-slate-900 font-medium hover:text-primary transition-colors underline decoration-slate-300 underline-offset-4 hover:decoration-primary"
+                className="font-display text-lg sm:text-xl text-ink font-medium hover:text-copper transition-colors underline decoration-[#D8CEC4] underline-offset-4 hover:decoration-copper"
               >
                 {PERSONAL_DETAILS.email}
               </a>
             </div>
 
             <div>
-              <span className="text-xs font-mono uppercase tracking-wider text-slate-400 block">Phone</span>
+              <span className="text-xs font-mono uppercase tracking-wider text-[#78716C] block">Phone</span>
               <a
                 href={`tel:${PERSONAL_DETAILS.phone}`}
-                className="font-display text-base sm:text-lg text-slate-800 font-medium hover:text-primary transition-colors"
+                className="font-display text-base sm:text-lg text-ink font-medium hover:text-copper transition-colors"
               >
                 {PERSONAL_DETAILS.phone}
               </a>
             </div>
 
             <div>
-              <span className="text-xs font-mono uppercase tracking-wider text-slate-400 block">Location</span>
-              <span className="text-base text-slate-700 font-medium">
+              <span className="text-xs font-mono uppercase tracking-wider text-[#78716C] block">Base</span>
+              <span className="text-base text-ink font-medium">
                 {PERSONAL_DETAILS.location}
               </span>
             </div>
           </div>
 
-          {/* Social Links Row with Hover Spring */}
+          {/* Social Links Row */}
           <div className="flex items-center gap-6 pt-2">
             <motion.a
               whileHover={{ y: -2 }}
               href={PERSONAL_DETAILS.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-mono uppercase tracking-wider text-slate-500 hover:text-primary flex items-center gap-1 transition-colors"
+              className="text-xs font-mono uppercase tracking-wider text-ink-secondary hover:text-copper flex items-center gap-1 transition-colors"
             >
               <span>LinkedIn</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-copper" />
             </motion.a>
             <motion.a
               whileHover={{ y: -2 }}
               href={PERSONAL_DETAILS.social.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-mono uppercase tracking-wider text-slate-500 hover:text-slate-900 flex items-center gap-1 transition-colors"
+              className="text-xs font-mono uppercase tracking-wider text-ink-secondary hover:text-copper flex items-center gap-1 transition-colors"
             >
               <span>GitHub</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-copper" />
             </motion.a>
             <motion.a
               whileHover={{ y: -2 }}
               href={PERSONAL_DETAILS.social.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-mono uppercase tracking-wider text-slate-500 hover:text-emerald-600 flex items-center gap-1 transition-colors"
+              className="text-xs font-mono uppercase tracking-wider text-ink-secondary hover:text-emerald-600 flex items-center gap-1 transition-colors"
             >
               <span>WhatsApp</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-emerald-600" />
             </motion.a>
           </div>
         </motion.div>
@@ -161,11 +174,11 @@ export const Contact: React.FC = () => {
         >
           <form
             onSubmit={handleSubmit}
-            className="bg-white p-8 sm:p-12 rounded-3xl border border-slate-200/90 shadow-soft-md hover:shadow-soft-lg transition-shadow duration-300 space-y-6"
+            className="bg-[#FEFCF9] p-8 sm:p-12 rounded-3xl border border-[#E8E0D8] shadow-soft-md hover:shadow-soft-lg transition-shadow duration-300 space-y-6"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label htmlFor="name" className="text-xs font-mono uppercase tracking-wider text-slate-500 font-medium">
+                <label htmlFor="name" className="text-xs font-mono uppercase tracking-wider text-[#78716C] font-medium">
                   Your Name *
                 </label>
                 <input
@@ -176,12 +189,12 @@ export const Contact: React.FC = () => {
                   value={formState.name}
                   onChange={handleChange}
                   placeholder="Jane Doe"
-                  className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 focus:bg-white transition-all text-sm shadow-inner"
+                  className="w-full px-4 py-3.5 rounded-xl bg-[#F5F0EB] border border-[#E8E0D8] text-ink placeholder:text-[#A8A19B] focus:outline-none focus:border-copper focus:bg-[#FEFCF9] transition-all text-sm"
                 />
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="email" className="text-xs font-mono uppercase tracking-wider text-slate-500 font-medium">
+                <label htmlFor="email" className="text-xs font-mono uppercase tracking-wider text-[#78716C] font-medium">
                   Your Email *
                 </label>
                 <input
@@ -192,13 +205,13 @@ export const Contact: React.FC = () => {
                   value={formState.email}
                   onChange={handleChange}
                   placeholder="jane@example.com"
-                  className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 focus:bg-white transition-all text-sm shadow-inner"
+                  className="w-full px-4 py-3.5 rounded-xl bg-[#F5F0EB] border border-[#E8E0D8] text-ink placeholder:text-[#A8A19B] focus:outline-none focus:border-copper focus:bg-[#FEFCF9] transition-all text-sm"
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="phone" className="text-xs font-mono uppercase tracking-wider text-slate-500 font-medium">
+              <label htmlFor="phone" className="text-xs font-mono uppercase tracking-wider text-[#78716C] font-medium">
                 Phone Number (Optional)
               </label>
               <input
@@ -208,12 +221,12 @@ export const Contact: React.FC = () => {
                 value={formState.phone}
                 onChange={handleChange}
                 placeholder="+91 00000 00000"
-                className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 focus:bg-white transition-all text-sm shadow-inner"
+                className="w-full px-4 py-3.5 rounded-xl bg-[#F5F0EB] border border-[#E8E0D8] text-ink placeholder:text-[#A8A19B] focus:outline-none focus:border-copper focus:bg-[#FEFCF9] transition-all text-sm"
               />
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="message" className="text-xs font-mono uppercase tracking-wider text-slate-500 font-medium">
+              <label htmlFor="message" className="text-xs font-mono uppercase tracking-wider text-[#78716C] font-medium">
                 Message *
               </label>
               <textarea
@@ -223,8 +236,8 @@ export const Contact: React.FC = () => {
                 rows={5}
                 value={formState.message}
                 onChange={handleChange}
-                placeholder="Tell me about your project, idea, or how we can collaborate..."
-                className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 focus:bg-white transition-all text-sm resize-none shadow-inner"
+                placeholder="Tell me about your initiative, architecture idea, or how we can collaborate..."
+                className="w-full px-4 py-3.5 rounded-xl bg-[#F5F0EB] border border-[#E8E0D8] text-ink placeholder:text-[#A8A19B] focus:outline-none focus:border-copper focus:bg-[#FEFCF9] transition-all text-sm resize-none"
               />
             </div>
 
@@ -233,12 +246,12 @@ export const Contact: React.FC = () => {
               whileTap={{ scale: 0.99 }}
               type="submit"
               disabled={status === 'submitting'}
-              className="w-full py-4 rounded-full bg-slate-900 text-white font-medium text-sm hover:bg-primary transition-all duration-300 shadow-soft-sm hover:shadow-glow-primary flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+              className="w-full py-4 rounded-full bg-[#1A1614] text-[#EDE5DC] font-semibold text-sm hover:bg-copper hover:text-white transition-all duration-300 shadow-soft-sm hover:shadow-glow-copper flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
             >
               {status === 'submitting' ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin" />
-                  <span>Sending Message...</span>
+                  <span>Transmitting Message...</span>
                 </>
               ) : (
                 <>

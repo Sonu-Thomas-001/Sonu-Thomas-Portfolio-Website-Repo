@@ -1,13 +1,13 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
-import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail, Sparkles, Terminal } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail, Sparkles } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
 
 const STATS = [
-  { value: "03+", label: "Years Experience", sublabel: "Enterprise & Freelance" },
-  { value: "15+", label: "Systems Built", sublabel: "LLM, Full-Stack & ML" },
-  { value: "HCLTech", label: "Current Focus", sublabel: "Software Engineering" },
-  { value: "IIT-G", label: "Academic Roots", sublabel: "Data Science & AI" },
+  { value: "03+", label: "Years Experience", sublabel: "Enterprise AI & Full-Stack" },
+  { value: "15+", label: "Systems Engineered", sublabel: "LLMs, Pipelines & Platforms" },
+  { value: "HCLTech", label: "Current Focus", sublabel: "Production Engineering" },
+  { value: "IIT-G", label: "Academic Roots", sublabel: "M.Tech Data Science & AI" },
 ];
 
 export const Hero: React.FC = () => {
@@ -16,18 +16,20 @@ export const Hero: React.FC = () => {
 
   // Scroll Parallax Transforms
   const { scrollY } = useScroll();
-  const textY = useTransform(scrollY, [0, 700], [0, -60]);
-  const imageY = useTransform(scrollY, [0, 700], [0, 50]);
-  const watermarkX = useTransform(scrollY, [0, 800], ["0%", "-25%"]);
-  const badge1Y = useTransform(scrollY, [0, 600], [0, -35]);
-  const badge2Y = useTransform(scrollY, [0, 600], [0, 45]);
-  const heroOpacity = useTransform(scrollY, [0, 550], [1, 0.25]);
+  const textY = useTransform(scrollY, [0, 700], [0, -50]);
+  const imageY = useTransform(scrollY, [0, 700], [0, 45]);
+  const watermarkX = useTransform(scrollY, [0, 800], ["0%", "-20%"]);
+  const shape1Y = useTransform(scrollY, [0, 700], [0, -70]);
+  const shape2Y = useTransform(scrollY, [0, 700], [0, 60]);
+  const heroOpacity = useTransform(scrollY, [0, 500], [1, 0.2]);
 
   // 3D Tilt Mouse Interaction for Photo Card
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [10, -10]), { damping: 25, stiffness: 200 });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-10, 10]), { damping: 25, stiffness: 200 });
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [12, -12]), { damping: 25, stiffness: 180 });
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-12, 12]), { damping: 25, stiffness: 180 });
+  const shapeOffsetX = useSpring(useTransform(mouseX, [-0.5, 0.5], [20, -20]), { damping: 25, stiffness: 180 });
+  const shapeOffsetY = useSpring(useTransform(mouseY, [-0.5, 0.5], [20, -20]), { damping: 25, stiffness: 180 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -50,17 +52,11 @@ export const Hero: React.FC = () => {
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      const navOffset = 80;
+      const navOffset = 90;
       const targetY = el.getBoundingClientRect().top + window.pageYOffset - navOffset;
       window.scrollTo({ top: targetY, behavior: 'smooth' });
     }
   };
-
-  const headlineLines = [
-    "I build intelligent",
-    "systems that",
-    "understand."
-  ];
 
   return (
     <section
@@ -68,57 +64,75 @@ export const Hero: React.FC = () => {
       id="hero"
       className="relative min-h-screen flex flex-col justify-between pt-28 sm:pt-36 pb-12 sm:pb-16 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto overflow-hidden"
     >
-      {/* Background Watermark Parallax Layer */}
+      {/* Background Kinetic Watermark Parallax */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden select-none -z-10 flex items-center">
         <motion.div
           style={{ x: watermarkX }}
-          className="whitespace-nowrap font-display font-bold text-[14vw] tracking-tighter text-slate-900/[0.025] leading-none"
+          className="whitespace-nowrap font-display font-bold text-[14vw] tracking-tighter text-[#1A1614]/[0.022] leading-none"
         >
-          SONU THOMAS &bull; AI ENGINEER &bull; ARCHITECT &bull; SONU THOMAS &bull;
+          SONU THOMAS &bull; AI ENGINEER &bull; SYSTEM ARCHITECT &bull; NEURAL SYSTEMS &bull;
         </motion.div>
       </div>
 
-      <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center my-auto relative z-10">
+      <div className="grid lg:grid-cols-12 gap-12 lg:gap-14 items-center my-auto relative z-10">
         
         {/* Left Column (7 cols): Editorial Typography & Staggered Reveal */}
         <motion.div
           style={{ y: textY, opacity: heroOpacity }}
-          className="lg:col-span-7 flex flex-col items-start space-y-8"
+          className="lg:col-span-7 flex flex-col items-start space-y-7"
         >
-          {/* Eyebrow */}
+          {/* Status Eyebrow Badge */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-soft-sm text-xs font-mono tracking-wider text-slate-600"
+            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#FEFCF9] border border-[#E8E0D8] shadow-soft-sm text-xs font-mono tracking-wider text-ink-secondary"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-copper opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-copper" />
             </span>
-            <span className="uppercase">AI Software Engineer &bull; Kannur, India</span>
+            <span className="uppercase text-ink font-medium">AI Systems Engineer &bull; Production LLMs</span>
           </motion.div>
 
-          {/* Massive Editorial Headline with Line Reveals */}
+          {/* Cinematic Headline with Clip-Path Reveal */}
           <div className="space-y-1">
-            {headlineLines.map((line, idx) => (
-              <div key={idx} className="overflow-hidden">
-                <motion.h1
-                  initial={{ y: "115%", rotate: 2 }}
-                  animate={{ y: 0, rotate: 0 }}
-                  transition={{
-                    duration: 0.9,
-                    delay: 0.15 + idx * 0.12,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className={`font-display font-semibold text-5xl sm:text-6xl md:text-7xl lg:text-[5.2rem] tracking-tight leading-[1.05] ${
-                    idx === 2 ? "gradient-text" : "text-slate-900"
-                  }`}
-                >
-                  {line}
-                </motion.h1>
-              </div>
-            ))}
+            <div className="overflow-hidden">
+              <motion.h1
+                initial={{ y: "110%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-[5.4rem] tracking-tight text-ink leading-[1.03]"
+              >
+                I build
+              </motion.h1>
+            </div>
+            <div className="overflow-hidden">
+              <motion.h1
+                initial={{ y: "110%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.85, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                className="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-[5.4rem] tracking-tight leading-[1.03] gradient-text"
+              >
+                intelligent
+              </motion.h1>
+            </div>
+            <div className="overflow-hidden flex items-center gap-4">
+              <motion.h1
+                initial={{ y: "110%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.85, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-[5.4rem] tracking-tight text-ink leading-[1.03]"
+              >
+                systems.
+              </motion.h1>
+              <motion.div
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.9, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="h-[3px] flex-1 max-w-[140px] bg-gradient-to-r from-copper to-transparent origin-left hidden sm:block"
+              />
+            </div>
           </div>
 
           {/* Personal Bio Paragraph */}
@@ -126,10 +140,10 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.55 }}
-            className="text-lg sm:text-xl text-slate-600 font-light leading-relaxed max-w-xl"
+            className="text-lg sm:text-xl text-ink-secondary font-light leading-relaxed max-w-xl"
           >
-            Fusing enterprise software rigor with generative AI and large language models. 
-            Currently engineering high-reliability systems at <span className="font-semibold text-slate-900">HCLTech</span>.
+            Fusing enterprise engineering rigor with frontier generative AI, agentic workflows, and large language models. Currently engineering high-throughput software systems at{' '}
+            <span className="font-semibold text-ink border-b border-copper/40 pb-0.5">HCLTech</span>.
           </motion.p>
 
           {/* Action CTAs & Socials */}
@@ -141,20 +155,20 @@ export const Hero: React.FC = () => {
           >
             <button
               onClick={() => scrollToSection('projects')}
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-slate-900 text-white font-medium text-sm hover:bg-primary transition-all duration-300 shadow-soft-sm hover:shadow-soft-md hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer"
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#1A1614] text-[#EDE5DC] font-medium text-sm hover:bg-copper hover:text-white transition-all duration-300 shadow-soft-md hover:shadow-glow-copper hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer"
             >
-              <span>Explore My Work</span>
-              <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+              <span>Explore Selected Work</span>
+              <ArrowUpRight className="w-4 h-4 text-copper group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
             </button>
 
             <a
               href={PERSONAL_DETAILS.resumeLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-slate-300 text-slate-700 font-medium text-sm hover:border-slate-900 hover:text-slate-900 hover:-translate-y-0.5 transition-all shadow-soft-sm"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#FEFCF9] border border-[#E8E0D8] text-ink font-medium text-sm hover:border-copper hover:text-copper hover:-translate-y-0.5 transition-all shadow-soft-sm"
             >
-              <Download className="w-4 h-4" />
-              <span>Download Resume</span>
+              <Download className="w-4 h-4 text-copper" />
+              <span>Download CV</span>
             </a>
 
             {/* Social Icons */}
@@ -163,7 +177,7 @@ export const Hero: React.FC = () => {
                 href={PERSONAL_DETAILS.social.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 text-slate-400 hover:text-slate-900 hover:bg-white rounded-full border border-transparent hover:border-slate-200 transition-all"
+                className="p-2.5 text-ink-secondary hover:text-copper hover:bg-[#FEFCF9] rounded-full border border-transparent hover:border-[#E8E0D8] transition-all"
                 aria-label="GitHub"
               >
                 <Github className="w-4 h-4" />
@@ -172,14 +186,14 @@ export const Hero: React.FC = () => {
                 href={PERSONAL_DETAILS.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 text-slate-400 hover:text-primary hover:bg-white rounded-full border border-transparent hover:border-slate-200 transition-all"
+                className="p-2.5 text-ink-secondary hover:text-copper hover:bg-[#FEFCF9] rounded-full border border-transparent hover:border-[#E8E0D8] transition-all"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-4 h-4" />
               </a>
               <a
                 href={`mailto:${PERSONAL_DETAILS.email}`}
-                className="p-2.5 text-slate-400 hover:text-slate-900 hover:bg-white rounded-full border border-transparent hover:border-slate-200 transition-all"
+                className="p-2.5 text-ink-secondary hover:text-copper hover:bg-[#FEFCF9] rounded-full border border-transparent hover:border-[#E8E0D8] transition-all"
                 aria-label="Email"
               >
                 <Mail className="w-4 h-4" />
@@ -188,30 +202,44 @@ export const Hero: React.FC = () => {
           </motion.div>
         </motion.div>
 
-        {/* Right Column (5 cols): 3D Mouse Tilt & Parallax Portrait Showcase */}
+        {/* Right Column (5 cols): Layered Depth Portrait Showcase */}
         <motion.div
           style={{ y: imageY }}
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5 relative flex justify-center lg:justify-end perspective-1000"
+          className="lg:col-span-5 relative flex justify-center lg:justify-end"
         >
           <div
             ref={cardRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="relative w-full max-w-md transition-transform duration-200 ease-out"
-            style={{ perspective: 1000 }}
+            className="relative w-full max-w-md"
+            style={{ perspective: 1200 }}
           >
-            {/* Subtle multi-layer ambient glow */}
-            <div className="absolute -inset-6 bg-gradient-to-tr from-primary/15 via-secondary/15 to-transparent rounded-[3rem] blur-3xl -z-10" />
+            {/* Layered Geometric Parallax Shapes Behind Photo */}
+            <motion.div
+              style={{
+                y: shape1Y,
+                x: shapeOffsetX,
+                translateY: shapeOffsetY,
+              }}
+              className="absolute -top-6 -left-6 w-36 h-36 rounded-3xl bg-gradient-to-br from-copper/20 to-primary/20 -z-10 rotate-12 blur-sm"
+            />
+            <motion.div
+              style={{
+                y: shape2Y,
+                x: useTransform(shapeOffsetX, (v) => -v),
+              }}
+              className="absolute -bottom-8 -right-6 w-44 h-44 rounded-full bg-gradient-to-tr from-primary/15 via-copper/15 to-transparent -z-10 blur-xl"
+            />
 
-            {/* 3D Tilted Photo Frame */}
+            {/* 3D Tilted Photo Frame with Thick Warm Border */}
             <motion.div
               style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-              className="relative rounded-3xl overflow-hidden bg-white p-3 border border-slate-200/90 shadow-soft-lg group cursor-pointer"
+              className="relative rounded-3xl overflow-hidden bg-[#FEFCF9] p-3 border-[4px] border-[#E8E0D8] shadow-soft-lg group cursor-pointer"
             >
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-slate-100">
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-[#EDE5DC]">
                 <motion.img
                   initial={{ scale: 1.15, filter: "blur(6px)" }}
                   animate={{ scale: 1, filter: "blur(0px)" }}
@@ -220,51 +248,49 @@ export const Hero: React.FC = () => {
                   alt="Sonu Thomas — AI Software Engineer"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-transparent to-transparent opacity-60" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#131110]/70 via-transparent to-transparent opacity-75" />
                 
                 {/* Photo Bottom Caption */}
-                <div className="absolute bottom-4 left-4 right-4 text-white">
+                <div className="absolute bottom-4 left-4 right-4 text-[#EDE5DC]">
                   <p className="font-display font-medium text-lg leading-tight">Sonu Thomas</p>
-                  <p className="text-xs font-mono text-slate-200">IIT Guwahati Alumni &bull; HCLTech</p>
+                  <p className="text-xs font-mono text-copper-200">IIT Guwahati Alumni &bull; HCLTech Engineer</p>
                 </div>
               </div>
             </motion.div>
 
             {/* Parallax Floating Badge 1 (Bottom Left) */}
             <motion.div
-              style={{ y: badge1Y }}
               animate={{ y: [-4, 4, -4] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-6 -left-6 bg-white/95 backdrop-blur-md px-5 py-3 rounded-2xl border border-slate-200 shadow-soft-md hidden sm:flex items-center gap-3 z-20"
+              className="absolute -bottom-6 -left-6 bg-[#FEFCF9]/95 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-[#E8E0D8] shadow-soft-md hidden sm:flex items-center gap-3 z-20"
             >
               <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
               <div className="text-left">
-                <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">Focus Area</div>
-                <div className="text-xs font-semibold text-slate-900">LLM &amp; Intelligent Systems</div>
+                <div className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider">Availability</div>
+                <div className="text-xs font-semibold text-ink">Open for High-Impact Projects</div>
               </div>
             </motion.div>
 
             {/* Parallax Floating Badge 2 (Top Right) */}
             <motion.div
-              style={{ y: badge2Y }}
               animate={{ y: [4, -4, 4] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -top-5 -right-5 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-slate-200 shadow-soft-md hidden sm:flex items-center gap-2.5 z-20"
+              className="absolute -top-5 -right-5 bg-[#FEFCF9]/95 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-[#E8E0D8] shadow-soft-md hidden sm:flex items-center gap-2.5 z-20"
             >
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-xs font-mono font-medium text-slate-800">Production AI</span>
+              <Sparkles className="w-4 h-4 text-copper" />
+              <span className="text-xs font-mono font-medium text-ink">Production GenAI</span>
             </motion.div>
           </div>
         </motion.div>
 
       </div>
 
-      {/* Bottom Editorial Stats Strip with Staggered Hover Elevation */}
+      {/* Bottom Editorial Stats Strip with Warm Copper Accents */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.75, duration: 0.7 }}
-        className="mt-16 pt-8 border-t border-slate-200/80 relative z-10"
+        className="mt-14 pt-8 border-t border-[#E8E0D8] relative z-10"
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           {STATS.map((stat, idx) => (
@@ -272,15 +298,18 @@ export const Hero: React.FC = () => {
               key={idx}
               whileHover={{ y: -4 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="flex flex-col space-y-1 p-4 rounded-2xl hover:bg-white hover:shadow-soft-sm border border-transparent hover:border-slate-200/80 transition-colors"
+              className="flex flex-col space-y-1 p-4 rounded-2xl hover:bg-[#FEFCF9] hover:shadow-soft-sm border border-transparent hover:border-[#E8E0D8] transition-all group"
             >
-              <span className="font-display font-medium text-3xl sm:text-4xl text-slate-900 tracking-tight">
-                {stat.value}
-              </span>
-              <span className="text-sm font-semibold text-slate-800">
+              <div className="flex items-baseline gap-2">
+                <span className="font-display font-medium text-3xl sm:text-4xl text-ink tracking-tight group-hover:text-copper transition-colors">
+                  {stat.value}
+                </span>
+                <span className="h-1 w-6 rounded-full bg-copper/30 group-hover:bg-copper transition-colors" />
+              </div>
+              <span className="text-sm font-semibold text-ink">
                 {stat.label}
               </span>
-              <span className="text-xs font-mono text-slate-400">
+              <span className="text-xs font-mono text-[#78716C]">
                 {stat.sublabel}
               </span>
             </motion.div>
@@ -288,14 +317,20 @@ export const Hero: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Bottom Scroll Indicator */}
-      <div className="flex justify-center pt-8">
+      {/* Minimal Vertical Scroll Pulse Indicator */}
+      <div className="flex flex-col items-center justify-center pt-8">
         <button
           onClick={() => scrollToSection('marquee')}
-          className="flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-slate-800 transition-colors uppercase tracking-widest cursor-pointer"
+          className="flex flex-col items-center gap-2 text-xs font-mono text-[#78716C] hover:text-copper transition-colors uppercase tracking-widest cursor-pointer group"
         >
-          <span>Scroll to explore</span>
-          <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
+          <span className="text-[11px] tracking-widest">Scroll Story</span>
+          <div className="w-[1.5px] h-8 bg-[#E8E0D8] relative overflow-hidden rounded-full">
+            <motion.div
+              animate={{ y: [-16, 32] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+              className="w-full h-4 bg-copper rounded-full"
+            />
+          </div>
         </button>
       </div>
     </section>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Sparkles } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { PERSONAL_DETAILS } from '../constants';
 
@@ -29,15 +29,15 @@ export const NavBar: React.FC = () => {
   const { scrollY } = useScroll();
   const lastScrollY = useRef(0);
 
-  // Hide on scroll down, show on scroll up
+  // Hide on scroll down past 200px, reveal when scrolling up
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const prev = lastScrollY.current;
-    if (latest > prev && latest > 150) {
+    if (latest > prev && latest > 180) {
       setHidden(true);
     } else {
       setHidden(false);
     }
-    setScrolled(latest > 30);
+    setScrolled(latest > 40);
     lastScrollY.current = latest;
   });
 
@@ -49,7 +49,7 @@ export const NavBar: React.FC = () => {
     }
 
     const handleSpy = () => {
-      const scrollPos = window.scrollY + 250;
+      const scrollPos = window.scrollY + 280;
       const sections = [
         { id: 'contact', path: '/#contact' },
         { id: 'projects', path: '/#projects' },
@@ -102,7 +102,7 @@ export const NavBar: React.FC = () => {
       const performScroll = () => {
         const el = document.getElementById(targetId);
         if (el) {
-          const navOffset = 80;
+          const navOffset = 90;
           const targetY = targetId === 'hero' ? 0 : el.getBoundingClientRect().top + window.pageYOffset - navOffset;
           window.scrollTo({ top: targetY, behavior: 'smooth' });
         }
@@ -110,7 +110,7 @@ export const NavBar: React.FC = () => {
 
       if (location.pathname !== '/') {
         navigate('/');
-        setTimeout(performScroll, 500);
+        setTimeout(performScroll, 400);
       } else {
         performScroll();
       }
@@ -126,32 +126,28 @@ export const NavBar: React.FC = () => {
       <motion.header
         variants={{
           visible: { y: 0, opacity: 1 },
-          hidden: { y: '-120%', opacity: 0 },
+          hidden: { y: '-130%', opacity: 0 },
         }}
         animate={hidden ? 'hidden' : 'visible'}
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-          scrolled
-            ? 'bg-white/80 backdrop-blur-md border-b border-slate-200/60 shadow-soft-sm'
-            : 'bg-transparent'
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 pt-4 sm:pt-6 pointer-events-none"
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto flex items-center justify-between pointer-events-auto">
           
-          {/* Logo / Name */}
+          {/* Logo / Brand Pill */}
           <Link
             to="/"
             onClick={(e) => handleLinkClick('/', e)}
-            className="group flex items-center gap-2"
+            className="group flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-[#FEFCF9]/90 backdrop-blur-xl border border-[#E8E0D8] shadow-soft-sm hover:border-copper/40 transition-all duration-300"
           >
-            <span className="font-display font-semibold text-xl tracking-tight text-slate-900 group-hover:text-primary transition-colors">
+            <span className="w-2 h-2 rounded-full bg-copper group-hover:scale-125 transition-transform" />
+            <span className="font-display font-semibold text-sm tracking-tight text-ink group-hover:text-copper transition-colors">
               sonu thomas
             </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          {/* Floating Pill Nav for Desktop */}
+          <nav className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FEFCF9]/85 backdrop-blur-xl border border-[#E8E0D8]/90 shadow-soft-md">
             {primaryNavLinks.map((link) => {
               const isActive = activeSection === link.path;
               return (
@@ -159,118 +155,124 @@ export const NavBar: React.FC = () => {
                   key={link.name}
                   to={link.path}
                   onClick={(e) => handleLinkClick(link.path, e)}
-                  className={`relative text-sm tracking-wide font-medium transition-colors py-1 group ${
-                    isActive ? 'text-slate-900 font-semibold' : 'text-slate-500 hover:text-slate-900'
+                  className={`relative px-4 py-1.5 rounded-full text-xs font-medium tracking-wide transition-all duration-200 group ${
+                    isActive
+                      ? 'text-ink font-semibold'
+                      : 'text-ink-secondary hover:text-ink'
                   }`}
                 >
-                  <span>{link.name}</span>
                   {isActive && (
                     <motion.span
-                      layoutId="activeNavIndicator"
-                      className="absolute left-0 right-0 -bottom-1 h-[2px] bg-primary rounded-full"
+                      layoutId="activeNavBubble"
+                      className="absolute inset-0 rounded-full bg-[#EDE5DC] -z-10 shadow-soft-sm"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
-                  {!isActive && (
-                    <span className="absolute left-0 right-0 -bottom-1 h-[2px] bg-slate-300 scale-x-0 group-hover:scale-x-100 transition-transform origin-left rounded-full" />
-                  )}
+                  <span className="relative z-10 flex items-center gap-1.5">
+                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-copper inline-block" />}
+                    {link.name}
+                  </span>
                 </Link>
               );
             })}
           </nav>
 
-          {/* Right Action: Let's Talk */}
-          <div className="hidden md:flex items-center gap-4">
+          {/* Right Action: Let's Talk Magnetic CTA */}
+          <div className="hidden md:flex items-center gap-3">
             <Link
               to="/#contact"
               onClick={(e) => handleLinkClick('/#contact', e)}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-900 text-white text-xs font-semibold uppercase tracking-wider hover:bg-primary transition-all duration-300 shadow-soft-sm hover:shadow-soft-md group"
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#1A1614] text-[#EDE5DC] text-xs font-semibold tracking-wider hover:bg-copper hover:text-white transition-all duration-300 shadow-soft-sm hover:shadow-glow-copper group"
             >
               <span>Let's Talk</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-white transition-colors" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-copper group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
             </Link>
           </div>
 
-          {/* Mobile Menu Toggle Button */}
+          {/* Mobile Menu Toggle Pill */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-slate-800 hover:text-primary transition-colors focus:outline-none"
+            className="md:hidden p-2.5 rounded-full bg-[#FEFCF9]/90 backdrop-blur-xl border border-[#E8E0D8] text-ink hover:text-copper shadow-soft-sm transition-colors focus:outline-none"
             aria-label="Toggle Navigation"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </motion.header>
 
-      {/* Cinematic Mobile Menu Overlay */}
+      {/* Cinematic Mobile Curtain Drawer */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-[#FAFBFD] flex flex-col justify-between p-8 pt-28 md:hidden"
+            initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+            animate={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
+            exit={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-40 bg-[#F5F0EB] flex flex-col justify-between p-8 pt-28 md:hidden"
           >
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-6">
+              <span className="text-xs font-mono uppercase tracking-widest text-[#78716C]">
+                Navigation // Index
+              </span>
               {primaryNavLinks.map((link, index) => {
                 const isActive = activeSection === link.path;
                 return (
                   <motion.div
                     key={link.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.05 + index * 0.05, duration: 0.4 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.06 + index * 0.04, duration: 0.4 }}
                   >
                     <Link
                       to={link.path}
                       onClick={(e) => handleLinkClick(link.path, e)}
-                      className={`block font-display text-4xl font-semibold tracking-tight transition-colors ${
-                        isActive ? 'text-primary' : 'text-slate-900 hover:text-primary'
+                      className={`flex items-center justify-between font-display text-4xl font-semibold tracking-tight transition-colors ${
+                        isActive ? 'text-copper' : 'text-ink hover:text-copper'
                       }`}
                     >
-                      {link.name}
+                      <span>{link.name}</span>
+                      {isActive && <span className="text-xs font-mono text-copper">[active]</span>}
                     </Link>
                   </motion.div>
                 );
               })}
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35, duration: 0.4 }}
-                className="pt-4 border-t border-slate-200"
+                className="pt-4 border-t border-[#E8E0D8]"
               >
-                <div className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-3">
-                  Explore More
+                <div className="text-xs font-mono uppercase tracking-widest text-[#78716C] mb-3">
+                  Archive &amp; Documents
                 </div>
-                <div className="grid grid-cols-2 gap-3 text-sm font-medium text-slate-700">
-                  <Link to="/projects" onClick={() => setIsOpen(false)} className="hover:text-primary">
-                    All Projects
+                <div className="grid grid-cols-2 gap-3 text-sm font-medium text-ink-secondary">
+                  <Link to="/projects" onClick={() => setIsOpen(false)} className="hover:text-copper">
+                    All Case Studies
                   </Link>
-                  <Link to="/insights" onClick={() => setIsOpen(false)} className="hover:text-primary">
-                    Insights & Articles
+                  <Link to="/insights" onClick={() => setIsOpen(false)} className="hover:text-copper">
+                    Technical Articles
                   </Link>
-                  <Link to="/certifications" onClick={() => setIsOpen(false)} className="hover:text-primary">
+                  <Link to="/certifications" onClick={() => setIsOpen(false)} className="hover:text-copper">
                     Certifications
                   </Link>
-                  <Link to="/awards" onClick={() => setIsOpen(false)} className="hover:text-primary">
-                    Honors & Awards
+                  <Link to="/awards" onClick={() => setIsOpen(false)} className="hover:text-copper">
+                    Honors &amp; Awards
                   </Link>
                 </div>
               </motion.div>
             </div>
 
             {/* Mobile Footer */}
-            <div className="pt-6 border-t border-slate-200 flex items-center justify-between text-xs font-mono text-slate-500">
+            <div className="pt-6 border-t border-[#E8E0D8] flex items-center justify-between text-xs font-mono text-ink-secondary">
               <span>{PERSONAL_DETAILS.email}</span>
               <a
                 href={PERSONAL_DETAILS.resumeLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary font-semibold hover:underline"
+                className="text-copper font-semibold hover:underline"
               >
-                Download CV
+                Download Resume &rarr;
               </a>
             </div>
           </motion.div>

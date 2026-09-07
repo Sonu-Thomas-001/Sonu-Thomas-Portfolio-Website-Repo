@@ -13,13 +13,20 @@ export const Experience: React.FC = () => {
   });
 
   // Snappy horizontal scroll across cards: 5 cards total
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-70%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-68%"]);
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-  const watermarkShift = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const watermarkShift = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
 
   return (
-    <section id="experience" className="relative bg-[#0B0F19] text-white border-y border-slate-800/80">
+    <section id="experience" className="relative bg-[#131110] text-[#EDE5DC] border-y border-[#2A2522]">
       
+      {/* Decorative Film Strip Perforations Top */}
+      <div className="hidden md:flex justify-between items-center px-8 py-2 bg-[#0E0C0B] border-b border-[#2A2522] overflow-hidden select-none opacity-40">
+        {Array.from({ length: 32 }).map((_, i) => (
+          <div key={`perf-top-${i}`} className="w-3 h-2 rounded-[2px] bg-[#332E2A] flex-shrink-0 mx-1" />
+        ))}
+      </div>
+
       {/* ============================================================ */}
       {/* DESKTOP PINNED HORIZONTAL SCROLL TIMELINE (Hidden on Mobile) */}
       {/* ============================================================ */}
@@ -27,24 +34,25 @@ export const Experience: React.FC = () => {
         <div className="sticky top-0 h-screen flex flex-col justify-between overflow-hidden px-8 lg:px-16 py-12">
           
           {/* Top Header Bar */}
-          <div className="flex items-center justify-between z-10 border-b border-slate-800 pb-6">
+          <div className="flex items-center justify-between z-10 border-b border-[#2A2522] pb-6">
             <div>
-              <span className="font-mono text-xs text-cyan-400 font-semibold tracking-widest uppercase block mb-1">
+              <span className="font-mono text-xs text-copper font-semibold tracking-widest uppercase block mb-1">
                 02 // Career Journey
               </span>
-              <h2 className="font-display font-semibold text-3xl lg:text-4xl text-white tracking-tight">
-                Experience &amp; Track Record
+              <h2 className="font-display font-bold text-3xl lg:text-4xl text-[#EDE5DC] tracking-tight">
+                Experience &amp; Production Track Record
               </h2>
             </div>
 
-            <div className="flex items-center gap-4">
-              <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">
-                Scroll to slide timeline
+            {/* Stepped Progress Tracker with Copper Bar */}
+            <div className="flex items-center gap-5">
+              <span className="text-xs font-mono text-[#78716C] uppercase tracking-wider">
+                Scroll to slide
               </span>
-              <div className="relative w-40 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+              <div className="relative w-44 h-2 bg-[#25211E] rounded-full overflow-hidden border border-[#332E2A]">
                 <motion.div
                   style={{ width: progressWidth }}
-                  className="h-full bg-gradient-to-r from-cyan-400 via-primary-500 to-secondary-500 rounded-full"
+                  className="h-full bg-gradient-to-r from-copper via-[#DF9B7A] to-primary rounded-full shadow-glow-copper"
                 />
               </div>
             </div>
@@ -56,12 +64,15 @@ export const Experience: React.FC = () => {
               {EXPERIENCE_DATA.map((item, index) => (
                 <div
                   key={item.id}
-                  className="relative w-[520px] lg:w-[580px] flex-shrink-0 bg-slate-900/90 backdrop-blur-xl rounded-3xl p-8 lg:p-10 border border-slate-800/90 shadow-2xl hover:border-slate-700 transition-all duration-300 flex flex-col justify-between overflow-hidden group"
+                  className="relative w-[520px] lg:w-[580px] flex-shrink-0 bg-[#1E1B18]/95 backdrop-blur-xl rounded-3xl p-8 lg:p-10 border border-[#332E2A] shadow-soft-lg hover:border-copper/50 transition-all duration-300 flex flex-col justify-between overflow-hidden group"
                 >
-                  {/* Watermark Numerals with Parallax */}
+                  {/* Thin Accent Top Border */}
+                  <div className="absolute top-0 left-8 right-8 h-[2px] bg-gradient-to-r from-transparent via-copper/40 to-transparent group-hover:via-copper transition-colors" />
+
+                  {/* Giant Watermark Numeral with Parallax */}
                   <motion.span
                     style={{ x: watermarkShift }}
-                    className="absolute -right-4 -bottom-6 font-display font-bold text-9xl text-white/[0.03] select-none pointer-events-none"
+                    className="absolute -right-4 -bottom-6 font-display font-bold text-9xl text-[#EDE5DC]/[0.025] select-none pointer-events-none"
                   >
                     0{index + 1}
                   </motion.span>
@@ -69,28 +80,28 @@ export const Experience: React.FC = () => {
                   <div className="relative z-10">
                     {/* Header: Period & Index */}
                     <div className="flex items-center justify-between mb-6">
-                      <span className="font-mono text-xs font-semibold px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700/60">
+                      <span className="font-mono text-xs font-semibold px-3.5 py-1 rounded-full bg-[#2A2522] text-[#EDE5DC] border border-[#3D3732]">
                         {item.period}
                       </span>
-                      <span className="font-mono text-xs text-cyan-400 font-medium">
+                      <span className="font-mono text-xs text-copper font-medium">
                         0{index + 1} / 0{EXPERIENCE_DATA.length}
                       </span>
                     </div>
 
                     {/* Role & Company */}
-                    <h3 className="font-display font-semibold text-2xl lg:text-3xl text-white mb-2 group-hover:text-cyan-300 transition-colors">
+                    <h3 className="font-display font-bold text-2xl lg:text-3xl text-[#EDE5DC] mb-2 group-hover:text-copper transition-colors">
                       {item.role}
                     </h3>
-                    <div className="flex items-center gap-2 text-slate-400 font-medium text-sm mb-6">
-                      <Building2 className="w-4 h-4 text-cyan-400" />
-                      <span className="text-slate-200 font-semibold">{item.company}</span>
+                    <div className="flex items-center gap-2 font-medium text-sm mb-6">
+                      <Building2 className="w-4 h-4 text-copper" />
+                      <span className="text-copper font-semibold">{item.company}</span>
                     </div>
 
                     {/* Bullet Achievements */}
                     <ul className="space-y-3.5 mb-8">
                       {item.description.slice(0, 3).map((desc, i) => (
-                        <li key={i} className="flex items-start gap-3 text-slate-300 text-sm font-light leading-relaxed">
-                          <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                        <li key={i} className="flex items-start gap-3 text-[#D5CDC5] text-sm font-light leading-relaxed">
+                          <CheckCircle2 className="w-4 h-4 text-copper shrink-0 mt-0.5" />
                           <span>{desc}</span>
                         </li>
                       ))}
@@ -99,11 +110,11 @@ export const Experience: React.FC = () => {
 
                   {/* Tech Stack Chips */}
                   {item.tech && (
-                    <div className="relative z-10 pt-4 border-t border-slate-800/80 flex flex-wrap gap-2">
+                    <div className="relative z-10 pt-4 border-t border-[#2A2522] flex flex-wrap gap-2">
                       {item.tech.map((techItem, i) => (
                         <span
                           key={i}
-                          className="px-2.5 py-1 rounded-lg bg-slate-800/80 border border-slate-700/60 text-xs font-mono text-slate-300"
+                          className="px-2.5 py-1 rounded-lg bg-[#25211E] border border-[#38332E] text-xs font-mono text-[#D5CDC5] hover:border-copper/40 transition-colors"
                         >
                           {techItem}
                         </span>
@@ -115,16 +126,23 @@ export const Experience: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Bottom helper */}
-          <div className="flex items-center justify-between text-xs font-mono text-slate-500 pt-4 border-t border-slate-800/80">
-            <span>Enterprise &bull; Remote &bull; Kannur, India</span>
-            <div className="flex items-center gap-1.5 text-slate-400">
-              <span>Scroll down to navigate timeline</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+          {/* Bottom Bar Helper */}
+          <div className="flex items-center justify-between text-xs font-mono text-[#78716C] pt-4 border-t border-[#2A2522]">
+            <span>Enterprise Scale &bull; High Reliability &bull; Kannur, India</span>
+            <div className="flex items-center gap-2 text-copper">
+              <span>Scroll down to navigate career cards</span>
+              <ArrowRight className="w-3.5 h-3.5 animate-pulse" />
             </div>
           </div>
 
         </div>
+      </div>
+
+      {/* Decorative Film Strip Perforations Bottom */}
+      <div className="hidden md:flex justify-between items-center px-8 py-2 bg-[#0E0C0B] border-t border-[#2A2522] overflow-hidden select-none opacity-40">
+        {Array.from({ length: 32 }).map((_, i) => (
+          <div key={`perf-bot-${i}`} className="w-3 h-2 rounded-[2px] bg-[#332E2A] flex-shrink-0 mx-1" />
+        ))}
       </div>
 
       {/* ============================================================ */}
@@ -132,10 +150,10 @@ export const Experience: React.FC = () => {
       {/* ============================================================ */}
       <div className="md:hidden py-20 px-6 max-w-xl mx-auto">
         <div className="mb-10">
-          <span className="font-mono text-xs text-cyan-400 font-semibold tracking-widest uppercase block mb-1">
+          <span className="font-mono text-xs text-copper font-semibold tracking-widest uppercase block mb-1">
             02 // Career Journey
           </span>
-          <h2 className="font-display font-semibold text-3xl text-white tracking-tight">
+          <h2 className="font-display font-bold text-3xl text-[#EDE5DC] tracking-tight">
             Experience &amp; Track Record
           </h2>
         </div>
@@ -144,37 +162,37 @@ export const Experience: React.FC = () => {
           {EXPERIENCE_DATA.map((item, index) => (
             <div
               key={item.id}
-              className="bg-slate-900 rounded-2xl p-6 border border-slate-800 shadow-lg space-y-4"
+              className="bg-[#1E1B18] rounded-2xl p-6 border border-[#332E2A] shadow-soft-md space-y-4"
             >
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-medium px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300">
+                <span className="text-xs font-mono font-medium px-2.5 py-0.5 rounded-full bg-[#2A2522] text-[#EDE5DC]">
                   {item.period}
                 </span>
-                <span className="text-xs font-mono text-cyan-400 font-semibold">0{index + 1}</span>
+                <span className="text-xs font-mono text-copper font-semibold">0{index + 1}</span>
               </div>
 
               <div>
-                <h3 className="font-display font-semibold text-xl text-white">
+                <h3 className="font-display font-bold text-xl text-[#EDE5DC]">
                   {item.role}
                 </h3>
-                <p className="text-sm font-medium text-cyan-300 mt-0.5">{item.company}</p>
+                <p className="text-sm font-medium text-copper mt-0.5">{item.company}</p>
               </div>
 
               <ul className="space-y-2.5">
                 {item.description.slice(0, 3).map((desc, i) => (
-                  <li key={i} className="flex items-start gap-2.5 text-slate-300 text-xs font-light leading-relaxed">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                  <li key={i} className="flex items-start gap-2.5 text-[#D5CDC5] text-xs font-light leading-relaxed">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-copper shrink-0 mt-0.5" />
                     <span>{desc}</span>
                   </li>
                 ))}
               </ul>
 
               {item.tech && (
-                <div className="pt-3 border-t border-slate-800 flex flex-wrap gap-1.5">
+                <div className="pt-3 border-t border-[#2A2522] flex flex-wrap gap-1.5">
                   {item.tech.map((t, i) => (
                     <span
                       key={i}
-                      className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-[11px] font-mono text-slate-300"
+                      className="px-2 py-0.5 rounded bg-[#25211E] border border-[#38332E] text-[11px] font-mono text-[#D5CDC5]"
                     >
                       {t}
                     </span>

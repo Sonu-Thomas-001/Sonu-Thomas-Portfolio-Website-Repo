@@ -80,29 +80,58 @@
                 500: '#8B5CF6',
                 600: '#7C3AED',
               },
-              accent: '#06B6D4',
-              page: '#FAFBFD',
-              surface: '#FFFFFF',
-              surfaceAlt: '#F8FAFC',
+              copper: {
+                DEFAULT: '#C47D5A',
+                50: '#FDF8F5',
+                100: '#F7ECE5',
+                200: '#ECCDC0',
+                300: '#DEB29E',
+                400: '#D19478',
+                500: '#C47D5A',
+                600: '#B06846',
+                700: '#8E4F32',
+                800: '#6D3A23',
+              },
+              accent: '#C47D5A',
+              page: '#F5F0EB',
+              surface: '#FEFCF9',
+              surfaceAlt: '#EDE5DC',
+              ink: {
+                DEFAULT: '#1A1614',
+                primary: '#1A1614',
+                secondary: '#4A4340',
+                muted: '#78716C',
+                faint: '#A8A19B',
+              },
+              divider: '#E8E0D8',
+              dark: {
+                canvas: '#131110',
+                surface: '#1E1B18',
+                card: '#25211E',
+                border: '#332E2A',
+                text: '#EDE5DC',
+                muted: '#9C948B',
+              },
               slate: {
-                50: '#F8FAFC',
-                100: '#F1F5F9',
-                200: '#E2E8F0',
+                50: '#F5F0EB',
+                100: '#EDE5DC',
+                200: '#E8E0D8',
                 300: '#CBD5E1',
                 400: '#94A3B8',
-                500: '#64748B',
-                600: '#475569',
-                700: '#334155',
-                800: '#1E293B',
-                900: '#0F172A',
-                950: '#020617',
+                500: '#78716C',
+                600: '#4A4340',
+                700: '#332E2A',
+                800: '#1E1B18',
+                900: '#1A1614',
+                950: '#131110',
               },
             },
             boxShadow: {
-              'soft-sm': '0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02)',
-              'soft-md': '0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.02)',
-              'soft-lg': '0 16px 36px -6px rgba(15, 23, 42, 0.07), 0 6px 14px -2px rgba(15, 23, 42, 0.03)',
-              'glow-primary': '0 0 30px -5px rgba(79, 70, 229, 0.2)',
+              'soft-sm': '0 1px 3px rgba(26, 22, 20, 0.04), 0 1px 2px rgba(26, 22, 20, 0.02)',
+              'soft-md': '0 4px 20px -2px rgba(26, 22, 20, 0.06), 0 2px 6px -1px rgba(26, 22, 20, 0.03)',
+              'soft-lg': '0 16px 36px -6px rgba(26, 22, 20, 0.08), 0 6px 14px -2px rgba(26, 22, 20, 0.04)',
+              'glow-primary': '0 0 30px -5px rgba(79, 70, 229, 0.25)',
+              'glow-copper': '0 0 30px -5px rgba(196, 125, 90, 0.3)',
             },
             letterSpacing: {
               tighter: '-0.04em',
@@ -118,64 +147,85 @@
     </script>
     <style>
       :root {
-        --bg-page: #FAFBFD;
-        --bg-surface: #FFFFFF;
+        --bg-page: #F5F0EB;
+        --bg-surface: #FEFCF9;
         --color-primary: #4F46E5;
         --color-secondary: #7C3AED;
-        --border-color: #E2E8F0;
+        --color-copper: #C47D5A;
+        --border-color: #E8E0D8;
+        --ink-primary: #1A1614;
+        --ink-secondary: #4A4340;
       }
 
       html {
-        background-color: #FAFBFD;
-        color: #0F172A;
+        background-color: #F5F0EB;
+        color: #1A1614;
         scroll-behavior: smooth;
       }
 
       body {
-        background-color: #FAFBFD;
-        color: #334155;
+        background-color: #F5F0EB;
+        color: #4A4340;
         font-feature-settings: "cv02", "cv03", "cv04", "cv11";
       }
 
       /* Editorial Scrollbar */
       ::-webkit-scrollbar {
-        width: 6px;
+        width: 7px;
       }
       ::-webkit-scrollbar-track {
-        background: #FAFBFD;
+        background: #F5F0EB;
       }
       ::-webkit-scrollbar-thumb {
-        background: #CBD5E1;
+        background: #D8CEC4;
         border-radius: 9999px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #94A3B8;
+        background: #C47D5A;
       }
 
-      /* Gradient text utility */
+      /* Gradient text utilities */
       .gradient-text {
-        background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 55%, #06B6D4 100%);
+        background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #C47D5A 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .gradient-copper {
+        background: linear-gradient(135deg, #C47D5A 0%, #DF9B7A 50%, #B06846 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
 
-      /* Editorial Glass Card */
+      /* Warm Editorial Glass Card */
       .editorial-card {
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(254, 252, 249, 0.92);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(226, 232, 240, 0.9);
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        border: 1px solid rgba(232, 224, 216, 0.85);
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
       }
       .editorial-card:hover {
-        border-color: rgba(79, 70, 229, 0.3);
-        box-shadow: 0 16px 36px -6px rgba(15, 23, 42, 0.07);
+        border-color: rgba(196, 125, 90, 0.4);
+        box-shadow: 0 20px 40px -10px rgba(26, 22, 20, 0.08);
       }
 
       /* Minimal Section Divider */
       .editorial-divider {
         height: 1px;
-        background: linear-gradient(to right, transparent, #E2E8F0 20%, #E2E8F0 80%, transparent);
+        background: linear-gradient(to right, transparent, #E8E0D8 20%, #E8E0D8 80%, transparent);
+      }
+
+      /* Subtle Film Grain SVG */
+      .grain-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 999;
+        opacity: 0.028;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
       }
 
       /* Clip-path reveal utilities */
@@ -184,7 +234,8 @@
       }
     </style>
   </head>
-  <body class="bg-page text-slate-700 antialiased selection:bg-primary/15 selection:text-primary font-sans overflow-x-clip">
+  <body class="bg-page text-ink-secondary antialiased selection:bg-copper/20 selection:text-ink font-sans overflow-x-clip">
+    <div class="grain-overlay" aria-hidden="true"></div>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>
