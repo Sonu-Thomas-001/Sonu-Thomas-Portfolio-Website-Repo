@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, Loader2, Send } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
 import { SuccessModal } from './SuccessModal';
 
 export const Contact: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const ambientOrbY = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
+  const copyY = useTransform(scrollYProgress, [0, 1], ["3%", "-3%"]);
+
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -49,11 +58,21 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 sm:py-36 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-slate-200/80">
-      <div className="grid lg:grid-cols-12 gap-16 lg:gap-20 items-start">
+    <section
+      ref={containerRef}
+      id="contact"
+      className="py-24 sm:py-36 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-slate-200/80 relative overflow-hidden"
+    >
+      {/* Subtle Floating Ambient Light Layer */}
+      <motion.div
+        style={{ y: ambientOrbY }}
+        className="absolute -bottom-20 -right-20 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none -z-10"
+      />
+
+      <div className="grid lg:grid-cols-12 gap-16 lg:gap-20 items-start relative z-10">
         
-        {/* Left Column (5 cols): Large Personal Warm Headline & Details */}
-        <div className="lg:col-span-5 space-y-8">
+        {/* Left Column (5 cols): Large Personal Warm Headline & Details with Parallax */}
+        <motion.div style={{ y: copyY }} className="lg:col-span-5 space-y-8">
           <div>
             <span className="font-mono text-xs text-primary font-semibold tracking-widest uppercase block mb-1">
               06 // Get in Touch
@@ -97,43 +116,52 @@ export const Contact: React.FC = () => {
             </div>
           </div>
 
-          {/* Social Links Row */}
+          {/* Social Links Row with Hover Spring */}
           <div className="flex items-center gap-6 pt-2">
-            <a
+            <motion.a
+              whileHover={{ y: -2 }}
               href={PERSONAL_DETAILS.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-mono uppercase tracking-wider text-slate-500 hover:text-primary flex items-center gap-1"
+              className="text-xs font-mono uppercase tracking-wider text-slate-500 hover:text-primary flex items-center gap-1 transition-colors"
             >
               <span>LinkedIn</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
+              whileHover={{ y: -2 }}
               href={PERSONAL_DETAILS.social.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-mono uppercase tracking-wider text-slate-500 hover:text-slate-900 flex items-center gap-1"
+              className="text-xs font-mono uppercase tracking-wider text-slate-500 hover:text-slate-900 flex items-center gap-1 transition-colors"
             >
               <span>GitHub</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
+              whileHover={{ y: -2 }}
               href={PERSONAL_DETAILS.social.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-mono uppercase tracking-wider text-slate-500 hover:text-emerald-600 flex items-center gap-1"
+              className="text-xs font-mono uppercase tracking-wider text-slate-500 hover:text-emerald-600 flex items-center gap-1 transition-colors"
             >
               <span>WhatsApp</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
-            </a>
+            </motion.a>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Column (7 cols): Editorial Form */}
-        <div className="lg:col-span-7">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.6 }}
+          className="lg:col-span-7"
+        >
           <form
             onSubmit={handleSubmit}
-            className="bg-white p-8 sm:p-12 rounded-3xl border border-slate-200/90 shadow-soft-md space-y-6"
+            className="bg-white p-8 sm:p-12 rounded-3xl border border-slate-200/90 shadow-soft-md hover:shadow-soft-lg transition-shadow duration-300 space-y-6"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="space-y-2">
@@ -148,7 +176,7 @@ export const Contact: React.FC = () => {
                   value={formState.name}
                   onChange={handleChange}
                   placeholder="Jane Doe"
-                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 focus:bg-white transition-all text-sm"
+                  className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 focus:bg-white transition-all text-sm shadow-inner"
                 />
               </div>
 
@@ -164,7 +192,7 @@ export const Contact: React.FC = () => {
                   value={formState.email}
                   onChange={handleChange}
                   placeholder="jane@example.com"
-                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 focus:bg-white transition-all text-sm"
+                  className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 focus:bg-white transition-all text-sm shadow-inner"
                 />
               </div>
             </div>
@@ -180,7 +208,7 @@ export const Contact: React.FC = () => {
                 value={formState.phone}
                 onChange={handleChange}
                 placeholder="+91 00000 00000"
-                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 focus:bg-white transition-all text-sm"
+                className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 focus:bg-white transition-all text-sm shadow-inner"
               />
             </div>
 
@@ -196,14 +224,16 @@ export const Contact: React.FC = () => {
                 value={formState.message}
                 onChange={handleChange}
                 placeholder="Tell me about your project, idea, or how we can collaborate..."
-                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 focus:bg-white transition-all text-sm resize-none"
+                className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 focus:bg-white transition-all text-sm resize-none shadow-inner"
               />
             </div>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
               type="submit"
               disabled={status === 'submitting'}
-              className="w-full py-4 rounded-full bg-slate-900 text-white font-medium text-sm hover:bg-primary transition-all duration-300 shadow-soft-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+              className="w-full py-4 rounded-full bg-slate-900 text-white font-medium text-sm hover:bg-primary transition-all duration-300 shadow-soft-sm hover:shadow-glow-primary flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
             >
               {status === 'submitting' ? (
                 <>
@@ -216,9 +246,9 @@ export const Contact: React.FC = () => {
                   <Send className="w-4 h-4" />
                 </>
               )}
-            </button>
+            </motion.button>
           </form>
-        </div>
+        </motion.div>
 
       </div>
 

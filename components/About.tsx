@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+import { Sparkles, ArrowUpRight } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
 
 const HIGHLIGHTS = [
@@ -30,15 +30,43 @@ const HIGHLIGHTS = [
   },
 ];
 
+const WordReveal: React.FC<{
+  children: string;
+  progress: MotionValue<number>;
+  range: [number, number];
+}> = ({ children, progress, range }) => {
+  const opacity = useTransform(progress, range, [0.22, 1]);
+  const y = useTransform(progress, range, [6, 0]);
+
+  return (
+    <motion.span
+      style={{ opacity, y }}
+      className="inline-block mr-[0.25em] transition-colors duration-150"
+    >
+      {children}
+    </motion.span>
+  );
+};
+
 export const About: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const headlineRef = useRef<HTMLDivElement>(null);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
   });
 
-  const narrativeY = useTransform(scrollYProgress, [0, 1], ["4%", "-4%"]);
-  const cardsY = useTransform(scrollYProgress, [0, 1], ["-2%", "6%"]);
+  const { scrollYProgress: headlineProgress } = useScroll({
+    target: headlineRef,
+    offset: ["start 85%", "end 45%"],
+  });
+
+  const narrativeY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["-3%", "7%"]);
+  const dividerWidth = useTransform(scrollYProgress, [0.1, 0.4], ["0%", "100%"]);
+
+  const headlineWords = "Engineering software with clarity, purpose, and mathematical precision.".split(" ");
 
   return (
     <section
@@ -51,17 +79,27 @@ export const About: React.FC = () => {
         <span className="font-mono text-xs text-primary font-semibold tracking-widest uppercase">
           01 // About Sonu
         </span>
-        <div className="h-px bg-slate-200 flex-1 max-w-xs" />
+        <div className="h-px bg-slate-200 flex-1 max-w-xs overflow-hidden">
+          <motion.div style={{ width: dividerWidth }} className="h-full bg-primary" />
+        </div>
       </div>
 
-      {/* Editorial Headline */}
-      <div className="max-w-4xl mb-16 sm:mb-24">
+      {/* Editorial Headline with Scroll-Scrubbed Word Reveal */}
+      <div ref={headlineRef} className="max-w-4xl mb-16 sm:mb-24 select-none">
         <h2 className="font-display font-semibold text-3xl sm:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-[1.12]">
-          Engineering software with clarity, purpose, and mathematical precision.
+          {headlineWords.map((word, i) => {
+            const start = i / headlineWords.length;
+            const end = start + 1 / headlineWords.length;
+            return (
+              <WordReveal key={i} progress={headlineProgress} range={[start, end]}>
+                {word}
+              </WordReveal>
+            );
+          })}
         </h2>
       </div>
 
-      {/* Two-Column Editorial Narrative */}
+      {/* Two-Column Editorial Narrative with Parallax */}
       <div className="grid lg:grid-cols-12 gap-16 lg:gap-20 items-start">
         
         {/* Left Column: Story & Narrative (7 cols) */}
@@ -86,20 +124,26 @@ export const About: React.FC = () => {
             </p>
           </div>
 
-          <div className="pt-4 flex items-center gap-6 text-sm font-mono text-slate-500">
-            <div>
-              <span className="text-slate-400 block text-xs uppercase tracking-wider">Location</span>
-              <span className="text-slate-900 font-medium">Kannur, Kerala, India</span>
-            </div>
-            <div className="w-px h-8 bg-slate-200" />
-            <div>
-              <span className="text-slate-400 block text-xs uppercase tracking-wider">Availability</span>
+          {/* Location & Status Cards with Hover Elevation */}
+          <div className="pt-4 flex flex-wrap items-center gap-6 text-sm font-mono text-slate-500">
+            <motion.div
+              whileHover={{ y: -2 }}
+              className="p-3 bg-white border border-slate-200 rounded-xl shadow-soft-sm"
+            >
+              <span className="text-slate-400 block text-[11px] uppercase tracking-wider">Location</span>
+              <span className="text-slate-900 font-medium">{PERSONAL_DETAILS.location}</span>
+            </motion.div>
+            <motion.div
+              whileHover={{ y: -2 }}
+              className="p-3 bg-white border border-slate-200 rounded-xl shadow-soft-sm"
+            >
+              <span className="text-slate-400 block text-[11px] uppercase tracking-wider">Availability</span>
               <span className="text-emerald-600 font-medium">Open to High-Impact Roles</span>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
 
-        {/* Right Column: Numbered Highlight Stack (5 cols) */}
+        {/* Right Column: Numbered Highlight Stack with Parallax Lift */}
         <motion.div
           style={{ y: cardsY }}
           className="lg:col-span-5 space-y-4"
@@ -107,11 +151,12 @@ export const About: React.FC = () => {
           {HIGHLIGHTS.map((item, index) => (
             <motion.div
               key={item.num}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 24 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 hover:border-primary/40 hover:shadow-soft-md transition-all duration-300 group"
+              whileHover={{ y: -4, borderColor: "rgba(79, 70, 229, 0.5)" }}
+              className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 hover:shadow-soft-md transition-all duration-300 group cursor-default"
             >
               <div className="flex items-baseline justify-between mb-2">
                 <span className="font-mono text-xs font-semibold text-primary">
