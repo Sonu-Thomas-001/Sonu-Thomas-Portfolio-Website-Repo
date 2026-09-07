@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
-import { Sparkles, ArrowUpRight } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { PERSONAL_DETAILS } from '../constants';
 
 const HIGHLIGHTS = [
@@ -30,41 +29,17 @@ const HIGHLIGHTS = [
   },
 ];
 
-const WordReveal: React.FC<{
-  children: string;
-  progress: MotionValue<number>;
-  range: [number, number];
-}> = ({ children, progress, range }) => {
-  const opacity = useTransform(progress, range, [0.22, 1]);
-  const y = useTransform(progress, range, [6, 0]);
-
-  return (
-    <motion.span
-      style={{ opacity, y }}
-      className="inline-block mr-[0.25em] transition-colors duration-150"
-    >
-      {children}
-    </motion.span>
-  );
-};
-
 export const About: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const headlineRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
   });
 
-  const { scrollYProgress: headlineProgress } = useScroll({
-    target: headlineRef,
-    offset: ["start 85%", "end 45%"],
-  });
-
-  const narrativeY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
-  const cardsY = useTransform(scrollYProgress, [0, 1], ["-3%", "7%"]);
-  const dividerWidth = useTransform(scrollYProgress, [0.1, 0.4], ["0%", "100%"]);
+  const narrativeY = useTransform(scrollYProgress, [0, 1], ["4%", "-4%"]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["-2%", "5%"]);
+  const dividerWidth = useTransform(scrollYProgress, [0, 0.4], ["0%", "100%"]);
 
   const headlineWords = "Engineering software with clarity, purpose, and mathematical precision.".split(" ");
 
@@ -72,7 +47,7 @@ export const About: React.FC = () => {
     <section
       ref={containerRef}
       id="about"
-      className="py-24 sm:py-36 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto relative"
+      className="py-24 sm:py-36 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto relative overflow-hidden"
     >
       {/* Section Identifier */}
       <div className="flex items-center gap-3 mb-10">
@@ -84,18 +59,25 @@ export const About: React.FC = () => {
         </div>
       </div>
 
-      {/* Editorial Headline with Scroll-Scrubbed Word Reveal */}
-      <div ref={headlineRef} className="max-w-4xl mb-16 sm:mb-24 select-none">
-        <h2 className="font-display font-semibold text-3xl sm:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-[1.12]">
-          {headlineWords.map((word, i) => {
-            const start = i / headlineWords.length;
-            const end = start + 1 / headlineWords.length;
-            return (
-              <WordReveal key={i} progress={headlineProgress} range={[start, end]}>
-                {word}
-              </WordReveal>
-            );
-          })}
+      {/* Editorial Headline with Scroll-Triggered Word-by-Word Stagger */}
+      <div className="max-w-4xl mb-16 sm:mb-24 select-none">
+        <h2 className="font-display font-semibold text-3xl sm:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-[1.14]">
+          {headlineWords.map((word, i) => (
+            <motion.span
+              key={i}
+              initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 0.5,
+                delay: i * 0.035,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="inline-block mr-[0.26em]"
+            >
+              {word}
+            </motion.span>
+          ))}
         </h2>
       </div>
 
@@ -105,6 +87,10 @@ export const About: React.FC = () => {
         {/* Left Column: Story & Narrative (7 cols) */}
         <motion.div
           style={{ y: narrativeY }}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
           className="lg:col-span-7 space-y-8"
         >
           <p className="text-xl sm:text-2xl text-slate-800 font-normal leading-relaxed">
@@ -120,22 +106,22 @@ export const About: React.FC = () => {
               Beyond enterprise infrastructure, I design and build modern software from first principles. From intelligent LLM-powered pipelines and vector search architectures to fluid, human-centric web applications, I care deeply about how systems perform under load and how they feel to the people who use them.
             </p>
             <p>
-              My academic journey in Data Science & Artificial Intelligence at <strong className="font-semibold text-slate-900">IIT Guwahati</strong> anchors my practical engineering in deep computational theory — giving me the intuition to evaluate modern models beyond their marketing claims.
+              My academic journey in Data Science &amp; Artificial Intelligence at <strong className="font-semibold text-slate-900">IIT Guwahati</strong> anchors my practical engineering in deep computational theory — giving me the intuition to evaluate modern models beyond their marketing claims.
             </p>
           </div>
 
           {/* Location & Status Cards with Hover Elevation */}
           <div className="pt-4 flex flex-wrap items-center gap-6 text-sm font-mono text-slate-500">
             <motion.div
-              whileHover={{ y: -2 }}
-              className="p-3 bg-white border border-slate-200 rounded-xl shadow-soft-sm"
+              whileHover={{ y: -3 }}
+              className="p-3.5 bg-white border border-slate-200 rounded-2xl shadow-soft-sm hover:border-primary/40 transition-all"
             >
               <span className="text-slate-400 block text-[11px] uppercase tracking-wider">Location</span>
               <span className="text-slate-900 font-medium">{PERSONAL_DETAILS.location}</span>
             </motion.div>
             <motion.div
-              whileHover={{ y: -2 }}
-              className="p-3 bg-white border border-slate-200 rounded-xl shadow-soft-sm"
+              whileHover={{ y: -3 }}
+              className="p-3.5 bg-white border border-slate-200 rounded-2xl shadow-soft-sm hover:border-emerald-400/50 transition-all"
             >
               <span className="text-slate-400 block text-[11px] uppercase tracking-wider">Availability</span>
               <span className="text-emerald-600 font-medium">Open to High-Impact Roles</span>
@@ -151,11 +137,11 @@ export const About: React.FC = () => {
           {HIGHLIGHTS.map((item, index) => (
             <motion.div
               key={item.num}
-              initial={{ opacity: 0, x: 24 }}
+              initial={{ opacity: 0, x: 28 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -4, borderColor: "rgba(79, 70, 229, 0.5)" }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              whileHover={{ y: -4, borderColor: "rgba(79, 70, 229, 0.45)" }}
               className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 hover:shadow-soft-md transition-all duration-300 group cursor-default"
             >
               <div className="flex items-baseline justify-between mb-2">

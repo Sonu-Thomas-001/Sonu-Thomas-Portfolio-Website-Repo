@@ -28,7 +28,7 @@ const ProjectCard: React.FC<{
       layout
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.5, delay: idx * 0.06 }}
       whileHover={{ y: -6 }}
       className={`group bg-white rounded-3xl overflow-hidden border border-slate-200/90 hover:border-primary/40 hover:shadow-soft-lg transition-all duration-300 flex flex-col justify-between ${

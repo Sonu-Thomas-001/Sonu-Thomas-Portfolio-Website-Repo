@@ -60,7 +60,7 @@ const AppContent: React.FC = () => {
   }, [location.pathname]);
 
   return (
-    <div className="bg-page min-h-screen text-slate-800 font-sans selection:bg-primary/20 selection:text-primary transition-colors duration-300 relative overflow-x-hidden">
+    <div className="bg-page min-h-screen text-slate-800 font-sans selection:bg-primary/20 selection:text-primary transition-colors duration-300 relative overflow-x-clip">
       
       {/* Global Scroll Progress Indicator */}
       <motion.div
