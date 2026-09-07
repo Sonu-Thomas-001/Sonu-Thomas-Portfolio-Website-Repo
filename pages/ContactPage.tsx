@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Contact } from '../components/Contact';
 import { SEO } from '../components/SEO';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Sparkles } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 
 export const ContactPage: React.FC = () => {
   useEffect(() => {
@@ -17,12 +17,12 @@ export const ContactPage: React.FC = () => {
         url="/contact"
         keywords="Contact Sonu Thomas, Hire AI Software Engineer, Machine Learning Engineer, HCLTech Engineer, Kannur Kerala"
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-4">
         <Link 
           to="/" 
-          className="inline-flex items-center gap-2 text-primary hover:text-primary-600 font-semibold text-sm mb-6 group"
+          className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 font-mono text-xs uppercase tracking-wider mb-4 group"
         >
-          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
+          <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" /> 
           <span>Back to Home</span>
         </Link>
       </div>

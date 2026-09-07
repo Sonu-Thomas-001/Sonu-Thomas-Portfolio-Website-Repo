@@ -1,100 +1,52 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Sparkles, BrainCircuit, Cpu, Database, Network } from 'lucide-react';
+import { motion, useScroll, useTransform, useVelocity, useSpring } from 'framer-motion';
 
-const MAIN_SKILLS = [
-  "Artificial Intelligence & Agents",
-  "LLM Fine-Tuning & Prompt Engineering",
-  "Python & PyTorch",
-  "Enterprise System Architecture",
-  "Full-Stack Web Development",
-  "Data Pipelines & Vector DBs"
+const MARQUEE_ITEMS = [
+  "ARTIFICIAL INTELLIGENCE",
+  "LLM ARCHITECTURES",
+  "FULL-STACK ENGINEERING",
+  "PRODUCTION SYSTEMS",
+  "AUTONOMOUS AGENTS",
+  "HCLTECH ENTERPRISE",
+  "IIT GUWAHATI",
+  "SCALABLE BACKENDS",
 ];
-
-const MINI_ITEMS = [
-  "Production Scalability",
-  "Enterprise Change Management",
-  "Applied AI Engineering",
-  "React & TypeScript",
-  "Clean Code & Reliability",
-  "IIT Guwahati Alumni"
-];
-
-const InfiniteLoop = ({ 
-  children, 
-  duration = 35, 
-  direction = 'left' 
-}: { 
-  children?: React.ReactNode, 
-  duration?: number, 
-  direction?: 'left' | 'right' 
-}) => {
-  return (
-    <div className="flex overflow-hidden w-full select-none">
-      <motion.div
-        initial={{ x: direction === 'left' ? "0%" : "-100%" }}
-        animate={{ x: direction === 'left' ? "-100%" : "0%" }}
-        transition={{ duration: duration, repeat: Infinity, ease: "linear" }}
-        className="flex flex-shrink-0 min-w-full items-center"
-      >
-        {children}
-      </motion.div>
-      <motion.div
-        initial={{ x: direction === 'left' ? "0%" : "-100%" }}
-        animate={{ x: direction === 'left' ? "-100%" : "0%" }}
-        transition={{ duration: duration, repeat: Infinity, ease: "linear" }}
-        className="flex flex-shrink-0 min-w-full items-center"
-      >
-        {children}
-      </motion.div>
-    </div>
-  );
-};
 
 export const TechMarquee: React.FC = () => {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const cardsY = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll();
+  const scrollVelocity = useVelocity(scrollY);
+  const smoothVelocity = useSpring(scrollVelocity, { damping: 50, stiffness: 400 });
+  const skewVelocity = useTransform(smoothVelocity, [-1200, 1200], [-3, 3]);
 
   return (
-    <div 
-      ref={containerRef} 
-      className="relative border-y border-slate-200/80 bg-white/60 backdrop-blur-sm overflow-hidden py-8 z-20"
+    <div
+      id="marquee"
+      ref={containerRef}
+      className="relative w-full border-y border-slate-200/80 bg-white/70 backdrop-blur-md overflow-hidden py-6 sm:py-8 select-none"
     >
-      <motion.div style={{ y: cardsY }}>
-        <InfiniteLoop duration={40}>
-          {MAIN_SKILLS.map((skill, index) => (
-            <div key={index} className="flex items-center gap-8 md:gap-14 px-6 md:px-10 group cursor-default">
-              <span className="font-display text-2xl md:text-4xl font-bold tracking-tight text-slate-400 group-hover:text-primary transition-colors duration-300 whitespace-nowrap">
-                {skill}
+      <motion.div style={{ skewX: skewVelocity }} className="flex overflow-hidden w-full">
+        <motion.div
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 32, ease: "linear", repeat: Infinity }}
+          className="flex flex-shrink-0 items-center gap-8 sm:gap-16 whitespace-nowrap"
+        >
+          {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, index) => (
+            <div key={index} className="flex items-center gap-8 sm:gap-16">
+              <span className={`font-display text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight whitespace-nowrap transition-colors duration-300 ${
+                index % 2 === 1 ? 'text-slate-300 hover:text-slate-700' : 'text-slate-800 hover:text-primary'
+              }`}>
+                {item}
               </span>
-              <div className="w-2 h-2 rounded-full bg-primary/40 group-hover:bg-primary group-hover:scale-125 transition-all" />
+              <span className="text-slate-300 font-mono text-xl sm:text-2xl font-light">
+                /
+              </span>
             </div>
           ))}
-        </InfiniteLoop>
+        </motion.div>
       </motion.div>
     </div>
   );
 };
 
-export const SectionMarquee: React.FC<{ className?: string }> = ({ className = "" }) => {
-  return (
-    <div className={`relative bg-primary-50/60 border-y border-primary/10 overflow-hidden py-3 ${className}`}>
-      <InfiniteLoop duration={30} direction="right">
-        {MINI_ITEMS.map((item, index) => (
-          <div key={index} className="flex items-center gap-6 px-4">
-            <span className="text-xs font-mono font-semibold tracking-wider uppercase text-primary/80 whitespace-nowrap flex items-center gap-2">
-              <Sparkles className="w-3 h-3 text-primary" />
-              {item}
-            </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-primary/30" />
-          </div>
-        ))}
-      </InfiniteLoop>
-    </div>
-  );
-};
+export const SectionMarquee: React.FC<{ className?: string }> = () => null;

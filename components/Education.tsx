@@ -1,97 +1,76 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { GraduationCap, Calendar, Award, BookOpen, CheckCircle } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { EDUCATION_DATA } from '../constants';
 
 export const Education: React.FC = () => {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const cardsY = useTransform(scrollYProgress, [0, 1], ["4%", "-4%"]);
-
   return (
-    <section ref={containerRef} id="education" className="py-24 lg:py-32 bg-page relative overflow-hidden">
-      
-      <motion.div style={{ y: cardsY }} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16 text-center max-w-2xl mx-auto"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 border border-primary/20 text-primary text-xs font-mono font-semibold uppercase tracking-wider mb-4">
-            <GraduationCap className="w-3.5 h-3.5" />
-            <span>Academic Qualifications</span>
-          </div>
-          <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight">
-            Education & Knowledge Foundation
+    <section id="education" className="py-20 sm:py-28 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-slate-200/80">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+        <div>
+          <span className="font-mono text-xs text-primary font-semibold tracking-widest uppercase block mb-1">
+            03 // Academic Roots
+          </span>
+          <h2 className="font-display font-semibold text-3xl sm:text-4xl text-slate-900 tracking-tight">
+            Education & Foundations
           </h2>
-          <p className="text-slate-600 text-base sm:text-lg mt-4 leading-relaxed">
-            Mathematical, algorithmic, and computing frameworks grounding my machine learning 
-            and engineering solutions.
-          </p>
-        </motion.div>
+        </div>
+        <p className="text-slate-500 text-sm max-w-md">
+          Theoretical grounding in linear algebra, algorithms, deep neural nets, and statistical modeling.
+        </p>
+      </div>
 
-        {/* Education Cards Grid */}
-        <div className="grid md:grid-cols-3 gap-8 items-stretch">
-          {EDUCATION_DATA.map((edu, idx) => (
+      {/* Single-row / 3-column clean horizontal grid */}
+      <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+        {EDUCATION_DATA.map((edu, idx) => {
+          const isIIT = edu.institution.toLowerCase().includes('guwahati');
+          return (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.12 }}
-              className="group flex"
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className={`p-7 rounded-3xl bg-white transition-all duration-300 flex flex-col justify-between ${
+                isIIT
+                  ? 'border-2 border-primary/30 shadow-soft-md ring-4 ring-primary/5'
+                  : 'border border-slate-200/90 shadow-soft-sm hover:border-slate-300'
+              }`}
             >
-              <div className="w-full bg-white border border-slate-200/90 hover:border-primary/40 rounded-3xl p-8 shadow-soft-md hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                
-                <div>
-                  {/* Top Icon & Period */}
-                  <div className="flex items-center justify-between gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-primary-50 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
-                      <GraduationCap className="w-6 h-6" />
-                    </div>
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-mono font-semibold">
-                      <Calendar className="w-3.5 h-3.5 text-primary" />
-                      <span>{edu.period}</span>
-                    </div>
-                  </div>
-
-                  {/* Degree & Institution */}
-                  <div className="space-y-2 mb-4">
-                    <h3 className="font-display font-bold text-xl text-slate-900 group-hover:text-primary transition-colors leading-snug">
-                      {edu.degree}
-                    </h3>
-                    <p className="text-sm font-semibold text-primary">
-                      {edu.institution}
-                    </p>
-                  </div>
-
-                  {/* Details */}
-                  {edu.details && (
-                    <p className="text-xs text-slate-600 leading-relaxed bg-slate-50 border border-slate-200/60 p-3.5 rounded-2xl font-mono mt-4">
-                      {edu.details}
-                    </p>
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="font-mono text-xs text-slate-400">
+                    {edu.period}
+                  </span>
+                  {isIIT && (
+                    <span className="text-[11px] font-mono font-medium px-2 py-0.5 rounded-full bg-primary-50 text-primary border border-primary/20">
+                      Top Institution
+                    </span>
                   )}
                 </div>
 
-                {/* Verified badge */}
-                <div className="pt-6 border-t border-slate-100 mt-6 flex items-center gap-2 text-xs font-mono text-slate-400">
-                  <CheckCircle className="w-3.5 h-3.5 text-emerald-500" />
-                  <span>Curriculum Verified</span>
-                </div>
+                <h3 className="font-display font-semibold text-xl text-slate-900 mb-2">
+                  {edu.institution}
+                </h3>
+                <p className="text-sm font-medium text-primary mb-3">
+                  {edu.degree}
+                </p>
 
+                {edu.details && (
+                  <p className="text-xs text-slate-600 font-light leading-relaxed">
+                    {edu.details}
+                  </p>
+                )}
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                <span>0{idx + 1}</span>
+                <span>Verified</span>
               </div>
             </motion.div>
-          ))}
-        </div>
-
-      </motion.div>
+          );
+        })}
+      </div>
     </section>
   );
 };
