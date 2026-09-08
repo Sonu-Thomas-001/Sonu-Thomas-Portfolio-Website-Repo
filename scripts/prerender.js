@@ -50,26 +50,17 @@ const routes = [
   },
   {
     path: '/projects',
-    title: 'Project Showcases & Architecture Prototypes | Sonu Thomas',
-    description: 'Explore conceptual project showcases, prototypes, and technical architectures developed by Sonu Thomas.',
-    h1: 'Project Showcases & Architectural Prototypes',
-    subtitle: 'Demonstrations, prototypes, and concept architectures',
+    title: 'AI Prod Engg Co-Worker Platform | Sonu Thomas',
+    description: 'Autonomous multi-agent digital taskforce of 100+ Core Digital Workers coordinated by an intelligent Central Brain for ITSM, DevOps, SRE, and enterprise resilience.',
+    h1: 'AI Prod Engg Co-Worker Platform',
+    subtitle: 'Building the Future-Ready Digital Working Taskforce',
     content: `
-      <p>A catalog of conceptual prototypes, architectural demonstrations, and exploratory projects illustrating modern software engineering, generative AI workflows, and responsive web systems.</p>
+      <p>An autonomous, highly specialized, and collaborative synthetic workforce that operates 24/7 alongside human engineering teams to eliminate toil, accelerate incident resolution, and ensure enterprise resilience.</p>
       <article>
-        <h2>Generative AI Prototype</h2>
-        <p><strong>Stack:</strong> TypeScript, GenAI, React, FastAPI</p>
-        <p>Exploratory prototype exploring automated asset placement, conditioning models, and natural language design editing.</p>
-      </article>
-      <article>
-        <h2>Cloud Architecture Visualizer</h2>
-        <p><strong>Stack:</strong> TypeScript, React, Mermaid.js</p>
-        <p>Conceptual developer tool turning structured text descriptions into interactive visual architecture diagrams.</p>
-      </article>
-      <article>
-        <h2>Interactive Web Application</h2>
-        <p><strong>Stack:</strong> TypeScript, React, Web APIs</p>
-        <p>Demonstration of real-time client state management, responsive design patterns, and interactive user experiences.</p>
+        <h2>System Architecture & Orchestration</h2>
+        <p><strong>Stack:</strong> LangGraph, Gemini LLM, MCP Protocol, ChromaDB, WebSockets, Python, ServiceNow, Control-M, Jira API, MongoDB Atlas</p>
+        <p>Deploys a fleet of 100+ Core Digital Workers spanning 15 IT specializations with distinct personas, coordinated by a Central Brain with 40+ event types on pub/sub EventBus, reducing MTTR by 70%.</p>
+        <p>GitHub Repository: <a href="https://github.com/Sonu-Thomas-001/Prod-Engg-Co-Worker-Platform">github.com/Sonu-Thomas-001/Prod-Engg-Co-Worker-Platform</a></p>
       </article>
     `
   },

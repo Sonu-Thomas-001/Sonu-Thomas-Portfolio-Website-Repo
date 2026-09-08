@@ -13,10 +13,8 @@ Sonu Thomas is an AI Software Engineer at HCLTech and a Data Science & Artificia
 - [Volunteering & Community](https://www.sonuthomas.me/volunteering): Technical leadership, community contributions, and mentorship.
 - [Contact](https://www.sonuthomas.me/contact): Direct communication channels, collaboration inquiries, and contact form.
 
-## Project Showcases (Concept Demos & Prototypes)
-- **Generative AI & Agent Workflows**: Exploratory prototypes demonstrating structured output generation, state machine orchestration, and deterministic fallbacks.
-- **Enterprise & Full-Stack Systems**: Conceptual architectural demos emphasizing modular design, responsive interfaces, and database integration.
-- *Note: All portfolio projects are conceptual demonstrations and experimental prototypes.*
+## Flagship Architecture & Open Source
+- **AI Prod Engg Co-Worker Platform** (https://github.com/Sonu-Thomas-001/Prod-Engg-Co-Worker-Platform): Deploying a fleet of 100+ Core Digital Workers across 15 IT specializations—coordinated by an intelligent Central Brain—to automate ITSM, DevOps, SRE, security, and operational intelligence workflows in enterprise production environments. Reduces MTTR by 70% with LangGraph state machines, Gemini LLM, MCP protocol, ChromaDB, and real-time WebSockets.
 
 ## Core Technical Competencies
 - **Artificial Intelligence & LLMs**: Agentic Workflows, Retrieval-Augmented Generation (RAG), Prompt Engineering, Google Gemini API, OpenAI APIs, NLP.

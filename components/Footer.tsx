@@ -129,7 +129,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-3 text-[#9C948B]">
               <li>
                 <Link to="/projects" className="hover:text-copper transition-colors flex items-center gap-1">
-                  <span>All Projects ({PERSONAL_DETAILS.name ? '15+' : '15+'})</span>
+                  <span>Flagship Architecture</span>
                   <ArrowUpRight className="w-3 h-3 text-copper" />
                 </Link>
               </li>
