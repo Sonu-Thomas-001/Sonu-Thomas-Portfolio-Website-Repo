@@ -244,9 +244,9 @@ export const Hero: React.FC = () => {
                   initial={{ scale: 1.15, filter: "blur(6px)" }}
                   animate={{ scale: 1, filter: "blur(0px)" }}
                   transition={{ duration: 1.1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  src="https://cdn.jsdelivr.net/gh/Sonu-Thomas-001/image-host@master/Sonu-Thomas-Portfolio-Website-Repo/ProfilePic.jpg"
+                  src="/images/Professional%20Pic%20Square.png"
                   alt="Sonu Thomas — AI Software Engineer"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#131110]/70 via-transparent to-transparent opacity-75" />
                 

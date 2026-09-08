@@ -13,7 +13,7 @@ interface SEOProps {
 export const SEO: React.FC<SEOProps> = ({ title, description, url, image }) => {
   const normalizedPath = url ? (url.startsWith('/') ? url : `/${url}`) : '';
   const canonicalUrl = `https://www.sonuthomas.me${normalizedPath === '/' ? '' : normalizedPath}`;
-  const ogImage = image || "https://cdn.jsdelivr.net/gh/Sonu-Thomas-001/image-host@master/Sonu-Thomas-Portfolio-Website-Repo/ProfilePic.jpg";
+  const ogImage = image || "https://www.sonuthomas.me/images/Professional%20Pic%20Square.png";
 
   const jsonLd = {
     "@context": "https://schema.org",
