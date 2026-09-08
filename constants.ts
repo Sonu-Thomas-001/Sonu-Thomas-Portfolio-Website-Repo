@@ -612,6 +612,73 @@ All document queries undergo dual retrieval:
       demo: "#"
     },
     image: "/images/multi-agent-ai-assistant.svg"
+  },
+  {
+    id: "versant-practice-test",
+    title: "Versant Practice Test Simulator",
+    category: "Applied AI & Speech Systems",
+    role: "Full-Stack & AI Engineer",
+    stack: [
+      "React 19",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "Google Gemini AI",
+      "Web Speech API",
+      "Speech Recognition",
+      "Text-to-Speech",
+      "GSE / CEFR Scoring"
+    ],
+    description: "Realistic Speaking & Listening Exam Simulator: Production-grade mock Versant test platform built with React 19, TypeScript, and Google Gemini AI. Features real-time speech recognition, text-to-speech audio delivery, automated GSE & CEFR proficiency scoring (10-90 scale), adaptive exam timers, and AI-generated diagnostic feedback across 6 core test sections (Parts A-F).",
+    detailedDescription: `## 🎯 What is Versant Practice Test Simulator?
+**Versant Practice Test Simulator** is a clean, mobile-friendly mock Versant-style speaking and listening exam simulator built with **React 19**, **TypeScript**, and **Google Gemini AI**. It provides candidates with a realistic, high-fidelity testing environment to practice and master professional English communication skills with automated scoring, word-by-word diff analysis, and detailed AI-generated diagnostic feedback.
+
+> *"Provides candidates with a realistic, high-fidelity testing environment to practice and master professional English communication skills with automated scoring and AI-generated diagnostic feedback."*
+
+---
+
+## 📋 Comprehensive Test Sections (Parts A–F)
+
+| Section | Format | Core Skill Assessed | Operational Mechanism |
+| :--- | :--- | :--- | :--- |
+| **Part A: Repeat** | Audio Prompt &rarr; Vocal Repeat | Pronunciation, Rhythm, Word Stress | Real-time speech recognition captures spoken audio with acoustic confidence checks |
+| **Part B: Sentence Building** | Jumbled Words &rarr; Spoken Sentence | Grammatical Structure & Syntax | Candidates rearrange spoken phrase fragments into logical, coherent sentences |
+| **Part C: Conversations** | Dialogue &rarr; Rapid Comprehension | Listening Inference & Intent | Real-world dialogues between speakers followed by immediate one-word answer prompts |
+| **Part D: Sentence Completion** | Timed Context &rarr; Type Missing Word | Lexical Fit & Semantic Precision | Candidates type appropriate missing terms under strict timed pressure |
+| **Part E: Dictation** | Single Audio Playback &rarr; Transcript | Auditory Memory & Spelling Precision | Candidates transcribe native-speed sentences verbatim within strict second windows |
+| **Part F: Passage Reconstruction** | 30s Read Window &rarr; Retell from Memory | Retention, Cohesion, Grammar | Paragraph disappears after 30s; candidate reconstructs the narrative from memory |
+
+---
+
+## 🎙️ Speech Recognition & Audio Pipeline
+- **Speech Recognition Integration**: Leverages Web Speech API for low-latency client-side voice transcription during speaking assessments.
+- **Text-to-Speech (TTS) Engine**: Synthesizes natural, standardized native-speed audio prompts across multiple English accents (en-US and en-GB).
+- **Interactive Audio Waveform**: Real-time visual feedback indicating microphone input levels, speech cadence, and recording state.
+
+---
+
+## 🤖 Google Gemini AI Automated Scoring & CEFR Mapping
+- **Deep Linguistic Evaluation**: Analyzes candidate transcripts against ground truth, assessing phonetic accuracy, syntactic cohesion, lexical appropriateness, and grammatical integrity.
+- **Pearson GSE & CEFR Alignment**: Calibrated against official standards on a **10–90 scale**:
+  - \`C2 (85–90)\`: Mastery / Native-equivalent fluency
+  - \`C1 (76–84)\`: Effective Operational Proficiency
+  - \`B2 (59–75)\`: Vantage / High Independent
+  - \`B1 (43–58)\`: Threshold / Intermediate
+  - \`A2 (30–42)\`: Waystage / Elementary
+  - \`A1 (10–29)\`: Breakthrough / Beginner
+- **Word-by-Word Diff Inspection**: Visual red/green diff view highlighting omitted, inserted, or substituted words for pinpoint self-correction.
+
+---
+
+## ⚡ Exam UX & Diagnostic Features
+- **Adaptive Timers**: Real-time per-question countdown clocks enforcing authentic exam pressure with zero overrun.
+- **Distraction-Free Fullscreen Mode**: Minimizes visual clutter, browser tab distractions, and extraneous UI elements.
+- **Print-Ready PDF Reports**: Instant one-click export of official-style candidate diagnostic scorecards for interview preparation and institutional assessment.`,
+    links: {
+      github: "https://github.com/Sonu-Thomas-001/Versant-Practice-Test",
+      demo: "#"
+    },
+    image: "/images/versant-practice-test.svg"
   }
 ];
 

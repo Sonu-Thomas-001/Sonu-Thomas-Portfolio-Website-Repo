@@ -76,6 +76,8 @@ const ProjectCard: React.FC<{
               ? 'Multi-Agent AI OS'
               : project.id === 'multi-agent-enterprise-ai-assistant'
               ? '7 Micro-Agents & Hybrid RAG'
+              : project.id === 'versant-practice-test'
+              ? 'Speech AI & CEFR Scoring'
               : '8-Team Multi-Agent Triage'}
           </span>
         </div>
@@ -101,7 +103,26 @@ const ProjectCard: React.FC<{
           </p>
 
           {/* Operational Metrics Bar */}
-          {project.id === 'multi-agent-enterprise-ai-assistant' ? (
+          {project.id === 'versant-practice-test' ? (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-[#171412] border border-[#2D2824]">
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Speech Engine</span>
+                <span className="font-display font-bold text-sm sm:text-base text-[#EDE5DC]">Web Speech &amp; TTS</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Exam Coverage</span>
+                <span className="font-display font-bold text-sm sm:text-base text-copper">Parts A–F (6 Tests)</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">AI Evaluation</span>
+                <span className="font-display font-bold text-sm sm:text-base text-emerald-400">Gemini Diagnostics</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Scoring Standard</span>
+                <span className="font-display font-bold text-sm sm:text-base text-emerald-400">GSE &amp; CEFR (10–90)</span>
+              </div>
+            </div>
+          ) : project.id === 'multi-agent-enterprise-ai-assistant' ? (
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-[#171412] border border-[#2D2824]">
               <div>
                 <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Agent Swarm</span>

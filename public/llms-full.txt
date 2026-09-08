@@ -150,6 +150,20 @@ Sonu Thomas bridges the gap between deep computational theory and practical soft
 
 ---
 
+## Flagship Engineering Project 8: Versant Practice Test Simulator
+
+- **Core Vision**: Realistic Speaking & Listening Exam Simulator built with React 19, TypeScript, and Google Gemini AI. Provides a high-fidelity mock test environment for English language candidates with real-time speech recognition, text-to-speech audio delivery, automated GSE & CEFR scoring (10-90 scale), and actionable AI diagnostic feedback across 6 core exam sections (Parts A-F).
+- **Key Architecture & Capabilities**:
+  - **Comprehensive Test Sections (Parts A-F)**: Full exam fidelity covering Part A (Repeat with vocal analysis), Part B (Sentence Building from jumbled words), Part C (Conversational dialogue comprehension), Part D (Sentence Completion with lexical typing), Part E (Dictation transcription), and Part F (Passage Reconstruction from 30s memory).
+  - **Speech Recognition & Audio Pipeline**: Web Speech API integration for instant voice-to-text capture with acoustic confidence checks; native Text-to-Speech (TTS) audio delivery across multiple native English accents (en-US / en-GB).
+  - **Google Gemini AI Evaluation Engine**: Automates linguistic grading comparing user speech against ground truth, assessing phonetic accuracy, syntactic structure, vocabulary reach, and cadence.
+  - **Pearson GSE & CEFR Scoring (10-90 Scale)**: Professional proficiency benchmarking mapping to CEFR A1 through C2 levels with detailed sub-skill scores (Fluency, Vocabulary, Pronunciation, Grammar).
+  - **Exam UX & Diagnostic Tools**: Fullscreen distraction-free testing mode, adaptive countdown timers enforcing realistic pressure, word-by-word diff inspection, and one-click print-ready PDF scorecard export.
+- **Tech Stack**: React 19, TypeScript, Vite, Tailwind CSS, Google Gemini AI, Web Speech API (SpeechRecognition & SpeechSynthesis), HTML5 Audio.
+- **Repository Link**: https://github.com/Sonu-Thomas-001/Versant-Practice-Test
+
+---
+
 ## Technical Skill Matrix
 
 | Category | Technologies & Tools |

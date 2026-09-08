@@ -51,7 +51,7 @@ const routes = [
   {
     path: '/projects',
     title: 'Flagship AI Systems & Enterprise Architecture | Sonu Thomas',
-    description: 'Explore flagship autonomous AI platforms and enterprise architectures: Agentic Co-Worker Platform (100+ Digital Workers), Change Co-Worker (Change Management Platform), RCA-Agent (Root Cause Analysis System), TicketWave (High-Concurrency Ticketing), SmartDesk AI (Multi-Agent Incident Management Platform), QubiMind (Multi-Agent AI Operating System), and Multi-Agent Enterprise AI Assistant (7 Micro-Agents & Hybrid RAG).',
+    description: 'Explore flagship autonomous AI platforms and enterprise architectures: Agentic Co-Worker Platform (100+ Digital Workers), Change Co-Worker (Change Management Platform), RCA-Agent (Root Cause Analysis System), TicketWave (High-Concurrency Ticketing), SmartDesk AI (Multi-Agent Incident Management Platform), QubiMind (Multi-Agent AI Operating System), Multi-Agent Enterprise AI Assistant (7 Micro-Agents & Hybrid RAG), and Versant Practice Test Simulator (Speech AI & GSE/CEFR Scoring).',
     h1: 'Enterprise Multi-Agent Systems & Platforms',
     subtitle: 'Flagship Autonomous AI & Intelligent Infrastructure',
     content: `
@@ -90,6 +90,11 @@ const routes = [
         <h2>Multi-Agent Enterprise AI Assistant</h2>
         <p><strong>Stack:</strong> Next.js 15, React 19, FastAPI, Python 3.12, LangGraph, ChromaDB (BM25), Python Sandbox, Tailwind CSS v4, SQLite, SQLAlchemy</p>
         <p>Flagship enterprise AI platform orchestrating 7 specialized micro-agents in concurrent, stateful LangGraph channels. Features dual-retriever hybrid RAG (sparse BM25 + dense ChromaDB with Reciprocal Rank Fusion, k=60), serverless isolated Python code sandbox execution, and bank-grade 256-bit JWT authentication with 16 granular RBAC permissions.</p>
+      </article>
+      <article>
+        <h2>Versant Practice Test Simulator</h2>
+        <p><strong>Stack:</strong> React 19, TypeScript, Vite, Tailwind CSS, Google Gemini AI, Web Speech API, Speech Recognition, Text-to-Speech, GSE / CEFR Scoring</p>
+        <p>Realistic mock Versant speaking and listening exam simulator with client-side speech recognition, TTS prompt synthesis, automated Gemini AI performance assessment, GSE &amp; CEFR proficiency grading (10-90 scale), adaptive exam countdowns, and print-ready PDF scorecards across Parts A-F.</p>
       </article>
     `
   },
