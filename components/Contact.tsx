@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, Loader2, Send, Sparkles } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
 import { SuccessModal } from './SuccessModal';
+import { LinkedInBadge } from './LinkedInBadge';
 
 export const Contact: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -116,6 +117,14 @@ export const Contact: React.FC = () => {
               <span className="px-3 py-1 rounded-full bg-[#F5F0EB] text-ink border border-[#E8E0D8]">Production LLMs</span>
               <span className="px-3 py-1 rounded-full bg-[#F5F0EB] text-ink border border-[#E8E0D8]">Full-Stack Platforms</span>
             </div>
+          </div>
+
+          {/* LinkedIn Verified Public Profile Badge */}
+          <div className="space-y-2 pt-2">
+            <span className="text-xs font-mono uppercase tracking-wider text-[#78716C] block">
+              Professional Identity &amp; Verification
+            </span>
+            <LinkedInBadge theme="light" size="large" type="HORIZONTAL" />
           </div>
 
           {/* Clean Text-Based Contact Details */}
