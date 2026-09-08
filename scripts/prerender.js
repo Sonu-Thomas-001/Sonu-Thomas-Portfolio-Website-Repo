@@ -51,7 +51,7 @@ const routes = [
   {
     path: '/projects',
     title: 'Flagship AI Systems & Enterprise Architecture | Sonu Thomas',
-    description: 'Explore flagship autonomous AI platforms and enterprise architectures: Agentic Co-Worker Platform (100+ Digital Workers), Change Co-Worker (Change Management Platform), RCA-Agent (Root Cause Analysis System), TicketWave (High-Concurrency Ticketing), SmartDesk AI (Multi-Agent Incident Management Platform), QubiMind (Multi-Agent AI Operating System), Multi-Agent Enterprise AI Assistant (7 Micro-Agents & Hybrid RAG), and Versant Practice Test Simulator (Speech AI & GSE/CEFR Scoring).',
+    description: 'Explore flagship autonomous AI platforms and enterprise architectures: Agentic Co-Worker Platform (100+ Digital Workers), Change Co-Worker (Change Management Platform), RCA-Agent (Root Cause Analysis System), TicketWave (High-Concurrency Ticketing), SmartDesk AI (Multi-Agent Incident Management Platform), QubiMind (Multi-Agent AI Operating System), Multi-Agent Enterprise AI Assistant (7 Micro-Agents & Hybrid RAG), Versant Practice Test Simulator (Speech AI & GSE/CEFR Scoring), and ResolveAI (15-Node LangGraph Service Desk Agent).',
     h1: 'Enterprise Multi-Agent Systems & Platforms',
     subtitle: 'Flagship Autonomous AI & Intelligent Infrastructure',
     content: `
@@ -95,6 +95,11 @@ const routes = [
         <h2>Versant Practice Test Simulator</h2>
         <p><strong>Stack:</strong> React 19, TypeScript, Vite, Tailwind CSS, Google Gemini AI, Web Speech API, Speech Recognition, Text-to-Speech, GSE / CEFR Scoring</p>
         <p>Realistic mock Versant speaking and listening exam simulator with client-side speech recognition, TTS prompt synthesis, automated Gemini AI performance assessment, GSE &amp; CEFR proficiency grading (10-90 scale), adaptive exam countdowns, and print-ready PDF scorecards across Parts A-F.</p>
+      </article>
+      <article>
+        <h2>ResolveAI - IT Service Desk Agent</h2>
+        <p><strong>Stack:</strong> FastAPI, Python 3.12, LangGraph, LangChain, ChromaDB, Google Gemini, Pydantic, REST API, Docker</p>
+        <p>Intelligent IT service desk assistant powered by a 15-node LangGraph state machine and ChromaDB vector RAG. Automates incident triage, executes mock diagnostic tools (VPN, email, account, device health), evaluates multi-factor confidence, and enforces human-in-the-loop approval pauses on 100% synthetic enterprise data.</p>
       </article>
     `
   },

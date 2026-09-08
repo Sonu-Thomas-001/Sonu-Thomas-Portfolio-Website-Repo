@@ -679,6 +679,75 @@ All document queries undergo dual retrieval:
       demo: "#"
     },
     image: "/images/versant-practice-test.svg"
+  },
+  {
+    id: "resolveai",
+    title: "ResolveAI - IT Service Desk Agent",
+    category: "Autonomous Multi-Agent Systems",
+    role: "Architect & Lead Engineer",
+    stack: [
+      "FastAPI",
+      "Python 3.12",
+      "LangGraph",
+      "LangChain",
+      "ChromaDB",
+      "Google Gemini",
+      "Pydantic",
+      "REST API",
+      "Docker"
+    ],
+    description: "Intelligent IT Service Desk Assistant & 15-Node LangGraph State Machine: Enterprise proof-of-concept powered by Google Gemini, LangGraph, and ChromaDB vector RAG. Features automated troubleshooting, simulated diagnostic tools (VPN, email, account, device health), dynamic confidence scoring, human-in-the-loop approval pauses (interrupt_before), and secure synthetic data isolation.",
+    detailedDescription: `## 🎯 What is ResolveAI?
+**ResolveAI** is an AI-powered IT service desk agent built as a production-grade enterprise proof-of-concept (POC) leveraging **FastAPI**, **LangChain**, **LangGraph**, **ChromaDB**, and **Google Gemini** on Vertex AI. It delivers automated troubleshooting, intelligent diagnostic checks, and incident ticket routing using purely **synthetic enterprise data**—guaranteeing complete privacy and isolation from real operational infrastructure.
+
+> *"Replaces manual IT ticket triage bottlenecks with a 15-node LangGraph state machine combining ChromaDB vector retrieval, simulated diagnostic tool suites, and human-in-the-loop approval pauses."*
+
+---
+
+## ✨ Key Capabilities & System Features
+
+| Feature | Technical Architecture | Operational Impact |
+| :--- | :--- | :--- |
+| 🤖 **AI-Powered Troubleshooting** | Google Gemini on Vertex AI with structured schema output | Fast, accurate multi-step diagnostic plans with zero hallucinations |
+| 📚 **ChromaDB Vector RAG** | High-dimensional embedding search over SOP knowledge articles | Grounded retrieval matching symptom descriptions to verified runbooks |
+| 🔄 **15-Node LangGraph Engine** | Stateful cyclic directed graph with deterministic validation | End-to-end orchestration from intake and tool runs to final ticket creation |
+| 🛠️ **Mock Diagnostic Tools** | Simulated tools for VPN, email, account, device health, & service | Safely tests network connectivity, token lockouts, and host telemetry |
+| ✅ **Human-in-the-Loop (HITL)** | \`interrupt_before\` pauses requiring explicit approval before ticketing | Prevents spurious tickets and enforces manager oversight on sensitive actions |
+| 🔐 **Security-First Design** | Prompt injection filters, access controls, & cross-employee blocking | Prevents privilege escalation and cross-tenant data leaks |
+| 📊 **Synthetic Data Isolation** | Self-contained mock employees, services, & \`.invalid\` email domains | Zero dependency on production credentials; 100% risk-free testing |
+| 🎭 **Offline Demo Mode** | Rule-based classification & deterministic hash-based embeddings | Runs anywhere locally with zero Google Cloud credentials required |
+| 📈 **Dynamic Confidence Scoring** | Multi-factor heuristic weighing KB similarity, tool signal, & completeness | Scores &ge;80% auto-resolve; 50–79% request approval; &lt;50% escalate |
+
+---
+
+## 🏗️ The 15-Node LangGraph Workflow Pipeline
+ResolveAI processes each user incident through a structured 15-node state machine:
+\`\`\`
+User Input → Validate → Classify → Check Info → Retrieve KB → Run Tools → 
+Analyze → Generate Resolution → Calculate Confidence → Escalate or Approve → 
+Create Ticket → Final Response
+\`\`\`
+1. **Intake & Validation**: Sanitizes prompt inputs and blocks prompt injection or unauthorized cross-user inspections.
+2. **Classification & Entity Check**: Classifies incident category (Network, IAM, Hardware, Software, Email) and verifies necessary context.
+3. **ChromaDB Vector Retrieval**: Interrogates the knowledge base for matching standard operating procedures and past fixes.
+4. **Diagnostic Tool Execution**: Invokes Pydantic-validated diagnostic tools (e.g. \`check_vpn_status\`, \`check_account_status\`).
+5. **Causal Reasoning & Solution Generation**: Gemini synthesizes telemetry results with retrieved playbooks to draft step-by-step resolution plans.
+6. **Confidence Scoring**: Computes aggregate confidence based on KB proximity, diagnostic health metrics, and information completeness.
+7. **Human-in-the-Loop Pause**: Evaluates confidence threshold; if approval is required, execution halts at an \`interrupt_before\` node.
+8. **Ticket Creation & Sync**: On human approval or high confidence, generates the formal incident ticket with full audit traceability.
+
+---
+
+## 🛠️ Simulated Diagnostic Tool Suite
+- **\`check_vpn_status(user_id)\`**: Inspects simulated Cisco AnyConnect gateway sessions, detects tunnel drops, and checks IP lease status.
+- **\`check_account_status(user_id)\`**: Queries synthetic Active Directory for password expiry, account lockouts, and MFA status.
+- **\`check_device_health(device_id)\`**: Verifies host CPU utilization, disk capacity, and EDR antivirus process state.
+- **\`check_service_status(service_name)\`**: Pings simulated enterprise SaaS endpoints (Jira, Confluence, Mail, SSO).`,
+    links: {
+      github: "https://github.com/Sonu-Thomas-001/IT-Service-Desk-Agent",
+      demo: "#"
+    },
+    image: "/images/resolveai.svg"
   }
 ];
 

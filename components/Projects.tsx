@@ -78,6 +78,8 @@ const ProjectCard: React.FC<{
               ? '7 Micro-Agents & Hybrid RAG'
               : project.id === 'versant-practice-test'
               ? 'Speech AI & CEFR Scoring'
+              : project.id === 'resolveai'
+              ? '15-Node LangGraph State Machine'
               : '8-Team Multi-Agent Triage'}
           </span>
         </div>
@@ -103,7 +105,26 @@ const ProjectCard: React.FC<{
           </p>
 
           {/* Operational Metrics Bar */}
-          {project.id === 'versant-practice-test' ? (
+          {project.id === 'resolveai' ? (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-[#171412] border border-[#2D2824]">
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Workflow Engine</span>
+                <span className="font-display font-bold text-sm sm:text-base text-[#EDE5DC]">15-Node LangGraph</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Knowledge Base</span>
+                <span className="font-display font-bold text-sm sm:text-base text-copper">ChromaDB Vector RAG</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Diagnostics</span>
+                <span className="font-display font-bold text-sm sm:text-base text-emerald-400">Mock Tool Registry</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Governance</span>
+                <span className="font-display font-bold text-sm sm:text-base text-emerald-400">HITL interrupt_before</span>
+              </div>
+            </div>
+          ) : project.id === 'versant-practice-test' ? (
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-[#171412] border border-[#2D2824]">
               <div>
                 <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Speech Engine</span>

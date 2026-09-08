@@ -164,6 +164,20 @@ Sonu Thomas bridges the gap between deep computational theory and practical soft
 
 ---
 
+## Flagship Engineering Project 9: ResolveAI - IT Service Desk Agent
+
+- **Core Vision**: Intelligent IT Service Desk Assistant & 15-Node LangGraph State Machine. Enterprise proof-of-concept powered by Google Gemini, LangGraph, and ChromaDB vector RAG for automated incident triage, simulated diagnostics, dynamic confidence scoring, and human-in-the-loop approval pauses on 100% synthetic enterprise data.
+- **Key Architecture & Capabilities**:
+  - **15-Node LangGraph State Machine**: Sequential and cyclic execution pipeline: Intake → Validate → Classify → Check Info → Retrieve KB → Run Tools → Analyze → Generate Resolution → Calculate Confidence → Escalate or Approve → Create Ticket → Final Response.
+  - **ChromaDB Vector RAG Store**: Grounded semantic retrieval against standard operating procedure runbooks and historical incident resolutions; runs in production with Gemini embeddings or offline demo mode with deterministic hash embeddings.
+  - **Simulated Diagnostic Tool Suite**: Pydantic-validated diagnostic tools inspecting mock enterprise entities (VPN connectivity, Active Directory password expiry and lockout, host CPU/disk EDR health, and SaaS service latency).
+  - **Human-in-the-Loop Pauses**: Uses LangGraph \`interrupt_before\` pauses requiring manager sign-off prior to ticket creation on medium-confidence or sensitive transactions.
+  - **Enterprise Security & Synthetic Isolation**: Prompt injection detection, cross-employee request blocking, and isolated \`.invalid\` synthetic test identities with zero production dependencies.
+- **Tech Stack**: FastAPI, Python 3.12, LangGraph, LangChain, ChromaDB, Google Gemini (Vertex AI), Pydantic, REST API, Docker.
+- **Repository Link**: https://github.com/Sonu-Thomas-001/IT-Service-Desk-Agent
+
+---
+
 ## Technical Skill Matrix
 
 | Category | Technologies & Tools |

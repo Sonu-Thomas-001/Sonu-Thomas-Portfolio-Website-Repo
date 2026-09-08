@@ -1,0 +1,402 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" style="background:#0c1219; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="bg-grad-ra" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090f16"/>
+      <stop offset="50%" stop-color="#0c1622"/>
+      <stop offset="100%" stop-color="#080d13"/>
+    </linearGradient>
+    <linearGradient id="card-grad-ra" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#162334" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0f1926" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="cyan-ra" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#38BDF8"/>
+    </linearGradient>
+    <linearGradient id="blue-ra" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#60A5FA"/>
+    </linearGradient>
+    <linearGradient id="emerald-ra" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
+    <linearGradient id="amber-ra" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#FBBF24"/>
+    </linearGradient>
+    <linearGradient id="purple-ra" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#A78BFA"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1920" height="1080" fill="url(#bg-grad-ra)"/>
+
+  <!-- Blueprint Grid -->
+  <g stroke="#1a2d42" stroke-width="1" opacity="0.35">
+    <line x1="0" y1="120" x2="1920" y2="120"/>
+    <line x1="0" y1="240" x2="1920" y2="240"/>
+    <line x1="0" y1="360" x2="1920" y2="360"/>
+    <line x1="0" y1="480" x2="1920" y2="480"/>
+    <line x1="0" y1="600" x2="1920" y2="600"/>
+    <line x1="0" y1="720" x2="1920" y2="720"/>
+    <line x1="0" y1="840" x2="1920" y2="840"/>
+    <line x1="0" y1="960" x2="1920" y2="960"/>
+    <line x1="320" y1="0" x2="320" y2="1080"/>
+    <line x1="640" y1="0" x2="640" y2="1080"/>
+    <line x1="960" y1="0" x2="960" y2="1080"/>
+    <line x1="1280" y1="0" x2="1280" y2="1080"/>
+    <line x1="1600" y1="0" x2="1600" y2="1080"/>
+  </g>
+
+  <!-- Atmospheric Glow Orbs -->
+  <circle cx="280" cy="220" r="240" fill="#3B82F6" opacity="0.09" filter="blur(90px)"/>
+  <circle cx="1660" cy="300" r="230" fill="#06B6D4" opacity="0.08" filter="blur(90px)"/>
+  <circle cx="960" cy="850" r="260" fill="#10B981" opacity="0.08" filter="blur(90px)"/>
+
+  <!-- Top Header Container -->
+  <rect x="40" y="32" width="1840" height="76" rx="20" fill="url(#card-grad-ra)" stroke="#1e3854" stroke-width="1.5"/>
+  <g transform="translate(68, 54)">
+    <circle cx="18" cy="18" r="14" fill="#3B82F6" opacity="0.25"/>
+    <circle cx="18" cy="18" r="7" fill="#60A5FA"/>
+    <text x="44" y="14" fill="#F8FAFC" font-size="20" font-weight="700" letter-spacing="0.5">RESOLVEAI — INTELLIGENT IT SERVICE DESK AGENT</text>
+    <text x="44" y="30" fill="#94A3B8" font-size="12" font-family="monospace" letter-spacing="1">15-NODE LANGGRAPH STATE MACHINE // CHROMADB RAG // MOCK DIAGNOSTIC TOOLS // HITL APPROVALS</text>
+  </g>
+  <g transform="translate(1420, 54)">
+    <rect x="0" y="2" width="180" height="32" rx="16" fill="#111f2e" stroke="#223f5e" stroke-width="1"/>
+    <circle cx="16" cy="18" r="4" fill="#10B981"/>
+    <text x="28" y="22" fill="#E2E8F0" font-size="11" font-family="monospace">15-NODE STATE GRAPH</text>
+    <rect x="195" y="2" width="185" height="32" rx="16" fill="#111f2e" stroke="#223f5e" stroke-width="1"/>
+    <circle cx="211" cy="18" r="4" fill="#38BDF8"/>
+    <text x="223" y="22" fill="#E2E8F0" font-size="11" font-family="monospace">FASTAPI REST POC</text>
+  </g>
+
+  <!-- ==================== LEFT COLUMN: 15-NODE LANGGRAPH STATE PIPELINE ==================== -->
+  <g transform="translate(40, 130)">
+    <rect width="580" height="790" rx="24" fill="url(#card-grad-ra)" stroke="#1e3854" stroke-width="1.5"/>
+    <rect x="24" y="24" width="532" height="42" rx="12" fill="#0f1b29" stroke="#1c334d" stroke-width="1"/>
+    <text x="42" y="50" fill="#60A5FA" font-size="14" font-weight="700" font-family="monospace" letter-spacing="1.5">01 // 15-NODE LANGGRAPH STATE MACHINE</text>
+
+    <!-- State Diagram Sequence -->
+    <g transform="translate(24, 86)">
+      <!-- Step 1 to 5 -->
+      <g transform="translate(0, 0)">
+        <rect width="532" height="120" rx="14" fill="#111e2d" stroke="#1d3b59" stroke-width="1.2"/>
+        <text x="18" y="26" fill="#38BDF8" font-size="12" font-weight="700" font-family="monospace">PHASE 1: INTAKE, VALIDATION &amp; CLASSIFICATION</text>
+        
+        <g transform="translate(18, 42)">
+          <rect width="110" height="56" rx="8" fill="#16283d" stroke="#254a73" stroke-width="1"/>
+          <text x="55" y="24" fill="#E2E8F0" font-size="11" font-weight="bold" text-anchor="middle">Input Intake</text>
+          <text x="55" y="42" fill="#94A3B8" font-size="9" text-anchor="middle">User Message</text>
+          
+          <line x1="110" y1="28" x2="128" y2="28" stroke="#38BDF8" stroke-width="2"/>
+
+          <rect x="128" width="110" height="56" rx="8" fill="#16283d" stroke="#254a73" stroke-width="1"/>
+          <text x="183" y="24" fill="#E2E8F0" font-size="11" font-weight="bold" text-anchor="middle">Validate</text>
+          <text x="183" y="42" fill="#94A3B8" font-size="9" text-anchor="middle">Injection Guard</text>
+
+          <line x1="238" y1="28" x2="256" y2="28" stroke="#38BDF8" stroke-width="2"/>
+
+          <rect x="256" width="110" height="56" rx="8" fill="#16283d" stroke="#254a73" stroke-width="1"/>
+          <text x="311" y="24" fill="#E2E8F0" font-size="11" font-weight="bold" text-anchor="middle">Classify</text>
+          <text x="311" y="42" fill="#94A3B8" font-size="9" text-anchor="middle">Intent Category</text>
+
+          <line x1="366" y1="28" x2="384" y2="28" stroke="#38BDF8" stroke-width="2"/>
+
+          <rect x="384" width="110" height="56" rx="8" fill="#16283d" stroke="#254a73" stroke-width="1"/>
+          <text x="439" y="24" fill="#E2E8F0" font-size="11" font-weight="bold" text-anchor="middle">Check Info</text>
+          <text x="439" y="42" fill="#94A3B8" font-size="9" text-anchor="middle">Entity Complete?</text>
+        </g>
+      </g>
+
+      <!-- Step 6 to 9 -->
+      <g transform="translate(0, 134)">
+        <rect width="532" height="120" rx="14" fill="#111e2d" stroke="#1d3b59" stroke-width="1.2"/>
+        <text x="18" y="26" fill="#34D399" font-size="12" font-weight="700" font-family="monospace">PHASE 2: RAG KNOWLEDGE RETRIEVAL &amp; TOOLS</text>
+        
+        <g transform="translate(18, 42)">
+          <rect width="110" height="56" rx="8" fill="#132a22" stroke="#1d5c41" stroke-width="1"/>
+          <text x="55" y="24" fill="#E2E8F0" font-size="11" font-weight="bold" text-anchor="middle">Retrieve KB</text>
+          <text x="55" y="42" fill="#34D399" font-size="9" text-anchor="middle">ChromaDB Vector</text>
+
+          <line x1="110" y1="28" x2="128" y2="28" stroke="#34D399" stroke-width="2"/>
+
+          <rect x="128" width="110" height="56" rx="8" fill="#132a22" stroke="#1d5c41" stroke-width="1"/>
+          <text x="183" y="24" fill="#E2E8F0" font-size="11" font-weight="bold" text-anchor="middle">Run Tools</text>
+          <text x="183" y="42" fill="#34D399" font-size="9" text-anchor="middle">VPN/Auth/Health</text>
+
+          <line x1="238" y1="28" x2="256" y2="28" stroke="#34D399" stroke-width="2"/>
+
+          <rect x="256" width="110" height="56" rx="8" fill="#132a22" stroke="#1d5c41" stroke-width="1"/>
+          <text x="311" y="24" fill="#E2E8F0" font-size="11" font-weight="bold" text-anchor="middle">Analyze</text>
+          <text x="311" y="42" fill="#34D399" font-size="9" text-anchor="middle">Gemini Reasoning</text>
+
+          <line x1="366" y1="28" x2="384" y2="28" stroke="#34D399" stroke-width="2"/>
+
+          <rect x="384" width="110" height="56" rx="8" fill="#132a22" stroke="#1d5c41" stroke-width="1"/>
+          <text x="439" y="24" fill="#E2E8F0" font-size="11" font-weight="bold" text-anchor="middle">Gen Solution</text>
+          <text x="439" y="42" fill="#34D399" font-size="9" text-anchor="middle">Step-by-Step Fix</text>
+        </g>
+      </g>
+
+      <!-- Step 10 to 15: Decision, Approval & Ticketing -->
+      <g transform="translate(0, 268)">
+        <rect width="532" height="150" rx="14" fill="#111e2d" stroke="#1d3b59" stroke-width="1.2"/>
+        <text x="18" y="26" fill="#FBBF24" font-size="12" font-weight="700" font-family="monospace">PHASE 3: CONFIDENCE SCORING &amp; HITL APPROVAL</text>
+        
+        <g transform="translate(18, 42)">
+          <rect width="110" height="56" rx="8" fill="#2d2212" stroke="#664d1f" stroke-width="1"/>
+          <text x="55" y="24" fill="#E2E8F0" font-size="11" font-weight="bold" text-anchor="middle">Calc Score</text>
+          <text x="55" y="42" fill="#FBBF24" font-size="9" text-anchor="middle">Confidence %</text>
+
+          <line x1="110" y1="28" x2="128" y2="28" stroke="#FBBF24" stroke-width="2"/>
+
+          <!-- High-Priority HITL Box -->
+          <rect x="128" width="120" height="56" rx="8" fill="#3b151b" stroke="#F43F5E" stroke-width="1.8"/>
+          <text x="188" y="24" fill="#FB7185" font-size="11" font-weight="bold" text-anchor="middle">interrupt_before</text>
+          <text x="188" y="42" fill="#F8FAFC" font-size="9" text-anchor="middle">HITL Pause Node</text>
+
+          <line x1="248" y1="28" x2="266" y2="28" stroke="#FBBF24" stroke-width="2"/>
+
+          <rect x="266" width="110" height="56" rx="8" fill="#2d2212" stroke="#664d1f" stroke-width="1"/>
+          <text x="321" y="24" fill="#E2E8F0" font-size="11" font-weight="bold" text-anchor="middle">Create Ticket</text>
+          <text x="321" y="42" fill="#FBBF24" font-size="9" text-anchor="middle">ServiceNow Sync</text>
+
+          <line x1="376" y1="28" x2="394" y2="28" stroke="#FBBF24" stroke-width="2"/>
+
+          <rect x="394" width="100" height="56" rx="8" fill="#16283d" stroke="#254a73" stroke-width="1"/>
+          <text x="444" y="24" fill="#34D399" font-size="11" font-weight="bold" text-anchor="middle">Complete</text>
+          <text x="444" y="42" fill="#94A3B8" font-size="9" text-anchor="middle">Final Response</text>
+        </g>
+        <text x="18" y="128" fill="#94A3B8" font-size="10" font-family="monospace">Conditional Branch: If score &lt; 0.70 &rarr; Auto-Escalate to Tier 2 Human Lead</text>
+      </g>
+
+      <!-- Architecture State Machine Box -->
+      <g transform="translate(0, 432)">
+        <rect width="532" height="236" rx="14" fill="#0d1722" stroke="#162e45" stroke-width="1.2"/>
+        <text x="18" y="26" fill="#818CF8" font-size="12" font-weight="700" font-family="monospace">STATE CHECKPOINTING &amp; CONDITIONAL ROUTING</text>
+        
+        <g font-family="monospace" font-size="10" transform="translate(18, 44)">
+          <text x="0" y="14" fill="#64748B">STATE GRAPH DEFINITION (app/graph/state.py):</text>
+          <text x="0" y="36" fill="#E2E8F0">class ServiceDeskState(TypedDict):</text>
+          <text x="16" y="54" fill="#94A3B8">user_id: str; query: str; category: IncidentCategory</text>
+          <text x="16" y="72" fill="#94A3B8">kb_articles: List[Dict]; tool_outputs: Dict[str, Any]</text>
+          <text x="16" y="90" fill="#94A3B8">confidence_score: float; approval_status: ApprovalState</text>
+          <text x="16" y="108" fill="#94A3B8">ticket_created: Optional[TicketRecord]</text>
+          
+          <line x1="0" y1="124" x2="496" y2="124" stroke="#1a3148" stroke-width="1"/>
+          <text x="0" y="146" fill="#34D399">✓ Thread Checkpointing Enabled: MemorySaver / SQLite</text>
+          <text x="0" y="164" fill="#38BDF8">✓ Safe Resumption upon Manager Approval / Rejection Signal</text>
+          <text x="0" y="182" fill="#FBBF24">✓ Zero Race Conditions on Synthetic Entity Mutations</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== CENTER COLUMN: CHROMADB RAG & DIAGNOSTIC TOOLS ==================== -->
+  <g transform="translate(640, 130)">
+    <rect width="640" height="790" rx="24" fill="url(#card-grad-ra)" stroke="#1e3854" stroke-width="1.5"/>
+    <rect x="24" y="24" width="592" height="42" rx="12" fill="#0f1b29" stroke="#1c334d" stroke-width="1"/>
+    <text x="42" y="50" fill="#34D399" font-size="14" font-weight="700" font-family="monospace" letter-spacing="1.5">02 // CHROMADB VECTOR RAG &amp; MOCK DIAGNOSTICS</text>
+
+    <!-- ChromaDB Knowledge Retrieval Section -->
+    <g transform="translate(24, 86)">
+      <rect width="592" height="280" rx="18" fill="#111e2d" stroke="#1a4233" stroke-width="1.2"/>
+      <text x="24" y="32" fill="#34D399" font-size="15" font-weight="700">ChromaDB Vector RAG Store</text>
+      <text x="24" y="52" fill="#94A3B8" font-size="12">Semantic search across SOP support articles, runbooks, and resolution playbooks</text>
+
+      <g transform="translate(24, 72)">
+        <rect width="544" height="180" rx="12" fill="#09131d" stroke="#14362a" stroke-width="1"/>
+        <g font-family="monospace" font-size="11">
+          <text x="16" y="24" fill="#64748B">&gt; chroma_collection.query(query_texts=["VPN Cisco Gateway Timeout 408"])</text>
+          
+          <rect x="16" y="36" width="512" height="38" rx="6" fill="#0f261e"/>
+          <text x="26" y="54" fill="#34D399" font-size="10">Match #1 (Dist: 0.14) &rarr; KB_NET_402: "Cisco AnyConnect Gateway Reset Protocol"</text>
+          <text x="26" y="68" fill="#94A3B8" font-size="9">Resolution steps: Flush DNS cache, restart AnyConnect daemon, verify 2FA token.</text>
+
+          <rect x="16" y="82" width="512" height="38" rx="6" fill="#0f261e"/>
+          <text x="26" y="100" fill="#34D399" font-size="10">Match #2 (Dist: 0.22) &rarr; KB_IAM_109: "Active Directory Account Lockout Triage"</text>
+          <text x="26" y="114" fill="#94A3B8" font-size="9">Resolution steps: Query AD status via account tool, unlock account if locked.</text>
+
+          <text x="16" y="142" fill="#38BDF8" font-size="10">✓ Embeddings: Gemini Vertex AI (Production) or HashEmbeddings (Demo Mode)</text>
+          <text x="16" y="160" fill="#FBBF24" font-size="10">✓ Zero Cloud Requirement in Demo Mode: Fully self-contained offline execution</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Synthetic Diagnostic Tools Section -->
+    <g transform="translate(24, 386)">
+      <rect width="592" height="380" rx="18" fill="#111e2d" stroke="#1e3854" stroke-width="1.2"/>
+      <text x="24" y="32" fill="#38BDF8" font-size="15" font-weight="700">Simulated Diagnostic Tool Suite</text>
+      <text x="24" y="52" fill="#94A3B8" font-size="12">Pydantic-schema validated diagnostic tools operating on synthetic enterprise entities</text>
+
+      <!-- 4 Tool Grid Tiles -->
+      <g transform="translate(24, 72)">
+        <!-- Tool 1: VPN Tool -->
+        <rect width="260" height="88" rx="10" fill="#0a1420" stroke="#183652" stroke-width="1"/>
+        <text x="14" y="24" fill="#38BDF8" font-size="12" font-weight="bold">check_vpn_status(user_id)</text>
+        <text x="14" y="44" fill="#94A3B8" font-size="10">Inspects Cisco gateway sessions</text>
+        <text x="14" y="60" fill="#94A3B8" font-size="10">Detects tunnel dropping &amp; IP lease</text>
+        <text x="14" y="76" fill="#34D399" font-size="9" font-family="monospace">Return: { status: "DISCONNECTED" }</text>
+
+        <!-- Tool 2: Account Tool -->
+        <rect x="284" width="260" height="88" rx="10" fill="#0a1420" stroke="#183652" stroke-width="1"/>
+        <text x="298" y="24" fill="#818CF8" font-size="12" font-weight="bold">check_account_status(user_id)</text>
+        <text x="298" y="44" fill="#94A3B8" font-size="10">Queries synthetic Active Directory</text>
+        <text x="298" y="60" fill="#94A3B8" font-size="10">Checks password expiry &amp; lockout</text>
+        <text x="298" y="76" fill="#34D399" font-size="9" font-family="monospace">Return: { locked: false, mfa: true }</text>
+
+        <!-- Tool 3: Device Health -->
+        <rect y="100" width="260" height="88" rx="10" fill="#0a1420" stroke="#183652" stroke-width="1"/>
+        <text x="14" y="124" fill="#2DD4BF" font-size="12" font-weight="bold">check_device_health(device_id)</text>
+        <text x="14" y="144" fill="#94A3B8" font-size="10">Monitors CPU, disk &amp; antivirus</text>
+        <text x="14" y="160" fill="#94A3B8" font-size="10">Simulates agent telemetry checks</text>
+        <text x="14" y="176" fill="#34D399" font-size="9" font-family="monospace">Return: { edr: "RUNNING", disk: 72% }</text>
+
+        <!-- Tool 4: Service Status -->
+        <rect x="284" y="100" width="260" height="88" rx="10" fill="#0a1420" stroke="#183652" stroke-width="1"/>
+        <text x="298" y="124" fill="#FBBF24" font-size="12" font-weight="bold">check_service_status(service)</text>
+        <text x="298" y="144" fill="#94A3B8" font-size="10">Pings enterprise SaaS gateways</text>
+        <text x="298" y="160" fill="#94A3B8" font-size="10">Jira, Confluence, Mail &amp; SSO</text>
+        <text x="298" y="176" fill="#34D399" font-size="9" font-family="monospace">Return: { latency_ms: 24, ok: true }</text>
+      </g>
+
+      <!-- Security Guardrail Banner -->
+      <g transform="translate(24, 280)">
+        <rect width="544" height="74" rx="10" fill="#09121a" stroke="#1e3854" stroke-width="1"/>
+        <text x="16" y="24" fill="#F59E0B" font-size="11" font-weight="bold">100% Synthetic Data &amp; Security Isolation</text>
+        <text x="16" y="44" fill="#94A3B8" font-size="10">All employees, emails (user@company.invalid), and devices are synthetic.</text>
+        <text x="16" y="60" fill="#34D399" font-size="10">Zero external API calls made during tools execution // Completely safe sandbox</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== RIGHT COLUMN: HITL & CONFIDENCE SCORING ==================== -->
+  <g transform="translate(1300, 130)">
+    <rect width="580" height="790" rx="24" fill="url(#card-grad-ra)" stroke="#1e3854" stroke-width="1.5"/>
+    <rect x="24" y="24" width="532" height="42" rx="12" fill="#0f1b29" stroke="#1c334d" stroke-width="1"/>
+    <text x="42" y="50" fill="#FBBF24" font-size="14" font-weight="700" font-family="monospace" letter-spacing="1.5">03 // HUMAN-IN-THE-LOOP &amp; CONFIDENCE</text>
+
+    <!-- Confidence Scoring Engine -->
+    <g transform="translate(24, 86)">
+      <rect width="532" height="310" rx="18" fill="#111e2d" stroke="#1d3b59" stroke-width="1.2"/>
+      <text x="24" y="32" fill="#F8FAFC" font-size="15" font-weight="700">Dynamic Confidence Scoring Engine</text>
+      <text x="24" y="52" fill="#94A3B8" font-size="12">Multi-variable heuristic evaluating resolution accuracy before action</text>
+
+      <!-- Score Gauge Display -->
+      <g transform="translate(36, 78)">
+        <circle cx="65" cy="65" r="56" fill="#0a131c" stroke="#38BDF8" stroke-width="6" stroke-dasharray="310 40"/>
+        <text x="65" y="60" fill="#F8FAFC" font-size="32" font-weight="800" text-anchor="middle">88%</text>
+        <text x="65" y="78" fill="#94A3B8" font-size="10" font-family="monospace" text-anchor="middle">CONFIDENCE</text>
+        <text x="65" y="96" fill="#34D399" font-size="11" font-weight="bold" text-anchor="middle">READY TO RESOLVE</text>
+      </g>
+
+      <!-- Factor Breakdown -->
+      <g transform="translate(185, 78)">
+        <text x="0" y="16" fill="#E2E8F0" font-size="12">KB Article Match Score</text>
+        <text x="280" y="16" fill="#38BDF8" font-size="12" font-family="monospace" text-anchor="end">0.92</text>
+        <rect x="0" y="24" width="280" height="6" rx="3" fill="#09121a"/>
+        <rect x="0" y="24" width="258" height="6" rx="3" fill="#38BDF8"/>
+
+        <text x="0" y="52" fill="#E2E8F0" font-size="12">Diagnostic Tool Diagnostic Signal</text>
+        <text x="280" y="52" fill="#34D399" font-size="12" font-family="monospace" text-anchor="end">0.85</text>
+        <rect x="0" y="60" width="280" height="6" rx="3" fill="#09121a"/>
+        <rect x="0" y="60" width="238" height="6" rx="3" fill="#34D399"/>
+
+        <text x="0" y="88" fill="#E2E8F0" font-size="12">Information Completeness</text>
+        <text x="280" y="88" fill="#FBBF24" font-size="12" font-family="monospace" text-anchor="end">0.88</text>
+        <rect x="0" y="96" width="280" height="6" rx="3" fill="#09121a"/>
+        <rect x="0" y="96" width="246" height="6" rx="3" fill="#FBBF24"/>
+
+        <text x="0" y="124" fill="#E2E8F0" font-size="12">Cross-Employee Security Check</text>
+        <text x="280" y="124" fill="#10B981" font-size="12" font-family="monospace" text-anchor="end">1.00 (PASS)</text>
+        <rect x="0" y="132" width="280" height="6" rx="3" fill="#09121a"/>
+        <rect x="0" y="132" width="280" height="6" rx="3" fill="#10B981"/>
+      </g>
+
+      <!-- Scoring Threshold Rule -->
+      <g transform="translate(24, 252)">
+        <rect width="484" height="42" rx="8" fill="#09121a" stroke="#1b3957" stroke-width="1"/>
+        <text x="18" y="26" fill="#94A3B8" font-size="11" font-family="monospace">&gt;= 80%: Auto-Provide Solution | 50-79%: Request Approval | &lt; 50%: Escalate</text>
+      </g>
+    </g>
+
+    <!-- Human-In-The-Loop Approval Node Modal UI -->
+    <g transform="translate(24, 418)">
+      <rect width="532" height="348" rx="18" fill="#111e2d" stroke="#1d3b59" stroke-width="1.2"/>
+      <text x="24" y="32" fill="#FB7185" font-size="15" font-weight="700">interrupt_before Approval Node</text>
+      <text x="24" y="52" fill="#94A3B8" font-size="12">Pauses execution state before creating official incident ticket</text>
+
+      <g transform="translate(24, 72)">
+        <rect width="484" height="252" rx="12" fill="#09121a" stroke="#2a1d24" stroke-width="1.2"/>
+        
+        <g transform="translate(18, 20)">
+          <rect width="100" height="22" rx="6" fill="#F43F5E" opacity="0.2"/>
+          <text x="50" y="15" fill="#FB7185" font-size="10" font-family="monospace" text-anchor="middle">APPROVAL REQUIRED</text>
+          
+          <text x="0" y="44" fill="#F8FAFC" font-size="13" font-weight="bold">Action: Create Incident Ticket in IT ServiceDesk</text>
+          <text x="0" y="64" fill="#94A3B8" font-size="11">User: alex.morgan@company.invalid | Severity: P3 - Normal</text>
+          <text x="0" y="82" fill="#94A3B8" font-size="11">Summary: "VPN Gateway connection timeout on macOS 14.5"</text>
+          <text x="0" y="100" fill="#94A3B8" font-size="11">Suggested Resolution: "Flush DNS, reset AnyConnect client cert"</text>
+          
+          <!-- Action Buttons -->
+          <g transform="translate(0, 120)">
+            <rect width="140" height="38" rx="8" fill="#10B981"/>
+            <text x="70" y="24" fill="#FFFFFF" font-size="12" font-weight="bold" text-anchor="middle">✓ Approve &amp; Create</text>
+
+            <rect x="155" width="140" height="38" rx="8" fill="#374151"/>
+            <text x="225" y="24" fill="#E5E7EB" font-size="12" font-weight="bold" text-anchor="middle">✕ Reject / Modify</text>
+          </g>
+
+          <line x1="0" y1="180" x2="448" y2="180" stroke="#1e293b" stroke-width="1"/>
+          <text x="0" y="202" fill="#34D399" font-size="10" font-family="monospace">✓ State Persisted in LangGraph Checkpointer // Thread ID: "sess_9104"</text>
+          <text x="0" y="218" fill="#64748B" font-size="10" font-family="monospace">REST API: POST /api/v1/sessions/sess_9104/approval &rarr; Resumes graph</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== BOTTOM METRICS DOCK ==================== -->
+  <g transform="translate(40, 940)">
+    <rect width="1840" height="106" rx="20" fill="url(#card-grad-ra)" stroke="#1e3854" stroke-width="1.5"/>
+    
+    <!-- Metric 1 -->
+    <g transform="translate(60, 24)">
+      <text x="0" y="18" fill="#94A3B8" font-size="11" font-family="monospace" letter-spacing="1">STATE GRAPH TOPOLOGY</text>
+      <text x="0" y="46" fill="#F8FAFC" font-size="20" font-weight="700">15-Node State Machine</text>
+      <text x="0" y="66" fill="#38BDF8" font-size="12" font-family="monospace">LangGraph Deterministic Routing</text>
+    </g>
+
+    <!-- Divider -->
+    <line x1="480" y1="20" x2="480" y2="86" stroke="#1c334d" stroke-width="1.5"/>
+
+    <!-- Metric 2 -->
+    <g transform="translate(520, 24)">
+      <text x="0" y="18" fill="#94A3B8" font-size="11" font-family="monospace" letter-spacing="1">VECTOR RAG STORAGE</text>
+      <text x="0" y="46" fill="#34D399" font-size="20" font-weight="700">ChromaDB Vector Store</text>
+      <text x="0" y="66" fill="#94A3B8" font-size="12" font-family="monospace">Gemini &amp; Hash Embeddings Demo</text>
+    </g>
+
+    <!-- Divider -->
+    <line x1="940" y1="20" x2="940" y2="86" stroke="#1c334d" stroke-width="1.5"/>
+
+    <!-- Metric 3 -->
+    <g transform="translate(980, 24)">
+      <text x="0" y="18" fill="#94A3B8" font-size="11" font-family="monospace" letter-spacing="1">DIAGNOSTIC AUTOMATION</text>
+      <text x="0" y="46" fill="#60A5FA" font-size="20" font-weight="700">Mock Diagnostic Tools</text>
+      <text x="0" y="66" fill="#94A3B8" font-size="12" font-family="monospace">VPN, Email, Account, Device Health</text>
+    </g>
+
+    <!-- Divider -->
+    <line x1="1400" y1="20" x2="1400" y2="86" stroke="#1c334d" stroke-width="1.5"/>
+
+    <!-- Metric 4 -->
+    <g transform="translate(1440, 24)">
+      <text x="0" y="18" fill="#94A3B8" font-size="11" font-family="monospace" letter-spacing="1">GOVERNANCE &amp; SAFETY</text>
+      <text x="0" y="46" fill="#FBBF24" font-size="20" font-weight="700">HITL Approval Pause</text>
+      <text x="0" y="66" fill="#94A3B8" font-size="12" font-family="monospace">interrupt_before &amp; Synthetic Isolation</text>
+    </g>
+  </g>
+</svg>
