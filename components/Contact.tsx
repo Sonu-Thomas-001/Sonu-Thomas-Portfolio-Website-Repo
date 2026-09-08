@@ -88,13 +88,13 @@ export const Contact: React.FC = () => {
 
           {/* Personal Availability Card */}
           <div className="p-4 rounded-2xl bg-[#FEFCF9] border border-[#E8E0D8] shadow-soft-sm flex items-center gap-4">
-            <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-copper/30 shrink-0">
+            <div className="relative w-14 h-14 rounded-xl overflow-hidden border border-copper/30 shrink-0">
               <img
-                src="/images/Professional%20Pic%20Square.png"
-                alt="Sonu Thomas"
+                src="/images/Professional%20Pic%206.png"
+                alt="Sonu Thomas — Direct Collaboration"
                 className="w-full h-full object-cover object-top"
               />
-              <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-[#FEFCF9]" />
+              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-500 ring-2 ring-[#FEFCF9]" />
             </div>
             <div>
               <h4 className="font-display font-semibold text-sm text-ink leading-tight">Sonu Thomas</h4>

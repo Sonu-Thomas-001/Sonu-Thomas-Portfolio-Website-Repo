@@ -26,6 +26,22 @@ export const Blog: React.FC = () => {
               Writing on artificial intelligence, large language model applications, and enterprise systems engineering.
             </p>
           </div>
+
+          {/* Author Research Profile Card */}
+          <div className="flex items-center gap-3.5 p-3 rounded-2xl bg-white border border-slate-200/90 shadow-soft-sm">
+            <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-primary/30 shrink-0">
+              <img
+                src="/images/Professional%20Pic%205.png"
+                alt="Sonu Thomas — AI Engineering Author"
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div>
+              <div className="text-xs font-display font-bold text-slate-900 leading-tight">Sonu Thomas</div>
+              <div className="text-[10px] font-mono text-primary font-medium mt-0.5">Author &amp; Research Engineer</div>
+              <div className="text-[10px] font-mono text-slate-400">Data Science &bull; IIT Guwahati</div>
+            </div>
+          </div>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">

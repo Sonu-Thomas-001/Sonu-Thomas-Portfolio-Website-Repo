@@ -25,7 +25,7 @@ export const PERSONAL_DETAILS = {
   expandedAbout: "My technology journey began early at Xbean International and evolved through 3+ years of freelance development. Today, at HCLTech, I focus on AI engineering—treating intelligent automation not just as experimentation, but as a disciplined engineering practice emphasizing system design, scalability, and business impact.",
   resumeLink: "https://cdn.jsdelivr.net/gh/Sonu-Thomas-001/image-host/Sonu-Thomas-Portfolio-Website-Repo/Resume.pdf",
   social: {
-    linkedin: "https://www.linkedin.com/in/sonuthomas001/",
+    linkedin: "https://www.linkedin.com/in/sonuthomasai/",
     github: "https://github.com/Sonu-Thomas-001",
     instagram: "https://www.instagram.com/sonu_thomz/",
     whatsapp: "https://wa.me/918921526656",
@@ -598,15 +598,16 @@ export const EDUCATION_DATA: EducationItem[] = [
     details: "Focusing on advanced mathematics, machine learning, and data structures."
   },
   {
-    institution: "Higher Secondary (Plus Two)",
-    degree: "Computer Science",
+    institution: "St. Joseph's HSS (Plus Two)",
+    degree: "Higher Secondary (Computer Science)",
     period: "Completed",
-    details: "Laid the foundation for programming and web development."
+    details: "Laid the foundation for programming, algorithmic thinking, and web technologies."
   },
   {
-    institution: "SSLC",
-    degree: "Secondary Education",
-    period: "Completed"
+    institution: "St. Joseph's HSS (SSLC)",
+    degree: "Secondary School Leaving Certificate (10th)",
+    period: "Completed",
+    details: "Foundational coursework in science, mathematics, and computing fundamentals."
   }
 ];
 

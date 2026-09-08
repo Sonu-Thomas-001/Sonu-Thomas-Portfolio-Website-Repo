@@ -1,7 +1,16 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
+import React, { useRef, useState } from 'react';
+import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail, Sparkles } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
+
+const PROFESSIONAL_HERO_PHOTOS = [
+  { src: "/images/Professional%20Pic%201.png", label: "Executive", tag: "System Design" },
+  { src: "/images/Professional%20Pic%202.png", label: "Architecture", tag: "Enterprise Execution" },
+  { src: "/images/Professional%20Pic%203.png", label: "Engineering", tag: "Neural Architectures" },
+  { src: "/images/Professional%20Pic%204.png", label: "Delivery", tag: "Independent Delivery" },
+  { src: "/images/Professional%20Pic%205.png", label: "Research", tag: "Technical Research" },
+  { src: "/images/Professional%20Pic%206.png", label: "Leadership", tag: "Production Leadership" },
+];
 
 const STATS = [
   { value: "03+", label: "Years Experience", sublabel: "Enterprise AI & Full-Stack" },
@@ -13,6 +22,7 @@ const STATS = [
 export const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
+  const [activePhotoIdx, setActivePhotoIdx] = useState(0);
 
   // Scroll Parallax Transforms
   const { scrollY } = useScroll();
@@ -240,20 +250,50 @@ export const Hero: React.FC = () => {
               className="relative rounded-3xl overflow-hidden bg-[#FEFCF9] p-3 border-[4px] border-[#E8E0D8] shadow-soft-lg group cursor-pointer"
             >
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-[#EDE5DC]">
-                <motion.img
-                  initial={{ scale: 1.15, filter: "blur(6px)" }}
-                  animate={{ scale: 1, filter: "blur(0px)" }}
-                  transition={{ duration: 1.1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  src="/images/Professional%20Pic%20Square.png"
-                  alt="Sonu Thomas — AI Software Engineer"
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#131110]/70 via-transparent to-transparent opacity-75" />
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={activePhotoIdx}
+                    initial={{ opacity: 0.8, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0.8, scale: 0.98 }}
+                    transition={{ duration: 0.35, ease: "easeOut" }}
+                    src={PROFESSIONAL_HERO_PHOTOS[activePhotoIdx].src}
+                    alt={`Sonu Thomas — ${PROFESSIONAL_HERO_PHOTOS[activePhotoIdx].tag}`}
+                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out"
+                  />
+                </AnimatePresence>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#131110]/85 via-[#131110]/20 to-transparent opacity-85" />
                 
-                {/* Photo Bottom Caption */}
-                <div className="absolute bottom-4 left-4 right-4 text-[#EDE5DC]">
-                  <p className="font-display font-medium text-lg leading-tight">Sonu Thomas</p>
-                  <p className="text-xs font-mono text-copper-200">IIT Guwahati Alumni &bull; HCLTech Engineer</p>
+                {/* Photo Top Badge */}
+                <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#131110]/70 backdrop-blur-md border border-white/10 text-[#EDE5DC] text-[10px] font-mono">
+                  <span className="w-1.5 h-1.5 rounded-full bg-copper" />
+                  <span>{PROFESSIONAL_HERO_PHOTOS[activePhotoIdx].tag}</span>
+                </div>
+
+                {/* Photo Bottom Caption & 6-Look Switcher */}
+                <div className="absolute bottom-3.5 left-3.5 right-3.5 flex items-end justify-between gap-2 text-[#EDE5DC]">
+                  <div>
+                    <p className="font-display font-medium text-lg leading-tight">Sonu Thomas</p>
+                    <p className="text-[11px] font-mono text-copper-200">IIT Guwahati &bull; HCLTech Engineer</p>
+                  </div>
+
+                  {/* 6 Photo Switcher Dots */}
+                  <div 
+                    className="flex items-center gap-1 bg-[#131110]/80 backdrop-blur-md px-2 py-1 rounded-full border border-white/10" 
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {PROFESSIONAL_HERO_PHOTOS.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setActivePhotoIdx(i)}
+                        className={`w-2 h-2 rounded-full transition-all ${
+                          activePhotoIdx === i ? 'bg-copper w-3.5' : 'bg-white/40 hover:bg-white/80'
+                        }`}
+                        title={`View Look 0${i + 1}: ${PROFESSIONAL_HERO_PHOTOS[i].tag}`}
+                        aria-label={`View photo ${i + 1}`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>

@@ -16,7 +16,9 @@ export default defineConfig(({ mode }) => {
     // This definition ensures 'process.env.GEMINI_API_KEY' is replaced by the actual string value during build
     // We targeting the specific key to avoid overwriting the entire process.env object (which breaks NODE_ENV)
     define: {
-      'process.env.GEMINI_API_KEY': JSON.stringify(process.env.GEMINI_API_KEY || env.GEMINI_API_KEY)
+      'process.env.OPENROUTER_API_KEY': JSON.stringify(process.env.OPENROUTER_API_KEY || env.OPENROUTER_API_KEY || env.VITE_OPENROUTER_API_KEY || ''),
+      'process.env.VITE_OPENROUTER_API_KEY': JSON.stringify(process.env.VITE_OPENROUTER_API_KEY || env.VITE_OPENROUTER_API_KEY || env.OPENROUTER_API_KEY || ''),
+      'process.env.GEMINI_API_KEY': JSON.stringify(process.env.GEMINI_API_KEY || env.GEMINI_API_KEY || '')
     }
   };
 });

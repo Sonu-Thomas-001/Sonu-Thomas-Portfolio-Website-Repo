@@ -26,7 +26,7 @@ Sonu Thomas is an AI Software Engineer at HCLTech and a Data Science & Artificia
 
 ## Canonical Profiles & Identity Signals
 - Website: https://www.sonuthomas.me/
-- LinkedIn: https://www.linkedin.com/in/sonuthomas001/
+- LinkedIn: https://www.linkedin.com/in/sonuthomasai/
 - GitHub: https://github.com/Sonu-Thomas-001
 - Email: sonuthomaswork@gmail.com
 - Location: Kannur, Kerala, India

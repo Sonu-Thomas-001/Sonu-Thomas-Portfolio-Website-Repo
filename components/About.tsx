@@ -151,24 +151,39 @@ export const About: React.FC = () => {
           style={{ y: cardsY }}
           className="lg:col-span-5 space-y-4 lg:sticky lg:top-28"
         >
-          {/* Authentic Workplace Photo Card */}
+          {/* Dual Executive Perspectives: Production & Systems Leadership */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
-            className="relative rounded-2xl overflow-hidden bg-[#FEFCF9] border border-[#E8E0D8] shadow-soft-sm group p-2.5"
+            className="grid grid-cols-2 gap-3 p-2.5 rounded-2xl bg-[#FEFCF9] border border-[#E8E0D8] shadow-soft-sm"
           >
-            <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-[#EDE5DC]">
+            {/* Pic 2: Production Execution */}
+            <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-[#EDE5DC] group/p1">
               <img
                 src="/images/Professional%20Pic%202.png"
-                alt="Sonu Thomas presenting engineering architectures at HCLTech"
-                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                alt="Sonu Thomas — Production Systems & Enterprise Delivery at HCLTech"
+                className="w-full h-full object-cover object-top group-hover/p1:scale-105 transition-transform duration-700 ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#131110]/75 via-transparent to-transparent" />
-              <div className="absolute bottom-3 left-3 right-3 text-white">
-                <span className="text-[10px] font-mono tracking-wider text-copper uppercase block">Enterprise Workflows &bull; HCLTech</span>
-                <p className="text-xs sm:text-sm font-display font-medium text-[#EDE5DC]">Presenting system architecture &amp; delivery roadmaps</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#131110]/85 via-[#131110]/20 to-transparent" />
+              <div className="absolute bottom-2.5 left-2.5 right-2.5 text-white">
+                <span className="text-[9px] font-mono tracking-wider text-copper uppercase block">Enterprise Workflows</span>
+                <p className="text-xs font-display font-medium text-[#EDE5DC] leading-tight">Production Systems</p>
+              </div>
+            </div>
+
+            {/* Pic 3: Systems Architecture & Leadership */}
+            <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-[#EDE5DC] group/p2">
+              <img
+                src="/images/Professional%20Pic%203.png"
+                alt="Sonu Thomas — Applied AI Architecture & Leadership"
+                className="w-full h-full object-cover object-top group-hover/p2:scale-105 transition-transform duration-700 ease-out"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#131110]/85 via-[#131110]/20 to-transparent" />
+              <div className="absolute bottom-2.5 left-2.5 right-2.5 text-white">
+                <span className="text-[9px] font-mono tracking-wider text-copper uppercase block">Applied AI Systems</span>
+                <p className="text-xs font-display font-medium text-[#EDE5DC] leading-tight">Architecture & Strategy</p>
               </div>
             </div>
           </motion.div>

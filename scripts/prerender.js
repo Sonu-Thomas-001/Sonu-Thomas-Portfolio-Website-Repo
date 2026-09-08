@@ -142,7 +142,7 @@ const routes = [
       <ul>
         <li><strong>Email:</strong> sonuthomaswork@gmail.com</li>
         <li><strong>Location:</strong> Kannur, Kerala, India</li>
-        <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/sonuthomas001/">linkedin.com/in/sonuthomas001</a></li>
+        <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/sonuthomasai/">linkedin.com/in/sonuthomasai</a></li>
         <li><strong>GitHub:</strong> <a href="https://github.com/Sonu-Thomas-001">github.com/Sonu-Thomas-001</a></li>
       </ul>
     `

@@ -77,8 +77,8 @@ export const Experience: React.FC = () => {
                     0{index + 1}
                   </motion.span>
 
-                  {/* HCLTech Madurai Campus Image Banner */}
-                  {item.id === 'hcl-eng' && (
+                  {/* HCLTech Madurai Campus Image Banner for all HCLTech cards */}
+                  {item.company.toLowerCase().includes('hcltech') && (
                     <div className="relative h-28 -mx-8 -mt-8 lg:-mx-10 lg:-mt-10 mb-6 overflow-hidden rounded-t-3xl">
                       <img
                         src="/images/hcltechmdu.jfif"
@@ -89,6 +89,23 @@ export const Experience: React.FC = () => {
                       <div className="absolute bottom-2.5 left-4 flex items-center gap-2">
                         <span className="text-[10px] font-mono tracking-widest text-[#EDE5DC] bg-[#131110]/80 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-[#332E2A]">
                           HCLTECH MADURAI CAMPUS
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Freelance Engineering Banner */}
+                  {item.id === 'freelance' && (
+                    <div className="relative h-28 -mx-8 -mt-8 lg:-mx-10 lg:-mt-10 mb-6 overflow-hidden rounded-t-3xl">
+                      <img
+                        src="/images/Professional%20Pic%204.png"
+                        alt="Sonu Thomas — Web & AI Engineering"
+                        className="w-full h-full object-cover object-top brightness-[0.85] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-out"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B18] via-[#1E1B18]/40 to-transparent" />
+                      <div className="absolute bottom-2.5 left-4 flex items-center gap-2">
+                        <span className="text-[10px] font-mono tracking-widest text-[#EDE5DC] bg-[#131110]/80 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-[#332E2A]">
+                          INDEPENDENT DELIVERY
                         </span>
                       </div>
                     </div>
@@ -181,7 +198,7 @@ export const Experience: React.FC = () => {
               key={item.id}
               className="bg-[#1E1B18] rounded-2xl p-6 border border-[#332E2A] shadow-soft-md space-y-4 overflow-hidden"
             >
-              {item.id === 'hcl-eng' && (
+              {item.company.toLowerCase().includes('hcltech') && (
                 <div className="relative h-24 -mx-6 -mt-6 mb-2 overflow-hidden">
                   <img
                     src="/images/hcltechmdu.jfif"
@@ -191,6 +208,19 @@ export const Experience: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B18] to-transparent" />
                   <span className="absolute bottom-2 left-3 text-[9px] font-mono tracking-widest text-[#EDE5DC] bg-[#131110]/80 backdrop-blur-md px-2 py-0.5 rounded-full border border-[#332E2A]">
                     HCLTECH MADURAI CAMPUS
+                  </span>
+                </div>
+              )}
+              {item.id === 'freelance' && (
+                <div className="relative h-24 -mx-6 -mt-6 mb-2 overflow-hidden">
+                  <img
+                    src="/images/Professional%20Pic%204.png"
+                    alt="Sonu Thomas — Independent Delivery"
+                    className="w-full h-full object-cover object-top brightness-[0.85]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B18] to-transparent" />
+                  <span className="absolute bottom-2 left-3 text-[9px] font-mono tracking-widest text-[#EDE5DC] bg-[#131110]/80 backdrop-blur-md px-2 py-0.5 rounded-full border border-[#332E2A]">
+                    INDEPENDENT DELIVERY
                   </span>
                 </div>
               )}
