@@ -260,7 +260,7 @@ Our ultimate aim is to build the **future-ready digital working taskforce**—an
     links: {
       demo: "#"
     },
-    image: "/images/project-preview.jpg"
+    image: "/images/project_dummy.png"
   },
   {
     id: "change-coworker",
@@ -310,7 +310,7 @@ Change Co-Worker utilizes a **Hub-and-Spoke** architecture where a central **Orc
     links: {
       demo: "#"
     },
-    image: "/images/project-preview.jpg"
+    image: "/images/project_dummy.png"
   },
   {
     id: "rca-agent",
@@ -358,7 +358,7 @@ RCA-Agent coordinates an automated 5-step diagnostic pipeline:
     links: {
       demo: "#"
     },
-    image: "/images/project-preview.jpg"
+    image: "/images/project_dummy.png"
   },
   {
     id: "ticketwave",
@@ -417,7 +417,7 @@ TicketWave guarantees zero double-bookings through a defense-in-depth architectu
       github: "https://github.com/Sonu-Thomas-001/TicketWave",
       demo: "#"
     },
-    image: "/images/project-preview.jpg"
+    image: "/images/project_dummy.png"
   },
   {
     id: "smartdesk-ai",
@@ -468,7 +468,7 @@ SmartDesk AI coordinates a closed-loop 7-step incident resolution workflow:
       github: "https://github.com/Sonu-Thomas-001/SmartDesk-Ai",
       demo: "#"
     },
-    image: "/images/project-preview.jpg"
+    image: "/images/project_dummy.png"
   },
   {
     id: "qubimind",
@@ -535,7 +535,7 @@ SmartDesk AI coordinates a closed-loop 7-step incident resolution workflow:
       github: "https://github.com/Sonu-Thomas-001/QubiMind",
       demo: "#"
     },
-    image: "/images/project-preview.jpg"
+    image: "/images/project_dummy.png"
   },
   {
     id: "multi-agent-enterprise-ai-assistant",
@@ -611,7 +611,7 @@ All document queries undergo dual retrieval:
       github: "https://github.com/Sonu-Thomas-001/Multi-Agent-Enterprise-AI-Assistant",
       demo: "#"
     },
-    image: "/images/project-preview.jpg"
+    image: "/images/project_dummy.png"
   },
   {
     id: "versant-practice-test",
@@ -678,7 +678,7 @@ All document queries undergo dual retrieval:
       github: "https://github.com/Sonu-Thomas-001/Versant-Practice-Test",
       demo: "#"
     },
-    image: "/images/project-preview.jpg"
+    image: "/images/project_dummy.png"
   },
   {
     id: "resolveai",
@@ -747,7 +747,7 @@ Create Ticket → Final Response
       github: "https://github.com/Sonu-Thomas-001/IT-Service-Desk-Agent",
       demo: "#"
     },
-    image: "/images/project-preview.jpg"
+    image: "/images/project_dummy.png"
   }
 ];
 
