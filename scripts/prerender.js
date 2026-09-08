@@ -51,11 +51,11 @@ const routes = [
   {
     path: '/projects',
     title: 'Flagship AI Systems & Enterprise Architecture | Sonu Thomas',
-    description: 'Explore flagship autonomous AI platforms: Agentic Co-Worker Platform (100+ Digital Workers), Change Co-Worker (Change Management Intelligence Platform), and RCA-Agent (Root Cause Analysis System).',
+    description: 'Explore flagship autonomous AI platforms and enterprise architectures: Agentic Co-Worker Platform (100+ Digital Workers), Change Co-Worker (Change Management Platform), RCA-Agent (Root Cause Analysis System), and TicketWave (High-Concurrency Ticketing Platform).',
     h1: 'Enterprise Multi-Agent Systems & Platforms',
     subtitle: 'Flagship Autonomous AI & Intelligent Infrastructure',
     content: `
-      <p>Enterprise-grade multi-agent architectures and intelligent platforms engineered for autonomous ITSM, change intelligence, and production operational resilience.</p>
+      <p>Enterprise-grade multi-agent architectures and intelligent platforms engineered for autonomous ITSM, change intelligence, high-concurrency booking, and production operational resilience.</p>
       <article>
         <h2>Agentic Co-Worker Platform</h2>
         <p><strong>Stack:</strong> LangGraph, Gemini LLM, MCP Protocol, ChromaDB, WebSockets, Python, ServiceNow, Control-M, Jira API, MongoDB Atlas</p>
@@ -70,6 +70,11 @@ const routes = [
         <h2>RCA-Agent</h2>
         <p><strong>Stack:</strong> Google Gemini, ChromaDB RAG, Flask API, Python, Log Analytics, Web UI</p>
         <p>AI-powered Root Cause Analysis system combining multi-step reasoning, ChromaDB vector retrieval across operational datasets (logs, runbooks, incidents, changes), and asynchronous job analysis.</p>
+      </article>
+      <article>
+        <h2>TicketWave</h2>
+        <p><strong>Stack:</strong> Java 17, Spring Boot 3.x, PostgreSQL 15+, Redis 7 with Redisson, React 18, Docker</p>
+        <p>Production-grade travel and event ticket booking platform built as a modular monolith with a three-layer double-booking defense (Redis locks, Redis TTL holds, PostgreSQL unique constraints), dynamic demand pricing, and sub-100ms booking latency.</p>
       </article>
     `
   },

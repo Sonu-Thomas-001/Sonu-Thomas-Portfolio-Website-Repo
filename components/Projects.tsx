@@ -68,7 +68,9 @@ const ProjectCard: React.FC<{
               ? '100+ Digital Workers'
               : project.id === 'change-coworker'
               ? '5-Agent Hub & Spoke'
-              : 'Automated RCA Engine'}
+              : project.id === 'rca-agent'
+              ? 'Automated RCA Engine'
+              : 'Zero Double-Booking Defense'}
           </span>
         </div>
       </div>
@@ -93,7 +95,26 @@ const ProjectCard: React.FC<{
           </p>
 
           {/* Operational Metrics Bar */}
-          {project.id === 'rca-agent' ? (
+          {project.id === 'ticketwave' ? (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-[#171412] border border-[#2D2824]">
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Concurrency</span>
+                <span className="font-display font-bold text-sm sm:text-base text-[#EDE5DC]">0 Double-Bookings</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Distributed Lock</span>
+                <span className="font-display font-bold text-sm sm:text-base text-copper">Redisson Lua Hold</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Architecture</span>
+                <span className="font-display font-bold text-sm sm:text-base text-emerald-400">Modular Monolith</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Booking Latency</span>
+                <span className="font-display font-bold text-sm sm:text-base text-emerald-400">Sub-100ms (5x Fast)</span>
+              </div>
+            </div>
+          ) : project.id === 'rca-agent' ? (
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-[#171412] border border-[#2D2824]">
               <div>
                 <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Diagnostics</span>
@@ -250,9 +271,9 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
           className={`grid gap-8 ${
             filteredProjects.length === 1
               ? 'max-w-4xl mx-auto'
-              : filteredProjects.length === 2
-              ? 'grid-cols-1 md:grid-cols-2 max-w-6xl mx-auto'
-              : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto'
+              : filteredProjects.length === 3
+              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto'
+              : 'grid-cols-1 md:grid-cols-2 max-w-6xl mx-auto'
           }`}
         >
           <AnimatePresence mode="popLayout">

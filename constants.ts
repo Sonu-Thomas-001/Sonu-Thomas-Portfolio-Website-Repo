@@ -359,6 +359,64 @@ RCA-Agent coordinates an automated 5-step diagnostic pipeline:
       demo: "#"
     },
     image: "/images/rca-agent.jpg"
+  },
+  {
+    id: "ticketwave",
+    title: "TicketWave",
+    category: "Distributed Systems & Web Platforms",
+    role: "Architect & Lead Engineer",
+    stack: [
+      "Java 17",
+      "Spring Boot 3.x",
+      "PostgreSQL 15+",
+      "Redis 7 / Redisson",
+      "React 18",
+      "Spring Security 6",
+      "Docker",
+      "Prometheus & Grafana"
+    ],
+    description: "Production-Grade Travel & Event Ticket Booking Platform: Engineered as a modular monolith in Spring Boot 3 and React 18 to handle the complete ticketing lifecycle. Features a three-layer double-booking defense (Redis locks → Redis TTL holds → PostgreSQL unique constraints) guaranteeing zero race-condition collisions at scale.",
+    detailedDescription: `## 🎯 What is TicketWave?
+**TicketWave** is a full-stack, enterprise-grade ticket booking platform engineered to handle the complete lifecycle of high-demand travel and event ticketing—from real-time discovery and seat selection through payment, confirmation, cancellation, and automated refunds. Built as a **modular monolith** with Spring Boot 3 backend and React 18 frontend, it solves the critical challenge of preventing double-bookings at scale using distributed locking, idempotent operations, and webhook-driven payment flows.
+
+> *"Zero double-bookings, sub-100ms booking latency, and complete audit trail compliance across high-concurrency ticket reservations."*
+
+---
+
+## ⚡ Key Architectural Differentiators & Highlights
+
+| Differentiator | Implementation Mechanism | Operational Advantage |
+| :--- | :--- | :--- |
+| 🛡️ **Zero Double-Bookings** | Three-layer defense: Redisson lock → Redis TTL hold → PostgreSQL unique constraint | **100% collision prevention** even during flash sales |
+| ⚡ **Sub-100ms Latency** | Optimized batch queries & HikariCP connection pooling | **5x faster confirmation** (reduced 15 queries to 3) |
+| 🔒 **Idempotent Operations** | Idempotency keys on all state mutations with safe retries | **Zero duplicate charges** or orphaned bookings on network retries |
+| 💰 **Dynamic Demand Pricing** | Three-tier algorithmic pricing (1.0x Base, 1.5x Surge, 1.8x Peak) | Maximizes revenue occupancy based on live seat inventory |
+| 🎫 **Smart Seat Holds** | Redis-based 10-minute TTL locks with interactive visual countdown | Prevents seat hoarding while guaranteeing friction-free checkout |
+| 📜 **Full Audit Compliance** | Structured audit logging with user ID, IP, correlation ID, and state deltas | **SOC 2 & GDPR readiness** with cryptographic PNR references |
+| 💳 **Secure Payment Webhooks** | Cryptographic signature verification and atomic status updates | Robust defense against replay attacks and payment spoofing |
+| 🏗️ **Modular Monolith** | Strict DDD bounded contexts (Booking, Inventory, Payment, User) | Microservice-ready architecture without distributed transaction overhead |
+
+---
+
+## 🏗️ Three-Layer Double-Booking Defense
+TicketWave guarantees zero double-bookings through a defense-in-depth architectural model:
+1. **Layer 1: Distributed Lock (Redisson)**: High-concurrency seat requests acquire an atomic Redis distributed lock via Lua script (\`lock:seat:{schedule_id}:{seat_id}\`) with a 3-second wait limit and 10-second auto-release lease.
+2. **Layer 2: Redis TTL Seat Hold**: Upon lock acquisition, a temporary seat hold is established in Redis with a 10-minute TTL (\`seat:hold:{schedule_id}:{seat_id}\`), providing instant visibility across all active user sessions without touching the relational database.
+3. **Layer 3: PostgreSQL ACID & Unique Constraints**: During checkout confirmation, the database executes an atomic transaction enforcing row-level locking (\`Pessimistic / Optimistic @Version\`) backed by a hard database constraint (\`UNIQUE(schedule_id, seat_id)\`). If Redis ever experiences a transient failure, database consistency remains absolute.
+
+---
+
+## 🔄 Dynamic Pricing & Intelligent Discovery
+- **Demand-Based Pricing**: Real-time evaluation calculates occupancy percentage:
+  - **Tier 1 (Base, 1.0x)**: Less than 50% seats reserved.
+  - **Tier 2 (Surge, 1.5x)**: 50% to 80% seats reserved.
+  - **Tier 3 (Peak, 1.8x)**: Greater than 80% seats reserved.
+- **High-Throughput Caching**: Redis caches catalog search results with a 5-minute sliding TTL, slashing database query load by 40% during peak traffic bursts.
+- **Smart Refund Engine**: Policy-driven automated refund calculations based on departure cancellation windows (>24 hours: full refund, <24 hours: tiered partial refund) with immediate audit ledger recording.`,
+    links: {
+      demo: "#"
+    },
+    image: "/images/ticketwave.svg"
   }
 ];
 

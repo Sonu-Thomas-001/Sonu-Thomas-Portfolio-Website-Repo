@@ -92,6 +92,20 @@ Sonu Thomas bridges the gap between deep computational theory and practical soft
 
 ---
 
+## Flagship Engineering Project 4: TicketWave
+
+- **Core Vision**: A Production-Grade Travel and Event Ticket Booking Platform. Built as a modular monolith to handle the complete ticketing lifecycle from discovery and seat selection to payment, confirmation, cancellation, and automated refunds.
+- **Key Architecture & Capabilities**:
+  - **Three-Layer Double-Booking Defense**: Combines Redisson atomic distributed locks (Lua scripts) → Redis temporary seat holds (10-minute TTL) → PostgreSQL unique constraints & row-level locks (@Version) for 100% collision-free reservations.
+  - **Idempotent Operations & Safe Retries**: Webhook-driven payment processing with cryptographic signature verification and mutation idempotency keys.
+  - **Dynamic Demand Pricing Engine**: Algorithmic three-tier pricing model (1.0x Base, 1.5x Surge, 1.8x Peak) dynamically calculated on live seat inventory.
+  - **Sub-100ms Booking Latency**: Database query batching (reduced booking confirmation from 15 queries to 3, a 5x speedup) and HikariCP connection pooling.
+  - **Full Audit Trail & Compliance**: Comprehensive audit logging of all state transitions (user ID, IP, correlation ID, state deltas) ensuring SOC 2 and GDPR readiness.
+  - **Modular Monolith Design**: Clean domain boundaries (Booking, Inventory, Payment, User) structured for seamless microservice extraction without initial distributed transaction overhead.
+- **Tech Stack**: Java 17, Spring Boot 3.x, PostgreSQL 15+, Redis 7 with Redisson, React 18, Vite 5, Tailwind CSS, Spring Security 6, JWT, Docker, Prometheus, Grafana.
+
+---
+
 ## Technical Skill Matrix
 
 | Category | Technologies & Tools |
