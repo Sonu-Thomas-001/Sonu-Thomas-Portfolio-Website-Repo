@@ -1,12 +1,30 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
-import { Menu, X, ArrowUpRight, Sparkles } from 'lucide-react';
+import { 
+  Menu, 
+  X, 
+  ArrowUpRight, 
+  Sparkles, 
+  ChevronDown, 
+  Layers, 
+  BookOpen, 
+  Award, 
+  Trophy, 
+  HeartHandshake 
+} from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { PERSONAL_DETAILS } from '../constants';
 
 interface NavItem {
   name: string;
   path: string;
+}
+
+interface SubPageItem {
+  title: string;
+  path: string;
+  desc: string;
+  icon: React.ElementType;
 }
 
 const primaryNavLinks: NavItem[] = [
@@ -18,16 +36,86 @@ const primaryNavLinks: NavItem[] = [
   { name: 'Contact', path: '/#contact' },
 ];
 
+const otherPages: SubPageItem[] = [
+  {
+    title: 'Projects & Case Studies',
+    path: '/projects',
+    desc: 'Flagship AI systems & architectures',
+    icon: Layers,
+  },
+  {
+    title: 'Technical Insights',
+    path: '/insights',
+    desc: 'Essays on LLMs, RAG & software',
+    icon: BookOpen,
+  },
+  {
+    title: 'Certifications',
+    path: '/certifications',
+    desc: 'Verified enterprise credentials',
+    icon: Award,
+  },
+  {
+    title: 'Honors & Awards',
+    path: '/awards',
+    desc: 'Hackathons & leadership honors',
+    icon: Trophy,
+  },
+  {
+    title: 'Volunteering & FOSS',
+    path: '/volunteering',
+    desc: 'Community initiatives & mentoring',
+    icon: HeartHandshake,
+  },
+];
+
+const regionalLinks = [
+  { title: 'AI Developer Kerala', path: '/ai-developer-kerala' },
+  { title: 'Software Engineer Kerala', path: '/software-engineer-kerala' },
+  { title: 'Web Developer Kannur', path: '/web-developer-kannur' },
+];
+
 export const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('/');
+  const [isOthersOpen, setIsOthersOpen] = useState(false);
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<any>(null);
 
   const location = useLocation();
   const navigate = useNavigate();
   const { scrollY } = useScroll();
   const lastScrollY = useRef(0);
+
+  // Close dropdown on click outside or escape
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOthersOpen(false);
+      }
+    };
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsOthersOpen(false);
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener('keydown', handleEsc);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, []);
+
+  // Close dropdown on route change
+  useEffect(() => {
+    setIsOthersOpen(false);
+    setIsOpen(false);
+  }, [location.pathname]);
+
+  const isOtherActive = otherPages.some((p) => location.pathname === p.path) ||
+                        regionalLinks.some((r) => location.pathname === r.path);
 
   // Hide on scroll down past 200px, reveal when scrolling up
   useMotionValueEvent(scrollY, 'change', (latest) => {
@@ -181,6 +269,126 @@ export const NavBar: React.FC = () => {
                 </Link>
               );
             })}
+
+            {/* Others Dropdown */}
+            <div
+              className="relative"
+              ref={dropdownRef}
+              onMouseEnter={() => {
+                if (timeoutRef.current) clearTimeout(timeoutRef.current);
+                setIsOthersOpen(true);
+              }}
+              onMouseLeave={() => {
+                timeoutRef.current = setTimeout(() => {
+                  setIsOthersOpen(false);
+                }, 220);
+              }}
+            >
+              <button
+                type="button"
+                onClick={() => setIsOthersOpen((prev) => !prev)}
+                className={`relative px-3.5 py-1.5 rounded-full text-xs font-medium tracking-wide transition-all duration-200 flex items-center gap-1 cursor-pointer group ${
+                  isOtherActive
+                    ? 'text-ink font-semibold'
+                    : isOthersOpen
+                    ? 'text-ink font-semibold'
+                    : 'text-ink-secondary hover:text-ink'
+                }`}
+                aria-expanded={isOthersOpen}
+                aria-haspopup="true"
+              >
+                {isOtherActive && (
+                  <motion.span
+                    layoutId="activeNavBubble"
+                    className="absolute inset-0 rounded-full bg-[#EDE5DC] -z-10 shadow-soft-sm"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-1.5">
+                  {isOtherActive && <span className="w-1.5 h-1.5 rounded-full bg-copper inline-block" />}
+                  <span>Others</span>
+                </span>
+                <ChevronDown
+                  className={`relative z-10 w-3.5 h-3.5 transition-transform duration-200 text-copper ${
+                    isOthersOpen ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+
+              <AnimatePresence>
+                {isOthersOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.96 }}
+                    transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute top-full right-0 mt-2.5 w-72 sm:w-80 rounded-2xl bg-[#FEFCF9]/95 backdrop-blur-2xl border border-[#E8E0D8] shadow-2xl p-2.5 z-50 text-ink ring-1 ring-black/5"
+                  >
+                    <div className="px-3 py-1.5 text-[10px] font-mono uppercase tracking-widest text-[#78716C] border-b border-[#E8E0D8] mb-1.5 flex items-center justify-between">
+                      <span>Other Pages // Index</span>
+                      <span className="text-copper">05 Pages</span>
+                    </div>
+
+                    <div className="space-y-1">
+                      {otherPages.map((page) => {
+                        const Icon = page.icon;
+                        const isCurrent = location.pathname === page.path;
+                        return (
+                          <Link
+                            key={page.path}
+                            to={page.path}
+                            onClick={() => {
+                              setIsOthersOpen(false);
+                              window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
+                            className={`flex items-start gap-3 p-2.5 rounded-xl transition-all group/item ${
+                              isCurrent
+                                ? 'bg-[#EDE5DC] text-copper font-semibold'
+                                : 'hover:bg-[#F5F0EB] text-ink hover:text-copper'
+                            }`}
+                          >
+                            <div className="w-8 h-8 rounded-lg bg-[#F5F0EB] group-hover/item:bg-white text-copper border border-[#E8E0D8] flex items-center justify-center shrink-0 mt-0.5 shadow-xs transition-colors">
+                              <Icon className="w-4 h-4" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center justify-between text-xs font-semibold">
+                                <span className="truncate">{page.title}</span>
+                                <ArrowUpRight className="w-3 h-3 opacity-40 group-hover/item:opacity-100 group-hover/item:translate-x-0.5 group-hover/item:-translate-y-0.5 transition-all text-copper" />
+                              </div>
+                              <span className="text-[11px] text-ink-secondary font-light block line-clamp-1">
+                                {page.desc}
+                              </span>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+
+                    {/* Regional Engineering Pages */}
+                    <div className="pt-2 mt-2 border-t border-[#E8E0D8]/80 px-2">
+                      <div className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider mb-1.5">
+                        Regional Profiles
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {regionalLinks.map((reg) => (
+                          <Link
+                            key={reg.path}
+                            to={reg.path}
+                            onClick={() => {
+                              setIsOthersOpen(false);
+                              window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
+                            className="px-2.5 py-1 rounded-lg bg-[#F5F0EB] hover:bg-[#EDE5DC] text-ink hover:text-copper text-[10px] font-mono transition-colors"
+                          >
+                            {reg.title}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </nav>
 
           {/* Right Action: Let's Talk Magnetic CTA */}
@@ -250,7 +458,7 @@ export const NavBar: React.FC = () => {
                 className="pt-4 border-t border-[#E8E0D8]"
               >
                 <div className="text-xs font-mono uppercase tracking-widest text-[#78716C] mb-3">
-                  Archive & Documents
+                  Other Pages // Index
                 </div>
                 <div className="grid grid-cols-2 gap-3 text-sm font-medium text-ink-secondary">
                   <Link to="/projects" onClick={() => setIsOpen(false)} className="hover:text-copper">
@@ -264,6 +472,12 @@ export const NavBar: React.FC = () => {
                   </Link>
                   <Link to="/awards" onClick={() => setIsOpen(false)} className="hover:text-copper">
                     Honors & Awards
+                  </Link>
+                  <Link to="/volunteering" onClick={() => setIsOpen(false)} className="hover:text-copper">
+                    Volunteering & FOSS
+                  </Link>
+                  <Link to="/ai-developer-kerala" onClick={() => setIsOpen(false)} className="hover:text-copper">
+                    AI Developer Kerala
                   </Link>
                 </div>
               </motion.div>
