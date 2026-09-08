@@ -121,6 +121,8 @@ const AppContent: React.FC = () => {
       touchMultiplier: 1.5,
     });
 
+    (window as any).lenis = lenis;
+
     let rafId: number;
     function raf(time: number) {
       lenis.raf(time);
@@ -130,6 +132,7 @@ const AppContent: React.FC = () => {
 
     return () => {
       cancelAnimationFrame(rafId);
+      (window as any).lenis = null;
       lenis.destroy();
     };
   }, []);
