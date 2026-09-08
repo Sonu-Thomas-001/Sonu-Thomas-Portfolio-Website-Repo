@@ -1,9 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowUpRight, Loader2, Send, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Loader2, Send, Sparkles, Linkedin } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
 import { SuccessModal } from './SuccessModal';
-import { LinkedInBadge } from './LinkedInBadge';
 
 export const Contact: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -87,23 +86,40 @@ export const Contact: React.FC = () => {
             Whether you are building mission-critical AI systems, planning an enterprise modernization, or exploring collaborative research — my channel is always open.
           </p>
 
-          {/* Personal Availability Card */}
-          <div className="p-4 rounded-2xl bg-[#FEFCF9] border border-[#E8E0D8] shadow-soft-sm flex items-center gap-4">
-            <div className="relative w-14 h-14 rounded-xl overflow-hidden border border-copper/30 shrink-0">
-              <img
-                src="/images/Professional%20Pic%206.png"
-                alt="Sonu Thomas — Direct Collaboration"
-                className="w-full h-full object-cover object-top"
-              />
-              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-500 ring-2 ring-[#FEFCF9]" />
+          {/* Personal Availability Card with Integrated LinkedIn Verification */}
+          <div className="p-4 rounded-2xl bg-[#FEFCF9] border border-[#E8E0D8] shadow-soft-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-center gap-3.5">
+              <div className="relative w-14 h-14 rounded-xl overflow-hidden border border-copper/30 shrink-0">
+                <img
+                  src="/images/Professional%20Pic%206.png"
+                  alt="Sonu Thomas — Direct Collaboration"
+                  className="w-full h-full object-cover object-top"
+                />
+                <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-500 ring-2 ring-[#FEFCF9]" />
+              </div>
+              <div>
+                <h4 className="font-display font-semibold text-sm text-ink leading-tight">Sonu Thomas</h4>
+                <span className="text-[11px] font-mono text-emerald-700 font-medium flex items-center gap-1.5 mt-0.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  Active &bull; Open for Collaboration
+                </span>
+                <span className="text-[10px] font-mono text-[#78716C] block mt-0.5">
+                  AI Software Engineer &bull; HCLTech
+                </span>
+              </div>
             </div>
-            <div>
-              <h4 className="font-display font-semibold text-sm text-ink leading-tight">Sonu Thomas</h4>
-              <span className="text-[11px] font-mono text-emerald-700 font-medium flex items-center gap-1.5 mt-0.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                Active &bull; Open for Collaboration
-              </span>
-            </div>
+
+            <a
+              href="https://www.linkedin.com/in/sonuthomasai/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#0A66C2]/10 hover:bg-[#0A66C2] text-[#0A66C2] hover:text-white border border-[#0A66C2]/20 font-mono text-xs font-semibold transition-all group shrink-0 self-start sm:self-center"
+              title="Connect on LinkedIn"
+            >
+              <Linkedin className="w-3.5 h-3.5 fill-current" />
+              <span>Connect on LinkedIn</span>
+              <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
           </div>
 
           {/* Availability Card */}
@@ -117,14 +133,6 @@ export const Contact: React.FC = () => {
               <span className="px-3 py-1 rounded-full bg-[#F5F0EB] text-ink border border-[#E8E0D8]">Production LLMs</span>
               <span className="px-3 py-1 rounded-full bg-[#F5F0EB] text-ink border border-[#E8E0D8]">Full-Stack Platforms</span>
             </div>
-          </div>
-
-          {/* LinkedIn Verified Public Profile Badge */}
-          <div className="space-y-2 pt-2">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#78716C] block">
-              Professional Identity &amp; Verification
-            </span>
-            <LinkedInBadge theme="light" size="large" type="HORIZONTAL" />
           </div>
 
           {/* Clean Text-Based Contact Details */}

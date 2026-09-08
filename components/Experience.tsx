@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Building2, CheckCircle2, ArrowRight } from 'lucide-react';
 import { EXPERIENCE_DATA } from '../constants';
-import { LinkedInBadge } from './LinkedInBadge';
 
 export const Experience: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -13,8 +12,8 @@ export const Experience: React.FC = () => {
     offset: ["start start", "end end"],
   });
 
-  // Snappy horizontal scroll across cards: 6 cards total (including LinkedIn capstone)
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-78%"]);
+  // Snappy horizontal scroll across 5 career cards
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-68%"]);
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const watermarkShift = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
 
@@ -158,47 +157,6 @@ export const Experience: React.FC = () => {
                   )}
                 </div>
               ))}
-
-              {/* Capstone Card 06: Official LinkedIn Public Profile Badge */}
-              <div
-                className="relative w-[520px] lg:w-[580px] flex-shrink-0 bg-[#1E1B18]/95 backdrop-blur-xl rounded-3xl p-8 lg:p-10 border border-copper/40 shadow-soft-lg flex flex-col justify-between overflow-hidden group"
-              >
-                <div className="absolute top-0 left-8 right-8 h-[2px] bg-gradient-to-r from-transparent via-copper to-transparent" />
-                
-                {/* Giant Watermark Numeral */}
-                <span className="absolute -right-4 -bottom-6 font-display font-bold text-9xl text-[#EDE5DC]/[0.025] select-none pointer-events-none">
-                  06
-                </span>
-
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="font-mono text-xs font-semibold px-3.5 py-1 rounded-full bg-[#2A2522] text-copper border border-copper/30 flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      Verified Professional Network
-                    </span>
-                    <span className="font-mono text-xs text-copper font-medium">
-                      06 / 06
-                    </span>
-                  </div>
-
-                  <h3 className="font-display font-bold text-2xl lg:text-3xl text-[#EDE5DC] mb-2">
-                    Professional Network
-                  </h3>
-                  <p className="text-sm font-light text-[#D5CDC5] mb-5 leading-relaxed">
-                    Connect directly on LinkedIn for enterprise verification, skill endorsements, and professional references.
-                  </p>
-
-                  {/* Official LinkedIn Public Profile Badge */}
-                  <div className="my-2">
-                    <LinkedInBadge theme="dark" size="large" type="HORIZONTAL" />
-                  </div>
-                </div>
-
-                <div className="relative z-10 pt-4 border-t border-[#2A2522] flex items-center justify-between text-xs font-mono text-[#78716C]">
-                  <span>linkedin.com/in/sonuthomasai</span>
-                  <span className="text-copper font-medium">Official Profile Badge</span>
-                </div>
-              </div>
             </motion.div>
           </div>
 
@@ -303,30 +261,6 @@ export const Experience: React.FC = () => {
               )}
             </div>
           ))}
-
-          {/* Mobile Capstone: Official LinkedIn Public Profile Badge */}
-          <div className="bg-[#1E1B18] rounded-2xl p-6 border border-copper/40 shadow-soft-md space-y-4 overflow-hidden">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-[#2A2522] text-copper border border-copper/30 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                Verified Professional
-              </span>
-              <span className="text-xs font-mono text-copper font-semibold">06 / 06</span>
-            </div>
-
-            <div>
-              <h3 className="font-display font-bold text-xl text-[#EDE5DC]">
-                Professional Network
-              </h3>
-              <p className="text-xs font-light text-[#D5CDC5] mt-1 leading-relaxed">
-                Connect directly on LinkedIn for enterprise references and skill endorsements.
-              </p>
-            </div>
-
-            <div className="pt-1">
-              <LinkedInBadge theme="dark" size="large" type="HORIZONTAL" />
-            </div>
-          </div>
         </div>
       </div>
     </section>
