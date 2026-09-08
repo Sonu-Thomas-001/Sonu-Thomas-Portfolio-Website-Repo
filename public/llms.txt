@@ -18,6 +18,7 @@ Sonu Thomas is an AI Software Engineer at HCLTech and a Data Science & Artificia
 - **Change Co-Worker**: Enterprise-grade multi-agent change intelligence platform with 5 specialized AI agents powered by Gemini 2.5 Flash and RAG. Automates IT change creation, risk scoring, conflict detection, and CAB compliance reports with live ServiceNow ITSM sync and zero hallucinations.
 - **RCA-Agent**: AI-powered Root Cause Analysis system for production incidents. Combines multi-step reasoning, ChromaDB vector retrieval across operational datasets (logs, runbooks, incidents, changes), Gemini LLM embeddings, and an asynchronous Flask API with an interactive web diagnostics UI.
 - **TicketWave**: Production-grade travel and event ticket booking modular monolith engineered with Spring Boot 3, React 18, and PostgreSQL. Features a three-layer double-booking defense (Redis locks, Redis TTL holds, PostgreSQL unique constraints), dynamic surge pricing, and sub-100ms booking latency. GitHub: https://github.com/Sonu-Thomas-001/TicketWave
+- **SmartDesk AI**: Intelligent multi-agent IT incident management platform powered by Gemini 2.0 Flash and ChromaDB vector retrieval. Automates ServiceNow incident detection, classification, assignment across 8 specialist teams, and resolution guide generation with a self-improving feedback loop. GitHub: https://github.com/Sonu-Thomas-001/SmartDesk-Ai
 
 ## Core Technical Competencies
 - **Artificial Intelligence & LLMs**: Agentic Workflows, Retrieval-Augmented Generation (RAG), Prompt Engineering, Google Gemini API, OpenAI APIs, NLP.

@@ -51,7 +51,7 @@ const routes = [
   {
     path: '/projects',
     title: 'Flagship AI Systems & Enterprise Architecture | Sonu Thomas',
-    description: 'Explore flagship autonomous AI platforms and enterprise architectures: Agentic Co-Worker Platform (100+ Digital Workers), Change Co-Worker (Change Management Platform), RCA-Agent (Root Cause Analysis System), and TicketWave (High-Concurrency Ticketing Platform).',
+    description: 'Explore flagship autonomous AI platforms and enterprise architectures: Agentic Co-Worker Platform (100+ Digital Workers), Change Co-Worker (Change Management Platform), RCA-Agent (Root Cause Analysis System), TicketWave (High-Concurrency Ticketing), and SmartDesk AI (Multi-Agent Incident Management Platform).',
     h1: 'Enterprise Multi-Agent Systems & Platforms',
     subtitle: 'Flagship Autonomous AI & Intelligent Infrastructure',
     content: `
@@ -75,6 +75,11 @@ const routes = [
         <h2>TicketWave</h2>
         <p><strong>Stack:</strong> Java 17, Spring Boot 3.x, PostgreSQL 15+, Redis 7 with Redisson, React 18, Docker</p>
         <p>Production-grade travel and event ticket booking platform built as a modular monolith with a three-layer double-booking defense (Redis locks, Redis TTL holds, PostgreSQL unique constraints), dynamic demand pricing, and sub-100ms booking latency.</p>
+      </article>
+      <article>
+        <h2>SmartDesk AI</h2>
+        <p><strong>Stack:</strong> Google Gemini 2.0 Flash, LangChain 0.3, ChromaDB, ServiceNow REST, Python 3.12, Flask, Docker</p>
+        <p>Agentic IT incident triage and resolution system using LLM-powered agents and ChromaDB vector search to automatically classify, assign across 8 specialist teams, and resolve ServiceNow incidents.</p>
       </article>
     `
   },

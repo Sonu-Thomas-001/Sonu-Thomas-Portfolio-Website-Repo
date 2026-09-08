@@ -70,7 +70,9 @@ const ProjectCard: React.FC<{
               ? '5-Agent Hub & Spoke'
               : project.id === 'rca-agent'
               ? 'Automated RCA Engine'
-              : 'Zero Double-Booking Defense'}
+              : project.id === 'ticketwave'
+              ? 'Zero Double-Booking Defense'
+              : '8-Team Multi-Agent Triage'}
           </span>
         </div>
       </div>
@@ -95,7 +97,26 @@ const ProjectCard: React.FC<{
           </p>
 
           {/* Operational Metrics Bar */}
-          {project.id === 'ticketwave' ? (
+          {project.id === 'smartdesk-ai' ? (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-[#171412] border border-[#2D2824]">
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Triage Accuracy</span>
+                <span className="font-display font-bold text-sm sm:text-base text-[#EDE5DC]">≥80% Auto-Assign</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Specialist Teams</span>
+                <span className="font-display font-bold text-sm sm:text-base text-copper">8 Support Teams</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">ServiceNow Sync</span>
+                <span className="font-display font-bold text-sm sm:text-base text-emerald-400">30s Auto-Poll</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Knowledge Base</span>
+                <span className="font-display font-bold text-sm sm:text-base text-emerald-400">25+ KB ChromaDB</span>
+              </div>
+            </div>
+          ) : project.id === 'ticketwave' ? (
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-[#171412] border border-[#2D2824]">
               <div>
                 <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Concurrency</span>
@@ -271,9 +292,9 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
           className={`grid gap-8 ${
             filteredProjects.length === 1
               ? 'max-w-4xl mx-auto'
-              : filteredProjects.length === 3
-              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto'
-              : 'grid-cols-1 md:grid-cols-2 max-w-6xl mx-auto'
+              : filteredProjects.length === 2 || filteredProjects.length === 4
+              ? 'grid-cols-1 md:grid-cols-2 max-w-6xl mx-auto'
+              : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto'
           }`}
         >
           <AnimatePresence mode="popLayout">

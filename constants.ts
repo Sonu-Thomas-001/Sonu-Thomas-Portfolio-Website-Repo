@@ -418,6 +418,57 @@ TicketWave guarantees zero double-bookings through a defense-in-depth architectu
       demo: "#"
     },
     image: "/images/ticketwave.svg"
+  },
+  {
+    id: "smartdesk-ai",
+    title: "SmartDesk AI",
+    category: "Autonomous Multi-Agent Systems",
+    role: "Architect & Lead Engineer",
+    stack: [
+      "Gemini 2.0 Flash",
+      "LangChain 0.3",
+      "ChromaDB",
+      "ServiceNow API",
+      "Python 3.12",
+      "Flask",
+      "Docker",
+      "Vector Embeddings"
+    ],
+    description: "Intelligent Multi-Agent Incident Management Platform: Agentic IT incident triage and resolution system powered by Gemini 2.0 Flash and ChromaDB vector search. Automatically detects, classifies, assigns, and resolves ServiceNow incidents across 8 specialist teams with a self-learning feedback loop.",
+    detailedDescription: `## 🎯 What is SmartDesk AI?
+**SmartDesk AI** is an enterprise-grade **agentic IT incident triage and resolution system** that leverages LLM-powered agents (**Gemini 2.0 Flash**) and vector similarity search (**ChromaDB**) to automatically detect, classify, assign, and resolve ServiceNow incidents. It eliminates manual IT ticket routing bottlenecks with intelligent, self-improving AI agents that continuously learn from operational feedback.
+
+> *"Replaces manual IT ticket routing with intelligent, self-improving AI agents that continuously learn from feedback."*
+
+---
+
+## ✨ Key Capabilities & System Features
+
+| Feature | Technical Architecture | Enterprise Impact |
+| :--- | :--- | :--- |
+| 🤖 **Multi-Agent Coordination** | Classification Agent, Resolver Agent, & Synthetic Incident Generator | End-to-end automated handling from triage to step-by-step fix guides |
+| 🧬 **Vector Knowledge Base** | ChromaDB with cosine similarity on \`all-MiniLM-L6-v2\` embeddings | Grounded retrieval across **25+ KB playbooks** covering Network, IAM, DB, Cloud |
+| ⚡ **Intelligent Routing** | Configurable confidence thresholds across 8 specialist support teams | **Auto-assign (≥80%)**, Suggest (50-79%), or Fallback triage (<50%) |
+| 🔄 **ServiceNow Native Sync** | Bi-directional REST API integration with 30s auto-polling & webhooks | Automatically writes AI work notes and resolution steps directly to tickets |
+| 🎯 **Self-Learning Loop** | Human-in-the-loop correction engine feeding back into embeddings | Inaccurate classifications update vector memory for continuous accuracy gains |
+| 📊 **Glassmorphism Dashboard** | Live incident feed, confidence meters, team load charts, and step views | Real-time observability and operator override control in one pane |
+
+---
+
+## 🏗️ Multi-Agent Architecture & Operational Workflow
+SmartDesk AI coordinates a closed-loop 7-step incident resolution workflow:
+1. **Incident Detection**: Continuously polls ServiceNow every 30s via authenticated REST API endpoints or captures real-time incoming webhook triggers.
+2. **Similarity Search**: Performs cosine similarity retrieval in **ChromaDB** against historical outages and 25+ verified standard operating procedures.
+3. **Classification Agent**: Leverages **Google Gemini 2.0 Flash** with few-shot prompting to analyze symptom descriptions, impacted configuration items, and urgency.
+4. **Decision Engine**: Automatically assigns tickets with **≥80% confidence** to the optimal team member via round-robin with lead escalation, or flags for human suggestion.
+5. **Resolver Agent**: Generates structured, numbered step-by-step fix guides grounded in verified knowledge articles and posts them as AI work notes to the ticket.
+6. **Knowledge Enrichment**: Records the resolved incident and verified remediation trajectory back into ChromaDB for future operational retrieval.
+7. **Feedback Loop**: Incorporates operator corrections into embedding adjustments, systematically eliminating repeat misclassifications.`,
+    links: {
+      github: "https://github.com/Sonu-Thomas-001/SmartDesk-Ai",
+      demo: "#"
+    },
+    image: "/images/smartdesk-ai.svg"
   }
 ];
 

@@ -107,6 +107,20 @@ Sonu Thomas bridges the gap between deep computational theory and practical soft
 
 ---
 
+## Flagship Engineering Project 5: SmartDesk AI
+
+- **Core Vision**: Intelligent Multi-Agent Incident Management Platform. An agentic IT incident triage and resolution system powered by Gemini 2.0 Flash and ChromaDB vector search to automate ServiceNow incident routing and resolution.
+- **Key Architecture & Capabilities**:
+  - **Multi-Agent Coordination**: Specialized agents including Classification Agent (few-shot intent analysis), Resolver Agent (step-by-step fix formulation), and Synthetic Incident Generator.
+  - **Vector Knowledge Base (RAG)**: ChromaDB with cosine similarity on \`all-MiniLM-L6-v2\` embeddings indexing 25+ domain KB playbooks across Network, IAM, Database, Cloud, Hardware, and Security.
+  - **Intelligent Routing & Thresholds**: Automatic team routing across 8 specialist teams based on confidence: Auto-assign (≥80%), Suggest team (50-79%), or Fallback triage (<50%) with round-robin load distribution.
+  - **ServiceNow Native Sync**: Bi-directional integration via REST APIs and webhooks; 30-second polling cycle with automated posting of AI work notes and resolution steps.
+  - **Continuous Feedback Loop**: Human-in-the-loop correction mechanism that updates embedding representations upon operator adjustments, systematically eliminating misclassifications.
+- **Tech Stack**: Python 3.12, Flask, Google Gemini 2.0 Flash (Vertex AI), LangChain 0.3, ChromaDB, ServiceNow REST API, Docker, Docker Compose.
+- **Repository Link**: https://github.com/Sonu-Thomas-001/SmartDesk-Ai
+
+---
+
 ## Technical Skill Matrix
 
 | Category | Technologies & Tools |
