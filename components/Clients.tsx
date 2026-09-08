@@ -14,8 +14,8 @@ const BRANDS = [
     icon: GraduationCap 
   },
   { 
-    name: "Xbean International", 
-    label: "Agency", 
+    name: "Open Source & AI", 
+    label: "Community", 
     icon: Globe 
   },
   { 

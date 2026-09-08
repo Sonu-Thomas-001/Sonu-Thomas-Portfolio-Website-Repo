@@ -27,7 +27,7 @@ export const PERSONAL_DETAILS = {
   },
   phone: "+91 8921 526656",
   about: "I am an AI Software Engineer with over 3+ years of hands-on experience in software development, web technologies, and building production-ready digital systems, combined with a strong and growing focus on Artificial Intelligence, intelligent automation, and applied AI engineering.",
-  expandedAbout: "My technology journey began early at Xbean International and evolved through 3+ years of freelance development. Today, at HCLTech, I focus on AI engineering—treating intelligent automation not just as experimentation, but as a disciplined engineering practice emphasizing system design, scalability, and business impact.",
+  expandedAbout: "My technology journey began early through independent software engineering and evolved through 3+ years of freelance development. Today, at HCLTech, I focus on AI engineering—treating intelligent automation not just as experimentation, but as a disciplined engineering practice emphasizing system design, scalability, and business impact.",
   resumeLink: "https://cdn.jsdelivr.net/gh/Sonu-Thomas-001/image-host/Sonu-Thomas-Portfolio-Website-Repo/Resume.pdf",
   social: {
     linkedin: "https://www.linkedin.com/in/sonuthomasai/",
@@ -48,7 +48,7 @@ export const ABOUT_STORY = [
   {
     id: "02",
     title: "Initialization Sequence",
-    content: "My technology journey began early during my Plus Two Computer Science education, where I worked as a Junior Web Developer at Xbean International. This early exposure allowed me to work on real client projects, understand end-to-end development lifecycles, and develop a strong problem-solving mindset that continues to shape my approach to engineering.",
+    content: "My technology journey began early during my Plus Two Computer Science education, diving deep into software development, web engineering, and foundational algorithms. This early start allowed me to build real-world digital solutions, understand end-to-end development lifecycles, and develop a strong problem-solving mindset that continues to shape my approach to engineering.",
     highlight: "Early Start"
   },
   {
@@ -123,19 +123,6 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
       "Managing the full software delivery lifecycle, stakeholder communication, and version control using Git/GitHub."
     ],
     tech: ["WordPress", "Bootstrap", "SEO", "Git", "GitHub", "HTML/CSS"]
-  },
-  {
-    id: "xbean",
-    role: "Junior Web Developer",
-    company: "Xbean International",
-    period: "Aug 2022 – Dec 2022",
-    description: [
-      "Collaborated with senior developers to design, develop, and maintain client-facing web applications.",
-      "Implemented feature enhancements and deployed WordPress websites with responsive layouts and content structures.",
-      "Utilized Git and GitHub for version control, ensuring code quality and efficient software collaboration.",
-      "Applied Bootstrap for frontend styling and implemented SEO-friendly architecture for improved visibility."
-    ],
-    tech: ["WordPress", "Bootstrap", "Git", "GitHub", "SEO", "HTML/CSS"]
   }
 ];
 
@@ -940,14 +927,6 @@ export const GROWTH_DATA: GrowthItem[] = [
     role: "Freelance Developer",
     description: "My journey began with a curiosity for the web. I started freelancing during my high school years, learning to translate client needs into digital reality. This phase taught me the value of delivery and resilience.",
     icon: "Lightbulb"
-  },
-  {
-    id: "g2",
-    year: "2022",
-    title: "The Foundation",
-    role: "Junior Web Developer",
-    description: "At Xbean International, I moved from solo coding to team-based development. I learned version control, code reviews, and the discipline required for professional software engineering.",
-    icon: "Hammer"
   },
   {
     id: "g3",

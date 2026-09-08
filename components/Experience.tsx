@@ -12,8 +12,8 @@ export const Experience: React.FC = () => {
     offset: ["start start", "end end"],
   });
 
-  // Snappy horizontal scroll across 5 career cards
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-68%"]);
+  // Snappy horizontal scroll across 4 career cards
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-52%"]);
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const watermarkShift = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
 
@@ -30,7 +30,7 @@ export const Experience: React.FC = () => {
       {/* ============================================================ */}
       {/* DESKTOP PINNED HORIZONTAL SCROLL TIMELINE (Hidden on Mobile) */}
       {/* ============================================================ */}
-      <div ref={containerRef} className="hidden md:block relative h-[280vh]">
+      <div ref={containerRef} className="hidden md:block relative h-[240vh]">
         <div className="sticky top-0 h-screen flex flex-col justify-between overflow-hidden px-8 lg:px-16 py-12">
           
           {/* Top Header Bar */}
