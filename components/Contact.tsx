@@ -138,13 +138,27 @@ export const Contact: React.FC = () => {
           {/* Clean Text-Based Contact Details */}
           <div className="space-y-4 pt-4 border-t border-[#E8E0D8]">
             <div>
-              <span className="text-xs font-mono uppercase tracking-wider text-[#78716C] block">Direct Email</span>
-              <a
-                href={`mailto:${PERSONAL_DETAILS.email}`}
-                className="font-display text-lg sm:text-xl text-ink font-medium hover:text-copper transition-colors underline decoration-[#D8CEC4] underline-offset-4 hover:decoration-copper"
-              >
-                {PERSONAL_DETAILS.email}
-              </a>
+              <span className="text-xs font-mono uppercase tracking-wider text-[#78716C] block mb-1.5">Direct Inquiries</span>
+              <div className="space-y-2">
+                <div>
+                  <a
+                    href="mailto:sonuthomas.ai@gmail.com"
+                    className="font-display text-lg sm:text-xl text-ink font-medium hover:text-copper transition-colors underline decoration-[#D8CEC4] underline-offset-4 hover:decoration-copper block leading-snug"
+                  >
+                    sonuthomas.ai@gmail.com
+                  </a>
+                  <span className="text-[11px] font-mono text-[#78716C]">AI & Applied Machine Learning</span>
+                </div>
+                <div>
+                  <a
+                    href="mailto:sonuthomas.dev@gmail.com"
+                    className="font-display text-base sm:text-lg text-ink-secondary font-medium hover:text-copper transition-colors underline decoration-[#D8CEC4] underline-offset-4 hover:decoration-copper block leading-snug"
+                  >
+                    sonuthomas.dev@gmail.com
+                  </a>
+                  <span className="text-[11px] font-mono text-[#78716C]">Software Engineering & Consulting</span>
+                </div>
+              </div>
             </div>
 
             <div>

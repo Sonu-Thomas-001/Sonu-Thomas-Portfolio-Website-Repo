@@ -19,7 +19,12 @@ export const PERSONAL_DETAILS = {
   role: "AI Software Engineer | Production Change Manager",
   tagline: "AI Software Engineer | Building Scalable Intelligent Systems",
   location: "Kannur, Kerala, India",
-  email: "sonuthomaswork@gmail.com",
+  email: "sonuthomas.ai@gmail.com",
+  secondaryEmail: "sonuthomas.dev@gmail.com",
+  emails: {
+    ai: "sonuthomas.ai@gmail.com",
+    dev: "sonuthomas.dev@gmail.com"
+  },
   phone: "+91 8921 526656",
   about: "I am an AI Software Engineer with over 3+ years of hands-on experience in software development, web technologies, and building production-ready digital systems, combined with a strong and growing focus on Artificial Intelligence, intelligent automation, and applied AI engineering.",
   expandedAbout: "My technology journey began early at Xbean International and evolved through 3+ years of freelance development. Today, at HCLTech, I focus on AI engineering—treating intelligent automation not just as experimentation, but as a disciplined engineering practice emphasizing system design, scalability, and business impact.",

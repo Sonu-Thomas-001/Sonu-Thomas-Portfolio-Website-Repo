@@ -140,7 +140,8 @@ const routes = [
     content: `
       <p>Interested in collaborating on AI engineering, LLM systems, or full-stack software development? Reach out directly:</p>
       <ul>
-        <li><strong>Email:</strong> sonuthomaswork@gmail.com</li>
+        <li><strong>Email (AI / Primary):</strong> sonuthomas.ai@gmail.com</li>
+        <li><strong>Email (Dev / Consulting):</strong> sonuthomas.dev@gmail.com</li>
         <li><strong>Location:</strong> Kannur, Kerala, India</li>
         <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/sonuthomasai/">linkedin.com/in/sonuthomasai</a></li>
         <li><strong>GitHub:</strong> <a href="https://github.com/Sonu-Thomas-001">github.com/Sonu-Thomas-001</a></li>
