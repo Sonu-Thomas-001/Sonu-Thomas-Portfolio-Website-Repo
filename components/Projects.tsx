@@ -74,6 +74,8 @@ const ProjectCard: React.FC<{
               ? 'Zero Double-Booking Defense'
               : project.id === 'qubimind'
               ? 'Multi-Agent AI OS'
+              : project.id === 'multi-agent-enterprise-ai-assistant'
+              ? '7 Micro-Agents & Hybrid RAG'
               : '8-Team Multi-Agent Triage'}
           </span>
         </div>
@@ -99,7 +101,26 @@ const ProjectCard: React.FC<{
           </p>
 
           {/* Operational Metrics Bar */}
-          {project.id === 'qubimind' ? (
+          {project.id === 'multi-agent-enterprise-ai-assistant' ? (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-[#171412] border border-[#2D2824]">
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Agent Swarm</span>
+                <span className="font-display font-bold text-sm sm:text-base text-[#EDE5DC]">7 Micro-Agents</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Hybrid RAG</span>
+                <span className="font-display font-bold text-sm sm:text-base text-copper">BM25 + RRF (k=60)</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Code Sandbox</span>
+                <span className="font-display font-bold text-sm sm:text-base text-emerald-400">Serverless Python</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Governance</span>
+                <span className="font-display font-bold text-sm sm:text-base text-emerald-400">256-Bit JWT & 16 RBAC</span>
+              </div>
+            </div>
+          ) : project.id === 'qubimind' ? (
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-[#171412] border border-[#2D2824]">
               <div>
                 <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Swarm Engine</span>
@@ -262,7 +283,7 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const categories = ['All', ...Array.from(new Set(PROJECTS_DATA.map((p) => p.category)))];
 
-  const displayedList = isHomepage ? PROJECTS_DATA.slice(0, 6) : PROJECTS_DATA;
+  const displayedList = PROJECTS_DATA;
   const filteredProjects = filter === 'All'
     ? displayedList
     : displayedList.filter((project) => project.category === filter);

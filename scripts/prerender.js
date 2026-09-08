@@ -51,7 +51,7 @@ const routes = [
   {
     path: '/projects',
     title: 'Flagship AI Systems & Enterprise Architecture | Sonu Thomas',
-    description: 'Explore flagship autonomous AI platforms and enterprise architectures: Agentic Co-Worker Platform (100+ Digital Workers), Change Co-Worker (Change Management Platform), RCA-Agent (Root Cause Analysis System), TicketWave (High-Concurrency Ticketing), SmartDesk AI (Multi-Agent Incident Management Platform), and QubiMind (Multi-Agent AI Operating System).',
+    description: 'Explore flagship autonomous AI platforms and enterprise architectures: Agentic Co-Worker Platform (100+ Digital Workers), Change Co-Worker (Change Management Platform), RCA-Agent (Root Cause Analysis System), TicketWave (High-Concurrency Ticketing), SmartDesk AI (Multi-Agent Incident Management Platform), QubiMind (Multi-Agent AI Operating System), and Multi-Agent Enterprise AI Assistant (7 Micro-Agents & Hybrid RAG).',
     h1: 'Enterprise Multi-Agent Systems & Platforms',
     subtitle: 'Flagship Autonomous AI & Intelligent Infrastructure',
     content: `
@@ -85,6 +85,11 @@ const routes = [
         <h2>QubiMind</h2>
         <p><strong>Stack:</strong> Next.js 15, React 19, FastAPI, Python 3.12, LangGraph, LangChain, Google Gemini API, PostgreSQL, Redis, Docker</p>
         <p>Enterprise-grade Multi-Agent AI Operating System developed by QubiQode that enables organizations to deploy, manage, and orchestrate fleets of specialized AI agents with LangGraph, Enterprise RAG, external tool calling, HITL manager approvals, and SOC2 5-tier RBAC security.</p>
+      </article>
+      <article>
+        <h2>Multi-Agent Enterprise AI Assistant</h2>
+        <p><strong>Stack:</strong> Next.js 15, React 19, FastAPI, Python 3.12, LangGraph, ChromaDB (BM25), Python Sandbox, Tailwind CSS v4, SQLite, SQLAlchemy</p>
+        <p>Flagship enterprise AI platform orchestrating 7 specialized micro-agents in concurrent, stateful LangGraph channels. Features dual-retriever hybrid RAG (sparse BM25 + dense ChromaDB with Reciprocal Rank Fusion, k=60), serverless isolated Python code sandbox execution, and bank-grade 256-bit JWT authentication with 16 granular RBAC permissions.</p>
       </article>
     `
   },

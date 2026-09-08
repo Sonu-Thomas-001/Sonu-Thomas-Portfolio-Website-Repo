@@ -136,6 +136,20 @@ Sonu Thomas bridges the gap between deep computational theory and practical soft
 
 ---
 
+## Flagship Engineering Project 7: Multi-Agent Enterprise AI Assistant
+
+- **Core Vision**: Enterprise-Grade Multi-Agent Platform & Hybrid RAG Engine. Solves the vulnerabilities of single-prompt LLMs when tackling complex multi-step workflows by orchestrating 7 autonomous micro-agents in concurrent, stateful LangGraph channels with hybrid Reciprocal Rank Fusion, isolated serverless Python code execution, and 256-bit JWT authentication with 16 granular RBAC permissions.
+- **Key Architecture & Capabilities**:
+  - **7 Autonomous Micro-Agents**: Supervisor-Planner topology with 7 domain workers (Supervisor/Planner, Document Research, Code Sandbox, Data Analytics, Visualization, RBAC Guard, Audit Verifier) operating across stateful LangGraph channels.
+  - **Dual-Retriever Hybrid RAG Engine**: Combines BM25 sparse keyword matching with ChromaDB 1024-dimension dense embeddings via Reciprocal Rank Fusion (\`RRF_Score(d) = Σ [1 / (60 + Rank_sparse(d)) + 1 / (60 + Rank_dense(d))]\`) for verifiable paragraph citations and zero document hallucination.
+  - **Serverless Python Code Execution Sandbox**: Isolated subprocess runtime with strict resource limits (5.0s CPU timeout, 256MB memory cap), running safe in-memory Pandas transformations and generating real-time Matplotlib charts.
+  - **Enterprise Security & 16 Granular Permissions**: 256-bit JWT authentication, 16 granular RBAC permissions, 6 synthetic persona presets (Admin, Research, Analyst, Operator, Auditor, Guest), and an immutable security audit trail table recording cryptographic hashes of all events.
+  - **Modern Cinematic UX & PWA**: 60fps Framer Motion parallax storytelling, offline-ready standalone PWA, dark/light glassmorphic UI, and search-optimized JSON-LD schemas.
+- **Tech Stack**: Next.js 15, React 19, TypeScript, Tailwind CSS v4, Framer Motion, FastAPI, Python 3.12, LangGraph, LangChain, ChromaDB, BM25, SQLite, SQLAlchemy.
+- **Repository Link**: https://github.com/Sonu-Thomas-001/Multi-Agent-Enterprise-AI-Assistant
+
+---
+
 ## Technical Skill Matrix
 
 | Category | Technologies & Tools |

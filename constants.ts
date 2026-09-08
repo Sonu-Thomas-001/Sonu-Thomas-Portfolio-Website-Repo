@@ -536,6 +536,82 @@ SmartDesk AI coordinates a closed-loop 7-step incident resolution workflow:
       demo: "#"
     },
     image: "/images/qubimind.svg"
+  },
+  {
+    id: "multi-agent-enterprise-ai-assistant",
+    title: "Multi-Agent Enterprise AI Assistant",
+    category: "Autonomous Multi-Agent Systems",
+    role: "Architect & Lead Engineer",
+    stack: [
+      "Next.js 15",
+      "React 19",
+      "FastAPI",
+      "Python 3.12",
+      "LangGraph",
+      "ChromaDB (BM25)",
+      "Python Sandbox",
+      "Tailwind CSS v4",
+      "256-Bit JWT / RBAC",
+      "SQLite / SQLAlchemy"
+    ],
+    description: "Enterprise Multi-Agent Platform & Hybrid RAG Engine: Orchestrates 7 specialized AI micro-agents in concurrent, stateful LangGraph channels. Features a dual-retriever hybrid RAG pipeline (sparse BM25 + dense ChromaDB with Reciprocal Rank Fusion, k=60), an isolated serverless Python code execution sandbox, and bank-grade 256-bit JWT authentication with 16 granular RBAC permissions.",
+    detailedDescription: `## 🎯 What is Multi-Agent Enterprise AI Assistant?
+**Multi-Agent Enterprise AI Assistant** is an end-to-end, flagship enterprise AI SaaS platform designed to solve the critical vulnerabilities of single-prompt LLMs when handling complex, multi-step enterprise tasks. Built on a **Supervisor-Decomposed Agent Topology** using **LangGraph**, it enables **7 autonomous micro-agents** to collaborate deterministically across stateful channels with full audit traceability.
+
+> *"Single-prompt LLMs fail when confronted with multi-step enterprise workflows requiring document research, data transformation, sandboxed code execution, and security compliance verification. Multi-Agent Enterprise AI Assistant solves this through decomposed agent specialization and deterministic guardrails."*
+
+---
+
+## ✨ Key Features & Architectural Comparison
+
+| Capability | Traditional Single LLM | Basic RAG Wrapper | Multi-Agent Enterprise AI Assistant |
+| :--- | :--- | :--- | :--- |
+| **Reasoning Model** | Linear single-turn | Simple prompt injection | **Stateful LangGraph channels & Supervisor-Planner topology** |
+| **Document Search** | None (static weights) | Dense vector search only | **Hybrid BM25 sparse + ChromaDB dense (RRF with k=60)** |
+| **Code Execution** | Raw unverified text | Disallowed / unsafe | **Serverless isolated Python subprocess sandbox runtime** |
+| **Access Control** | No role boundaries | Global API key | **256-bit JWT auth + 16 granular RBAC permissions** |
+| **Governance** | Unmonitored | Basic log files | **Immutable security audit trail table with cryptographic hashes** |
+| **User Experience** | Generic chat box | Static dashboard | **60fps cinematic parallax scroll & standalone PWA support** |
+
+---
+
+## 🤖 The 7 Autonomous Micro-Agents
+The platform coordinates 7 specialized micro-agents operating concurrently within LangGraph channels:
+1. **Supervisor / Planner Agent**: Decomposes complex user inquiries into directed acyclic graph (DAG) tasks and intelligently routes execution across workers.
+2. **Document Research Agent**: Interrogates enterprise documentation using hybrid reciprocal rank fusion retrieval with zero hallucinations.
+3. **Code Sandbox Execution Agent**: Executes arbitrary Python code safely within an isolated, resource-capped subprocess jail.
+4. **Data Analytics Agent**: Ingests tabular data, performing in-memory Pandas transformations, aggregations, and metrics calculations.
+5. **Visualization Agent**: Generates real-time Matplotlib charts and exports vector-crisp SVG and high-resolution PNG plots.
+6. **Security & RBAC Guard Agent**: Evaluates 16 granular permissions against user JWT claims, enforcing deterministic HTTP 403 authorization barriers.
+7. **Audit & Verification Agent**: Cryptographically records every agent decision, tool execution, and query outcome into an immutable ledger.
+
+---
+
+## 🔍 Dual-Retriever Hybrid RAG (Reciprocal Rank Fusion k=60)
+All document queries undergo dual retrieval:
+- **Sparse BM25 Search**: Matches exact keyword tokens, product IDs, SKU codes, and technical jargon.
+- **Dense ChromaDB Vector Search**: Captures high-dimensional 1024-dimension semantic relationships and conceptual intent.
+- **Reciprocal Rank Fusion**: Re-ranks candidates via \`RRF_Score(d) = Σ [1 / (60 + Rank_sparse(d)) + 1 / (60 + Rank_dense(d))]\`, producing verifiable citations down to exact paragraph chunks with zero document hallucination.
+
+---
+
+## 💻 Serverless Python Code Execution Sandbox
+- Runs inside an isolated Python subprocess environment with strict execution quotas (5.0s CPU timeout, 256MB memory cap).
+- Sockets and host filesystem access are completely disabled to prevent privilege escalation.
+- Native support for **Pandas** dataframe queries and **Matplotlib** dynamic plot generation.
+
+---
+
+## 🔐 Enterprise Security & Granular RBAC
+- **256-bit JWT Authentication**: Secure, tamper-proof session verification.
+- **16 Granular Permissions**: Scoped authorization rules spanning RAG document access, sandbox execution, agent state override, and audit query.
+- **6 Synthetic Persona Presets**: One-click switching between Admin, Research, Analyst, Operator, Auditor, and Guest roles for comprehensive enterprise policy testing.
+- **Immutable Security Audit Trail**: Cryptographic logging of all logins, uploads, executions, and permission denials.`,
+    links: {
+      github: "https://github.com/Sonu-Thomas-001/Multi-Agent-Enterprise-AI-Assistant",
+      demo: "#"
+    },
+    image: "/images/multi-agent-ai-assistant.svg"
   }
 ];
 
