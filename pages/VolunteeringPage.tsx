@@ -26,7 +26,7 @@ export const VolunteeringPage: React.FC = () => {
             Initiatives // Giving Back
           </span>
           <h1 className="font-display font-semibold text-4xl sm:text-6xl text-slate-900 tracking-tight leading-tight">
-            Volunteering &amp; <br />
+            Volunteering & <br />
             <span className="gradient-text">Leadership</span>
           </h1>
           <p className="text-slate-600 text-base sm:text-lg mt-4 font-light leading-relaxed">

@@ -147,7 +147,7 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
               05 // Selected Work
             </span>
             <h2 className="font-display font-bold text-3xl sm:text-5xl text-[#EDE5DC] tracking-tight leading-tight">
-              Production systems, AI agents &amp; architectures.
+              Production systems, AI agents & architectures.
             </h2>
           </div>
 
@@ -202,7 +202,7 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
               to="/projects"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#FEFCF9] text-[#1A1614] text-sm font-semibold hover:bg-copper hover:text-white transition-all duration-300 shadow-soft-sm group cursor-pointer"
             >
-              <span>Explore All {PROJECTS_DATA.length} Projects &amp; Studies</span>
+              <span>Explore All {PROJECTS_DATA.length} Projects & Studies</span>
               <ArrowUpRight className="w-4 h-4 text-copper group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
             </Link>
           </div>

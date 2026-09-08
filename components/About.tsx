@@ -110,7 +110,7 @@ export const About: React.FC = () => {
               Beyond enterprise infrastructure, I design and build modern software from first principles. From intelligent LLM-powered pipelines and vector search architectures to fluid, human-centric web applications, I care deeply about how systems perform under heavy load and how effortless they feel to the end user.
             </p>
             <p>
-              My academic background in Data Science &amp; Artificial Intelligence at <strong className="font-semibold text-ink">IIT Guwahati</strong> anchors my practical engineering in deep computational theory — giving me the intuition to dissect and deploy modern models with scientific scrutiny rather than hype.
+              My academic background in Data Science & Artificial Intelligence at <strong className="font-semibold text-ink">IIT Guwahati</strong> anchors my practical engineering in deep computational theory — giving me the intuition to dissect and deploy modern models with scientific scrutiny rather than hype.
             </p>
           </div>
 

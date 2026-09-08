@@ -11,10 +11,14 @@
     <title>Sonu Thomas — AI Software Engineer & Intelligent Systems</title>
     <meta name="title" content="Sonu Thomas — AI Software Engineer & Intelligent Systems" />
     <meta name="description" content="Personal portfolio of Sonu Thomas, an AI Software Engineer crafting intelligent systems, LLM solutions, and full-stack software with editorial precision." />
-    <meta name="keywords" content="Sonu Thomas, AI Software Engineer, Machine Learning, Full Stack Developer, Kerala, AI Engineer Kannur, Intelligent Systems, Clash Display" />
     <meta name="author" content="Sonu Thomas" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#FAFBFD" />
+    <link rel="canonical" href="https://www.sonuthomas.me/" />
+
+    <!-- Search Console Verification Tags (Replace placeholder with your actual verification code) -->
+    <!-- <meta name="google-site-verification" content="YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE" /> -->
+    <!-- <meta name="msvalidate.01" content="YOUR_BING_WEBMASTER_VERIFICATION_CODE" /> -->
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -24,6 +28,12 @@
     <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Sonu-Thomas-001/image-host@master/Sonu-Thomas-Portfolio-Website-Repo/ProfilePic.jpg" />
     <meta property="og:site_name" content="Sonu Thomas Portfolio" />
 
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sonu Thomas — AI Software Engineer" />
+    <meta name="twitter:description" content="Personal portfolio of Sonu Thomas, an AI Software Engineer crafting intelligent systems, LLM solutions, and full-stack software." />
+    <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Sonu-Thomas-001/image-host@master/Sonu-Thomas-Portfolio-Website-Repo/ProfilePic.jpg" />
+
     <!-- Fonts: Clash Display + Satoshi (FontShare CDN) & JetBrains Mono (Google Fonts) -->
     <link rel="preconnect" href="https://api.fontshare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,25 +41,73 @@
     <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Structured Data (JSON-LD) -->
+    <!-- Structured Data (JSON-LD Graph) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Sonu Thomas",
-      "url": "https://www.sonuthomas.me/",
-      "jobTitle": "AI Software Engineer",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "HCLTech"
-      },
-      "alumniOf": {
-        "@type": "CollegeOrUniversity",
-        "name": "IIT Guwahati"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/in/sonuthomas001",
-        "https://github.com/Sonu-Thomas-001"
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://www.sonuthomas.me/#website",
+          "url": "https://www.sonuthomas.me/",
+          "name": "Sonu Thomas Portfolio",
+          "description": "Personal portfolio of Sonu Thomas, an AI Software Engineer crafting intelligent systems and production software.",
+          "publisher": {
+            "@id": "https://www.sonuthomas.me/#person"
+          }
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "https://www.sonuthomas.me/#profilepage",
+          "url": "https://www.sonuthomas.me/",
+          "name": "Sonu Thomas — AI Software Engineer & Intelligent Systems",
+          "mainEntity": {
+            "@id": "https://www.sonuthomas.me/#person"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.sonuthomas.me/#person",
+          "name": "Sonu Thomas",
+          "url": "https://www.sonuthomas.me/",
+          "image": "https://cdn.jsdelivr.net/gh/Sonu-Thomas-001/image-host@master/Sonu-Thomas-Portfolio-Website-Repo/ProfilePic.jpg",
+          "jobTitle": "AI Software Engineer",
+          "description": "AI Software Engineer at HCLTech and Data Science & AI scholar at IIT Guwahati building scalable intelligent systems, LLM solutions, and modern software.",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "HCLTech",
+            "url": "https://www.hcltech.com/"
+          },
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "IIT Guwahati",
+            "url": "https://www.iitg.ac.in/"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Kannur",
+            "addressRegion": "Kerala",
+            "addressCountry": "India"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/in/sonuthomas001/",
+            "https://github.com/Sonu-Thomas-001",
+            "https://www.instagram.com/sonu_thomz/"
+          ],
+          "knowsAbout": [
+            "Artificial Intelligence",
+            "Generative AI",
+            "Large Language Models",
+            "Agentic AI",
+            "Retrieval-Augmented Generation",
+            "Full Stack Development",
+            "Python",
+            "Java",
+            "TypeScript",
+            "React",
+            "Enterprise Backend Architecture"
+          ]
+        }
       ]
     }
     </script>
@@ -236,7 +294,53 @@
   </head>
   <body class="bg-page text-ink-secondary antialiased selection:bg-copper/20 selection:text-ink font-sans overflow-x-clip">
     <div class="grain-overlay" aria-hidden="true"></div>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Semantic Crawler & Pre-render Fallback (Instant extraction for AI bots and Search Engines before client hydration) -->
+      <header style="max-width: 900px; margin: 40px auto; padding: 0 20px; font-family: system-ui, sans-serif;">
+        <h1 style="font-size: 2.25rem; font-weight: 700; color: #1A1614; margin-bottom: 8px;">Sonu Thomas</h1>
+        <p style="font-size: 1.25rem; color: #4F46E5; font-weight: 600; margin-top: 0;">AI Software Engineer & Intelligent Systems</p>
+        <p style="font-size: 1.05rem; line-height: 1.6; color: #4A4340;">
+          Sonu Thomas is an AI Software Engineer at HCLTech and a Data Science &amp; Artificial Intelligence scholar at IIT Guwahati (BSc Hons). Specializing in production-grade intelligent systems, Generative AI applications, agentic workflows, and scalable full-stack web platforms.
+        </p>
+        <nav aria-label="Portfolio Navigation" style="margin: 20px 0;">
+          <ul style="display: flex; flex-wrap: wrap; gap: 16px; list-style: none; padding: 0;">
+            <li><a href="/" style="color: #4F46E5; text-decoration: none; font-weight: 500;">Home</a></li>
+            <li><a href="/projects" style="color: #4F46E5; text-decoration: none; font-weight: 500;">Projects &amp; Case Studies</a></li>
+            <li><a href="/insights" style="color: #4F46E5; text-decoration: none; font-weight: 500;">AI Insights</a></li>
+            <li><a href="/certifications" style="color: #4F46E5; text-decoration: none; font-weight: 500;">Certifications</a></li>
+            <li><a href="/awards" style="color: #4F46E5; text-decoration: none; font-weight: 500;">Honors &amp; Awards</a></li>
+            <li><a href="/volunteering" style="color: #4F46E5; text-decoration: none; font-weight: 500;">Volunteering</a></li>
+            <li><a href="/contact" style="color: #4F46E5; text-decoration: none; font-weight: 500;">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main style="max-width: 900px; margin: 0 auto; padding: 0 20px; font-family: system-ui, sans-serif;">
+        <section aria-labelledby="core-expertise">
+          <h2 id="core-expertise" style="font-size: 1.5rem; color: #1A1614; border-bottom: 1px solid #E8E0D8; padding-bottom: 8px;">Core Engineering Competencies</h2>
+          <ul style="line-height: 1.8; color: #4A4340;">
+            <li><strong>AI &amp; Generative Systems:</strong> LLM Agents, RAG Pipelines, Prompt Engineering, Gemini API, OpenAI APIs, Stable Diffusion, ControlNet, NLP.</li>
+            <li><strong>Programming Languages:</strong> Python, Java, TypeScript, JavaScript, SQL / PL/SQL, C/C++.</li>
+            <li><strong>Frontend &amp; Architecture:</strong> React, Next.js, Tailwind CSS, Three.js, Framer Motion.</li>
+            <li><strong>Enterprise Backend &amp; Data:</strong> Oracle DB, PostgreSQL, Linux/Unix, Spring Boot, FastAPI, Docker, Git.</li>
+          </ul>
+        </section>
+        <section aria-labelledby="featured-projects" style="margin-top: 32px;">
+          <h2 id="featured-projects" style="font-size: 1.5rem; color: #1A1614; border-bottom: 1px solid #E8E0D8; padding-bottom: 8px;">Project Prototypes &amp; Concepts</h2>
+          <article style="margin: 16px 0;">
+            <h3 style="font-size: 1.2rem; color: #1A1614; margin-bottom: 4px;">Generative AI Prototype</h3>
+            <p style="color: #4A4340; line-height: 1.6; margin: 0;">Exploratory prototype demonstrating prompt-driven parameters, multimodal conditioning, and reactive frontend visualization.</p>
+          </article>
+          <article style="margin: 16px 0;">
+            <h3 style="font-size: 1.2rem; color: #1A1614; margin-bottom: 4px;">Cloud Architecture Visualizer</h3>
+            <p style="color: #4A4340; line-height: 1.6; margin: 0;">Conceptual developer tool transforming structured text specifications into dynamic visual diagram models.</p>
+          </article>
+          <article style="margin: 16px 0;">
+            <h3 style="font-size: 1.2rem; color: #1A1614; margin-bottom: 4px;">Interactive Web Application</h3>
+            <p style="color: #4A4340; line-height: 1.6; margin: 0;">Demonstration of modern component architectures, client-side state handling, and high-performance interactive interfaces.</p>
+          </article>
+        </section>
+      </main>
+    </div>
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>

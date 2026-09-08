@@ -244,7 +244,7 @@ export const NavBar: React.FC = () => {
                 className="pt-4 border-t border-[#E8E0D8]"
               >
                 <div className="text-xs font-mono uppercase tracking-widest text-[#78716C] mb-3">
-                  Archive &amp; Documents
+                  Archive & Documents
                 </div>
                 <div className="grid grid-cols-2 gap-3 text-sm font-medium text-ink-secondary">
                   <Link to="/projects" onClick={() => setIsOpen(false)} className="hover:text-copper">
@@ -257,7 +257,7 @@ export const NavBar: React.FC = () => {
                     Certifications
                   </Link>
                   <Link to="/awards" onClick={() => setIsOpen(false)} className="hover:text-copper">
-                    Honors &amp; Awards
+                    Honors & Awards
                   </Link>
                 </div>
               </motion.div>

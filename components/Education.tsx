@@ -13,7 +13,7 @@ export const Education: React.FC = () => {
             03 // Academic Rigor
           </span>
           <h2 className="font-display font-bold text-3xl sm:text-4xl text-ink tracking-tight">
-            Education &amp; Foundations
+            Education & Foundations
           </h2>
         </div>
         <p className="text-ink-secondary text-sm max-w-md font-light leading-relaxed">

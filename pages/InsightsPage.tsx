@@ -27,10 +27,10 @@ export const InsightsPage: React.FC = () => {
         </Link>
         <div className="max-w-3xl">
           <span className="font-mono text-xs text-primary font-semibold tracking-widest uppercase block mb-2">
-            Research &amp; Exploration // Architecture
+            Research & Exploration // Architecture
           </span>
           <h1 className="font-display font-semibold text-4xl sm:text-6xl text-slate-900 tracking-tight leading-tight">
-            AI Engineering Insights &amp; <br />
+            AI Engineering Insights & <br />
             <span className="gradient-text">Future Systems</span>
           </h1>
           <p className="text-slate-600 text-base sm:text-lg mt-4 font-light leading-relaxed">

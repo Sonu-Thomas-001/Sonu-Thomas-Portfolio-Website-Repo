@@ -25,7 +25,7 @@ export const ProjectsPage: React.FC = () => {
             Archive // All Projects
           </span>
           <h1 className="font-display font-semibold text-4xl sm:text-6xl text-slate-900 tracking-tight leading-tight">
-            Selected Works &amp; <br />
+            Selected Works & <br />
             <span className="gradient-text">Systems Architecture</span>
           </h1>
           <p className="text-slate-600 text-base sm:text-lg mt-4 font-light leading-relaxed">

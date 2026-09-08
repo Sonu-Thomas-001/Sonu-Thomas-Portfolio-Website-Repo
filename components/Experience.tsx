@@ -40,7 +40,7 @@ export const Experience: React.FC = () => {
                 02 // Career Journey
               </span>
               <h2 className="font-display font-bold text-3xl lg:text-4xl text-[#EDE5DC] tracking-tight">
-                Experience &amp; Production Track Record
+                Experience & Production Track Record
               </h2>
             </div>
 
@@ -154,7 +154,7 @@ export const Experience: React.FC = () => {
             02 // Career Journey
           </span>
           <h2 className="font-display font-bold text-3xl text-[#EDE5DC] tracking-tight">
-            Experience &amp; Track Record
+            Experience & Track Record
           </h2>
         </div>
 

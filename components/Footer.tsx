@@ -147,7 +147,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link to="/awards" className="hover:text-copper transition-colors flex items-center gap-1">
-                  <span>Honors &amp; Awards</span>
+                  <span>Honors & Awards</span>
                   <ArrowUpRight className="w-3 h-3 text-copper" />
                 </Link>
               </li>
@@ -155,7 +155,7 @@ export const Footer: React.FC = () => {
           </div>
 
           <div>
-            <span className="text-[#78716C] uppercase tracking-wider block mb-4">Credentials &amp; CV</span>
+            <span className="text-[#78716C] uppercase tracking-wider block mb-4">Credentials & CV</span>
             <ul className="space-y-3 text-[#9C948B]">
               <li>
                 <a href={PERSONAL_DETAILS.resumeLink} target="_blank" rel="noopener noreferrer" className="hover:text-copper transition-colors">

@@ -1,0 +1,35 @@
+# Sonu Thomas
+
+> AI Software Engineer specializing in agentic systems, production LLM applications, enterprise backend architectures, and modern web platforms.
+
+Sonu Thomas is an AI Software Engineer at HCLTech and a Data Science & Artificial Intelligence scholar at IIT Guwahati (BSc Hons, 2024–2028). With hands-on experience in software development and applied engineering, Sonu designs and evaluates scalable, reliable, and observable AI-powered systems.
+
+## Primary Pages
+- [Home](https://www.sonuthomas.me/): Comprehensive portfolio overview, engineering philosophy, interactive AI assistant, and project showcases.
+- [Projects & Case Studies](https://www.sonuthomas.me/projects): Demonstrations, conceptual prototypes, and architectural explorations in Generative AI and full-stack software.
+- [AI Engineering Insights](https://www.sonuthomas.me/insights): Technical articles and engineering essays covering agent design, LLM orchestration, and modern web architecture.
+- [Certifications](https://www.sonuthomas.me/certifications): Industry credentials including Google Cloud Vertex AI Prompt Design, Cloud Digital Leader, and Data Science certifications.
+- [Honors & Awards](https://www.sonuthomas.me/awards): Enterprise recognition, academic honors, and peer distinctions.
+- [Volunteering & Community](https://www.sonuthomas.me/volunteering): Technical leadership, community contributions, and mentorship.
+- [Contact](https://www.sonuthomas.me/contact): Direct communication channels, collaboration inquiries, and contact form.
+
+## Project Showcases (Concept Demos & Prototypes)
+- **Generative AI & Agent Workflows**: Exploratory prototypes demonstrating structured output generation, state machine orchestration, and deterministic fallbacks.
+- **Enterprise & Full-Stack Systems**: Conceptual architectural demos emphasizing modular design, responsive interfaces, and database integration.
+- *Note: All portfolio projects are conceptual demonstrations and experimental prototypes.*
+
+## Core Technical Competencies
+- **Artificial Intelligence & LLMs**: Agentic Workflows, Retrieval-Augmented Generation (RAG), Prompt Engineering, Google Gemini API, OpenAI APIs, NLP.
+- **Languages**: Python, Java, TypeScript, JavaScript, SQL / PL/SQL, HTML5/CSS3.
+- **Frameworks & Libraries**: React, Next.js, Node.js, FastAPI, Tailwind CSS, Framer Motion, Lenis.
+- **Databases & Infrastructure**: Oracle DB, PostgreSQL, Linux/Unix, Docker, Git, CI/CD pipelines.
+
+## Canonical Profiles & Identity Signals
+- Website: https://www.sonuthomas.me/
+- LinkedIn: https://www.linkedin.com/in/sonuthomas001/
+- GitHub: https://github.com/Sonu-Thomas-001
+- Email: sonuthomaswork@gmail.com
+- Location: Kannur, Kerala, India
+
+## Full Machine-Readable Documentation
+- Detailed Technical Overview and Context: https://www.sonuthomas.me/llms-full.txt

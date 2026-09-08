@@ -15,7 +15,6 @@ export const ContactPage: React.FC = () => {
         title="Contact Sonu Thomas | AI Software Engineer"
         description="Get in touch with Sonu Thomas, AI Software Engineer based in India. Available for collaborations, consultations, and enterprise engineering."
         url="/contact"
-        keywords="Contact Sonu Thomas, Hire AI Software Engineer, Machine Learning Engineer, HCLTech Engineer, Kannur Kerala"
       />
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-4">
         <Link 

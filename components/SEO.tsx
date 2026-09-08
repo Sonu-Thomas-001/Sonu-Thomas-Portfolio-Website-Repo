@@ -5,38 +5,78 @@ import { PERSONAL_DETAILS } from '../constants';
 interface SEOProps {
   title: string;
   description: string;
-  keywords?: string;
   url?: string;
+  image?: string;
+  keywords?: string;
 }
 
-export const SEO: React.FC<SEOProps> = ({ title, description, keywords, url }) => {
+export const SEO: React.FC<SEOProps> = ({ title, description, url, image }) => {
+  const normalizedPath = url ? (url.startsWith('/') ? url : `/${url}`) : '';
+  const canonicalUrl = `https://www.sonuthomas.me${normalizedPath === '/' ? '' : normalizedPath}`;
+  const ogImage = image || "https://cdn.jsdelivr.net/gh/Sonu-Thomas-001/image-host@master/Sonu-Thomas-Portfolio-Website-Repo/ProfilePic.jpg";
+
   const jsonLd = {
-    "@context": "https://schema.org/",
-    "@type": "Person",
-    "name": "Sonu Thomas",
-    "url": "https://www.sonuthomas.me",
-    "image": "https://cdn.jsdelivr.net/gh/Sonu-Thomas-001/image-host@master/Sonu-Thomas-Portfolio-Website-Repo/ProfilePic.jpg",
-    "sameAs": [
-      PERSONAL_DETAILS.social.linkedin,
-      PERSONAL_DETAILS.social.github,
-      PERSONAL_DETAILS.social.instagram,
-      PERSONAL_DETAILS.social.website
-    ],
-    "jobTitle": "AI Software Engineer",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "HCLTech"
-    },
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "IIT Guwahati"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Kannur",
-      "addressRegion": "Kerala",
-      "addressCountry": "India"
-    }
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": url === '/' || !url ? "ProfilePage" : "WebPage",
+        "@id": `${canonicalUrl}#webpage`,
+        "url": canonicalUrl,
+        "name": title,
+        "description": description,
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": "https://www.sonuthomas.me/#website",
+          "name": "Sonu Thomas Portfolio",
+          "url": "https://www.sonuthomas.me/"
+        },
+        "about": {
+          "@id": "https://www.sonuthomas.me/#person"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.sonuthomas.me/#person",
+        "name": "Sonu Thomas",
+        "url": "https://www.sonuthomas.me/",
+        "image": ogImage,
+        "jobTitle": "AI Software Engineer",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "HCLTech",
+          "url": "https://www.hcltech.com/"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "IIT Guwahati",
+          "url": "https://www.iitg.ac.in/"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kannur",
+          "addressRegion": "Kerala",
+          "addressCountry": "India"
+        },
+        "sameAs": [
+          PERSONAL_DETAILS.social.linkedin,
+          PERSONAL_DETAILS.social.github,
+          PERSONAL_DETAILS.social.instagram,
+          PERSONAL_DETAILS.social.website
+        ],
+        "knowsAbout": [
+          "Artificial Intelligence",
+          "Generative AI",
+          "Large Language Models",
+          "AI Agents",
+          "Retrieval-Augmented Generation",
+          "Full Stack Development",
+          "Python",
+          "Java",
+          "TypeScript",
+          "React"
+        ]
+      }
+    ]
   };
 
   return (
@@ -45,19 +85,22 @@ export const SEO: React.FC<SEOProps> = ({ title, description, keywords, url }) =
       <meta name="title" content={title} />
       <meta name="description" content={description} />
       <meta name="theme-color" content="#FAFBFD" />
-      {keywords && <meta name="keywords" content={keywords} />}
+      <link rel="canonical" href={canonicalUrl} />
       
       {/* Open Graph / Facebook */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      {url && <meta property="og:url" content={`https://www.sonuthomas.me${url}`} />}
+      <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:image" content={ogImage} />
       <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="Sonu Thomas Portfolio" />
       
       {/* Twitter */}
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:title" content={title} />
-      <meta property="twitter:description" content={description} />
-      {url && <meta property="twitter:url" content={`https://www.sonuthomas.me${url}`} />}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:url" content={canonicalUrl} />
+      <meta name="twitter:image" content={ogImage} />
 
       <script type="application/ld+json">
         {JSON.stringify(jsonLd)}
