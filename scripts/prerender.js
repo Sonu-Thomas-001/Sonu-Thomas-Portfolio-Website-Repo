@@ -50,9 +50,9 @@ const routes = [
   },
   {
     path: '/projects',
-    title: 'AI Prod Engg Co-Worker Platform | Sonu Thomas',
+    title: 'Agentic Co-Worker Platform | Sonu Thomas',
     description: 'Autonomous multi-agent digital taskforce of 100+ Core Digital Workers coordinated by an intelligent Central Brain for ITSM, DevOps, SRE, and enterprise resilience.',
-    h1: 'AI Prod Engg Co-Worker Platform',
+    h1: 'Agentic Co-Worker Platform',
     subtitle: 'Building the Future-Ready Digital Working Taskforce',
     content: `
       <p>An autonomous, highly specialized, and collaborative synthetic workforce that operates 24/7 alongside human engineering teams to eliminate toil, accelerate incident resolution, and ensure enterprise resilience.</p>
@@ -60,7 +60,6 @@ const routes = [
         <h2>System Architecture & Orchestration</h2>
         <p><strong>Stack:</strong> LangGraph, Gemini LLM, MCP Protocol, ChromaDB, WebSockets, Python, ServiceNow, Control-M, Jira API, MongoDB Atlas</p>
         <p>Deploys a fleet of 100+ Core Digital Workers spanning 15 IT specializations with distinct personas, coordinated by a Central Brain with 40+ event types on pub/sub EventBus, reducing MTTR by 70%.</p>
-        <p>GitHub Repository: <a href="https://github.com/Sonu-Thomas-001/Prod-Engg-Co-Worker-Platform">github.com/Sonu-Thomas-001/Prod-Engg-Co-Worker-Platform</a></p>
       </article>
     `
   },

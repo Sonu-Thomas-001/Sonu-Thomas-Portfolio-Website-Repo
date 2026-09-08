@@ -258,16 +258,18 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
               <Sparkles className="w-3.5 h-3.5" />
               <span>Open Architecture Dossier</span>
             </button>
-            <a
-              href={PROJECTS_DATA[0].links?.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#1E1B18] text-[#EDE5DC] text-xs font-mono border border-[#332E2A] hover:border-copper/50 hover:text-copper transition-all duration-300 group cursor-pointer"
-            >
-              <Github className="w-3.5 h-3.5" />
-              <span>Explore GitHub Repository</span>
-              <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
+            {PROJECTS_DATA[0].links?.github && (
+              <a
+                href={PROJECTS_DATA[0].links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#1E1B18] text-[#EDE5DC] text-xs font-mono border border-[#332E2A] hover:border-copper/50 hover:text-copper transition-all duration-300 group cursor-pointer"
+              >
+                <Github className="w-3.5 h-3.5" />
+                <span>Explore GitHub Repository</span>
+                <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </a>
+            )}
           </div>
         )}
       </div>

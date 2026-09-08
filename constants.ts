@@ -201,8 +201,8 @@ export const LANGUAGES = [
 
 export const PROJECTS_DATA: ProjectItem[] = [
   {
-    id: "prod-engg-co-worker-platform",
-    title: "AI Prod Engg Co-Worker Platform",
+    id: "agentic-co-worker-platform",
+    title: "Agentic Co-Worker Platform",
     category: "Autonomous Multi-Agent Systems",
     role: "Architect & Lead Engineer",
     stack: [
@@ -221,7 +221,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     detailedDescription: `## 🌐 The Solution & Ultimate Aim
 Our ultimate aim is to build the **future-ready digital working taskforce**—an autonomous, highly specialized, and collaborative synthetic workforce that operates 24/7 alongside human engineering teams to eliminate toil, accelerate incident resolution, and ensure enterprise resilience.
 
-### The AI Prod Engg Co-Worker Platform achieves this through:
+### The Agentic Co-Worker Platform achieves this through:
 - **100+ Core Digital Workers** spanning 15 IT specializations with distinct personas and expertise areas
 - **Central Brain Orchestration** for intelligent event routing and multi-worker coordination
 - **Deep ITSM/DevOps/Cloud Integrations** (ServiceNow, Jira, Confluence, Control-M, MongoDB Atlas, Gmail API)
@@ -258,8 +258,7 @@ Our ultimate aim is to build the **future-ready digital working taskforce**—an
 - **Hybrid Memory Architecture**: Combines **ChromaDB** vector stores for semantic retrieval of historical remediation playbooks with MongoDB Atlas for persistent audit logging.
 - **Event-Driven Pub/Sub**: Over 40 distinct operational events streaming through an internal EventBus to trigger proactive incident handling before outages breach SLAs.`,
     links: {
-      demo: "#",
-      github: "https://github.com/Sonu-Thomas-001/Prod-Engg-Co-Worker-Platform"
+      demo: "#"
     },
     image: "/images/coworker-platform.jpg"
   }
