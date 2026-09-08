@@ -72,6 +72,8 @@ const ProjectCard: React.FC<{
               ? 'Automated RCA Engine'
               : project.id === 'ticketwave'
               ? 'Zero Double-Booking Defense'
+              : project.id === 'qubimind'
+              ? 'Multi-Agent AI OS'
               : '8-Team Multi-Agent Triage'}
           </span>
         </div>
@@ -97,7 +99,26 @@ const ProjectCard: React.FC<{
           </p>
 
           {/* Operational Metrics Bar */}
-          {project.id === 'smartdesk-ai' ? (
+          {project.id === 'qubimind' ? (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-[#171412] border border-[#2D2824]">
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Swarm Engine</span>
+                <span className="font-display font-bold text-sm sm:text-base text-[#EDE5DC]">LangGraph Graphs</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Knowledge RAG</span>
+                <span className="font-display font-bold text-sm sm:text-base text-copper">Enterprise Vector</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Governance</span>
+                <span className="font-display font-bold text-sm sm:text-base text-emerald-400">HITL Approval Nodes</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Security</span>
+                <span className="font-display font-bold text-sm sm:text-base text-emerald-400">SOC2 & 5-Tier RBAC</span>
+              </div>
+            </div>
+          ) : project.id === 'smartdesk-ai' ? (
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-[#171412] border border-[#2D2824]">
               <div>
                 <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Triage Accuracy</span>

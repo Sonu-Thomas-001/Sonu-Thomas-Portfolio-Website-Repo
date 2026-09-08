@@ -1,0 +1,330 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" style="background:#131110; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="bg-grad-qm" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141118"/>
+      <stop offset="50%" stop-color="#18141F"/>
+      <stop offset="100%" stop-color="#0E0C12"/>
+    </linearGradient>
+    <linearGradient id="card-grad-qm" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#241E2D" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#181420" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="violet-qm" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#A78BFA"/>
+    </linearGradient>
+    <linearGradient id="cyan-qm" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#38BDF8"/>
+    </linearGradient>
+    <linearGradient id="copper-qm" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C68A4C"/>
+      <stop offset="100%" stop-color="#E5A663"/>
+    </linearGradient>
+    <linearGradient id="emerald-qm" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
+    <filter id="glow-violet-qm" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1920" height="1080" fill="url(#bg-grad-qm)"/>
+
+  <!-- Blueprint Grid -->
+  <g stroke="#2B2236" stroke-width="1" opacity="0.35">
+    <line x1="0" y1="120" x2="1920" y2="120"/>
+    <line x1="0" y1="240" x2="1920" y2="240"/>
+    <line x1="0" y1="360" x2="1920" y2="360"/>
+    <line x1="0" y1="480" x2="1920" y2="480"/>
+    <line x1="0" y1="600" x2="1920" y2="600"/>
+    <line x1="0" y1="720" x2="1920" y2="720"/>
+    <line x1="0" y1="840" x2="1920" y2="840"/>
+    <line x1="0" y1="960" x2="1920" y2="960"/>
+    <line x1="320" y1="0" x2="320" y2="1080"/>
+    <line x1="640" y1="0" x2="640" y2="1080"/>
+    <line x1="960" y1="0" x2="960" y2="1080"/>
+    <line x1="1280" y1="0" x2="1280" y2="1080"/>
+    <line x1="1600" y1="0" x2="1600" y2="1080"/>
+  </g>
+
+  <!-- Atmospheric Glow Orbs -->
+  <circle cx="280" cy="200" r="220" fill="#8B5CF6" opacity="0.10" filter="blur(80px)"/>
+  <circle cx="1640" cy="280" r="220" fill="#06B6D4" opacity="0.08" filter="blur(80px)"/>
+  <circle cx="960" cy="820" r="240" fill="#10B981" opacity="0.07" filter="blur(80px)"/>
+
+  <!-- Header Container -->
+  <rect x="40" y="32" width="1840" height="76" rx="20" fill="url(#card-grad-qm)" stroke="#423450" stroke-width="1.5"/>
+  
+  <g transform="translate(68, 52)">
+    <rect width="36" height="36" rx="10" fill="url(#violet-qm)"/>
+    <path d="M12 18 L18 12 L24 24 L18 20 Z" stroke="#131110" stroke-width="2.5" fill="#131110" stroke-linejoin="round"/>
+    <text x="48" y="24" fill="#EDE5DC" font-size="20" font-weight="700" letter-spacing="-0.3">QubiMind</text>
+    <text x="165" y="24" fill="#78716C" font-size="14">|</text>
+    <text x="180" y="24" fill="#C4B5FD" font-size="14" font-weight="500">Enterprise-Grade Multi-Agent AI Operating System &bull; QubiQode</text>
+  </g>
+
+  <!-- Header Status Badges -->
+  <g transform="translate(1310, 52)">
+    <rect x="0" y="0" width="220" height="36" rx="18" fill="#8B5CF6" fill-opacity="0.15" stroke="#8B5CF6" stroke-opacity="0.4"/>
+    <circle cx="18" cy="18" r="4" fill="#8B5CF6" filter="url(#glow-violet-qm)"/>
+    <text x="32" y="23" fill="#C4B5FD" font-size="12" font-weight="600" font-family="monospace">LANGGRAPH MULTI-AGENT OS</text>
+
+    <rect x="236" y="0" width="170" height="36" rx="18" fill="#2B2138" stroke="#4B395E"/>
+    <text x="252" y="23" fill="#38BDF8" font-size="12" font-weight="600" font-family="monospace">FASTAPI + NEXT.JS 15</text>
+
+    <rect x="420" y="0" width="125" height="36" rx="18" fill="#2B2138" stroke="#4B395E"/>
+    <text x="436" y="23" fill="#34D399" font-size="12" font-weight="600" font-family="monospace">SOC 2 READY</text>
+  </g>
+
+  <!-- Top KPI Telemetry Strip -->
+  <g transform="translate(40, 126)">
+    <!-- KPI 1 -->
+    <rect x="0" y="0" width="445" height="100" rx="18" fill="url(#card-grad-qm)" stroke="#423450" stroke-width="1.2"/>
+    <text x="28" y="38" fill="#A78BFA" font-size="12" font-weight="600" font-family="monospace">AGENT FLEET ORCHESTRATION</text>
+    <text x="28" y="74" fill="#EDE5DC" font-size="28" font-weight="700">Autonomous Swarms</text>
+    <text x="320" y="68" fill="#A78BFA" font-size="14" font-weight="600">LangGraph Graph</text>
+
+    <!-- KPI 2 -->
+    <rect x="465" y="0" width="445" height="100" rx="18" fill="url(#card-grad-qm)" stroke="#423450" stroke-width="1.2"/>
+    <text x="493" y="38" fill="#38BDF8" font-size="12" font-weight="600" font-family="monospace">ENTERPRISE KNOWLEDGE RAG</text>
+    <text x="493" y="74" fill="#38BDF8" font-size="28" font-weight="700">Vector Grounded</text>
+    <text x="760" y="68" fill="#38BDF8" font-size="13" font-weight="500">Postgres + Redis</text>
+
+    <!-- KPI 3 -->
+    <rect x="930" y="0" width="445" height="100" rx="18" fill="url(#card-grad-qm)" stroke="#423450" stroke-width="1.2"/>
+    <text x="958" y="38" fill="#34D399" font-size="12" font-weight="600" font-family="monospace">HUMAN-IN-THE-LOOP GOVERNANCE</text>
+    <text x="958" y="74" fill="#34D399" font-size="28" font-weight="700">Interrupt Nodes</text>
+    <text x="1220" y="68" fill="#34D399" font-size="13" font-weight="500">Safe Approvals</text>
+
+    <!-- KPI 4 -->
+    <rect x="1395" y="0" width="445" height="100" rx="18" fill="url(#card-grad-qm)" stroke="#423450" stroke-width="1.2"/>
+    <text x="1423" y="38" fill="#E5A663" font-size="12" font-weight="600" font-family="monospace">ROLE-BASED ACCESS CONTROL (RBAC)</text>
+    <text x="1423" y="74" fill="#E5A663" font-size="28" font-weight="700">5 Tier Security</text>
+    <text x="1670" y="68" fill="#E5A663" font-size="14" font-weight="600">JWT + Cookies</text>
+  </g>
+
+  <!-- THREE COLUMN LAYOUT -->
+
+  <!-- LEFT PANEL: Multi-Agent Swarm Topology -->
+  <g transform="translate(40, 246)">
+    <rect x="0" y="0" width="580" height="660" rx="22" fill="url(#card-grad-qm)" stroke="#423450" stroke-width="1.5"/>
+    <text x="32" y="44" fill="#EDE5DC" font-size="18" font-weight="700">Agent Fleet &amp; Swarm Topology</text>
+    <text x="32" y="68" fill="#78716C" font-size="12" font-family="monospace">COLLABORATIVE SPECIALISTS &bull; BIDIRECTIONAL DELEGATION</text>
+
+    <!-- Agent 1: Orchestrator Agent -->
+    <g transform="translate(28, 96)">
+      <rect width="524" height="110" rx="16" fill="#1C1724" stroke="#4C3860" stroke-width="1.2"/>
+      <rect x="20" y="18" width="36" height="36" rx="8" fill="#8B5CF6" fill-opacity="0.2"/>
+      <text x="33" y="42" fill="#C4B5FD" font-size="15" font-weight="700">&bull;</text>
+      <text x="68" y="32" fill="#EDE5DC" font-size="14" font-weight="700">Central Orchestrator Swarm Lead</text>
+      <text x="68" y="52" fill="#9C948B" font-size="12">Decomposes complex enterprise prompts into conditional sub-graph workflows.</text>
+      <rect x="68" y="68" width="180" height="24" rx="6" fill="#2E2042"/>
+      <text x="78" y="84" fill="#C4B5FD" font-size="11" font-family="monospace">STATE: ROUTING ACTIVE (12ms)</text>
+    </g>
+
+    <!-- Agent 2: RAG Knowledge Retrieval Agent -->
+    <g transform="translate(28, 226)">
+      <rect width="524" height="110" rx="16" fill="#1C1724" stroke="#4C3860" stroke-width="1.2"/>
+      <rect x="20" y="18" width="36" height="36" rx="8" fill="#06B6D4" fill-opacity="0.2"/>
+      <text x="33" y="42" fill="#38BDF8" font-size="15" font-weight="700">&bull;</text>
+      <text x="68" y="32" fill="#EDE5DC" font-size="14" font-weight="700">Enterprise RAG Knowledge Agent</text>
+      <text x="68" y="52" fill="#9C948B" font-size="12">Performs semantic vector search across internal wikis, PDFs, and SOP documents.</text>
+      <rect x="68" y="68" width="200" height="24" rx="6" fill="#132B36"/>
+      <text x="78" y="84" fill="#38BDF8" font-size="11" font-family="monospace">TOP MATCH: doc_q4_audit.pdf (0.94)</text>
+    </g>
+
+    <!-- Agent 3: Tool Calling & Integration Worker -->
+    <g transform="translate(28, 356)">
+      <rect width="524" height="110" rx="16" fill="#1C1724" stroke="#4C3860" stroke-width="1.2"/>
+      <rect x="20" y="18" width="36" height="36" rx="8" fill="#C68A4C" fill-opacity="0.2"/>
+      <text x="33" y="42" fill="#E5A663" font-size="15" font-weight="700">&bull;</text>
+      <text x="68" y="32" fill="#EDE5DC" font-size="14" font-weight="700">Tool Execution &amp; Integration Agent</text>
+      <text x="68" y="52" fill="#9C948B" font-size="12">Triggers external APIs, SQL queries, CRM updates, and sends automated emails.</text>
+      <rect x="68" y="68" width="190" height="24" rx="6" fill="#362618"/>
+      <text x="78" y="84" fill="#E5A663" font-size="11" font-family="monospace">SQL: SELECT * FROM revenue_q3</text>
+    </g>
+
+    <!-- Agent 4: Verification & Safety Auditor -->
+    <g transform="translate(28, 486)">
+      <rect width="524" height="110" rx="16" fill="#1C1724" stroke="#4C3860" stroke-width="1.2"/>
+      <rect x="20" y="18" width="36" height="36" rx="8" fill="#10B981" fill-opacity="0.2"/>
+      <text x="33" y="42" fill="#34D399" font-size="15" font-weight="700">&bull;</text>
+      <text x="68" y="32" fill="#EDE5DC" font-size="14" font-weight="700">Verification &amp; Guardrail Auditor</text>
+      <text x="68" y="52" fill="#9C948B" font-size="12">Cross-examines outputs against security schemas and company compliance policies.</text>
+      <rect x="68" y="68" width="170" height="24" rx="6" fill="#152F22"/>
+      <text x="78" y="84" fill="#34D399" font-size="11" font-family="monospace">&check; ZERO POLICY VIOLATIONS</text>
+    </g>
+  </g>
+
+  <!-- CENTER PANEL: LangGraph State Machine & HITL Approval Node -->
+  <g transform="translate(640, 246)">
+    <rect x="0" y="0" width="640" height="660" rx="22" fill="url(#card-grad-qm)" stroke="#423450" stroke-width="1.5"/>
+    <text x="32" y="44" fill="#EDE5DC" font-size="18" font-weight="700">LangGraph State Machine &amp; HITL</text>
+    <text x="32" y="68" fill="#78716C" font-size="12" font-family="monospace">INTERRUPT NODES &bull; PERSISTENT REDIS STATE &bull; ASYNC FASTAPI</text>
+
+    <!-- Flow Step 1: Input & Context Assembly -->
+    <g transform="translate(32, 96)">
+      <rect width="576" height="90" rx="14" fill="#191522" stroke="#403054"/>
+      <text x="24" y="32" fill="#C4B5FD" font-size="13" font-weight="700">STEP 1: STATE INITIALIZATION &amp; MEMORY INGESTION</text>
+      <text x="24" y="54" fill="#9C948B" font-size="12">Restores user session state from Redis &bull; Checks long-term preferences in PostgreSQL</text>
+      <text x="24" y="74" fill="#A78BFA" font-size="11" font-family="monospace">Session Token: qm_sess_9a82f &bull; Memory Loaded: 14 past turns</text>
+    </g>
+
+    <!-- Connector -->
+    <line x1="320" y1="190" x2="320" y2="210" stroke="#403054" stroke-width="2" stroke-dasharray="3,3"/>
+
+    <!-- Flow Step 2: Multi-Agent Parallel Execution -->
+    <g transform="translate(32, 214)">
+      <rect width="576" height="95" rx="14" fill="#191522" stroke="#403054"/>
+      <text x="24" y="32" fill="#38BDF8" font-size="13" font-weight="700">STEP 2: AUTONOMOUS SWARM COLLABORATION</text>
+      <text x="24" y="54" fill="#9C948B" font-size="12">RAG vector retrieval + SQL query execution run asynchronously via FastAPI</text>
+      <text x="24" y="76" fill="#38BDF8" font-size="11" font-family="monospace">FastAPI Async Worker: 4 tasks resolved in parallel (P95: 140ms)</text>
+    </g>
+
+    <!-- Connector -->
+    <line x1="320" y1="312" x2="320" y2="332" stroke="#403054" stroke-width="2" stroke-dasharray="3,3"/>
+
+    <!-- Flow Step 3: HUMAN IN THE LOOP APPROVAL NODE -->
+    <g transform="translate(32, 336)">
+      <rect width="576" height="150" rx="16" fill="#281A1E" stroke="#F43F5E" stroke-width="1.5"/>
+      <rect x="20" y="16" width="220" height="24" rx="6" fill="#4C1D24"/>
+      <text x="30" y="32" fill="#FDA4AF" font-size="11" font-weight="700" font-family="monospace">&bull; HUMAN-IN-THE-LOOP INTERRUPT</text>
+      
+      <text x="20" y="65" fill="#EDE5DC" font-size="14" font-weight="700">Destructive Mutation Gate: Execute SQL DB Update</text>
+      <text x="20" y="85" fill="#FDA4AF" font-size="12">LangGraph interrupted state at node \`execute_database_migration\`.</text>
+      <text x="20" y="103" fill="#9C948B" font-size="12">Requires explicit approval from role: \`ORG_ADMIN\` or \`MANAGER\`.</text>
+
+      <g transform="translate(20, 115)">
+        <rect width="110" height="26" rx="6" fill="#10B981"/>
+        <text x="22" y="17" fill="#131110" font-size="11" font-weight="700">&check; APPROVE</text>
+
+        <rect x="125" y="0" width="110" height="26" rx="6" fill="#2A1B20" stroke="#F43F5E"/>
+        <text x="145" y="17" fill="#F43F5E" font-size="11" font-weight="700">&cross; REJECT</text>
+
+        <text x="260" y="17" fill="#A8A29E" font-size="11" font-family="monospace">Timeout: 300s &bull; Auto-Halt</text>
+      </g>
+    </g>
+
+    <!-- Connector -->
+    <line x1="320" y1="490" x2="320" y2="510" stroke="#403054" stroke-width="2" stroke-dasharray="3,3"/>
+
+    <!-- Flow Step 4: Verification & Response Synthesis -->
+    <g transform="translate(32, 514)">
+      <rect width="576" height="100" rx="14" fill="#191522" stroke="#403054"/>
+      <text x="24" y="32" fill="#34D399" font-size="13" font-weight="700">STEP 4: STATE FINALIZATION &amp; FRONTEND STREAMING</text>
+      <text x="24" y="54" fill="#9C948B" font-size="12">Approved state committed to PostgreSQL &bull; Streamed to Next.js UI via Server-Sent Events</text>
+      <text x="24" y="76" fill="#34D399" font-size="11" font-family="monospace">&check; Complete Execution Graph Finished in 1.42s</text>
+    </g>
+  </g>
+
+  <!-- RIGHT PANEL: Enterprise Security & Role Matrix -->
+  <g transform="translate(1300, 246)">
+    <rect x="0" y="0" width="580" height="660" rx="22" fill="url(#card-grad-qm)" stroke="#423450" stroke-width="1.5"/>
+    <text x="32" y="44" fill="#EDE5DC" font-size="18" font-weight="700">Bank-Grade RBAC &amp; Audit Trail</text>
+    <text x="32" y="68" fill="#78716C" font-size="12" font-family="monospace">5-TIER ROLE ACCESS &bull; SOC 2 COMPLIANCE &bull; AUDIT LOGS</text>
+
+    <!-- RBAC Roles Table -->
+    <g transform="translate(28, 96)">
+      <rect width="524" height="230" rx="16" fill="#191522" stroke="#3D2E50"/>
+      <text x="20" y="28" fill="#EDE5DC" font-size="14" font-weight="700">Granular Role-Based Access Control</text>
+
+      <g transform="translate(20, 48)">
+        <!-- Row 1 -->
+        <rect x="0" y="0" width="100" height="24" rx="4" fill="#8B5CF6" fill-opacity="0.2"/>
+        <text x="10" y="16" fill="#C4B5FD" font-size="10" font-weight="700" font-family="monospace">SUPER_ADMIN</text>
+        <text x="120" y="16" fill="#EDE5DC" font-size="12">Full system config, API keys, global audit logs</text>
+
+        <!-- Row 2 -->
+        <rect x="0" y="32" width="100" height="24" rx="4" fill="#06B6D4" fill-opacity="0.2"/>
+        <text x="12" y="48" fill="#38BDF8" font-size="10" font-weight="700" font-family="monospace">ORG_ADMIN</text>
+        <text x="120" y="48" fill="#EDE5DC" font-size="12">Manage agent swarms, tool quotas, workspace SSO</text>
+
+        <!-- Row 3 -->
+        <rect x="0" y="64" width="100" height="24" rx="4" fill="#10B981" fill-opacity="0.2"/>
+        <text x="20" y="80" fill="#34D399" font-size="10" font-weight="700" font-family="monospace">MANAGER</text>
+        <text x="120" y="80" fill="#EDE5DC" font-size="12">Approve HITL interrupt workflows, trigger jobs</text>
+
+        <!-- Row 4 -->
+        <rect x="0" y="96" width="100" height="24" rx="4" fill="#C68A4C" fill-opacity="0.2"/>
+        <text x="18" y="112" fill="#E5A663" font-size="10" font-weight="700" font-family="monospace">EMPLOYEE</text>
+        <text x="120" y="112" fill="#EDE5DC" font-size="12">Interact with assigned agents, query company RAG</text>
+
+        <!-- Row 5 -->
+        <rect x="0" y="128" width="100" height="24" rx="4" fill="#3F344F"/>
+        <text x="26" y="144" fill="#A8A29E" font-size="10" font-weight="700" font-family="monospace">GUEST</text>
+        <text x="120" y="144" fill="#9C948B" font-size="12">Read-only demo workspace access</text>
+      </g>
+    </g>
+
+    <!-- Audit Trace Log Box -->
+    <g transform="translate(28, 350)">
+      <rect width="524" height="275" rx="16" fill="#191522" stroke="#3D2E50"/>
+      <text x="20" y="30" fill="#EDE5DC" font-size="14" font-weight="700">Cryptographic Audit Trail Ledger</text>
+      
+      <g transform="translate(20, 52)">
+        <text x="0" y="18" fill="#78716C" font-size="11" font-family="monospace">2026-09-08 23:48:12</text>
+        <text x="140" y="18" fill="#A78BFA" font-size="11" font-family="monospace">ORCHESTRATOR</text>
+        <text x="245" y="18" fill="#EDE5DC" font-size="12">Graph triggered: \`wf_audit_sync\`</text>
+
+        <text x="0" y="44" fill="#78716C" font-size="11" font-family="monospace">2026-09-08 23:48:13</text>
+        <text x="140" y="44" fill="#38BDF8" font-size="11" font-family="monospace">RAG_AGENT</text>
+        <text x="245" y="44" fill="#EDE5DC" font-size="12">Indexed 14 chunk vectors</text>
+
+        <text x="0" y="70" fill="#78716C" font-size="11" font-family="monospace">2026-09-08 23:48:14</text>
+        <text x="140" y="70" fill="#F43F5E" font-size="11" font-family="monospace">INTERRUPT</text>
+        <text x="245" y="70" fill="#FDA4AF" font-size="12">HITL token issued: \`tok_84920\`</text>
+
+        <text x="0" y="96" fill="#78716C" font-size="11" font-family="monospace">2026-09-08 23:48:17</text>
+        <text x="140" y="96" fill="#34D399" font-size="11" font-family="monospace">APPROVAL</text>
+        <text x="245" y="96" fill="#34D399" font-size="12">Manager sign-off approved</text>
+
+        <text x="0" y="122" fill="#78716C" font-size="11" font-family="monospace">2026-09-08 23:48:18</text>
+        <text x="140" y="122" fill="#E5A663" font-size="11" font-family="monospace">PERSISTENCE</text>
+        <text x="245" y="122" fill="#EDE5DC" font-size="12">PostgreSQL transaction committed</text>
+
+        <rect x="0" y="145" width="484" height="42" rx="10" fill="#132B20" stroke="#10B981" stroke-width="1.2"/>
+        <text x="16" y="171" fill="#34D399" font-size="12" font-weight="600">&check; SOC 2 Type II Certified Event &bull; Hash: sha256:7f4c91a8e</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- BOTTOM ARCHITECTURE STRIP -->
+  <g transform="translate(40, 930)">
+    <rect width="1840" height="110" rx="20" fill="url(#card-grad-qm)" stroke="#423450" stroke-width="1.5"/>
+    <text x="36" y="38" fill="#A78BFA" font-size="12" font-weight="600" font-family="monospace">ENTERPRISE MULTI-AGENT OS STACK</text>
+    
+    <g transform="translate(36, 56)">
+      <!-- Item 1 -->
+      <rect x="0" y="0" width="240" height="38" rx="10" fill="#251B32" stroke="#483362"/>
+      <text x="16" y="24" fill="#EDE5DC" font-size="13" font-weight="600">Next.js 15 &bull; React 19 &bull; shadcn</text>
+
+      <!-- Item 2 -->
+      <rect x="255" y="0" width="240" height="38" rx="10" fill="#251B32" stroke="#483362"/>
+      <text x="16" y="24" fill="#EDE5DC" font-size="13" font-weight="600">FastAPI &bull; Python 3.12 (Async)</text>
+
+      <!-- Item 3 -->
+      <rect x="510" y="0" width="240" height="38" rx="10" fill="#251B32" stroke="#483362"/>
+      <text x="16" y="24" fill="#EDE5DC" font-size="13" font-weight="600">LangGraph &bull; Gemini API</text>
+
+      <!-- Item 4 -->
+      <rect x="765" y="0" width="240" height="38" rx="10" fill="#251B32" stroke="#483362"/>
+      <text x="16" y="24" fill="#EDE5DC" font-size="13" font-weight="600">PostgreSQL &bull; Redis State Cache</text>
+
+      <!-- Item 5 -->
+      <rect x="1020" y="0" width="240" height="38" rx="10" fill="#251B32" stroke="#483362"/>
+      <text x="16" y="24" fill="#EDE5DC" font-size="13" font-weight="600">Zustand &bull; TanStack Query</text>
+
+      <!-- Item 6 -->
+      <rect x="1275" y="0" width="240" height="38" rx="10" fill="#251B32" stroke="#483362"/>
+      <text x="16" y="24" fill="#EDE5DC" font-size="13" font-weight="600">Docker &bull; Docker Compose</text>
+
+      <!-- Item 7 -->
+      <rect x="1530" y="0" width="240" height="38" rx="10" fill="#152F22" stroke="#10B981"/>
+      <text x="16" y="24" fill="#34D399" font-size="13" font-weight="700">Bank-Grade Security</text>
+    </g>
+  </g>
+</svg>

@@ -121,6 +121,21 @@ Sonu Thomas bridges the gap between deep computational theory and practical soft
 
 ---
 
+## Flagship Engineering Project 6: QubiMind
+
+- **Core Vision**: Enterprise-Grade Multi-Agent AI Operating System developed by QubiQode. Enables organizations to deploy, manage, and orchestrate fleets of specialized AI agents with intelligent automation, enterprise knowledge retrieval, and scalable workflow orchestration through a secure, production-ready architecture.
+- **Key Architecture & Capabilities**:
+  - **Multi-Agent Collaboration**: Deploys swarms of specialized AI agents that communicate and collaborate, delegating tasks, verifying each other's outputs, and executing complex workflows autonomously with real-time coordination.
+  - **Enterprise RAG**: Grounds agents in company knowledge bases and documents with advanced vector database integration for semantic search, secure document indexing, and zero-hallucination retrieval.
+  - **Tool Calling & Integration**: Agents trigger external tools and APIs, execute SQL queries, send notifications/emails, and update CRM/ERP records across enterprise software.
+  - **Human-in-the-Loop (HITL)**: LangGraph interrupt nodes requiring explicit manager approvals for high-stakes, sensitive, or destructive actions with configurable approval workflows.
+  - **Bank-Grade Security**: SOC2-compliant architecture, granular 5-tier Role-Based Access Control (SUPER_ADMIN, ORG_ADMIN, MANAGER, EMPLOYEE, GUEST), comprehensive audit logging, and end-to-end encryption.
+  - **Workflow Automation & Memory**: Conditional branching state machines, multi-step autonomous execution, real-time observability, and persistent long-term vector memory across sessions.
+- **Tech Stack**: Next.js 15, React 19, Tailwind CSS, shadcn/ui, FastAPI, Python 3.12, LangGraph, LangChain, Google Gemini API, PostgreSQL, Redis, Zustand, TanStack Query, Docker, Docker Compose.
+- **Repository Link**: https://github.com/Sonu-Thomas-001/QubiMind
+
+---
+
 ## Technical Skill Matrix
 
 | Category | Technologies & Tools |

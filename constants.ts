@@ -469,6 +469,73 @@ SmartDesk AI coordinates a closed-loop 7-step incident resolution workflow:
       demo: "#"
     },
     image: "/images/smartdesk-ai.svg"
+  },
+  {
+    id: "qubimind",
+    title: "QubiMind",
+    category: "Autonomous Multi-Agent Systems",
+    role: "Architect & Lead Engineer",
+    stack: [
+      "Next.js 15",
+      "React 19",
+      "FastAPI",
+      "Python 3.12",
+      "LangGraph",
+      "LangChain",
+      "Gemini API",
+      "PostgreSQL",
+      "Redis",
+      "Docker"
+    ],
+    description: "Enterprise-Grade Multi-Agent AI Operating System: Orchestrates swarms of specialized AI agents with LangGraph state machines, Enterprise RAG, external tool calling, and human-in-the-loop manager approval nodes. Features SOC2 compliance, granular 5-tier RBAC, and persistent long-term vector memory.",
+    detailedDescription: `## 🎯 What is QubiMind?
+**QubiMind** is an enterprise-grade **Multi-Agent AI Operating System** developed by QubiQode that enables organizations to deploy, manage, and orchestrate fleets of specialized AI agents. Built with a modern, production-ready stack (Next.js 15, FastAPI, LangGraph, and RAG), it provides intelligent automation, enterprise knowledge retrieval, and scalable workflow orchestration through a secure, high-governance architecture.
+
+> *"Enables organizations to deploy, manage, and orchestrate fleets of specialized AI agents through an enterprise-grade, secure operating system."*
+
+---
+
+## ✨ Key Features & Capabilities
+
+| Feature | Technical Implementation | Enterprise Operational Impact |
+| :--- | :--- | :--- |
+| 🤖 **Multi-Agent Collaboration** | Swarm topology with inter-agent communication & task delegation | Agents verify each other's outputs and autonomously execute complex workflows |
+| 📚 **Enterprise RAG** | Advanced vector database integration & semantic search | Grounds agents in company SOPs and documents with secure indexing |
+| 🔧 **Tool Calling & Integration** | Structured function calling across SQL, email, & enterprise APIs | Directly interacts with legacy enterprise software and updates CRM/ERP records |
+| 👤 **Human-in-the-Loop (HITL)** | LangGraph interrupt nodes for manager reviews & overrides | Guarantees safe execution on high-stakes financial or destructive actions |
+| 🔒 **Bank-Grade Security** | SOC2-compliant, 5-tier RBAC, audit logging, & AES encryption | Granular permissions across SUPER_ADMIN, ORG_ADMIN, MANAGER, EMPLOYEE, & GUEST |
+| 🚀 **Workflow Automation** | Multi-step stateful execution with conditional branching | Real-time monitoring, telemetry observability, and workflow analytics |
+| 💾 **Long-Term Vector Memory** | Persistent context storage across user sessions in vector DB | Remembers user preferences, historical sessions, and past decisions |
+
+---
+
+## 🏗️ Core Architecture & Tech Stack
+
+| Layer | Technologies & Frameworks | Purpose & Role |
+| :--- | :--- | :--- |
+| **Frontend** | Next.js 15 (App Router), React 19, Tailwind CSS, shadcn/ui | Modern, responsive operator dashboard & agent control panel |
+| **Backend** | FastAPI, Python 3.12, Async/Await | High-performance asynchronous API layer with OpenAPI specs |
+| **AI / Orchestration** | LangGraph, LangChain, Google Gemini API | Stateful multi-agent graphs, routing, and causal reasoning |
+| **Data & State** | PostgreSQL 16, Redis 7 | Relational transactional store & low-latency agent state cache |
+| **Client State** | Zustand, TanStack Query | Client-side caching, real-time optimistic UI, and sync |
+| **Security & Auth** | JWT, HttpOnly Cookies, bcrypt, 5-Tier RBAC | Secure session tokens and role-based access enforcement |
+| **Deployment** | Docker, Docker Compose, Clean Architecture | Containerized microservices ensuring zero-drift deployments |
+
+---
+
+## 🔐 Authentication & Access Governance
+- **5-Tier Role-Based Access Control**:
+  1. \`SUPER_ADMIN\`: Full platform infrastructure, tenant, and global model configuration.
+  2. \`ORG_ADMIN\`: Organization-level billing, agent deployment, and policy controls.
+  3. \`MANAGER\`: Approves human-in-the-loop interrupt requests and monitors team agents.
+  4. \`EMPLOYEE\`: Interacts with authorized agents and triggers approved workflows.
+  5. \`GUEST\`: Read-only preview access to public agent documentation and metrics.
+- **Audit Ledger**: Comprehensive audit logging of every agent decision, tool execution, and manager sign-off.`,
+    links: {
+      github: "https://github.com/Sonu-Thomas-001/QubiMind",
+      demo: "#"
+    },
+    image: "/images/qubimind.svg"
   }
 ];
 
