@@ -414,6 +414,7 @@ TicketWave guarantees zero double-bookings through a defense-in-depth architectu
 - **High-Throughput Caching**: Redis caches catalog search results with a 5-minute sliding TTL, slashing database query load by 40% during peak traffic bursts.
 - **Smart Refund Engine**: Policy-driven automated refund calculations based on departure cancellation windows (>24 hours: full refund, <24 hours: tiered partial refund) with immediate audit ledger recording.`,
     links: {
+      github: "https://github.com/Sonu-Thomas-001/TicketWave",
       demo: "#"
     },
     image: "/images/ticketwave.svg"

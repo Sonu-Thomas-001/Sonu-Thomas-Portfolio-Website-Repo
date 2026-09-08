@@ -103,6 +103,7 @@ Sonu Thomas bridges the gap between deep computational theory and practical soft
   - **Full Audit Trail & Compliance**: Comprehensive audit logging of all state transitions (user ID, IP, correlation ID, state deltas) ensuring SOC 2 and GDPR readiness.
   - **Modular Monolith Design**: Clean domain boundaries (Booking, Inventory, Payment, User) structured for seamless microservice extraction without initial distributed transaction overhead.
 - **Tech Stack**: Java 17, Spring Boot 3.x, PostgreSQL 15+, Redis 7 with Redisson, React 18, Vite 5, Tailwind CSS, Spring Security 6, JWT, Docker, Prometheus, Grafana.
+- **Repository Link**: https://github.com/Sonu-Thomas-001/TicketWave
 
 ---
 
