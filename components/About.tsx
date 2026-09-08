@@ -146,11 +146,32 @@ export const About: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Right Column: Numbered Highlight Stack with Parallax Lift */}
+        {/* Right Column: Photo & Numbered Highlight Stack with Parallax Lift */}
         <motion.div
           style={{ y: cardsY }}
           className="lg:col-span-5 space-y-4 lg:sticky lg:top-28"
         >
+          {/* Authentic Workplace Photo Card */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
+            className="relative rounded-2xl overflow-hidden bg-[#FEFCF9] border border-[#E8E0D8] shadow-soft-sm group p-2.5"
+          >
+            <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-[#EDE5DC]">
+              <img
+                src="/images/Professional%20Pic%202.png"
+                alt="Sonu Thomas presenting engineering architectures at HCLTech"
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#131110]/75 via-transparent to-transparent" />
+              <div className="absolute bottom-3 left-3 right-3 text-white">
+                <span className="text-[10px] font-mono tracking-wider text-copper uppercase block">Enterprise Workflows &bull; HCLTech</span>
+                <p className="text-xs sm:text-sm font-display font-medium text-[#EDE5DC]">Presenting system architecture &amp; delivery roadmaps</p>
+              </div>
+            </div>
+          </motion.div>
           {HIGHLIGHTS.map((item, index) => (
             <motion.div
               key={item.num}

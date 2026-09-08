@@ -21,17 +21,35 @@ export const VolunteeringPage: React.FC = () => {
           <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" /> 
           <span>Back to Home</span>
         </Link>
-        <div className="max-w-3xl">
-          <span className="font-mono text-xs text-primary font-semibold tracking-widest uppercase block mb-2">
-            Initiatives // Giving Back
-          </span>
-          <h1 className="font-display font-semibold text-4xl sm:text-6xl text-slate-900 tracking-tight leading-tight">
-            Volunteering & <br />
-            <span className="gradient-text">Leadership</span>
-          </h1>
-          <p className="text-slate-600 text-base sm:text-lg mt-4 font-light leading-relaxed">
-            Giving back through technical mentorship, developer community initiatives, and collaborative leadership.
-          </p>
+        <div className="grid lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-8 max-w-3xl">
+            <span className="font-mono text-xs text-primary font-semibold tracking-widest uppercase block mb-2">
+              Initiatives // Giving Back
+            </span>
+            <h1 className="font-display font-semibold text-4xl sm:text-6xl text-slate-900 tracking-tight leading-tight">
+              Volunteering & <br />
+              <span className="gradient-text">Leadership</span>
+            </h1>
+            <p className="text-slate-600 text-base sm:text-lg mt-4 font-light leading-relaxed">
+              Giving back through technical mentorship, developer community initiatives, and collaborative leadership.
+            </p>
+          </div>
+          <div className="lg:col-span-4 hidden lg:block">
+            <div className="relative rounded-2xl overflow-hidden bg-[#FEFCF9] p-2 border border-[#E8E0D8] shadow-soft-sm">
+              <div className="aspect-[4/3] rounded-xl overflow-hidden">
+                <img
+                  src="/images/Professional%20Pic%201.png"
+                  alt="Sonu Thomas technical mentorship and community leadership"
+                  className="w-full h-full object-cover object-center"
+                />
+              </div>
+              <div className="p-2 text-center">
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider">
+                  Community Mentorship &bull; Tech Leadership
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

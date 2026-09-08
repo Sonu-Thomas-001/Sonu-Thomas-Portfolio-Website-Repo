@@ -39,6 +39,21 @@ export const Education: React.FC = () => {
                   : 'border border-[#E8E0D8] shadow-soft-sm hover:border-copper/40'
               }`}
             >
+              {/* IIT Guwahati Campus Image Banner */}
+              {isIIT && (
+                <div className="relative h-44 -mx-8 -mt-8 mb-6 overflow-hidden rounded-t-3xl">
+                  <img 
+                    src="/images/IITG.jpg" 
+                    alt="IIT Guwahati Campus" 
+                    className="w-full h-full object-cover object-center brightness-[0.95] group-hover:scale-105 group-hover:brightness-100 transition-all duration-700 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#FEFCF9] via-[#FEFCF9]/20 to-black/25" />
+                  <span className="absolute bottom-3 left-4 text-[10px] font-mono tracking-widest text-ink font-semibold bg-[#FEFCF9]/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-[#E8E0D8] shadow-sm">
+                    IIT GUWAHATI CAMPUS
+                  </span>
+                </div>
+              )}
+
               {/* Corner Watermark */}
               <span className="absolute -top-2 -right-2 font-mono font-bold text-6xl text-[#1A1614]/[0.025] select-none pointer-events-none">
                 0{idx + 1}

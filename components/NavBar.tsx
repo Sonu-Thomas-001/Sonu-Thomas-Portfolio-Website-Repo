@@ -138,9 +138,15 @@ export const NavBar: React.FC = () => {
           <Link
             to="/"
             onClick={(e) => handleLinkClick('/', e)}
-            className="group flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-[#FEFCF9]/90 backdrop-blur-xl border border-[#E8E0D8] shadow-soft-sm hover:border-copper/40 transition-all duration-300"
+            className="group flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-[#FEFCF9]/90 backdrop-blur-xl border border-[#E8E0D8] shadow-soft-sm hover:border-copper/40 transition-all duration-300"
           >
-            <span className="w-2 h-2 rounded-full bg-copper group-hover:scale-125 transition-transform" />
+            <div className="w-6 h-6 rounded-full overflow-hidden border border-copper/40 shrink-0 group-hover:scale-110 transition-transform shadow-xs">
+              <img
+                src="/images/favicon.png"
+                alt="Sonu Thomas"
+                className="w-full h-full object-cover"
+              />
+            </div>
             <span className="font-display font-semibold text-sm tracking-tight text-ink group-hover:text-copper transition-colors">
               sonu thomas
             </span>

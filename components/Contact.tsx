@@ -86,6 +86,25 @@ export const Contact: React.FC = () => {
             Whether you are building mission-critical AI systems, planning an enterprise modernization, or exploring collaborative research — my channel is always open.
           </p>
 
+          {/* Personal Availability Card */}
+          <div className="p-4 rounded-2xl bg-[#FEFCF9] border border-[#E8E0D8] shadow-soft-sm flex items-center gap-4">
+            <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-copper/30 shrink-0">
+              <img
+                src="/images/Professional%20Pic%20Square.png"
+                alt="Sonu Thomas"
+                className="w-full h-full object-cover object-top"
+              />
+              <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-[#FEFCF9]" />
+            </div>
+            <div>
+              <h4 className="font-display font-semibold text-sm text-ink leading-tight">Sonu Thomas</h4>
+              <span className="text-[11px] font-mono text-emerald-700 font-medium flex items-center gap-1.5 mt-0.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Active &bull; Open for Collaboration
+              </span>
+            </div>
+          </div>
+
           {/* Availability Card */}
           <div className="p-5 rounded-2xl bg-[#FEFCF9] border border-[#E8E0D8] shadow-soft-sm space-y-2.5">
             <div className="flex items-center gap-2 text-xs font-mono text-copper font-semibold uppercase tracking-wider">
