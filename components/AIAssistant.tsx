@@ -455,19 +455,22 @@ If the user asks questions referring to "this page", "here", or what they are vi
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 left-6 z-40 px-4 py-2.5 rounded-2xl bg-white border border-slate-200/90 text-slate-800 shadow-soft-lg hover:border-primary/40 flex items-center gap-2.5 cursor-pointer group transition-all duration-200 ${
+        className={`fixed bottom-6 left-6 z-40 px-4 py-2.5 rounded-2xl bg-[#1E1B18]/95 backdrop-blur-xl border border-[#38332E] hover:border-copper/60 text-[#EDE5DC] shadow-2xl hover:shadow-glow-copper flex items-center gap-3 cursor-pointer group transition-all duration-300 ${
           isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`}
         aria-label="Open AI Assistant"
       >
-        <div className="w-7 h-7 rounded-xl bg-primary-50 text-primary flex items-center justify-center border border-primary/20 group-hover:scale-105 transition-transform">
+        <div className="w-8 h-8 rounded-xl bg-[#25211E] text-copper border border-copper/30 flex items-center justify-center group-hover:scale-105 group-hover:bg-copper group-hover:text-white transition-all shadow-soft-sm">
           <BrainCircuit className="w-4 h-4" />
         </div>
         <div className="text-left">
-          <span className="font-display font-bold text-xs text-slate-900 block group-hover:text-primary transition-colors">
-            Ask Qubi
-          </span>
-          <span className="text-[10px] font-mono text-slate-400 block -mt-0.5">
+          <div className="flex items-center gap-1.5">
+            <span className="font-display font-bold text-xs text-[#EDE5DC] group-hover:text-copper transition-colors">
+              Ask Qubi
+            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          </div>
+          <span className="text-[10px] font-mono text-[#9C948B] block">
             AI Assistant
           </span>
         </div>
@@ -482,24 +485,24 @@ If the user asks questions referring to "this page", "here", or what they are vi
             exit={{ opacity: 0, y: 24, scale: 0.96 }}
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
             data-lenis-prevent="true"
-            className="fixed bottom-6 left-4 sm:left-6 z-50 w-[92vw] sm:w-[420px] h-[580px] bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-3xl shadow-soft-xl flex flex-col overflow-hidden ring-1 ring-black/5"
+            className="fixed bottom-6 left-4 sm:left-6 z-50 w-[94vw] sm:w-[440px] h-[600px] max-h-[85vh] bg-[#1E1B18]/95 backdrop-blur-2xl border border-[#332E2A] rounded-3xl shadow-2xl flex flex-col overflow-hidden text-[#EDE5DC] ring-1 ring-white/10"
           >
             {/* Header */}
-            <div className="px-4 py-3 bg-slate-50/90 border-b border-slate-100 flex justify-between items-center shrink-0">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-primary-50 border border-primary/20 flex items-center justify-center text-primary shadow-sm">
+            <div className="px-5 py-3.5 bg-[#171412] border-b border-[#2A2522] flex justify-between items-center shrink-0">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-[#25211E] border border-copper/30 flex items-center justify-center text-copper shadow-soft-sm">
                   <BrainCircuit className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="flex items-center gap-1.5">
-                    <h3 className="font-display font-bold text-slate-900 text-xs sm:text-sm">Qubi AI Assistant</h3>
-                    <span className="px-1.5 py-0.2 rounded text-[9px] font-mono bg-primary/10 text-primary font-semibold">
-                      v2.0
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-display font-bold text-[#EDE5DC] text-sm tracking-tight">Qubi AI Assistant</h3>
+                    <span className="px-2 py-0.5 rounded-full text-[9px] font-mono bg-copper/15 text-copper border border-copper/30 font-semibold">
+                      v2.5
                     </span>
                   </div>
                   <div className="flex items-center gap-1.5 mt-0.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-[10px] font-mono text-emerald-700 font-medium">Online & Guardrailed</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[10px] font-mono text-emerald-400 font-medium">Online &amp; Guardrailed</span>
                   </div>
                 </div>
               </div>
@@ -510,7 +513,7 @@ If the user asks questions referring to "this page", "here", or what they are vi
                 <button
                   onClick={handleClearHistory}
                   title="Clear conversation history from cache"
-                  className="p-1.5 rounded-xl hover:bg-slate-200/60 text-slate-400 hover:text-slate-700 transition-colors"
+                  className="p-2 rounded-xl hover:bg-[#2A2522] text-[#78716C] hover:text-[#EDE5DC] transition-colors cursor-pointer"
                   aria-label="Clear chat history"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
@@ -518,7 +521,7 @@ If the user asks questions referring to "this page", "here", or what they are vi
                 {/* Close Button */}
                 <button 
                   onClick={() => setIsOpen(false)} 
-                  className="p-1.5 rounded-xl hover:bg-slate-200/60 text-slate-400 hover:text-slate-700 transition-colors"
+                  className="p-2 rounded-xl hover:bg-[#2A2522] text-[#78716C] hover:text-[#EDE5DC] transition-colors cursor-pointer"
                   aria-label="Close assistant"
                 >
                   <X className="w-4 h-4" />
@@ -527,26 +530,26 @@ If the user asks questions referring to "this page", "here", or what they are vi
             </div>
 
             {/* Live Website Sync Status Banner & Toggle */}
-            <div className="px-3.5 py-1.5 bg-gradient-to-r from-slate-50 to-primary-50/30 border-b border-slate-100 flex items-center justify-between text-[10px] font-mono">
-              <div className="flex items-center gap-1.5 text-slate-600 truncate mr-2">
-                <Globe className="w-3 h-3 text-primary shrink-0" />
+            <div className="px-4 py-2 bg-[#141110] border-b border-[#2A2522] flex items-center justify-between text-[10px] font-mono text-[#9C948B]">
+              <div className="flex items-center gap-2 truncate mr-2">
+                <Globe className="w-3 h-3 text-copper shrink-0" />
                 <span className="truncate">
                   {liveSyncEnabled 
-                    ? `Live Page Sync: ${liveContextInfo?.route || '/'} (${liveContextInfo?.activeSection || 'top'})` 
-                    : 'Static Data Mode'}
+                    ? `Live Context: ${liveContextInfo?.route || '/'} (${liveContextInfo?.activeSection || 'top'})` 
+                    : 'Static Portfolio Mode'}
                 </span>
               </div>
               <button
                 onClick={() => setLiveSyncEnabled(prev => !prev)}
-                className={`px-2 py-0.5 rounded-full text-[9px] font-semibold transition-all shrink-0 flex items-center gap-1 border ${
+                className={`px-2.5 py-0.5 rounded-full text-[9px] font-semibold transition-all shrink-0 flex items-center gap-1.5 border cursor-pointer ${
                   liveSyncEnabled 
-                    ? 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100' 
-                    : 'bg-slate-100 text-slate-500 border-slate-200 hover:bg-slate-200'
+                    ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/20' 
+                    : 'bg-[#25211E] text-[#78716C] border-[#38332E] hover:text-[#EDE5DC]'
                 }`}
                 title="Toggle live real-time website context synchronization"
               >
-                <span className={`w-1.5 h-1.5 rounded-full ${liveSyncEnabled ? 'bg-emerald-500 animate-ping' : 'bg-slate-400'}`} />
-                {liveSyncEnabled ? 'Live Sync: ON' : 'Live Sync: OFF'}
+                <span className={`w-1.5 h-1.5 rounded-full ${liveSyncEnabled ? 'bg-emerald-400 animate-ping' : 'bg-[#78716C]'}`} />
+                <span>{liveSyncEnabled ? 'Live Sync: ON' : 'Live Sync: OFF'}</span>
               </button>
             </div>
 
@@ -556,20 +559,20 @@ If the user asks questions referring to "this page", "here", or what they are vi
               data-lenis-prevent="true"
               onWheel={(e) => e.stopPropagation()}
               onTouchMove={(e) => e.stopPropagation()}
-              className="flex-grow overflow-y-auto p-4 space-y-3.5 bg-slate-50/40 overscroll-contain"
+              className="flex-grow overflow-y-auto p-4 sm:p-5 space-y-4 bg-[#131110] overscroll-contain"
             >
               {messages.map((msg) => (
                 <div 
                   key={msg.id}
-                  className={`flex gap-2.5 ${msg.role === 'user' ? 'flex-row-reverse' : ''} group`}
+                  className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''} group`}
                 >
                   {/* Avatar */}
                   <div className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 text-xs shadow-soft-sm ${
                     msg.role === 'user' 
-                      ? 'bg-slate-200 text-slate-700' 
+                      ? 'bg-[#25211E] text-[#EDE5DC] border border-[#38332E]' 
                       : msg.isError 
-                        ? 'bg-red-50 text-red-600 border border-red-200' 
-                        : 'bg-primary-50 text-primary border border-primary/20'
+                        ? 'bg-rose-950/40 text-rose-400 border border-rose-800/50' 
+                        : 'bg-[#2A2522] text-copper border border-copper/30'
                   }`}>
                     {msg.role === 'user' ? (
                       <User className="w-3.5 h-3.5" />
@@ -585,32 +588,32 @@ If the user asks questions referring to "this page", "here", or what they are vi
                     <div className={`
                       p-3.5 rounded-2xl text-xs leading-relaxed transition-all
                       ${msg.role === 'user' 
-                        ? 'bg-primary text-white rounded-tr-sm shadow-soft-sm' 
+                        ? 'bg-copper text-white rounded-tr-sm shadow-glow-copper font-medium' 
                         : msg.isError
-                          ? 'bg-red-50 border border-red-200 text-red-700 rounded-tl-sm shadow-soft-sm'
-                          : 'bg-white border border-slate-200/80 text-slate-700 rounded-tl-sm shadow-soft-sm hover:border-slate-300'}
+                          ? 'bg-rose-950/40 border border-rose-800/50 text-rose-300 rounded-tl-sm'
+                          : 'bg-[#1E1B18] border border-[#332E2A] text-[#EDE5DC] rounded-tl-sm shadow-soft-md hover:border-[#38332E]'}
                     `}>
                       {msg.role === 'user' ? (
                         <div className="whitespace-pre-wrap">{msg.text}</div>
                       ) : msg.isError ? (
                         <div className="font-medium">{msg.text}</div>
                       ) : (
-                        <div className="prose-xs space-y-1.5">
+                        <div className="prose-xs space-y-2">
                           <Markdown
                             components={{
-                              p: ({ children }) => <p className="mb-1.5 last:mb-0 leading-relaxed text-xs text-slate-700">{children}</p>,
-                              strong: ({ children }) => <strong className="font-semibold text-slate-900">{children}</strong>,
-                              em: ({ children }) => <em className="italic text-slate-800">{children}</em>,
-                              ul: ({ children }) => <ul className="my-1.5 space-y-1 list-disc pl-4 text-xs text-slate-700">{children}</ul>,
-                              ol: ({ children }) => <ol className="my-1.5 space-y-1 list-decimal pl-4 text-xs text-slate-700">{children}</ol>,
+                              p: ({ children }) => <p className="mb-1.5 last:mb-0 leading-relaxed text-xs text-[#EDE5DC] font-light">{children}</p>,
+                              strong: ({ children }) => <strong className="font-semibold text-white">{children}</strong>,
+                              em: ({ children }) => <em className="italic text-copper/90">{children}</em>,
+                              ul: ({ children }) => <ul className="my-1.5 space-y-1 list-disc pl-4 text-xs text-[#EDE5DC]/90">{children}</ul>,
+                              ol: ({ children }) => <ol className="my-1.5 space-y-1 list-decimal pl-4 text-xs text-[#EDE5DC]/90">{children}</ol>,
                               li: ({ children }) => <li className="leading-relaxed pl-0.5">{children}</li>,
                               code: ({ children }) => (
-                                <code className="px-1.5 py-0.5 rounded bg-slate-100 border border-slate-200 text-copper font-mono text-[11px]">
+                                <code className="px-1.5 py-0.5 rounded bg-[#131110] border border-[#2A2522] text-copper font-mono text-[11px]">
                                   {children}
                                 </code>
                               ),
                               pre: ({ children }) => (
-                                <pre className="my-2 p-2.5 rounded-xl bg-slate-900 text-slate-100 font-mono text-[11px] overflow-x-auto border border-slate-800">
+                                <pre className="my-2 p-2.5 rounded-xl bg-[#131110] text-[#EDE5DC] font-mono text-[11px] overflow-x-auto border border-[#2A2522]">
                                   {children}
                                 </pre>
                               ),
@@ -619,7 +622,7 @@ If the user asks questions referring to "this page", "here", or what they are vi
                                   href={href}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-copper font-medium underline underline-offset-2 hover:text-copper/80 transition-colors"
+                                  className="text-copper hover:text-copper/80 underline underline-offset-2 transition-colors font-medium"
                                 >
                                   {children}
                                 </a>
@@ -633,18 +636,18 @@ If the user asks questions referring to "this page", "here", or what they are vi
                     </div>
 
                     {/* Bubble Metadata & Action Bar */}
-                    <div className="flex items-center gap-2 mt-1 px-1 text-[10px] font-mono text-slate-400">
+                    <div className="flex items-center gap-2 mt-1 px-1 text-[10px] font-mono text-[#78716C]">
                       {msg.timestamp && <span>{msg.timestamp}</span>}
                       {msg.role === 'model' && !msg.isError && (
                         <button
                           onClick={() => handleCopy(msg.id, msg.text)}
-                          className="hover:text-primary transition-colors flex items-center gap-1 opacity-60 hover:opacity-100"
+                          className="hover:text-copper transition-colors flex items-center gap-1 opacity-70 hover:opacity-100 cursor-pointer"
                           title="Copy response"
                         >
                           {copiedId === msg.id ? (
                             <>
-                              <Check className="w-2.5 h-2.5 text-emerald-600" />
-                              <span className="text-emerald-600 font-semibold">Copied</span>
+                              <Check className="w-2.5 h-2.5 text-emerald-400" />
+                              <span className="text-emerald-400 font-semibold">Copied</span>
                             </>
                           ) : (
                             <>
@@ -661,15 +664,15 @@ If the user asks questions referring to "this page", "here", or what they are vi
               
               {/* Typing Animation */}
               {isTyping && (
-                <div className="flex gap-2.5 items-center">
-                  <div className="w-7 h-7 rounded-xl bg-primary-50 border border-primary/20 flex items-center justify-center text-primary shadow-soft-sm">
+                <div className="flex gap-3 items-center">
+                  <div className="w-7 h-7 rounded-xl bg-[#2A2522] border border-copper/30 flex items-center justify-center text-copper shadow-soft-sm">
                     <Sparkles className="w-3.5 h-3.5" />
                   </div>
-                  <div className="bg-white border border-slate-200/80 px-3.5 py-2.5 rounded-2xl rounded-tl-sm flex items-center gap-1.5 shadow-soft-sm">
-                    <span className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" />
-                    <span className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce delay-150" />
-                    <span className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce delay-300" />
-                    <span className="text-[10px] font-mono text-slate-400 ml-1.5">Qubi is formulating...</span>
+                  <div className="bg-[#1E1B18] border border-[#332E2A] px-4 py-2.5 rounded-2xl rounded-tl-sm flex items-center gap-1.5 shadow-soft-sm">
+                    <span className="w-1.5 h-1.5 bg-copper rounded-full animate-bounce" />
+                    <span className="w-1.5 h-1.5 bg-copper rounded-full animate-bounce delay-150" />
+                    <span className="w-1.5 h-1.5 bg-copper rounded-full animate-bounce delay-300" />
+                    <span className="text-[10px] font-mono text-[#78716C] ml-1.5">Qubi is formulating...</span>
                   </div>
                 </div>
               )}
@@ -678,13 +681,13 @@ If the user asks questions referring to "this page", "here", or what they are vi
 
             {/* Quick Starter Chips */}
             {messages.length <= 2 && (
-              <div className="px-3.5 pt-2 pb-1 bg-white border-t border-slate-100 flex items-center gap-1.5 overflow-x-auto scrollbar-none">
+              <div className="px-4 py-2.5 bg-[#171412] border-t border-[#2A2522] flex items-center gap-2 overflow-x-auto scrollbar-none">
                 {SUGGESTED_PROMPTS.map((p, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleSend(p.query)}
                     disabled={isTyping}
-                    className="shrink-0 px-2.5 py-1 rounded-lg bg-slate-50 hover:bg-primary-50 hover:text-primary hover:border-primary/30 border border-slate-200/80 text-[11px] text-slate-600 transition-colors flex items-center gap-1 cursor-pointer font-medium"
+                    className="shrink-0 px-3 py-1 rounded-xl bg-[#25211E] hover:bg-[#2A2522] hover:border-copper/50 text-[#EDE5DC] hover:text-copper border border-[#38332E] text-[11px] font-mono transition-all flex items-center gap-1.5 cursor-pointer font-medium"
                   >
                     <span>{p.label}</span>
                     <ArrowRight className="w-2.5 h-2.5 opacity-50" />
@@ -694,7 +697,7 @@ If the user asks questions referring to "this page", "here", or what they are vi
             )}
 
             {/* Input Footer */}
-            <div className="p-3 border-t border-slate-100 bg-white">
+            <div className="p-3.5 border-t border-[#2A2522] bg-[#171412]">
               <div className="relative flex items-center">
                 <input
                   type="text"
@@ -702,19 +705,19 @@ If the user asks questions referring to "this page", "here", or what they are vi
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Ask about AI engineering, HCLTech, projects..."
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-3.5 pr-10 py-2.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-primary focus:bg-white transition-all shadow-inner"
+                  className="w-full bg-[#1E1B18] border border-[#38332E] rounded-xl pl-4 pr-11 py-2.5 text-xs text-[#EDE5DC] placeholder-[#78716C] focus:outline-none focus:border-copper focus:ring-1 focus:ring-copper/40 transition-all font-sans"
                   disabled={isTyping}
                 />
                 <button 
                   onClick={() => handleSend()}
                   disabled={!input.trim() || isTyping}
-                  className="absolute right-1.5 p-1.5 rounded-lg bg-primary text-white disabled:opacity-40 hover:bg-primary-600 transition-colors shadow-soft-sm cursor-pointer"
+                  className="absolute right-1.5 p-1.5 rounded-lg bg-copper hover:bg-copper-600 text-white disabled:opacity-40 transition-all shadow-glow-copper cursor-pointer"
                   aria-label="Send message"
                 >
                   <Send className="w-3.5 h-3.5" />
                 </button>
               </div>
-              <div className="mt-1.5 px-1 flex items-center justify-between text-[9px] font-mono text-slate-400">
+              <div className="mt-2 px-1 flex items-center justify-between text-[9px] font-mono text-[#78716C]">
                 <span>Cached locally</span>
                 <span>Guardrailed to sonuthomas.me</span>
               </div>
