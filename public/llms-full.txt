@@ -46,7 +46,7 @@ Sonu Thomas bridges the gap between deep computational theory and practical soft
 
 ---
 
-## Flagship Engineering Project: Agentic Co-Worker Platform
+## Flagship Engineering Project 1: Agentic Co-Worker Platform
 
 - **Core Vision**: Building the future-ready digital working taskforce—an autonomous, highly specialized synthetic workforce that operates 24/7 alongside human engineering teams to eliminate toil, accelerate incident resolution, and ensure enterprise resilience.
 - **Key Architecture & Capabilities**:
@@ -59,6 +59,22 @@ Sonu Thomas bridges the gap between deep computational theory and practical soft
   - **Real-Time Visibility & Voice (Jarvis)**: Hands-free voice assistant and high-throughput WebSocket streaming UI for live worker telemetry and metrics.
   - **Measured Outcomes**: Reduces MTTR by 70%, alert noise by 80%, shift handoffs from 2 hours to 5 minutes, and CAB approval from 4 hours to 5 minutes.
 - **Tech Stack**: LangGraph, Google Gemini LLM, Model Context Protocol (MCP), ChromaDB, Python, WebSockets, ServiceNow REST APIs, Control-M, MongoDB Atlas.
+
+---
+
+## Flagship Engineering Project 2: Change Co-Worker
+
+- **Core Vision**: Your AI-Powered Change Management Intelligence Platform. An enterprise-grade Multi-Agent AI System transforming IT change governance from manual paperwork into natural conversation.
+- **Key Architecture & Capabilities**:
+  - **5 Specialised AI Agents**: Hub-and-Spoke coordination led by a central Orchestrator routing to Knowledge Engine, Change Creator, Risk Assessor, and CAB Liaison specialists.
+  - **Google Gemini 2.5 Flash & RAG**: SOP-accurate answers with zero hallucinations, grounded against enterprise change policies and ITIL standard operating procedures.
+  - **Autonomous Change Creation**: Converts a single conversational requirement or incident summary into a fully compliant, production-grade change request.
+  - **Risk Intelligence Engine**: Real-time risk scoring, change collision detection, scheduling conflict prediction, and impact surface modeling.
+  - **ServiceNow Native Integration**: Live bidirectional ITSM synchronization for changes, approvals, work notes, and operational status.
+  - **Gemini Live Voice & Multilingual**: Real-time bidirectional multimodal audio assistance and 50+ auto-detected languages for global 24/7 CAB operations.
+  - **Email Automation**: SOP-compliant change draft notifications, stakeholder digests, and one-click mailto approval workflows.
+  - **Measured Outcomes**: Cuts change creation time by 85%, speeds CAB approvals from 4 hours to 5 minutes, and prevents scheduling conflicts across IT infrastructure.
+- **Tech Stack**: Google Gemini 2.5 Flash, RAG (Retrieval-Augmented Generation), Multi-Agent Hub & Spoke Orchestration, ServiceNow REST API, ChromaDB, FastAPI, Python, WebSockets, Gemini Live Audio.
 
 ---
 

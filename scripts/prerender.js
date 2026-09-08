@@ -50,16 +50,21 @@ const routes = [
   },
   {
     path: '/projects',
-    title: 'Agentic Co-Worker Platform | Sonu Thomas',
-    description: 'Autonomous multi-agent digital taskforce of 100+ Core Digital Workers coordinated by an intelligent Central Brain for ITSM, DevOps, SRE, and enterprise resilience.',
-    h1: 'Agentic Co-Worker Platform',
-    subtitle: 'Building the Future-Ready Digital Working Taskforce',
+    title: 'Flagship AI Systems & Enterprise Architecture | Sonu Thomas',
+    description: 'Explore flagship autonomous AI platforms: Agentic Co-Worker Platform (100+ Digital Workers) and Change Co-Worker (Multi-Agent Change Management Intelligence Platform).',
+    h1: 'Enterprise Multi-Agent Systems & Platforms',
+    subtitle: 'Flagship Autonomous AI & Intelligent Infrastructure',
     content: `
-      <p>An autonomous, highly specialized, and collaborative synthetic workforce that operates 24/7 alongside human engineering teams to eliminate toil, accelerate incident resolution, and ensure enterprise resilience.</p>
+      <p>Enterprise-grade multi-agent architectures and intelligent platforms engineered for autonomous ITSM, change intelligence, and production operational resilience.</p>
       <article>
-        <h2>System Architecture & Orchestration</h2>
+        <h2>Agentic Co-Worker Platform</h2>
         <p><strong>Stack:</strong> LangGraph, Gemini LLM, MCP Protocol, ChromaDB, WebSockets, Python, ServiceNow, Control-M, Jira API, MongoDB Atlas</p>
         <p>Deploys a fleet of 100+ Core Digital Workers spanning 15 IT specializations with distinct personas, coordinated by a Central Brain with 40+ event types on pub/sub EventBus, reducing MTTR by 70%.</p>
+      </article>
+      <article>
+        <h2>Change Co-Worker</h2>
+        <p><strong>Stack:</strong> Google Gemini 2.5 Flash, RAG, Hub-and-Spoke Multi-Agent Architecture, ServiceNow REST API, ChromaDB, FastAPI, WebSockets</p>
+        <p>Enterprise-grade Multi-Agent AI System powered by 5 specialised agents and RAG to automate IT change requests, assess collision risk, and expedite CAB approvals from 4 hours to 5 minutes.</p>
       </article>
     `
   },

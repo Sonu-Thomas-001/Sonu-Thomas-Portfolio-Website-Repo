@@ -261,6 +261,56 @@ Our ultimate aim is to build the **future-ready digital working taskforce**—an
       demo: "#"
     },
     image: "/images/coworker-platform.jpg"
+  },
+  {
+    id: "change-coworker",
+    title: "Change Co-Worker",
+    category: "Change Intelligence & RAG",
+    role: "Architect & Lead Engineer",
+    stack: [
+      "Multi-Agent AI",
+      "Gemini 2.5 Flash",
+      "RAG Architecture",
+      "ServiceNow API",
+      "Multimodal Audio",
+      "Risk Scoring",
+      "Email Automation",
+      "Python"
+    ],
+    description: "Your AI-Powered Change Management Intelligence Platform: An enterprise-grade Multi-Agent AI system built on a collaborative network of 5 specialized AI agents powered by Gemini 2.5 Flash and RAG. Automates change creation, risk scoring, conflict detection, and compliance reports through natural conversation.",
+    detailedDescription: `## 🎯 What is Change Co-Worker?
+**Change Co-Worker** is an enterprise-grade **Multi-Agent AI System** that transforms how organisations manage IT changes. Built on a collaborative network of **5 specialised AI agents** powered by **Google Gemini 2.5 Flash** and **RAG (Retrieval-Augmented Generation)**, it provides SOP-accurate answers, automates change creation, assesses risk, and generates compliance reports — all through **natural conversation**.
+
+> *"Whether you're raising a change, validating one, or approving at CAB — Change Co-Worker acts as your autonomous co-pilot."*
+
+---
+
+## ✨ Key Highlights & Capabilities
+
+| Highlight | Core Mechanism | Enterprise Value |
+| :--- | :--- | :--- |
+| 🧠 **Knowledge Engine** | SOP-accurate answers via grounded RAG | **Zero hallucinations** with strict policy adherence |
+| ⚡ **Smart Change Creation** | Natural language intent parsing | **One sentence → full change request** in seconds |
+| 🔮 **Risk Intelligence** | AI-powered risk scoring & conflict detection | Proactive collision detection across deployment schedules |
+| 📊 **Live Analytics** | Real-time dashboards & visual insights | End-to-end visibility into change pipelines and velocity |
+| 🌍 **50+ Languages** | Auto-detected multilingual support | Enables seamless global operational collaboration |
+| 📧 **Email Automation** | SOP-compliant drafts with mailto links | Instant CAB notifications and stakeholder sign-offs |
+| 🎙️ **Gemini Live Voice** | Real-time bidirectional multimodal audio | Hands-free verbal change reviews and CAB briefings |
+| 🔗 **ServiceNow Native** | Live bi-directional ITSM sync | Automated ticket updates, state changes, and sync |
+
+---
+
+## 🏗️ Multi-Agent Architecture
+Change Co-Worker utilizes a **Hub-and-Spoke** architecture where a central **Orchestrator Agent** intelligently routes every incoming request to the best-suited specialist agent:
+1. **Change Creation Specialist**: Formulates structured, standard/normal/emergency change requests from colloquial text.
+2. **Risk & Conflict Analyzer**: Cross-examines maintenance windows, overlapping configuration items (CIs), and blast radiuses.
+3. **SOP Knowledge Retrieval Agent**: Interrogates enterprise policy repositories via RAG to ensure absolute compliance.
+4. **CAB Governance & Reporting Agent**: Compiles executive agendas, approvals, audit logs, and compliance scorecards.
+5. **ITSM Synchronization Worker**: Executes live, authenticated transactions against ServiceNow and Jira APIs with full audit traceability.`,
+    links: {
+      demo: "#"
+    },
+    image: "/images/change-coworker.jpg"
   }
 ];
 

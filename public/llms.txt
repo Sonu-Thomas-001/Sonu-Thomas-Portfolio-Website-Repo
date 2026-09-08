@@ -15,6 +15,7 @@ Sonu Thomas is an AI Software Engineer at HCLTech and a Data Science & Artificia
 
 ## Flagship Systems Architecture
 - **Agentic Co-Worker Platform**: Deploying a fleet of 100+ Core Digital Workers across 15 IT specializations—coordinated by an intelligent Central Brain—to automate ITSM, DevOps, SRE, security, and operational intelligence workflows in enterprise production environments. Reduces MTTR by 70% with LangGraph state machines, Gemini LLM, MCP protocol, ChromaDB, and real-time WebSockets.
+- **Change Co-Worker**: Enterprise-grade multi-agent change intelligence platform with 5 specialized AI agents powered by Gemini 2.5 Flash and RAG. Automates IT change creation, risk scoring, conflict detection, and CAB compliance reports with live ServiceNow ITSM sync and zero hallucinations.
 
 ## Core Technical Competencies
 - **Artificial Intelligence & LLMs**: Agentic Workflows, Retrieval-Augmented Generation (RAG), Prompt Engineering, Google Gemini API, OpenAI APIs, NLP.

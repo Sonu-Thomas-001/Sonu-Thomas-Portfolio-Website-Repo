@@ -89,24 +89,45 @@ const ProjectCard: React.FC<{
           </p>
 
           {/* Operational Metrics Bar */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-[#171412] border border-[#2D2824]">
-            <div>
-              <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Taskforce Fleet</span>
-              <span className="font-display font-bold text-sm sm:text-base text-[#EDE5DC]">100+ Workers</span>
+          {project.id === 'change-coworker' ? (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-[#171412] border border-[#2D2824]">
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Agent Network</span>
+                <span className="font-display font-bold text-sm sm:text-base text-[#EDE5DC]">5 AI Specialists</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Knowledge Engine</span>
+                <span className="font-display font-bold text-sm sm:text-base text-copper">SOP-Accurate RAG</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">CAB Speedup</span>
+                <span className="font-display font-bold text-sm sm:text-base text-emerald-400">4h &rarr; 5m Approval</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">ITSM Native</span>
+                <span className="font-display font-bold text-sm sm:text-base text-emerald-400">ServiceNow Sync</span>
+              </div>
             </div>
-            <div>
-              <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">IT Domains</span>
-              <span className="font-display font-bold text-sm sm:text-base text-copper">15 Specializations</span>
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-[#171412] border border-[#2D2824]">
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Taskforce Fleet</span>
+                <span className="font-display font-bold text-sm sm:text-base text-[#EDE5DC]">100+ Workers</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">IT Domains</span>
+                <span className="font-display font-bold text-sm sm:text-base text-copper">15 Specializations</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Incident MTTR</span>
+                <span className="font-display font-bold text-sm sm:text-base text-emerald-400">&darr; 70% Speedup</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Alert Deduplication</span>
+                <span className="font-display font-bold text-sm sm:text-base text-emerald-400">&darr; 80% Noise Cut</span>
+              </div>
             </div>
-            <div>
-              <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Incident MTTR</span>
-              <span className="font-display font-bold text-sm sm:text-base text-emerald-400">&darr; 70% Speedup</span>
-            </div>
-            <div>
-              <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Alert Deduplication</span>
-              <span className="font-display font-bold text-sm sm:text-base text-emerald-400">&darr; 80% Noise Cut</span>
-            </div>
-          </div>
+          )}
         </div>
 
         {/* Tech stack inline & action links */}
@@ -174,69 +195,53 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
             </h2>
           </div>
 
-          {/* Dynamic Filter or Flagship Badge */}
-          {categories.length > 2 ? (
-            <div className="flex flex-wrap items-center gap-6 text-sm font-mono">
-              {categories.map((cat) => {
-                const isActive = filter === cat;
-                return (
-                  <button
-                    key={cat}
-                    onClick={() => setFilter(cat)}
-                    className={`relative py-1 transition-colors cursor-pointer ${
-                      isActive ? 'text-copper font-semibold' : 'text-[#78716C] hover:text-[#EDE5DC]'
-                    }`}
-                  >
-                    <span>{cat}</span>
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeFilterUnderline"
-                        className="absolute bottom-0 left-0 right-0 h-[2px] bg-copper rounded-full shadow-glow-copper"
-                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          ) : (
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-xs px-4 py-2 rounded-full bg-[#1E1B18] text-copper border border-copper/30 flex items-center gap-2 shadow-soft-sm">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Flagship Autonomous Multi-Agent Architecture</span>
-              </span>
-            </div>
-          )}
+          {/* Dynamic Filter */}
+          <div className="flex flex-wrap items-center gap-6 text-sm font-mono">
+            {categories.map((cat) => {
+              const isActive = filter === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setFilter(cat)}
+                  className={`relative py-1 transition-colors cursor-pointer ${
+                    isActive ? 'text-copper font-semibold' : 'text-[#78716C] hover:text-[#EDE5DC]'
+                  }`}
+                >
+                  <span>{cat}</span>
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeFilterUnderline"
+                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-copper rounded-full shadow-glow-copper"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Flagship Single Project or Masonry Grid */}
-        {PROJECTS_DATA.length === 1 ? (
-          <div className="max-w-5xl mx-auto">
-            <ProjectCard
-              project={PROJECTS_DATA[0]}
-              idx={0}
-              isFeatured={true}
-              onSelect={(p) => setSelectedProject(p)}
-            />
-          </div>
-        ) : (
-          <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project, idx) => {
-                const isFeatured = idx === 0 && filter === 'All';
-                return (
-                  <ProjectCard
-                    key={project.id}
-                    project={project}
-                    idx={idx}
-                    isFeatured={isFeatured}
-                    onSelect={(p) => setSelectedProject(p)}
-                  />
-                );
-              })}
-            </AnimatePresence>
-          </motion.div>
-        )}
+        {/* Flagship Projects Grid */}
+        <motion.div
+          layout
+          className={`grid gap-8 ${
+            filteredProjects.length === 1
+              ? 'max-w-4xl mx-auto'
+              : 'grid-cols-1 md:grid-cols-2 max-w-6xl mx-auto'
+          }`}
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project, idx) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                idx={idx}
+                isFeatured={filteredProjects.length === 1}
+                onSelect={(p) => setSelectedProject(p)}
+              />
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
         {/* Action Controls */}
         {isHomepage && PROJECTS_DATA.length > 1 ? (
