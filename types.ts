@@ -20,6 +20,12 @@ export interface SkillItem {
   icon?: string;
 }
 
+export interface ProjectMetric {
+  label: string;
+  value: string;
+  accent?: 'copper' | 'emerald' | 'cream';
+}
+
 export interface ProjectItem {
   id: string;
   title: string;
@@ -33,6 +39,9 @@ export interface ProjectItem {
     github?: string;
   };
   image: string;
+  badge?: string;
+  metrics?: ProjectMetric[];
+  architectureHighlights?: string[];
 }
 
 export interface EducationItem {
