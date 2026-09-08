@@ -311,6 +311,54 @@ Change Co-Worker utilizes a **Hub-and-Spoke** architecture where a central **Orc
       demo: "#"
     },
     image: "/images/change-coworker.jpg"
+  },
+  {
+    id: "rca-agent",
+    title: "RCA-Agent",
+    category: "Incident Intelligence & RCA",
+    role: "Architect & Lead Engineer",
+    stack: [
+      "Gemini LLM",
+      "ChromaDB RAG",
+      "Flask API",
+      "Python",
+      "Embeddings",
+      "Log Analytics",
+      "Async Jobs",
+      "React / Web UI"
+    ],
+    description: "AI-Powered Root Cause Analysis System for Production Incidents: Combines automated multi-step reasoning, ChromaDB vector retrieval across operational datasets (logs, runbooks, incident history, changes), and Gemini LLM embeddings to deliver structured root cause diagnostics and actionable remediation plans.",
+    detailedDescription: `## 🎯 What is RCA-Agent?
+**RCA-Agent** is an enterprise AI-powered **Root Cause Analysis system** designed for complex production outages. It combines retrieval from operational data (incidents, logs, runbooks, changes) with Gemini LLM reasoning to produce structured RCA outputs and action recommendations.
+
+> *"From raw logs, anomalous traces, and telemetry spikes to structured, evidence-backed root cause diagnoses in minutes rather than hours."*
+
+---
+
+## ✨ Features & Capabilities
+
+| Feature | Mechanism | Operational Value |
+| :--- | :--- | :--- |
+| ⚡ **Automated Multi-Step RCA** | Multi-phase hypothesis formulation & verification workflow | Automates investigative triage and accelerates causal diagnosis |
+| 🧠 **ChromaDB Vector RAG** | High-dimensional embedding store & similarity search | Instant grounded retrieval of historical incidents & runbooks |
+| 🔮 **Gemini Reasoning & Embeddings** | Google Gemini LLM with structured output schema enforcement | High-precision causal attribution with zero hallucinations |
+| ⚙️ **Flask Asynchronous API** | Background worker queue for high-compute log ingestion jobs | Non-blocking analysis orchestration supporting heavy enterprise payloads |
+| 🖥️ **Interactive Web UI** | Real-time diagnostic console with step-by-step telemetry inspect | Live visibility into hypotheses, evidence traces, and remediation actions |
+| 📦 **Unified Ingestion Pipeline** | Multi-source parsing across incidents, logs, runbooks, & changes | Single operational pane correlating alerts directly with recent change events |
+
+---
+
+## 🏗️ Multi-Step RCA Workflow
+RCA-Agent coordinates an automated 5-step diagnostic pipeline:
+1. **Telemetry & Dataset Ingestion**: Ingests incident metadata, application logs, error traces, runbooks, and recent change records.
+2. **Operational Vector Retrieval**: Queries ChromaDB vector store for semantically similar past incidents and matching resolution playbooks.
+3. **Gemini Causal Reasoning**: Synthesizes the ingested telemetry with retrieved operational context to isolate anomalies and identify the core failure trigger.
+4. **Structured RCA Output**: Formulates an evidence-backed diagnostic dossier with root causes, contributing factors, impacted components, and confidence scores.
+5. **Action Recommendation Engine**: Delivers prioritized, concrete remediation action items, preventative measures, and rollback instructions.`,
+    links: {
+      demo: "#"
+    },
+    image: "/images/rca-agent.jpg"
   }
 ];
 

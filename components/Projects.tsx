@@ -64,7 +64,11 @@ const ProjectCard: React.FC<{
           </span>
           <span className="px-3 py-1 rounded-full bg-emerald-500/20 backdrop-blur-md text-[11px] font-mono font-medium text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Production Multi-Agent Fleet
+            {project.id === 'agentic-co-worker-platform'
+              ? '100+ Digital Workers'
+              : project.id === 'change-coworker'
+              ? '5-Agent Hub & Spoke'
+              : 'Automated RCA Engine'}
           </span>
         </div>
       </div>
@@ -89,7 +93,26 @@ const ProjectCard: React.FC<{
           </p>
 
           {/* Operational Metrics Bar */}
-          {project.id === 'change-coworker' ? (
+          {project.id === 'rca-agent' ? (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-[#171412] border border-[#2D2824]">
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Diagnostics</span>
+                <span className="font-display font-bold text-sm sm:text-base text-[#EDE5DC]">Multi-Step RCA</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Vector RAG</span>
+                <span className="font-display font-bold text-sm sm:text-base text-copper">ChromaDB Store</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Reasoning Core</span>
+                <span className="font-display font-bold text-sm sm:text-base text-emerald-400">Gemini Embeddings</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Async Engine</span>
+                <span className="font-display font-bold text-sm sm:text-base text-emerald-400">Flask + Web UI</span>
+              </div>
+            </div>
+          ) : project.id === 'change-coworker' ? (
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-[#171412] border border-[#2D2824]">
               <div>
                 <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block">Agent Network</span>
@@ -227,7 +250,9 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
           className={`grid gap-8 ${
             filteredProjects.length === 1
               ? 'max-w-4xl mx-auto'
-              : 'grid-cols-1 md:grid-cols-2 max-w-6xl mx-auto'
+              : filteredProjects.length === 2
+              ? 'grid-cols-1 md:grid-cols-2 max-w-6xl mx-auto'
+              : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto'
           }`}
         >
           <AnimatePresence mode="popLayout">

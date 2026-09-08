@@ -51,7 +51,7 @@ const routes = [
   {
     path: '/projects',
     title: 'Flagship AI Systems & Enterprise Architecture | Sonu Thomas',
-    description: 'Explore flagship autonomous AI platforms: Agentic Co-Worker Platform (100+ Digital Workers) and Change Co-Worker (Multi-Agent Change Management Intelligence Platform).',
+    description: 'Explore flagship autonomous AI platforms: Agentic Co-Worker Platform (100+ Digital Workers), Change Co-Worker (Change Management Intelligence Platform), and RCA-Agent (Root Cause Analysis System).',
     h1: 'Enterprise Multi-Agent Systems & Platforms',
     subtitle: 'Flagship Autonomous AI & Intelligent Infrastructure',
     content: `
@@ -65,6 +65,11 @@ const routes = [
         <h2>Change Co-Worker</h2>
         <p><strong>Stack:</strong> Google Gemini 2.5 Flash, RAG, Hub-and-Spoke Multi-Agent Architecture, ServiceNow REST API, ChromaDB, FastAPI, WebSockets</p>
         <p>Enterprise-grade Multi-Agent AI System powered by 5 specialised agents and RAG to automate IT change requests, assess collision risk, and expedite CAB approvals from 4 hours to 5 minutes.</p>
+      </article>
+      <article>
+        <h2>RCA-Agent</h2>
+        <p><strong>Stack:</strong> Google Gemini, ChromaDB RAG, Flask API, Python, Log Analytics, Web UI</p>
+        <p>AI-powered Root Cause Analysis system combining multi-step reasoning, ChromaDB vector retrieval across operational datasets (logs, runbooks, incidents, changes), and asynchronous job analysis.</p>
       </article>
     `
   },

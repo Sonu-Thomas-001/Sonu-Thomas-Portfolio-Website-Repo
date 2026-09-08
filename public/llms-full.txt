@@ -78,6 +78,20 @@ Sonu Thomas bridges the gap between deep computational theory and practical soft
 
 ---
 
+## Flagship Engineering Project 3: RCA-Agent
+
+- **Core Vision**: AI-Powered Root Cause Analysis System for Production Incidents. Bridges operational telemetry with LLM reasoning to automate causal diagnostics and action recommendations.
+- **Key Architecture & Capabilities**:
+  - **Automated Multi-Step RCA Workflow**: Orchestrates ingestion, historical vector search, causal reasoning, diagnostic report generation, and remediation recommendations.
+  - **ChromaDB Vector Retrieval**: RAG pipeline indexing historical incident tickets, post-mortem reviews, error signatures, and operational runbooks.
+  - **Gemini Reasoning & Embeddings**: High-dimensional embeddings and structured reasoning with strict output schema enforcement to guarantee zero hallucinations.
+  - **Asynchronous Flask API**: High-throughput background analysis queue handling heavy production logs, alert payloads, and system metrics.
+  - **Interactive Web Diagnostics UI**: Real-time visualization for operators to trigger incident analysis and inspect step-by-step hypothesis verification.
+  - **Unified Ingestion Pipeline**: Ingestion of multi-source operational datasets across incidents, logs, runbooks, and recent deployment change records.
+- **Tech Stack**: Google Gemini LLM, ChromaDB RAG, Flask Asynchronous API, Python, Vector Embeddings, Log Analytics, React Web UI.
+
+---
+
 ## Technical Skill Matrix
 
 | Category | Technologies & Tools |
