@@ -5,7 +5,7 @@ import { EDUCATION_DATA } from '../constants';
 
 export const Education: React.FC = () => {
   return (
-    <section id="education" className="py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-[#E8E0D8]">
+    <section id="education" className="scroll-mt-24 sm:scroll-mt-28 py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-[#E8E0D8]">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
         <div>

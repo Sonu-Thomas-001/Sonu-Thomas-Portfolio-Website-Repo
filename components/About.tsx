@@ -47,7 +47,7 @@ export const About: React.FC = () => {
     <section
       ref={containerRef}
       id="about"
-      className="py-28 sm:py-36 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto relative overflow-hidden"
+      className="scroll-mt-24 sm:scroll-mt-28 py-28 sm:py-36 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto relative overflow-hidden"
     >
       {/* Section Identifier */}
       <div className="flex items-center gap-3 mb-10">
@@ -82,16 +82,16 @@ export const About: React.FC = () => {
       </div>
 
       {/* Two-Column Editorial Narrative with Parallax */}
-      <div className="grid lg:grid-cols-12 gap-16 lg:gap-20 items-start">
+      <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
         
-        {/* Left Column: Story & Narrative (7 cols) */}
+        {/* Left Column: Story, Dual Perspectives & Philosophy (7 cols) */}
         <motion.div
           style={{ y: narrativeY }}
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="lg:col-span-7 space-y-8"
+          className="lg:col-span-7 space-y-7"
         >
           {/* Drop-cap Lead Paragraph */}
           <p className="text-xl sm:text-2xl text-ink font-normal leading-relaxed">
@@ -102,7 +102,7 @@ export const About: React.FC = () => {
             My focus lives at the intersection of production-grade software engineering and cutting-edge artificial intelligence.
           </p>
 
-          <div className="space-y-6 text-base sm:text-lg text-ink-secondary leading-relaxed font-light">
+          <div className="space-y-5 text-base sm:text-lg text-ink-secondary leading-relaxed font-light">
             <p>
               At <strong className="font-semibold text-ink">HCLTech</strong>, I navigate enterprise complexity — steering change management lifecycles, evaluating production risks, and upholding operational resilience across mission-critical systems.
             </p>
@@ -114,53 +114,16 @@ export const About: React.FC = () => {
             </p>
           </div>
 
-          {/* Large Pull-Quote Statement */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-[#FEFCF9] border-l-4 border-copper border-y border-r border-[#E8E0D8] shadow-soft-sm my-6">
-            <p className="font-display font-semibold text-xl sm:text-2xl text-ink italic leading-snug">
-              &ldquo;I approach AI not as isolated experimentation, but as an uncompromising engineering discipline.&rdquo;
-            </p>
-            <span className="text-xs font-mono uppercase tracking-widest text-[#78716C] mt-3 block">
-              &mdash; Sonu Thomas, Engineering Philosophy
-            </span>
-          </div>
-
-          {/* Location & Status Cards with Hover Elevation */}
-          <div className="pt-2 flex flex-wrap items-center gap-5 text-sm font-mono text-ink-secondary">
-            <motion.div
-              whileHover={{ y: -3 }}
-              className="p-4 bg-[#FEFCF9] border border-[#E8E0D8] rounded-2xl shadow-soft-sm hover:border-copper transition-all"
-            >
-              <span className="text-[#78716C] block text-[11px] uppercase tracking-wider">Base of Operations</span>
-              <span className="text-ink font-medium">{PERSONAL_DETAILS.location}</span>
-            </motion.div>
-            <motion.div
-              whileHover={{ y: -3 }}
-              className="p-4 bg-[#FEFCF9] border border-[#E8E0D8] rounded-2xl shadow-soft-sm hover:border-emerald-500 transition-all"
-            >
-              <span className="text-[#78716C] block text-[11px] uppercase tracking-wider">Current Availability</span>
-              <span className="text-emerald-700 font-medium flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse" />
-                Open to High-Impact Opportunities
-              </span>
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Right Column: Photo & Numbered Highlight Stack with Parallax Lift */}
-        <motion.div
-          style={{ y: cardsY }}
-          className="lg:col-span-5 space-y-4 lg:sticky lg:top-28"
-        >
           {/* Dual Executive Perspectives: Production & Systems Leadership */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6 }}
-            className="grid grid-cols-2 gap-3 p-2.5 rounded-2xl bg-[#FEFCF9] border border-[#E8E0D8] shadow-soft-sm"
+            transition={{ duration: 0.5 }}
+            className="grid sm:grid-cols-2 gap-3.5 p-3 rounded-2xl bg-[#FEFCF9] border border-[#E8E0D8] shadow-soft-sm"
           >
             {/* Pic 2: Production Execution */}
-            <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-[#EDE5DC] group/p1">
+            <div className="relative aspect-[4/3] sm:aspect-[4/5] rounded-xl overflow-hidden bg-[#EDE5DC] group/p1">
               <img
                 src="/images/Professional%20Pic%202.png"
                 alt="Sonu Thomas — Production Systems & Enterprise Delivery at HCLTech"
@@ -174,7 +137,7 @@ export const About: React.FC = () => {
             </div>
 
             {/* Pic 3: Systems Architecture & Leadership */}
-            <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-[#EDE5DC] group/p2">
+            <div className="relative aspect-[4/3] sm:aspect-[4/5] rounded-xl overflow-hidden bg-[#EDE5DC] group/p2">
               <img
                 src="/images/Professional%20Pic%203.png"
                 alt="Sonu Thomas — Applied AI Architecture & Leadership"
@@ -187,6 +150,44 @@ export const About: React.FC = () => {
               </div>
             </div>
           </motion.div>
+
+          {/* Large Pull-Quote Statement */}
+          <div className="p-6 sm:p-7 rounded-2xl bg-[#FEFCF9] border-l-4 border-copper border-y border-r border-[#E8E0D8] shadow-soft-sm">
+            <p className="font-display font-semibold text-xl sm:text-2xl text-ink italic leading-snug">
+              &ldquo;I approach AI not as isolated experimentation, but as an uncompromising engineering discipline.&rdquo;
+            </p>
+            <span className="text-xs font-mono uppercase tracking-widest text-[#78716C] mt-2.5 block">
+              &mdash; Sonu Thomas, Engineering Philosophy
+            </span>
+          </div>
+
+          {/* Location & Status Cards with Hover Elevation */}
+          <div className="flex flex-wrap items-center gap-4 text-sm font-mono text-ink-secondary">
+            <motion.div
+              whileHover={{ y: -3 }}
+              className="flex-1 min-w-[200px] p-4 bg-[#FEFCF9] border border-[#E8E0D8] rounded-2xl shadow-soft-sm hover:border-copper transition-all"
+            >
+              <span className="text-[#78716C] block text-[11px] uppercase tracking-wider">Base of Operations</span>
+              <span className="text-ink font-medium">{PERSONAL_DETAILS.location}</span>
+            </motion.div>
+            <motion.div
+              whileHover={{ y: -3 }}
+              className="flex-1 min-w-[240px] p-4 bg-[#FEFCF9] border border-[#E8E0D8] rounded-2xl shadow-soft-sm hover:border-emerald-500 transition-all"
+            >
+              <span className="text-[#78716C] block text-[11px] uppercase tracking-wider">Current Availability</span>
+              <span className="text-emerald-700 font-medium flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse" />
+                Open to High-Impact Opportunities
+              </span>
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Right Column: Numbered Highlight Stack with Parallax Lift */}
+        <motion.div
+          style={{ y: cardsY }}
+          className="lg:col-span-5 space-y-4"
+        >
           {HIGHLIGHTS.map((item, index) => (
             <motion.div
               key={item.num}

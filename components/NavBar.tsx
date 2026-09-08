@@ -241,7 +241,7 @@ export const NavBar: React.FC = () => {
           </Link>
 
           {/* Floating Pill Nav for Desktop */}
-          <nav className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FEFCF9]/85 backdrop-blur-xl border border-[#E8E0D8]/90 shadow-soft-md">
+          <nav className="hidden md:flex items-center gap-1 lg:gap-1.5 px-2.5 lg:px-3 py-1.5 rounded-full bg-[#FEFCF9]/85 backdrop-blur-xl border border-[#E8E0D8]/90 shadow-soft-md">
             {primaryNavLinks.map((link) => {
               const isActive = activeSection === link.path;
               return (
@@ -249,7 +249,7 @@ export const NavBar: React.FC = () => {
                   key={link.name}
                   to={link.path}
                   onClick={(e) => handleLinkClick(link.path, e)}
-                  className={`relative px-4 py-1.5 rounded-full text-xs font-medium tracking-wide transition-all duration-200 group ${
+                  className={`relative px-3 lg:px-3.5 py-1.5 rounded-full text-xs font-medium tracking-wide whitespace-nowrap transition-all duration-200 group ${
                     isActive
                       ? 'text-ink font-semibold'
                       : 'text-ink-secondary hover:text-ink'
@@ -287,7 +287,7 @@ export const NavBar: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsOthersOpen((prev) => !prev)}
-                className={`relative px-3.5 py-1.5 rounded-full text-xs font-medium tracking-wide transition-all duration-200 flex items-center gap-1 cursor-pointer group ${
+                className={`relative px-3 lg:px-3.5 py-1.5 rounded-full text-xs font-medium tracking-wide whitespace-nowrap transition-all duration-200 flex items-center gap-1 cursor-pointer group ${
                   isOtherActive
                     ? 'text-ink font-semibold'
                     : isOthersOpen

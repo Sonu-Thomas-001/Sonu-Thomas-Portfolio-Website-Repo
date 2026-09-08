@@ -18,7 +18,7 @@ export const Experience: React.FC = () => {
   const watermarkShift = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
 
   return (
-    <section id="experience" className="relative bg-[#131110] text-[#EDE5DC] border-y border-[#2A2522]">
+    <section id="experience" className="scroll-mt-24 sm:scroll-mt-28 relative bg-[#131110] text-[#EDE5DC] border-y border-[#2A2522]">
       
       {/* Decorative Film Strip Perforations Top */}
       <div className="hidden md:flex justify-between items-center px-8 py-2 bg-[#0E0C0B] border-b border-[#2A2522] overflow-hidden select-none opacity-40">

@@ -61,7 +61,7 @@ export const Contact: React.FC = () => {
     <section
       ref={containerRef}
       id="contact"
-      className="py-28 sm:py-36 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-[#E8E0D8] relative overflow-hidden"
+      className="scroll-mt-24 sm:scroll-mt-28 py-28 sm:py-36 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-[#E8E0D8] relative overflow-hidden"
     >
       {/* Subtle Floating Ambient Warm Copper Layer */}
       <motion.div

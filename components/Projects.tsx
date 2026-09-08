@@ -248,7 +248,7 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
   const spotlightMeta = PROJECT_METRICS[spotlightProject.id] || PROJECT_METRICS['agentic-co-worker-platform'];
 
   return (
-    <section id="projects" className="py-24 sm:py-32 px-6 sm:px-8 lg:px-12 bg-[#131110] text-[#EDE5DC] border-y border-[#2A2522] relative">
+    <section id="projects" className="scroll-mt-24 sm:scroll-mt-28 py-24 sm:py-32 px-6 sm:px-8 lg:px-12 bg-[#131110] text-[#EDE5DC] border-y border-[#2A2522] relative">
       {/* Subtle Graph Grid Accent */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-20 -z-0"
