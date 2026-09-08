@@ -231,6 +231,7 @@
       /* Editorial Scrollbar */
       ::-webkit-scrollbar {
         width: 7px;
+        height: 6px;
       }
       ::-webkit-scrollbar-track {
         background: #F5F0EB;
@@ -241,6 +242,39 @@
       }
       ::-webkit-scrollbar-thumb:hover {
         background: #C47D5A;
+      }
+
+      /* Utility to completely hide scrollbars */
+      .scrollbar-none,
+      .no-scrollbar {
+        -ms-overflow-style: none !important;
+        scrollbar-width: none !important;
+      }
+      .scrollbar-none::-webkit-scrollbar,
+      .no-scrollbar::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+      }
+
+      /* Dark Scrollbar for dark modals, code, and chat */
+      .custom-dark-scrollbar::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      .custom-dark-scrollbar::-webkit-scrollbar-track {
+        background: #171412;
+      }
+      .custom-dark-scrollbar::-webkit-scrollbar-thumb {
+        background: #2E2925;
+        border-radius: 9999px;
+      }
+      .custom-dark-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #C47D5A;
+      }
+      .custom-dark-scrollbar {
+        scrollbar-color: #2E2925 #171412;
+        scrollbar-width: thin;
       }
 
       /* Gradient text utilities */

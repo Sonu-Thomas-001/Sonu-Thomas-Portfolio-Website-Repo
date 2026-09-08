@@ -455,7 +455,7 @@ If the user asks questions referring to "this page", "here", or what they are vi
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 left-6 z-40 px-4 py-2.5 rounded-2xl bg-[#1E1B18]/95 backdrop-blur-xl border border-[#38332E] hover:border-copper/60 text-[#EDE5DC] shadow-2xl hover:shadow-glow-copper flex items-center gap-3 cursor-pointer group transition-all duration-300 ${
+        className={`fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-2xl bg-[#1E1B18]/95 backdrop-blur-xl border border-[#38332E] hover:border-copper/60 text-[#EDE5DC] shadow-2xl hover:shadow-glow-copper flex items-center gap-2.5 sm:gap-3 cursor-pointer group transition-all duration-300 ${
           isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`}
         aria-label="Open AI Assistant"
@@ -485,7 +485,7 @@ If the user asks questions referring to "this page", "here", or what they are vi
             exit={{ opacity: 0, y: 24, scale: 0.96 }}
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
             data-lenis-prevent="true"
-            className="fixed bottom-6 left-4 sm:left-6 z-50 w-[94vw] sm:w-[440px] h-[600px] max-h-[85vh] bg-[#1E1B18]/95 backdrop-blur-2xl border border-[#332E2A] rounded-3xl shadow-2xl flex flex-col overflow-hidden text-[#EDE5DC] ring-1 ring-white/10"
+            className="fixed bottom-3 sm:bottom-6 inset-x-3 sm:inset-x-auto sm:left-6 z-50 sm:w-[440px] max-w-[calc(100vw-1.5rem)] sm:max-w-none h-[560px] sm:h-[600px] max-h-[calc(100dvh-4rem)] sm:max-h-[85vh] bg-[#1E1B18]/95 backdrop-blur-2xl border border-[#332E2A] rounded-3xl shadow-2xl flex flex-col overflow-hidden text-[#EDE5DC] ring-1 ring-white/10"
           >
             {/* Header */}
             <div className="px-5 py-3.5 bg-[#171412] border-b border-[#2A2522] flex justify-between items-center shrink-0">
@@ -559,7 +559,7 @@ If the user asks questions referring to "this page", "here", or what they are vi
               data-lenis-prevent="true"
               onWheel={(e) => e.stopPropagation()}
               onTouchMove={(e) => e.stopPropagation()}
-              className="flex-grow overflow-y-auto p-4 sm:p-5 space-y-4 bg-[#131110] overscroll-contain"
+              className="flex-grow overflow-y-auto p-4 sm:p-5 space-y-4 bg-[#131110] overscroll-contain custom-dark-scrollbar"
             >
               {messages.map((msg) => (
                 <div 
@@ -613,7 +613,7 @@ If the user asks questions referring to "this page", "here", or what they are vi
                                 </code>
                               ),
                               pre: ({ children }) => (
-                                <pre className="my-2 p-2.5 rounded-xl bg-[#131110] text-[#EDE5DC] font-mono text-[11px] overflow-x-auto border border-[#2A2522]">
+                                <pre className="my-2 p-2.5 rounded-xl bg-[#131110] text-[#EDE5DC] font-mono text-[11px] overflow-x-auto border border-[#2A2522] custom-dark-scrollbar">
                                   {children}
                                 </pre>
                               ),
@@ -681,16 +681,24 @@ If the user asks questions referring to "this page", "here", or what they are vi
 
             {/* Quick Starter Chips */}
             {messages.length <= 2 && (
-              <div className="px-4 py-2.5 bg-[#171412] border-t border-[#2A2522] flex items-center gap-2 overflow-x-auto scrollbar-none">
+              <div 
+                className="px-3.5 sm:px-4 py-2 bg-[#171412] border-t border-[#2A2522] flex items-center gap-2 overflow-x-auto scrollbar-none no-scrollbar scroll-smooth"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                onWheel={(e) => {
+                  if (e.deltaY !== 0) {
+                    e.currentTarget.scrollLeft += e.deltaY;
+                  }
+                }}
+              >
                 {SUGGESTED_PROMPTS.map((p, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleSend(p.query)}
                     disabled={isTyping}
-                    className="shrink-0 px-3 py-1 rounded-xl bg-[#25211E] hover:bg-[#2A2522] hover:border-copper/50 text-[#EDE5DC] hover:text-copper border border-[#38332E] text-[11px] font-mono transition-all flex items-center gap-1.5 cursor-pointer font-medium"
+                    className="shrink-0 px-3 py-1.5 rounded-xl bg-[#25211E] hover:bg-[#2A2522] hover:border-copper/50 text-[#EDE5DC] hover:text-copper border border-[#38332E] text-[11px] font-mono transition-all flex items-center gap-1.5 cursor-pointer font-medium whitespace-nowrap active:scale-95"
                   >
                     <span>{p.label}</span>
-                    <ArrowRight className="w-2.5 h-2.5 opacity-50" />
+                    <ArrowRight className="w-2.5 h-2.5 opacity-60 text-copper shrink-0" />
                   </button>
                 ))}
               </div>
