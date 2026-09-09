@@ -16,6 +16,8 @@ import { PROJECTS_DATA } from '../constants';
 import { ProjectItem } from '../types';
 import Markdown from 'react-markdown';
 import { AmbientParticles } from './AmbientParticles';
+import { ConstellationWeb } from './ConstellationWeb';
+import { DataStreamTicker } from './DataStreamTicker';
 
 // Structured Metadata Schema for all 9 Flagship Systems
 interface ProjectMeta {
@@ -257,6 +259,12 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
 
       {/* Floating Ambient Neural Beacons & Orbs */}
       <AmbientParticles variant="neural" density="subtle" />
+
+      {/* Engineering systems network */}
+      <ConstellationWeb nodeCount={10} maxEdges={12} />
+
+      {/* Hex data streams in margins */}
+      <DataStreamTicker columns={6} intensity={0.6} />
 
       <div className="max-w-7xl mx-auto relative z-10">
         

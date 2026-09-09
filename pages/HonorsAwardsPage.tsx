@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { AWARDS_DATA } from '../constants';
 import { SEO } from '../components/SEO';
 import { AmbientParticles } from '../components/AmbientParticles';
+import { ConstellationWeb } from '../components/ConstellationWeb';
 
 export const HonorsAwardsPage: React.FC = () => {
   return (
@@ -20,6 +21,9 @@ export const HonorsAwardsPage: React.FC = () => {
 
       {/* Ambient Floating Cyber-Orbs */}
       <AmbientParticles variant="minimal" density="subtle" />
+
+      {/* Achievement constellation — stars echo awards */}
+      <ConstellationWeb nodeCount={14} maxEdges={16} />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-12 relative z-10">
         <Link 

@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { CERTIFICATIONS_DATA } from '../constants';
 import { SEO } from '../components/SEO';
 import { AmbientParticles } from '../components/AmbientParticles';
+import { NeuralGridLines } from '../components/NeuralGridLines';
+import { SonarRings } from '../components/SonarRings';
 
 export const CertificationsPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
@@ -44,6 +46,12 @@ export const CertificationsPage: React.FC = () => {
 
       {/* Ambient Cyber-Orbs */}
       <AmbientParticles variant="minimal" density="subtle" />
+
+      {/* Tech credential grid backdrop */}
+      <NeuralGridLines rows={7} cols={9} scanBar={true} />
+
+      {/* Subtle sonar depth */}
+      <SonarRings />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-12 relative z-10">
         <Link 

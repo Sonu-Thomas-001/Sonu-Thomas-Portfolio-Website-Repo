@@ -14,6 +14,8 @@ import {
 } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
 import { AmbientParticles } from './AmbientParticles';
+import { SonarRings } from './SonarRings';
+import { ConstellationWeb } from './ConstellationWeb';
 
 const ABOUT_LOOKS = [
   {
@@ -127,6 +129,12 @@ export const About: React.FC = () => {
     >
       {/* Floating Ambient Cyber-Orbs */}
       <AmbientParticles variant="orbs" density="subtle" />
+
+      {/* Sonar emitters for ambient depth */}
+      <SonarRings />
+
+      {/* Constellation node network */}
+      <ConstellationWeb nodeCount={12} maxEdges={14} />
 
       {/* 1. Section Header & Identifier Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-12">

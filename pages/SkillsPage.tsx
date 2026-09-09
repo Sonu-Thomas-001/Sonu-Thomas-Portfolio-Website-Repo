@@ -19,6 +19,8 @@ import {
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
 import { AmbientParticles } from '../components/AmbientParticles';
+import { NeuralGridLines } from '../components/NeuralGridLines';
+import { DataStreamTicker } from '../components/DataStreamTicker';
 
 // --- DATA STRUCTURES ---
 
@@ -525,6 +527,12 @@ export const SkillsPage: React.FC = () => {
 
       {/* Ambient Neural Particles */}
       <AmbientParticles variant="minimal" density="subtle" />
+
+      {/* Neural perspective grid — tech discipline backdrop */}
+      <NeuralGridLines rows={9} cols={11} scanBar={true} />
+
+      {/* Hex data streams in margins */}
+      <DataStreamTicker columns={8} intensity={0.7} />
 
       {/* Hero Header */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-12 sm:mb-16">

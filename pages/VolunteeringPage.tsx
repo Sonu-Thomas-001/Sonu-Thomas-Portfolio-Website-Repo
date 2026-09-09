@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { VOLUNTEERING_DATA } from '../constants';
 import { SEO } from '../components/SEO';
 import { AmbientParticles } from '../components/AmbientParticles';
+import { SonarRings } from '../components/SonarRings';
 
 export const VolunteeringPage: React.FC = () => {
   return (
@@ -20,6 +21,9 @@ export const VolunteeringPage: React.FC = () => {
 
       {/* Ambient Floating Cyber-Orbs */}
       <AmbientParticles variant="minimal" density="subtle" />
+
+      {/* Community outreach — sonar signals going out */}
+      <SonarRings />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-12 relative z-10">
         <Link 

@@ -18,6 +18,7 @@ import {
 import { PERSONAL_DETAILS } from '../constants';
 import { SuccessModal } from './SuccessModal';
 import { AmbientParticles } from './AmbientParticles';
+import { NeuralGridLines } from './NeuralGridLines';
 
 export const Contact: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -92,6 +93,9 @@ export const Contact: React.FC = () => {
 
       {/* Ambient Floating Cyber-Orbs */}
       <AmbientParticles variant="orbs" density="subtle" />
+
+      {/* Perspective neural grid — signals/connections theme */}
+      <NeuralGridLines rows={8} cols={10} scanBar={true} />
 
       {/* 1. Section Header & Narrative Across Top */}
       <motion.div 

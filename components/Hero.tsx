@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { PERSONAL_DETAILS } from '../constants';
 import { AsciiWave } from './AsciiWave';
 import { AmbientParticles } from './AmbientParticles';
+import { ConstellationWeb } from './ConstellationWeb';
+import { DataStreamTicker } from './DataStreamTicker';
 
 const PROFESSIONAL_HERO_PHOTOS = [
   { src: "/images/Professional%20Pic%201.png", label: "Executive", tag: "System Design" },
@@ -150,6 +152,12 @@ export const Hero: React.FC = () => {
 
       {/* Floating Ambient Neural Cyber-Orbs & Beacons */}
       <AmbientParticles variant="neural" density="normal" />
+
+      {/* Constellation star-node network */}
+      <ConstellationWeb nodeCount={14} maxEdges={18} />
+
+      {/* Subtle hex data streams in far margins */}
+      <DataStreamTicker columns={10} intensity={0.85} />
 
       <div className="grid lg:grid-cols-12 gap-12 lg:gap-14 items-center my-auto relative z-10">
         
