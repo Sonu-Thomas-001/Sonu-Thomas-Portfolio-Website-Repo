@@ -4,6 +4,7 @@ import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail, Sparkles } f
 import { Link } from 'react-router-dom';
 import { PERSONAL_DETAILS } from '../constants';
 import { AsciiWave } from './AsciiWave';
+import { AmbientParticles } from './AmbientParticles';
 
 const PROFESSIONAL_HERO_PHOTOS = [
   { src: "/images/Professional%20Pic%201.png", label: "Executive", tag: "System Design" },
@@ -146,6 +147,9 @@ export const Hero: React.FC = () => {
           SONU THOMAS &bull; AI ENGINEER &bull; SYSTEM ARCHITECT &bull; NEURAL SYSTEMS &bull;
         </motion.div>
       </div>
+
+      {/* Floating Ambient Neural Cyber-Orbs & Beacons */}
+      <AmbientParticles variant="neural" density="normal" />
 
       <div className="grid lg:grid-cols-12 gap-12 lg:gap-14 items-center my-auto relative z-10">
         

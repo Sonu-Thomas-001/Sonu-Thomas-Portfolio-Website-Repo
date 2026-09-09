@@ -13,6 +13,7 @@ import {
   Quote,
 } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
+import { AmbientParticles } from './AmbientParticles';
 
 const ABOUT_LOOKS = [
   {
@@ -124,6 +125,9 @@ export const About: React.FC = () => {
       id="about"
       className="scroll-mt-24 sm:scroll-mt-28 py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto relative overflow-hidden"
     >
+      {/* Floating Ambient Cyber-Orbs */}
+      <AmbientParticles variant="orbs" density="subtle" />
+
       {/* 1. Section Header & Identifier Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-12">
         <div className="flex items-center gap-3">

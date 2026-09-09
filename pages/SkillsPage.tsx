@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
+import { AmbientParticles } from '../components/AmbientParticles';
 
 // --- DATA STRUCTURES ---
 
@@ -515,12 +516,15 @@ export const SkillsPage: React.FC = () => {
   });
 
   return (
-    <div className="pt-28 pb-24 min-h-screen bg-page">
+    <div className="pt-28 pb-24 min-h-screen bg-page relative overflow-hidden">
       <SEO
         title="Technical Arsenal & Engineering Capability Map | Sonu Thomas"
         description="Comprehensive technical capabilities of Sonu Thomas: AI, LLM & Agent Engineering, Full-Stack Software, Cloud Infrastructure, Databases, Enterprise Integrations, and System Architecture."
         url="/skills"
       />
+
+      {/* Ambient Neural Particles */}
+      <AmbientParticles variant="minimal" density="subtle" />
 
       {/* Hero Header */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-12 sm:mb-16">

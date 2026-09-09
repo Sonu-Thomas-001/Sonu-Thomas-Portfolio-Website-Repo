@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
 import { SuccessModal } from './SuccessModal';
+import { AmbientParticles } from './AmbientParticles';
 
 export const Contact: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -88,6 +89,9 @@ export const Contact: React.FC = () => {
         style={{ y: ambientOrbY }}
         className="absolute -bottom-20 -right-20 w-[450px] h-[450px] bg-copper/5 rounded-full blur-[120px] pointer-events-none -z-10"
       />
+
+      {/* Ambient Floating Cyber-Orbs */}
+      <AmbientParticles variant="orbs" density="subtle" />
 
       {/* 1. Section Header & Narrative Across Top */}
       <motion.div 

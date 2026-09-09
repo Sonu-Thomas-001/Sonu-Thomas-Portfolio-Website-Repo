@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import { PROJECTS_DATA } from '../constants';
 import { ProjectItem } from '../types';
 import Markdown from 'react-markdown';
+import { AmbientParticles } from './AmbientParticles';
 
 // Structured Metadata Schema for all 9 Flagship Systems
 interface ProjectMeta {
@@ -253,6 +254,9 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
           backgroundSize: '32px 32px',
         }}
       />
+
+      {/* Floating Ambient Neural Beacons & Orbs */}
+      <AmbientParticles variant="neural" density="subtle" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         

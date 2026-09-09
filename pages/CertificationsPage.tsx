@@ -4,6 +4,7 @@ import { BadgeCheck, Calendar, ArrowLeft, Award, Search, Sparkles, ExternalLink,
 import { Link } from 'react-router-dom';
 import { CERTIFICATIONS_DATA } from '../constants';
 import { SEO } from '../components/SEO';
+import { AmbientParticles } from '../components/AmbientParticles';
 
 export const CertificationsPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
@@ -40,6 +41,9 @@ export const CertificationsPage: React.FC = () => {
 
       {/* Background Parallax Glow */}
       <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-copper/10 dark:bg-copper/15 rounded-full blur-[120px] pointer-events-none -z-10" />
+
+      {/* Ambient Cyber-Orbs */}
+      <AmbientParticles variant="minimal" density="subtle" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-12 relative z-10">
         <Link 

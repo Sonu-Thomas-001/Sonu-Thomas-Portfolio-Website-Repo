@@ -4,6 +4,7 @@ import { Trophy, Star, ArrowLeft, Award, Sparkles, ShieldCheck, CheckCircle2 } f
 import { Link } from 'react-router-dom';
 import { AWARDS_DATA } from '../constants';
 import { SEO } from '../components/SEO';
+import { AmbientParticles } from '../components/AmbientParticles';
 
 export const HonorsAwardsPage: React.FC = () => {
   return (
@@ -16,6 +17,9 @@ export const HonorsAwardsPage: React.FC = () => {
 
       {/* Background Subtle Copper Ambient Halo */}
       <div className="absolute top-24 left-1/2 -translate-x-1/2 w-[650px] h-[320px] bg-copper/10 dark:bg-copper/15 rounded-full blur-[120px] pointer-events-none -z-10" />
+
+      {/* Ambient Floating Cyber-Orbs */}
+      <AmbientParticles variant="minimal" density="subtle" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-12 relative z-10">
         <Link 
