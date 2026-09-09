@@ -2,14 +2,10 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import {
   Bot,
-  Terminal,
-  ShieldCheck,
-  Globe,
+  Code2,
+  Cloud,
+  Workflow,
   ArrowUpRight,
-  Cpu,
-  Database,
-  Layers,
-  Sparkles,
 } from 'lucide-react';
 import { TechPillMarquee } from './TechPillMarquee';
 
@@ -28,74 +24,102 @@ interface Discipline {
 const DISCIPLINES: Discipline[] = [
   {
     id: "01",
-    name: "AI & Autonomous Systems",
-    roleTag: "Agentic State Machines & Vector RAG",
-    tagline: "Coordinating autonomous digital workforces with cyclic directed graphs (LangGraph), ChromaDB vector retrieval, and tool sandboxing via MCP.",
-    metric: "100+ Digital Workers // 70% MTTR",
+    name: "AI, LLM & Agent Engineering",
+    roleTag: "Autonomous Systems & Reasoning",
+    tagline: "Designing multi-agent state graphs, grounded vector retrieval, and custom tool integrations with deterministic safeguards.",
+    metric: "LangGraph DAGs // 70% MTTR Reduction",
     icon: Bot,
     iconBg: "bg-copper/10 dark:bg-copper/20 text-copper border border-copper/30",
     glowAccent: "group-hover:border-copper/50 group-hover:shadow-[0_16px_40px_-10px_rgba(196,125,90,0.18)]",
     skills: [
       { name: "LangGraph", highlight: true },
-      { name: "Google Gemini", highlight: true },
-      { name: "ChromaDB RAG" },
-      { name: "MCP Protocol", highlight: true },
-      { name: "Pydantic AI" },
-      { name: "FastAPI" },
+      { name: "LangChain" },
+      { name: "Google Vertex AI", highlight: true },
+      { name: "Vertex AI Agent Builder" },
+      { name: "AWS Bedrock" },
+      { name: "Gemini", highlight: true },
+      { name: "Claude" },
+      { name: "RAG", highlight: true },
+      { name: "AI Agents", highlight: true },
+      { name: "Agentic Workflows" },
+      { name: "ChromaDB", highlight: true },
+      { name: "PyTorch" },
+      { name: "Embeddings" },
+      { name: "Tool / Function Calling", highlight: true },
     ],
   },
   {
     id: "02",
-    name: "Backend & Systems",
-    roleTag: "ACID Compliance & Data Logic",
-    tagline: "Engineering bulletproof backend services, concurrent transactions, and database interaction using Java, Python, and Oracle PL/SQL.",
-    metric: "High Concurrency // Zero Data Loss",
-    icon: Terminal,
+    name: "Full-Stack Engineering",
+    roleTag: "Core Systems & Web Runtimes",
+    tagline: "Building resilient, high-concurrency software and kinetic client applications end-to-end with strict type safety.",
+    metric: "Microservices // Sub-Second UI",
+    icon: Code2,
     iconBg: "bg-[#8B5CF6]/10 dark:bg-[#8B5CF6]/20 text-[#8B5CF6] dark:text-[#A78BFA] border border-[#8B5CF6]/30",
     glowAccent: "group-hover:border-[#8B5CF6]/50 group-hover:shadow-[0_16px_40px_-10px_rgba(139,92,246,0.18)]",
     skills: [
       { name: "Python", highlight: true },
-      { name: "Java Enterprise", highlight: true },
-      { name: "TypeScript" },
-      { name: "Oracle PL/SQL", highlight: true },
-      { name: "JDBC" },
-      { name: "C / C++" },
+      { name: "TypeScript", highlight: true },
+      { name: "JavaScript" },
+      { name: "Java", highlight: true },
+      { name: "C++" },
+      { name: "SQL", highlight: true },
+      { name: "React", highlight: true },
+      { name: "Next.js", highlight: true },
+      { name: "Node.js" },
+      { name: "Express.js" },
+      { name: "FastAPI", highlight: true },
+      { name: "Flask" },
+      { name: "Tailwind CSS", highlight: true },
+      { name: "HTML5" },
+      { name: "CSS3" },
     ],
   },
   {
     id: "03",
-    name: "Infrastructure & SRE",
-    roleTag: "Change Governance & 99.99% SLA",
-    tagline: "Managing mission-critical production change governance targeted for 99.99% availability. Real-time Unix shell operations and ITIL risk scoring.",
-    metric: "Flawless Releases // Star TechBee Laureate",
-    icon: ShieldCheck,
+    name: "Cloud, Data & Infrastructure",
+    roleTag: "Distributed Systems & SRE",
+    tagline: "Architecting scalable cloud infrastructure, relational database engines, and high-availability production pipelines.",
+    metric: "99.99% Availability // Star TechBee Laureate",
+    icon: Cloud,
     iconBg: "bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30",
     glowAccent: "group-hover:border-emerald-500/50 group-hover:shadow-[0_16px_40px_-10px_rgba(16,185,129,0.18)]",
     skills: [
-      { name: "Unix / Linux CLI", highlight: true },
-      { name: "Docker Containers" },
-      { name: "ITIL Change Mgmt", highlight: true },
-      { name: "Oracle DB Admin" },
-      { name: "CI/CD Concepts" },
-      { name: "GitOps" },
+      { name: "Google Cloud", highlight: true },
+      { name: "AWS" },
+      { name: "Docker", highlight: true },
+      { name: "Linux", highlight: true },
+      { name: "BigQuery" },
+      { name: "PostgreSQL", highlight: true },
+      { name: "Oracle Database", highlight: true },
+      { name: "Git" },
+      { name: "CI/CD", highlight: true },
+      { name: "Cloud Deployment" },
+      { name: "Vector Databases", highlight: true },
     ],
   },
   {
     id: "04",
-    name: "Web & Interface Architecture",
-    roleTag: "Kinetic Full-Stack Web Platforms",
-    tagline: "Crafting modern web architectures with React 19, Next.js, and Tailwind CSS. Featuring sub-second UI responses and real-time WebSocket channels.",
-    metric: "Sub-Second Latency // 60 FPS Motion",
-    icon: Globe,
+    name: "Enterprise Integration & Automation",
+    roleTag: "ITSM Governance & Interoperability",
+    tagline: "Bridging mission-critical enterprise systems, automated ticket triage, and seamless API interoperability across platforms.",
+    metric: "Zero-Downtime Governance // ITIL Compliance",
+    icon: Workflow,
     iconBg: "bg-amber-500/10 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30",
     glowAccent: "group-hover:border-amber-500/50 group-hover:shadow-[0_16px_40px_-10px_rgba(245,158,11,0.18)]",
     skills: [
-      { name: "React 19", highlight: true },
-      { name: "Next.js", highlight: true },
-      { name: "Tailwind CSS", highlight: true },
-      { name: "Framer Motion" },
-      { name: "WebSockets" },
-      { name: "Headless CMS" },
+      { name: "REST APIs", highlight: true },
+      { name: "API Integration", highlight: true },
+      { name: "ServiceNow", highlight: true },
+      { name: "Jira" },
+      { name: "Confluence" },
+      { name: "Playwright" },
+      { name: "Workflow Automation", highlight: true },
+      { name: "AI Automation", highlight: true },
+      { name: "Webhooks" },
+      { name: "Third-Party Integrations" },
+      { name: "Microservices", highlight: true },
+      { name: "System Integration" },
     ],
   },
 ];
@@ -129,7 +153,7 @@ export const Skills: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-12">
         <div className="flex items-center gap-3">
           <span className="font-mono text-xs text-copper font-semibold tracking-widest uppercase">
-            04 // STACK & ARCHITECTURE
+            04 // TECHNICAL ECOSYSTEM & POSITIONING
           </span>
           <div className="h-px bg-[#E8E0D8] dark:bg-white/10 w-24 sm:w-40 overflow-hidden">
             <motion.div style={{ width: dividerWidth }} className="h-full bg-copper" />
@@ -138,17 +162,17 @@ export const Skills: React.FC = () => {
 
         <div className="inline-flex items-center gap-2 self-start sm:self-auto px-3.5 py-1.5 rounded-full bg-white/80 dark:bg-[#1E1B18]/80 backdrop-blur-md border border-[#E8E0D8] dark:border-white/10 text-[11px] font-mono text-[#78716C] dark:text-[#A8A29E]">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span>Active Production Stack</span>
+          <span>Core Engineering Disciplines</span>
         </div>
       </div>
 
       {/* 2. Editorial Headline & Subtitle */}
       <div className="max-w-3xl mb-12 sm:mb-16">
         <h2 className="font-display font-bold text-3xl sm:text-5xl lg:text-6xl text-[#1A1614] dark:text-[#FDFBF7] tracking-tight leading-[1.12]">
-          Curated tools for <span className="text-copper">intelligent systems</span>.
+          Positioned for <span className="text-copper">applied intelligence</span>.
         </h2>
         <p className="mt-4 text-base sm:text-lg text-[#4A4340] dark:text-[#D6D3D1] font-normal leading-relaxed">
-          A disciplined, high-signal selection of technologies applied across enterprise production engineering, autonomous multi-agent systems, and modern web applications.
+          Bridging cutting-edge agentic workflows and production LLMs with enterprise systems, scalable cloud data infrastructure, and full-stack engineering.
         </p>
       </div>
 
@@ -163,7 +187,7 @@ export const Skills: React.FC = () => {
         <TechPillMarquee speed={38} direction="left" />
       </motion.div>
 
-      {/* 4. Completely Redesigned 2x2 Wide Architectural Dossier Cards */}
+      {/* 4. 2x2 Wide Architectural Dossier Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
         {DISCIPLINES.map((disc, idx) => {
           const Icon = disc.icon;
@@ -189,7 +213,7 @@ export const Skills: React.FC = () => {
                     </div>
                     <div>
                       <span className="text-[10px] font-mono text-copper font-bold tracking-widest uppercase block">
-                        // ARCHITECTURE {disc.id}
+                        // DISCIPLINE {disc.id}
                       </span>
                       <span className="text-xs font-mono text-[#78716C] dark:text-[#A8A29E] font-medium">
                         {disc.roleTag}
@@ -212,22 +236,22 @@ export const Skills: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Structured 2/3-Column Technology Matrix */}
-                <div className="pt-5 border-t border-[#E8E0D8]/70 dark:border-white/[0.08] grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {/* Structured Flowing Tech Pills */}
+                <div className="pt-5 border-t border-[#E8E0D8]/70 dark:border-white/[0.08] flex flex-wrap gap-2">
                   {disc.skills.map((skill) => (
-                    <div
+                    <span
                       key={skill.name}
-                      className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-mono border transition-all duration-200 select-none cursor-default ${
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono transition-all duration-200 select-none cursor-default ${
                         skill.highlight
-                          ? 'bg-[#1A1614] text-white dark:bg-white/[0.08] dark:text-white border-transparent shadow-sm hover:border-copper/60 hover:bg-copper hover:text-white'
-                          : 'bg-[#FAF7F2] dark:bg-white/[0.03] border-[#E8E0D8] dark:border-white/[0.06] text-[#4A4340] dark:text-[#D6D3D1] hover:border-copper/50 hover:text-copper'
+                          ? 'bg-[#1A1614] text-white dark:bg-white/[0.12] dark:text-white border border-transparent font-medium shadow-xs hover:bg-copper hover:text-white hover:scale-105'
+                          : 'bg-[#FAF7F2] dark:bg-white/[0.03] border border-[#E8E0D8] dark:border-white/[0.06] text-[#4A4340] dark:text-[#D6D3D1] hover:border-copper/50 hover:text-copper hover:scale-105'
                       }`}
                     >
-                      <span className="truncate">{skill.name}</span>
+                      <span>{skill.name}</span>
                       {skill.highlight && (
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse ml-1 shrink-0" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                       )}
-                    </div>
+                    </span>
                   ))}
                 </div>
               </div>
@@ -251,4 +275,5 @@ export const Skills: React.FC = () => {
 };
 
 export default Skills;
+
 
