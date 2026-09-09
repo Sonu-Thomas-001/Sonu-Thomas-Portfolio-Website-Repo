@@ -14,6 +14,14 @@ const PROFESSIONAL_HERO_PHOTOS = [
   { src: "/images/Professional%20Pic%206.png", label: "Leadership", tag: "Production Leadership" },
 ];
 
+const HERO_DYNAMIC_WORDS = [
+  "intelligent",
+  "autonomous",
+  "agentic",
+  "production",
+  "resilient",
+];
+
 const PROOF_METRICS = [
   {
     index: "01",
@@ -58,6 +66,16 @@ export const Hero: React.FC = () => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
   const [isPhotoHovered, setIsPhotoHovered] = useState(false);
+  const [activeWordIdx, setActiveWordIdx] = useState(0);
+
+  // Looping Dynamic Word Rotator (Cycles through core specializations every 3 seconds)
+  useEffect(() => {
+    const wordInterval = setInterval(() => {
+      setActiveWordIdx((prev) => (prev + 1) % HERO_DYNAMIC_WORDS.length);
+    }, 3000);
+
+    return () => clearInterval(wordInterval);
+  }, []);
 
   // Auto-switch portrait every 4 seconds (The optimal balance: enough time to comfortably view, dynamic enough to feel alive)
   useEffect(() => {
@@ -152,21 +170,47 @@ export const Hero: React.FC = () => {
             </span>
           </motion.div>
 
-          {/* Cinematic Editorial Headline */}
-          <div className="space-y-0.5 sm:space-y-1">
-            <div className="overflow-hidden">
+          {/* Cinematic Editorial Headline with Ambient Looping Animations */}
+          <div className="relative space-y-0.5 sm:space-y-1">
+            {/* Ambient Looping Glow Aura behind Headline */}
+            <motion.div
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.12, 0.28, 0.12],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute -top-12 -left-8 w-72 h-40 bg-copper/20 rounded-full blur-[80px] pointer-events-none -z-10"
+            />
+
+            <div className="overflow-visible">
               <motion.h1
                 initial={{ y: "100%", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="font-display font-bold text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] tracking-tight text-[#1A1614] dark:text-[#FDFBF7] leading-[1.05]"
+                className="font-display font-bold text-4xl sm:text-6xl md:text-7xl lg:text-[4.75rem] xl:text-[5.25rem] tracking-tight text-[#1A1614] dark:text-[#FDFBF7] leading-[1.05]"
               >
-                I build{' '}
-                <span className="bg-gradient-to-r from-[#B85D36] via-copper to-[#A04D28] dark:from-[#F0A584] dark:via-copper dark:to-[#F0A584] bg-clip-text text-transparent">
-                  intelligent
+                <span>I build </span>
+                <span className="inline-block relative">
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.span
+                      key={activeWordIdx}
+                      initial={{ y: 28, opacity: 0, filter: 'blur(6px)' }}
+                      animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+                      exit={{ y: -28, opacity: 0, filter: 'blur(6px)' }}
+                      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                      className="inline-block bg-gradient-to-r from-[#B85D36] via-copper to-[#E88C64] dark:from-[#F0A584] dark:via-copper dark:to-[#FFB899] bg-clip-text text-transparent pb-1"
+                    >
+                      {HERO_DYNAMIC_WORDS[activeWordIdx]}
+                    </motion.span>
+                  </AnimatePresence>
                 </span>
               </motion.h1>
             </div>
+
             <div className="overflow-hidden flex items-center gap-4 sm:gap-6">
               <motion.div
                 initial={{ y: "100%", opacity: 0 }}
@@ -174,14 +218,48 @@ export const Hero: React.FC = () => {
                 transition={{ duration: 0.85, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
                 className="font-display font-bold text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] tracking-tight text-[#1A1614] dark:text-[#FDFBF7] leading-[1.05]"
               >
-                systems<span className="text-copper">.</span>
+                systems
+                <motion.span
+                  animate={{
+                    scale: [1, 1.35, 1],
+                    opacity: [0.85, 1, 0.85],
+                    filter: [
+                      'drop-shadow(0 0 0px rgba(196,125,90,0))',
+                      'drop-shadow(0 0 8px rgba(196,125,90,0.85))',
+                      'drop-shadow(0 0 0px rgba(196,125,90,0))',
+                    ],
+                  }}
+                  transition={{
+                    duration: 2.2,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                  className="text-copper inline-block origin-center ml-0.5"
+                >
+                  .
+                </motion.span>
               </motion.div>
+
+              {/* Looping Ambient Laser Pulse Track Line */}
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 0.9, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                className="h-[2.5px] flex-1 max-w-[140px] bg-gradient-to-r from-copper to-transparent origin-left hidden sm:block rounded-full"
-              />
+                className="relative h-[3px] flex-1 max-w-[150px] bg-copper/25 dark:bg-copper/20 rounded-full overflow-hidden hidden sm:block origin-left"
+              >
+                {/* Traveling glowing photon pulse */}
+                <motion.div
+                  animate={{
+                    x: ['-100%', '220%'],
+                  }}
+                  transition={{
+                    duration: 2.2,
+                    repeat: Infinity,
+                    ease: [0.4, 0, 0.2, 1],
+                  }}
+                  className="absolute inset-0 w-24 bg-gradient-to-r from-transparent via-copper to-transparent shadow-[0_0_12px_rgba(196,125,90,0.9)]"
+                />
+              </motion.div>
             </div>
           </div>
 
