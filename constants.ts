@@ -260,7 +260,7 @@ Our ultimate aim is to build the **future-ready digital working taskforce**—an
     links: {
       demo: "#"
     },
-    image: "/images/project_dummy.png"
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1200&auto=format&fit=crop"
   },
   {
     id: "change-coworker",
@@ -279,6 +279,7 @@ Our ultimate aim is to build the **future-ready digital working taskforce**—an
     ],
     description: "Your AI-Powered Change Management Intelligence Platform: An enterprise-grade Multi-Agent AI system built on a collaborative network of 5 specialized AI agents powered by Gemini 2.5 Flash and RAG. Automates change creation, risk scoring, conflict detection, and compliance reports through natural conversation.",
     detailedDescription: `## 🎯 What is Change Co-Worker?
+## What is Change Co-Worker?
 **Change Co-Worker** is an enterprise-grade **Multi-Agent AI System** that transforms how organisations manage IT changes. Built on a collaborative network of **5 specialised AI agents** powered by **Google Gemini 2.5 Flash** and **RAG (Retrieval-Augmented Generation)**, it provides SOP-accurate answers, automates change creation, assesses risk, and generates compliance reports — all through **natural conversation**.
 
 > *"Whether you're raising a change, validating one, or approving at CAB — Change Co-Worker acts as your autonomous co-pilot."*
@@ -310,7 +311,7 @@ Change Co-Worker utilizes a **Hub-and-Spoke** architecture where a central **Orc
     links: {
       demo: "#"
     },
-    image: "/images/project_dummy.png"
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop"
   },
   {
     id: "rca-agent",
@@ -358,7 +359,7 @@ RCA-Agent coordinates an automated 5-step diagnostic pipeline:
     links: {
       demo: "#"
     },
-    image: "/images/project_dummy.png"
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop"
   },
   {
     id: "ticketwave",
@@ -417,7 +418,7 @@ TicketWave guarantees zero double-bookings through a defense-in-depth architectu
       github: "https://github.com/Sonu-Thomas-001/TicketWave",
       demo: "#"
     },
-    image: "/images/project_dummy.png"
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop"
   },
   {
     id: "smartdesk-ai",
@@ -468,7 +469,7 @@ SmartDesk AI coordinates a closed-loop 7-step incident resolution workflow:
       github: "https://github.com/Sonu-Thomas-001/SmartDesk-Ai",
       demo: "#"
     },
-    image: "/images/project_dummy.png"
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200&auto=format&fit=crop"
   },
   {
     id: "qubimind",
@@ -535,7 +536,7 @@ SmartDesk AI coordinates a closed-loop 7-step incident resolution workflow:
       github: "https://github.com/Sonu-Thomas-001/QubiMind",
       demo: "#"
     },
-    image: "/images/project_dummy.png"
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop"
   },
   {
     id: "multi-agent-enterprise-ai-assistant",
@@ -611,7 +612,7 @@ All document queries undergo dual retrieval:
       github: "https://github.com/Sonu-Thomas-001/Multi-Agent-Enterprise-AI-Assistant",
       demo: "#"
     },
-    image: "/images/project_dummy.png"
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop"
   },
   {
     id: "versant-practice-test",
@@ -678,7 +679,7 @@ All document queries undergo dual retrieval:
       github: "https://github.com/Sonu-Thomas-001/Versant-Practice-Test",
       demo: "#"
     },
-    image: "/images/project_dummy.png"
+    image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1200&auto=format&fit=crop"
   },
   {
     id: "resolveai",
@@ -747,7 +748,7 @@ Create Ticket → Final Response
       github: "https://github.com/Sonu-Thomas-001/IT-Service-Desk-Agent",
       demo: "#"
     },
-    image: "/images/project_dummy.png"
+    image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=1200&auto=format&fit=crop"
   }
 ];
 

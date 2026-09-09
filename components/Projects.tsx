@@ -186,8 +186,6 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
   const [activeFilter, setActiveFilter] = useState('All');
   const [viewMode, setViewMode] = useState<'grid' | 'dossier'>('grid');
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
-  const [spotlightProjectId, setSpotlightProjectId] = useState<string>('agentic-co-worker-platform');
-  const [spotlightTab, setSpotlightTab] = useState<'telemetry' | 'topology' | 'stack'>('telemetry');
   const [searchQuery, setSearchQuery] = useState('');
 
   // Close modal on ESC key
@@ -240,12 +238,13 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
     return counts;
   }, []);
 
-  // Spotlight project item
-  const spotlightProject = useMemo(() => {
-    return PROJECTS_DATA.find((p) => p.id === spotlightProjectId) || PROJECTS_DATA[0];
-  }, [spotlightProjectId]);
-
-  const spotlightMeta = PROJECT_METRICS[spotlightProject.id] || PROJECT_METRICS['agentic-co-worker-platform'];
+  // Display projects: On homepage with default filter, show top 4 flagship systems in the 2x2 bento grid
+  const displayProjects = useMemo(() => {
+    if (isHomepage && activeFilter === 'All' && !searchQuery) {
+      return filteredProjects.slice(0, 4);
+    }
+    return filteredProjects;
+  }, [isHomepage, activeFilter, searchQuery, filteredProjects]);
 
   return (
     <section id="projects" className="scroll-mt-24 sm:scroll-mt-28 py-24 sm:py-32 px-6 sm:px-8 lg:px-12 bg-[#131110] text-[#EDE5DC] border-y border-[#2A2522] relative">
@@ -362,209 +361,12 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
         </div>
 
         {/* ============================================================ */}
-        {/* FLAGSHIP SPOTLIGHT HERO SHOWCASE (Shown when on "All" & Grid) */}
-        {/* ============================================================ */}
-        {activeFilter === 'All' && !searchQuery && viewMode === 'grid' && (
-          <div className="mb-16">
-            <div className="p-1 rounded-3xl bg-gradient-to-r from-copper/30 via-[#38332E] to-copper/10 shadow-2xl">
-              <div className="bg-[#1A1715] rounded-[22px] p-6 sm:p-10 lg:p-12 border border-[#332E2A] flex flex-col lg:flex-row gap-10 items-stretch">
-                
-                {/* Left Side: System Narrative & Interactive Tabs */}
-                <div className="flex-1 flex flex-col justify-between">
-                  <div>
-                    {/* Status & Badge */}
-                    <div className="flex flex-wrap items-center gap-3 mb-4">
-                      <span className="px-3.5 py-1 rounded-full bg-copper/15 border border-copper/30 text-copper text-[11px] font-mono font-semibold flex items-center gap-1.5">
-                        <Sparkles className="w-3 h-3" />
-                        Flagship Enterprise Spotlight
-                      </span>
-                      <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] font-mono font-medium flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        {spotlightMeta.badge}
-                      </span>
-                    </div>
-
-                    {/* Title & Role */}
-                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-                      <h3 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-[#EDE5DC] tracking-tight">
-                        {spotlightProject.title}
-                      </h3>
-                    </div>
-                    <span className="text-xs font-mono text-copper block mt-1 mb-4 font-medium">
-                      {spotlightProject.role} &bull; {spotlightProject.category}
-                    </span>
-
-                    <p className="text-sm sm:text-base text-[#9C948B] font-light leading-relaxed mb-6">
-                      {spotlightProject.description}
-                    </p>
-
-                    {/* Interactive Spotlight Tab Switcher */}
-                    <div className="flex items-center gap-2 border-b border-[#2A2522] pb-3 mb-6 text-xs font-mono">
-                      <button
-                        onClick={() => setSpotlightTab('telemetry')}
-                        className={`px-3 py-1 rounded-lg transition-colors cursor-pointer ${
-                          spotlightTab === 'telemetry' 
-                            ? 'bg-[#25211E] text-copper font-semibold border border-copper/30' 
-                            : 'text-[#78716C] hover:text-[#EDE5DC]'
-                        }`}
-                      >
-                        Operational Telemetry
-                      </button>
-                      <button
-                        onClick={() => setSpotlightTab('topology')}
-                        className={`px-3 py-1 rounded-lg transition-colors cursor-pointer ${
-                          spotlightTab === 'topology' 
-                            ? 'bg-[#25211E] text-copper font-semibold border border-copper/30' 
-                            : 'text-[#78716C] hover:text-[#EDE5DC]'
-                        }`}
-                      >
-                        System Topology
-                      </button>
-                      <button
-                        onClick={() => setSpotlightTab('stack')}
-                        className={`px-3 py-1 rounded-lg transition-colors cursor-pointer ${
-                          spotlightTab === 'stack' 
-                            ? 'bg-[#25211E] text-copper font-semibold border border-copper/30' 
-                            : 'text-[#78716C] hover:text-[#EDE5DC]'
-                        }`}
-                      >
-                        Integrated Stack
-                      </button>
-                    </div>
-
-                    {/* Tab 1: Operational Telemetry */}
-                    {spotlightTab === 'telemetry' && (
-                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                        {spotlightMeta.telemetry.map((t, idx) => (
-                          <div key={idx} className="p-3.5 rounded-2xl bg-[#141210] border border-[#2A2522]">
-                            <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider block mb-1">
-                              {t.label}
-                            </span>
-                            <span className={`font-display font-bold text-base sm:text-lg ${
-                              t.accent === 'emerald' ? 'text-emerald-400' : t.accent === 'copper' ? 'text-copper' : 'text-[#EDE5DC]'
-                            }`}>
-                              {t.value}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Tab 2: System Topology */}
-                    {spotlightTab === 'topology' && (
-                      <div className="space-y-2">
-                        {spotlightMeta.pipelineSteps.map((step, idx) => (
-                          <div key={idx} className="flex items-start gap-2.5 p-2.5 rounded-xl bg-[#141210] border border-[#2A2522] text-xs">
-                            <span className="w-5 h-5 rounded-md bg-[#25211E] text-copper border border-copper/30 flex items-center justify-center font-mono text-[10px] font-bold shrink-0">
-                              0{idx + 1}
-                            </span>
-                            <span className="text-[#EDE5DC]/90 font-mono text-[11px] leading-snug">
-                              {step}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Tab 3: Integrated Stack */}
-                    {spotlightTab === 'stack' && (
-                      <div className="flex flex-wrap gap-2">
-                        {spotlightProject.stack.map((tech, idx) => (
-                          <span
-                            key={idx}
-                            className="px-3 py-1.5 rounded-xl bg-[#141210] border border-[#2D2824] text-xs font-mono text-[#D5CDC5] hover:border-copper/40 transition-colors"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Spotlight Action Row */}
-                  <div className="pt-6 mt-6 border-t border-[#2A2522] flex flex-wrap items-center justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                      <button
-                        onClick={() => setSelectedProject(spotlightProject)}
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-copper hover:bg-copper-600 text-white font-mono text-xs font-semibold transition-all shadow-glow-copper cursor-pointer"
-                      >
-                        <Sparkles className="w-4 h-4" />
-                        <span>Inspect Full System Dossier</span>
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </button>
-                      {spotlightProject.links?.github && (
-                        <a
-                          href={spotlightProject.links.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#25211E] hover:bg-[#2D2824] text-[#EDE5DC] border border-[#38332E] font-mono text-xs font-medium transition-all"
-                        >
-                          <Github className="w-4 h-4" />
-                          <span>Source Code</span>
-                        </a>
-                      )}
-                    </div>
-
-                    {/* Quick Spotlight Switcher */}
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider hidden sm:inline">
-                        Quick Spotlight:
-                      </span>
-                      {PROJECTS_DATA.slice(0, 4).map((p) => (
-                        <button
-                          key={p.id}
-                          onClick={() => setSpotlightProjectId(p.id)}
-                          className={`w-7 h-7 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer ${
-                            spotlightProjectId === p.id 
-                              ? 'bg-copper text-white shadow-glow-copper' 
-                              : 'bg-[#25211E] text-[#78716C] hover:text-[#EDE5DC] border border-[#332E2A]'
-                          }`}
-                          title={p.title}
-                        >
-                          {p.title.charAt(0)}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right Side: Media Showcase */}
-                <div 
-                  onClick={() => setSelectedProject(spotlightProject)}
-                  className="lg:w-[460px] relative rounded-2xl overflow-hidden bg-[#141210] border border-[#332E2A] group cursor-pointer flex flex-col justify-between"
-                >
-                  <div className="relative h-64 sm:h-80 lg:h-full overflow-hidden">
-                    <img
-                      src={spotlightProject.image}
-                      alt={spotlightProject.title}
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#131110] via-[#131110]/20 to-transparent" />
-                    
-                    {/* Floating Telemetry Glass Pill */}
-                    <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-[#171412]/90 backdrop-blur-md border border-[#332E2A] flex items-center justify-between text-xs font-mono text-[#EDE5DC]">
-                      <div className="flex items-center gap-2">
-                        <Activity className="w-3.5 h-3.5 text-copper" />
-                        <span className="truncate">{spotlightMeta.topology}</span>
-                      </div>
-                      <ArrowUpRight className="w-4 h-4 text-copper shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* ============================================================ */}
-        {/* VIEW MODE 1: EDITORIAL SHOWCASE GRID */}
+        {/* VIEW MODE 1: ASYMMETRIC BENTO SHOWCASE GRID */}
         {/* ============================================================ */}
         {viewMode === 'grid' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-7">
             <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project, idx) => {
+              {displayProjects.map((project, idx) => {
                 const meta = PROJECT_METRICS[project.id] || {
                   badge: 'Production System',
                   topology: 'Distributed Cloud Architecture',
@@ -575,130 +377,61 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
                   pipelineSteps: [],
                 };
 
+                // Staggered Bento Layout: Row 1 (7 cols + 5 cols), Row 2 (5 cols + 7 cols)
+                const isWide = (idx % 4 === 0) || (idx % 4 === 3);
+                const colSpanClass = isWide ? 'lg:col-span-7' : 'lg:col-span-5';
+
                 return (
                   <motion.div
                     key={project.id}
                     layout
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.35, delay: idx * 0.04 }}
-                    className="group bg-[#1E1B18] rounded-3xl overflow-hidden border border-[#332E2A] hover:border-copper/60 hover:shadow-glow-copper transition-all duration-300 flex flex-col justify-between"
+                    transition={{ duration: 0.4, delay: idx * 0.05 }}
+                    onClick={() => setSelectedProject(project)}
+                    className={`group relative overflow-hidden rounded-[28px] sm:rounded-[32px] min-h-[340px] sm:min-h-[380px] md:min-h-[420px] border border-white/10 hover:border-white/30 shadow-xl hover:shadow-[0_25px_60px_rgba(0,0,0,0.45)] transition-all duration-500 cursor-pointer flex flex-col justify-between ${colSpanClass} col-span-12 md:col-span-6`}
                   >
-                    {/* Media Header with Inner Hover */}
-                    <div
-                      onClick={() => setSelectedProject(project)}
-                      className="relative h-52 sm:h-56 bg-[#25211E] overflow-hidden cursor-pointer"
-                    >
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B18] via-transparent to-[#131110]/40" />
+                    {/* Full-Bleed High-Resolution Image Background with Zoom */}
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      loading="lazy"
+                    />
 
-                      {/* Top Badges */}
-                      <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2 z-10">
-                        <span className="px-3 py-1 rounded-full bg-[#131110]/85 backdrop-blur-md text-[10px] font-mono font-medium text-copper border border-copper/30 shadow-soft-sm truncate">
-                          {project.category}
-                        </span>
-                        <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 backdrop-blur-md text-[10px] font-mono font-medium text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5 shrink-0">
+                    {/* Rich Dark Cinematic Gradient Overlay for Maximum Readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-black/15 group-hover:via-black/55 transition-colors duration-300 pointer-events-none" />
+
+                    {/* Top Badges */}
+                    <div className="relative z-10 p-6 sm:p-8 pb-0 flex items-center justify-between gap-2">
+                      <span className="px-3.5 py-1.5 rounded-full bg-black/50 backdrop-blur-md text-[11px] font-mono font-medium text-white/95 border border-white/15 shadow-sm">
+                        {project.category}
+                      </span>
+                      {meta.badge && (
+                        <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-[10px] font-mono font-medium text-emerald-300 border border-emerald-400/30 flex items-center gap-1.5 shadow-sm">
                           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                           {meta.badge}
                         </span>
-                      </div>
-
-                      {/* Hover Overlay Button */}
-                      <div className="absolute inset-0 bg-[#131110]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
-                        <span className="px-4 py-2 rounded-xl bg-[#EDE5DC] text-[#131110] text-xs font-semibold flex items-center gap-2 shadow-soft-md transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                          <Sparkles className="w-3.5 h-3.5 text-copper" />
-                          <span>Open Case Study</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
-                        </span>
-                      </div>
+                      )}
                     </div>
 
-                    {/* Card Body */}
-                    <div className="p-6 sm:p-7 flex flex-col flex-1 justify-between space-y-5">
-                      <div>
-                        {/* Title & Role */}
-                        <div className="flex items-start justify-between gap-2 mb-2">
-                          <h3
-                            onClick={() => setSelectedProject(project)}
-                            className="font-display font-bold text-xl sm:text-2xl text-[#EDE5DC] group-hover:text-copper transition-colors cursor-pointer leading-snug"
-                          >
-                            {project.title}
-                          </h3>
-                        </div>
-
-                        <p className="text-xs sm:text-sm text-[#9C948B] font-light leading-relaxed line-clamp-3 mb-4">
+                    {/* Bottom Overlay matching user reference image */}
+                    <div className="relative z-10 p-6 sm:p-8 pt-0 flex items-end justify-between gap-4">
+                      {/* Left Block: Title and Tagline */}
+                      <div className="space-y-1.5 max-w-[82%]">
+                        <h3 className="font-display font-bold text-2xl sm:text-3xl text-white tracking-tight leading-snug group-hover:text-copper transition-colors">
+                          {project.title}
+                        </h3>
+                        <p className="text-white/80 text-xs sm:text-sm font-light leading-relaxed line-clamp-2">
                           {project.description}
                         </p>
-
-                        {/* Telemetry Chips (2 Primary Benchmarks) */}
-                        <div className="grid grid-cols-2 gap-2 p-3 rounded-xl bg-[#171412] border border-[#2A2522] mb-4">
-                          {meta.telemetry.slice(0, 2).map((t, i) => (
-                            <div key={i}>
-                              <span className="text-[9px] font-mono text-[#78716C] uppercase tracking-wider block">
-                                {t.label}
-                              </span>
-                              <span className={`font-display font-bold text-xs sm:text-sm ${
-                                t.accent === 'emerald' ? 'text-emerald-400' : 'text-copper'
-                              }`}>
-                                {t.value}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* Tech Stack Pills */}
-                        <div className="flex flex-wrap gap-1.5 text-[11px] font-mono">
-                          {project.stack.slice(0, 4).map((t, i) => (
-                            <span
-                              key={i}
-                              className="px-2 py-0.5 rounded-md bg-[#25211E] border border-[#332E2A] text-[#C4BCB5]"
-                            >
-                              {t}
-                            </span>
-                          ))}
-                          {project.stack.length > 4 && (
-                            <span className="px-2 py-0.5 rounded-md bg-[#171412] border border-[#2A2522] text-[#78716C]">
-                              +{project.stack.length - 4}
-                            </span>
-                          )}
-                        </div>
                       </div>
 
-                      {/* Card Action Footer */}
-                      <div className="pt-4 border-t border-[#2A2522] flex items-center justify-between gap-2">
-                        {project.links?.github ? (
-                          <a
-                            href={project.links.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#25211E] hover:bg-[#2D2824] text-[#EDE5DC] border border-[#38332E] font-mono text-[11px] font-medium transition-all group/btn"
-                            aria-label={`GitHub repository for ${project.title}`}
-                          >
-                            <Github className="w-3.5 h-3.5" />
-                            <span>Repository</span>
-                            <ArrowUpRight className="w-3 h-3 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                          </a>
-                        ) : (
-                          <span className="text-[10px] font-mono text-[#78716C] px-2 py-1">
-                            Enterprise Proprietary
-                          </span>
-                        )}
-
-                        <button
-                          onClick={() => setSelectedProject(project)}
-                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-copper hover:bg-copper-600 text-white font-mono text-[11px] font-medium transition-all shadow-glow-copper cursor-pointer ml-auto"
-                        >
-                          <span>Case Study</span>
-                          <ArrowUpRight className="w-3 h-3" />
-                        </button>
+                      {/* Right Block: Circular Action Button */}
+                      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/25 flex items-center justify-center text-white shrink-0 group-hover:bg-white group-hover:text-black group-hover:scale-110 transition-all duration-300 shadow-md">
+                        <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </div>
-
                     </div>
                   </motion.div>
                 );

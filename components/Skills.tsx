@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
 import { SKILLS_DATA } from '../constants';
+import { TechPillMarquee } from './TechPillMarquee';
 
 export const Skills: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -51,6 +52,17 @@ export const Skills: React.FC = () => {
           </span>
         </div>
       </div>
+
+      {/* Visual Tech Stack Pill Ribbon */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.5 }}
+        className="mb-14 sm:mb-18 -mx-6 sm:-mx-8 lg:-mx-12 py-3 border-y border-[#E8E0D8]/80 bg-[#FEFCF9]/50 backdrop-blur-[2px]"
+      >
+        <TechPillMarquee speed={36} direction="left" />
+      </motion.div>
 
       {/* Flowing Categorized Tag Cloud */}
       <motion.div style={{ y: skillsParallaxY }} className="space-y-12 sm:space-y-16">
