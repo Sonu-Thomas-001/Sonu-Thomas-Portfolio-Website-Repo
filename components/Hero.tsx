@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
+import { AsciiWave } from './AsciiWave';
 
 const PROFESSIONAL_HERO_PHOTOS = [
   { src: "/images/Professional%20Pic%201.png", label: "Executive", tag: "System Design" },
@@ -13,10 +14,10 @@ const PROFESSIONAL_HERO_PHOTOS = [
 ];
 
 const STATS = [
-  { value: "03+", label: "Years Experience", sublabel: "Enterprise AI & Full-Stack" },
-  { value: "15+", label: "Systems Engineered", sublabel: "LLMs, Pipelines & Platforms" },
-  { value: "HCLTech", label: "Current Focus", sublabel: "Production Engineering" },
-  { value: "IIT-G", label: "Academic Roots", sublabel: "M.Tech Data Science & AI" },
+  { index: "01", value: "03+", label: "Years Experience", sublabel: "Enterprise AI & Full-Stack" },
+  { index: "02", value: "15+", label: "Systems Engineered", sublabel: "LLMs, Pipelines & Platforms" },
+  { index: "03", value: "HCLTech", live: true, label: "Current Focus", sublabel: "Production Engineering" },
+  { index: "04", value: "IIT-G", label: "Academic Roots", sublabel: "M.Tech Data Science & AI" },
 ];
 
 export const Hero: React.FC = () => {
@@ -72,7 +73,7 @@ export const Hero: React.FC = () => {
     <section
       ref={containerRef}
       id="hero"
-      className="relative min-h-screen flex flex-col justify-between pt-28 sm:pt-36 pb-12 sm:pb-16 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto overflow-hidden"
+      className="relative isolate min-h-screen flex flex-col justify-between pt-28 sm:pt-36 pb-12 sm:pb-16 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto overflow-hidden"
     >
       {/* Background Kinetic Watermark Parallax */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden select-none -z-10 flex items-center">
@@ -310,33 +311,45 @@ export const Hero: React.FC = () => {
         transition={{ delay: 0.75, duration: 0.7 }}
         className="mt-14 pt-8 border-t border-[#E8E0D8] relative z-10"
       >
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {STATS.map((stat, idx) => (
             <motion.div
               key={idx}
               whileHover={{ y: -4 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="flex flex-col space-y-1 p-4 rounded-2xl hover:bg-[#FEFCF9] hover:shadow-soft-sm border border-transparent hover:border-[#E8E0D8] transition-all group"
+              transition={{ type: "spring", stiffness: 320, damping: 22 }}
+              className="relative flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-[0_4px_20px_rgba(26,22,20,0.04)] hover:shadow-[0_12px_32px_rgba(196,125,90,0.14)] hover:border-copper/40 transition-all duration-300 group overflow-hidden"
             >
-              <div className="flex items-baseline gap-2">
-                <span className="font-display font-medium text-3xl sm:text-4xl text-ink tracking-tight group-hover:text-copper transition-colors">
+              {/* Top Accent Hairline */}
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-copper/30 group-hover:via-copper to-transparent transition-all duration-300 opacity-0 group-hover:opacity-100" />
+
+              {/* Header: Stat Value + Subtle Index */}
+              <div className="flex items-baseline justify-between gap-2">
+                <span className="font-display font-bold text-3xl sm:text-4xl text-[#1A1614] dark:text-[#FDFBF7] tracking-tight group-hover:text-copper transition-colors">
                   {stat.value}
                 </span>
-                <span className="h-1 w-6 rounded-full bg-copper/30 group-hover:bg-copper transition-colors" />
+                <span className="text-xs font-mono font-medium text-[#A8A19B] dark:text-[#78716C] group-hover:text-copper transition-colors flex items-center gap-1.5 shrink-0">
+                  {stat.live && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" title="Active" />}
+                  {stat.index}
+                </span>
               </div>
-              <span className="text-sm font-semibold text-ink">
-                {stat.label}
-              </span>
-              <span className="text-xs font-mono text-[#78716C]">
-                {stat.sublabel}
-              </span>
+
+              {/* Body: Labels & Copper Indicator */}
+              <div className="mt-3 space-y-1">
+                <div className="text-sm font-semibold text-[#1A1614] dark:text-[#EDE5DC] group-hover:text-copper transition-colors">
+                  {stat.label}
+                </div>
+                <div className="text-xs font-mono text-[#78716C] dark:text-[#9C948B] tracking-tight leading-relaxed">
+                  {stat.sublabel}
+                </div>
+                <div className="w-6 h-0.5 bg-copper/30 group-hover:w-10 group-hover:bg-copper transition-all duration-300 rounded-full mt-2.5" />
+              </div>
             </motion.div>
           ))}
         </div>
       </motion.div>
 
       {/* Minimal Vertical Scroll Pulse Indicator */}
-      <div className="flex flex-col items-center justify-center pt-8">
+      <div className="relative z-10 flex flex-col items-center justify-center pt-8">
         <button
           onClick={() => scrollToSection('marquee')}
           className="flex flex-col items-center gap-2 text-xs font-mono text-[#78716C] hover:text-copper transition-colors uppercase tracking-widest cursor-pointer group"
@@ -350,6 +363,11 @@ export const Hero: React.FC = () => {
             />
           </div>
         </button>
+      </div>
+
+      {/* Interactive ASCII Wave Horizon - Compact Floor Tide */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 pointer-events-none overflow-hidden z-0 opacity-40 dark:opacity-50 hover:opacity-65 transition-opacity duration-300">
+        <AsciiWave speed={0.8} density={1.0} baseLevel={0.62} />
       </div>
     </section>
   );
