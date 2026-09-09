@@ -115,50 +115,39 @@ export const Hero: React.FC = () => {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
             <span className="text-[#1A1614] dark:text-[#EDE5DC] font-medium text-[11px] sm:text-xs">
-              AI Systems Engineer
-            </span>
-            <span className="text-[#A8A19B] dark:text-[#78716C]">&bull;</span>
-            <span className="text-copper font-medium text-[11px] sm:text-xs">
-              Production LLMs & Agents
+              AI Engineer
             </span>
           </motion.div>
 
-          {/* Cinematic Headline with Clip-Path Reveal & Copper Gradient */}
-          <div className="space-y-1 sm:space-y-2">
+          {/* Cinematic Editorial Headline */}
+          <div className="space-y-0.5 sm:space-y-1">
             <div className="overflow-hidden">
               <motion.h1
-                initial={{ y: "110%" }}
-                animate={{ y: 0 }}
+                initial={{ y: "100%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight text-[#1A1614] dark:text-[#FDFBF7] leading-[1.02]"
+                className="font-display font-bold text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] tracking-tight text-[#1A1614] dark:text-[#FDFBF7] leading-[1.05]"
               >
-                I build
+                I build{' '}
+                <span className="bg-gradient-to-r from-[#B85D36] via-copper to-[#A04D28] dark:from-[#F0A584] dark:via-copper dark:to-[#F0A584] bg-clip-text text-transparent">
+                  intelligent
+                </span>
               </motion.h1>
             </div>
-            <div className="overflow-hidden">
-              <motion.h1
-                initial={{ y: "110%" }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.85, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight leading-[1.02] bg-gradient-to-r from-copper via-[#E59C7B] to-copper bg-clip-text text-transparent"
+            <div className="overflow-hidden flex items-center gap-4 sm:gap-6">
+              <motion.div
+                initial={{ y: "100%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.85, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                className="font-display font-bold text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] tracking-tight text-[#1A1614] dark:text-[#FDFBF7] leading-[1.05]"
               >
-                intelligent
-              </motion.h1>
-            </div>
-            <div className="overflow-hidden flex items-center gap-4">
-              <motion.h1
-                initial={{ y: "110%" }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight text-[#1A1614] dark:text-[#FDFBF7] leading-[1.02]"
-              >
-                systems.
-              </motion.h1>
+                systems<span className="text-copper">.</span>
+              </motion.div>
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ duration: 0.9, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                className="h-[3px] flex-1 max-w-[140px] bg-gradient-to-r from-copper to-transparent origin-left hidden sm:block rounded-full"
+                transition={{ duration: 0.9, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                className="h-[2.5px] flex-1 max-w-[140px] bg-gradient-to-r from-copper to-transparent origin-left hidden sm:block rounded-full"
               />
             </div>
           </div>

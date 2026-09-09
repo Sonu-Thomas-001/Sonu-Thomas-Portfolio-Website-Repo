@@ -448,80 +448,92 @@ If the user asks questions referring to "this page", "here", or what they are vi
 
   return (
     <>
-      {/* Floating Launcher Button */}
+      {/* Floating Launcher Button — Minimalist Glass Pill */}
       <motion.button
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.04 }}
+        whileTap={{ scale: 0.96 }}
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-2xl bg-[#1E1B18]/95 backdrop-blur-xl border border-[#38332E] hover:border-copper/60 text-[#EDE5DC] shadow-2xl hover:shadow-glow-copper flex items-center gap-2.5 sm:gap-3 cursor-pointer group transition-all duration-300 ${
+        className={`fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 px-3.5 py-2 rounded-full bg-[#161311]/90 backdrop-blur-xl border border-white/10 hover:border-copper/50 text-[#EDE5DC] shadow-xl hover:shadow-glow-copper flex items-center gap-2.5 cursor-pointer group transition-all duration-300 ${
           isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`}
         aria-label="Open AI Assistant"
       >
-        <div className="w-8 h-8 rounded-xl bg-[#25211E] text-copper border border-copper/30 flex items-center justify-center group-hover:scale-105 group-hover:bg-copper group-hover:text-white transition-all shadow-soft-sm">
-          <BrainCircuit className="w-4 h-4" />
+        <div className="w-6 h-6 rounded-lg bg-copper/15 text-copper border border-copper/30 flex items-center justify-center group-hover:scale-105 group-hover:bg-copper group-hover:text-white transition-all">
+          <BrainCircuit className="w-3.5 h-3.5" />
         </div>
-        <div className="text-left">
-          <div className="flex items-center gap-1.5">
-            <span className="font-display font-bold text-xs text-[#EDE5DC] group-hover:text-copper transition-colors">
-              Ask Qubi
-            </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          </div>
-          <span className="text-[10px] font-mono text-[#9C948B] block">
-            AI Assistant
+        <div className="flex items-center gap-1.5">
+          <span className="font-display font-semibold text-xs text-[#FAF7F2] group-hover:text-copper transition-colors">
+            Ask Qubi
           </span>
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
         </div>
       </motion.button>
 
-      {/* Enhanced Chat Window */}
+      {/* Enhanced Chat Window — Minimalist Luxury Obsidian Glass */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 24, scale: 0.96 }}
+            initial={{ opacity: 0, y: 18, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 24, scale: 0.96 }}
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, y: 18, scale: 0.97 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             data-lenis-prevent="true"
-            className="fixed bottom-3 sm:bottom-6 inset-x-3 sm:inset-x-auto sm:left-6 z-50 sm:w-[440px] max-w-[calc(100vw-1.5rem)] sm:max-w-none h-[560px] sm:h-[600px] max-h-[calc(100dvh-4rem)] sm:max-h-[85vh] bg-[#1E1B18]/95 backdrop-blur-2xl border border-[#332E2A] rounded-3xl shadow-2xl flex flex-col overflow-hidden text-[#EDE5DC] ring-1 ring-white/10"
+            className="fixed bottom-3 sm:bottom-6 inset-x-3 sm:inset-x-auto sm:left-6 z-[999] sm:w-[410px] max-w-[calc(100vw-1.5rem)] sm:max-w-none h-[540px] sm:h-[580px] max-h-[calc(100dvh-4rem)] sm:max-h-[85vh] bg-[#141210]/95 backdrop-blur-2xl border border-white/[0.08] rounded-3xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] flex flex-col overflow-hidden text-[#EDE5DC] ring-1 ring-white/10"
           >
-            {/* Header */}
-            <div className="px-5 py-3.5 bg-[#171412] border-b border-[#2A2522] flex justify-between items-center shrink-0">
+            {/* Ambient Glow Accent */}
+            <div className="absolute -top-20 -left-20 w-44 h-44 bg-copper/10 rounded-full blur-3xl pointer-events-none z-0" />
+
+            {/* Header: Minimalist & Clean */}
+            <div className="px-4 sm:px-5 py-3.5 bg-white/[0.02] border-b border-white/[0.06] flex justify-between items-center shrink-0 relative z-10">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-[#25211E] border border-copper/30 flex items-center justify-center text-copper shadow-soft-sm">
+                <div className="w-8 h-8 rounded-xl bg-copper/10 border border-copper/30 flex items-center justify-center text-copper shadow-2xs">
                   <BrainCircuit className="w-4 h-4" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="font-display font-bold text-[#EDE5DC] text-sm tracking-tight">Qubi AI Assistant</h3>
-                    <span className="px-2 py-0.5 rounded-full text-[9px] font-mono bg-copper/15 text-copper border border-copper/30 font-semibold">
-                      v2.5
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1.5 mt-0.5">
+                    <h3 className="font-display font-bold text-[#FAF7F2] text-sm tracking-tight">
+                      Qubi
+                    </h3>
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="text-[10px] font-mono text-emerald-400 font-medium">Online &amp; Guardrailed</span>
                   </div>
+                  <p className="text-[10px] font-mono text-[#8E8780] leading-none mt-0.5">
+                    Sonu's Portfolio Assistant
+                  </p>
                 </div>
               </div>
 
               {/* Header Action Buttons */}
-              <div className="flex items-center gap-1">
-                {/* Clear / Reset History Button */}
+              <div className="flex items-center gap-1.5">
+                {/* Minimalist Live Sync Toggle */}
+                <button
+                  onClick={() => setLiveSyncEnabled(prev => !prev)}
+                  className={`px-2 py-1 rounded-lg text-[9px] font-mono transition-all flex items-center gap-1 border cursor-pointer ${
+                    liveSyncEnabled
+                      ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25 hover:bg-emerald-500/20'
+                      : 'bg-white/[0.04] text-[#78716C] border-white/10 hover:text-[#EDE5DC]'
+                  }`}
+                  title="Toggle live website context synchronization"
+                >
+                  <span className={`w-1.5 h-1.5 rounded-full ${liveSyncEnabled ? 'bg-emerald-400' : 'bg-[#78716C]'}`} />
+                  <span>{liveSyncEnabled ? 'Sync' : 'Off'}</span>
+                </button>
+
+                {/* Reset History */}
                 <button
                   onClick={handleClearHistory}
-                  title="Clear conversation history from cache"
-                  className="p-2 rounded-xl hover:bg-[#2A2522] text-[#78716C] hover:text-[#EDE5DC] transition-colors cursor-pointer"
+                  title="Clear conversation history"
+                  className="p-1.5 rounded-lg hover:bg-white/[0.06] text-[#78716C] hover:text-[#EDE5DC] transition-colors cursor-pointer"
                   aria-label="Clear chat history"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                 </button>
+
                 {/* Close Button */}
                 <button 
                   onClick={() => setIsOpen(false)} 
-                  className="p-2 rounded-xl hover:bg-[#2A2522] text-[#78716C] hover:text-[#EDE5DC] transition-colors cursor-pointer"
+                  className="p-1.5 rounded-lg hover:bg-white/[0.06] text-[#78716C] hover:text-[#EDE5DC] transition-colors cursor-pointer"
                   aria-label="Close assistant"
                 >
                   <X className="w-4 h-4" />
@@ -529,28 +541,19 @@ If the user asks questions referring to "this page", "here", or what they are vi
               </div>
             </div>
 
-            {/* Live Website Sync Status Banner & Toggle */}
-            <div className="px-4 py-2 bg-[#141110] border-b border-[#2A2522] flex items-center justify-between text-[10px] font-mono text-[#9C948B]">
-              <div className="flex items-center gap-2 truncate mr-2">
-                <Globe className="w-3 h-3 text-copper shrink-0" />
+            {/* Subtle Live Context Micro-Bar */}
+            <div className="px-4 py-1.5 bg-black/25 border-b border-white/[0.04] flex items-center justify-between text-[10px] font-mono text-[#78716C] relative z-10">
+              <div className="flex items-center gap-1.5 truncate mr-2">
+                <span className="w-1 h-1 rounded-full bg-copper" />
                 <span className="truncate">
                   {liveSyncEnabled 
-                    ? `Live Context: ${liveContextInfo?.route || '/'} (${liveContextInfo?.activeSection || 'top'})` 
-                    : 'Static Portfolio Mode'}
+                    ? `Context: ${liveContextInfo?.route || '/'} ${liveContextInfo?.activeSection && liveContextInfo.activeSection !== 'top' ? `(#${liveContextInfo.activeSection})` : ''}` 
+                    : 'Static Knowledge Base'}
                 </span>
               </div>
-              <button
-                onClick={() => setLiveSyncEnabled(prev => !prev)}
-                className={`px-2.5 py-0.5 rounded-full text-[9px] font-semibold transition-all shrink-0 flex items-center gap-1.5 border cursor-pointer ${
-                  liveSyncEnabled 
-                    ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/20' 
-                    : 'bg-[#25211E] text-[#78716C] border-[#38332E] hover:text-[#EDE5DC]'
-                }`}
-                title="Toggle live real-time website context synchronization"
-              >
-                <span className={`w-1.5 h-1.5 rounded-full ${liveSyncEnabled ? 'bg-emerald-400 animate-ping' : 'bg-[#78716C]'}`} />
-                <span>{liveSyncEnabled ? 'Live Sync: ON' : 'Live Sync: OFF'}</span>
-              </button>
+              <span className="text-[9px] text-[#5C5651] shrink-0 font-sans">
+                Guardrailed
+              </span>
             </div>
 
             {/* Messages Container */}
@@ -559,61 +562,61 @@ If the user asks questions referring to "this page", "here", or what they are vi
               data-lenis-prevent="true"
               onWheel={(e) => e.stopPropagation()}
               onTouchMove={(e) => e.stopPropagation()}
-              className="flex-grow overflow-y-auto p-4 sm:p-5 space-y-4 bg-[#131110] overscroll-contain custom-dark-scrollbar"
+              className="flex-grow overflow-y-auto p-4 sm:p-5 space-y-3.5 bg-[#0F0D0C]/80 overscroll-contain custom-dark-scrollbar relative z-10"
             >
               {messages.map((msg) => (
                 <div 
                   key={msg.id}
-                  className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''} group`}
+                  className={`flex gap-2.5 ${msg.role === 'user' ? 'flex-row-reverse' : ''} group`}
                 >
                   {/* Avatar */}
-                  <div className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 text-xs shadow-soft-sm ${
+                  <div className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 text-xs ${
                     msg.role === 'user' 
-                      ? 'bg-[#25211E] text-[#EDE5DC] border border-[#38332E]' 
+                      ? 'bg-white/[0.08] text-[#EDE5DC] border border-white/10' 
                       : msg.isError 
                         ? 'bg-rose-950/40 text-rose-400 border border-rose-800/50' 
-                        : 'bg-[#2A2522] text-copper border border-copper/30'
+                        : 'bg-copper/10 text-copper border border-copper/25'
                   }`}>
                     {msg.role === 'user' ? (
-                      <User className="w-3.5 h-3.5" />
+                      <User className="w-3 h-3" />
                     ) : msg.isError ? (
-                      <AlertTriangle className="w-3.5 h-3.5" />
+                      <AlertTriangle className="w-3 h-3" />
                     ) : (
-                      <Sparkles className="w-3.5 h-3.5" />
+                      <Sparkles className="w-3 h-3" />
                     )}
                   </div>
 
                   {/* Message Bubble */}
-                  <div className={`max-w-[85%] flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
+                  <div className={`max-w-[86%] flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
                     <div className={`
-                      p-3.5 rounded-2xl text-xs leading-relaxed transition-all
+                      p-3 rounded-2xl text-[12.5px] leading-relaxed transition-all
                       ${msg.role === 'user' 
-                        ? 'bg-copper text-white rounded-tr-sm shadow-glow-copper font-medium' 
+                        ? 'bg-copper text-white rounded-tr-xs shadow-soft-sm font-normal' 
                         : msg.isError
-                          ? 'bg-rose-950/40 border border-rose-800/50 text-rose-300 rounded-tl-sm'
-                          : 'bg-[#1E1B18] border border-[#332E2A] text-[#EDE5DC] rounded-tl-sm shadow-soft-md hover:border-[#38332E]'}
+                          ? 'bg-rose-950/30 border border-rose-800/40 text-rose-300 rounded-tl-xs'
+                          : 'bg-white/[0.035] hover:bg-white/[0.045] border border-white/[0.06] text-[#EDE5DC] rounded-tl-xs shadow-2xs'}
                     `}>
                       {msg.role === 'user' ? (
                         <div className="whitespace-pre-wrap">{msg.text}</div>
                       ) : msg.isError ? (
-                        <div className="font-medium">{msg.text}</div>
+                        <div className="font-medium text-xs">{msg.text}</div>
                       ) : (
-                        <div className="prose-xs space-y-2">
+                        <div className="space-y-1.5">
                           <Markdown
                             components={{
-                              p: ({ children }) => <p className="mb-1.5 last:mb-0 leading-relaxed text-xs text-[#EDE5DC] font-light">{children}</p>,
+                              p: ({ children }) => <p className="mb-1.5 last:mb-0 leading-relaxed text-[#D8D2CA] font-normal">{children}</p>,
                               strong: ({ children }) => <strong className="font-semibold text-white">{children}</strong>,
                               em: ({ children }) => <em className="italic text-copper/90">{children}</em>,
-                              ul: ({ children }) => <ul className="my-1.5 space-y-1 list-disc pl-4 text-xs text-[#EDE5DC]/90">{children}</ul>,
-                              ol: ({ children }) => <ol className="my-1.5 space-y-1 list-decimal pl-4 text-xs text-[#EDE5DC]/90">{children}</ol>,
+                              ul: ({ children }) => <ul className="my-1.5 space-y-1 list-disc pl-4 text-[#D8D2CA]">{children}</ul>,
+                              ol: ({ children }) => <ol className="my-1.5 space-y-1 list-decimal pl-4 text-[#D8D2CA]">{children}</ol>,
                               li: ({ children }) => <li className="leading-relaxed pl-0.5">{children}</li>,
                               code: ({ children }) => (
-                                <code className="px-1.5 py-0.5 rounded bg-[#131110] border border-[#2A2522] text-copper font-mono text-[11px]">
+                                <code className="px-1.5 py-0.5 rounded bg-black/40 border border-white/10 text-copper font-mono text-[11px]">
                                   {children}
                                 </code>
                               ),
                               pre: ({ children }) => (
-                                <pre className="my-2 p-2.5 rounded-xl bg-[#131110] text-[#EDE5DC] font-mono text-[11px] overflow-x-auto border border-[#2A2522] custom-dark-scrollbar">
+                                <pre className="my-2 p-2.5 rounded-xl bg-black/40 text-[#EDE5DC] font-mono text-[11px] overflow-x-auto border border-white/10 custom-dark-scrollbar">
                                   {children}
                                 </pre>
                               ),
@@ -636,7 +639,7 @@ If the user asks questions referring to "this page", "here", or what they are vi
                     </div>
 
                     {/* Bubble Metadata & Action Bar */}
-                    <div className="flex items-center gap-2 mt-1 px-1 text-[10px] font-mono text-[#78716C]">
+                    <div className="flex items-center gap-2 mt-1 px-1 text-[9px] font-mono text-[#6E6863]">
                       {msg.timestamp && <span>{msg.timestamp}</span>}
                       {msg.role === 'model' && !msg.isError && (
                         <button
@@ -664,25 +667,25 @@ If the user asks questions referring to "this page", "here", or what they are vi
               
               {/* Typing Animation */}
               {isTyping && (
-                <div className="flex gap-3 items-center">
-                  <div className="w-7 h-7 rounded-xl bg-[#2A2522] border border-copper/30 flex items-center justify-center text-copper shadow-soft-sm">
-                    <Sparkles className="w-3.5 h-3.5" />
+                <div className="flex gap-2.5 items-center">
+                  <div className="w-6 h-6 rounded-lg bg-copper/10 border border-copper/25 flex items-center justify-center text-copper shadow-2xs">
+                    <Sparkles className="w-3 h-3" />
                   </div>
-                  <div className="bg-[#1E1B18] border border-[#332E2A] px-4 py-2.5 rounded-2xl rounded-tl-sm flex items-center gap-1.5 shadow-soft-sm">
+                  <div className="bg-white/[0.035] border border-white/[0.06] px-3.5 py-2 rounded-2xl rounded-tl-xs flex items-center gap-1.5 shadow-2xs">
                     <span className="w-1.5 h-1.5 bg-copper rounded-full animate-bounce" />
                     <span className="w-1.5 h-1.5 bg-copper rounded-full animate-bounce delay-150" />
                     <span className="w-1.5 h-1.5 bg-copper rounded-full animate-bounce delay-300" />
-                    <span className="text-[10px] font-mono text-[#78716C] ml-1.5">Qubi is formulating...</span>
+                    <span className="text-[10px] font-mono text-[#78716C] ml-1.5">Formulating...</span>
                   </div>
                 </div>
               )}
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Quick Starter Chips */}
+            {/* Quick Starter Chips — Minimalist Pill Carousel */}
             {messages.length <= 2 && (
               <div 
-                className="px-3.5 sm:px-4 py-2 bg-[#171412] border-t border-[#2A2522] flex items-center gap-2 overflow-x-auto scrollbar-none no-scrollbar scroll-smooth"
+                className="px-3.5 py-2 bg-white/[0.015] border-t border-white/[0.06] flex items-center gap-1.5 overflow-x-auto scrollbar-none no-scrollbar scroll-smooth relative z-10"
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 onWheel={(e) => {
                   if (e.deltaY !== 0) {
@@ -695,39 +698,38 @@ If the user asks questions referring to "this page", "here", or what they are vi
                     key={idx}
                     onClick={() => handleSend(p.query)}
                     disabled={isTyping}
-                    className="shrink-0 px-3 py-1.5 rounded-xl bg-[#25211E] hover:bg-[#2A2522] hover:border-copper/50 text-[#EDE5DC] hover:text-copper border border-[#38332E] text-[11px] font-mono transition-all flex items-center gap-1.5 cursor-pointer font-medium whitespace-nowrap active:scale-95"
+                    className="shrink-0 px-2.5 py-1 rounded-full bg-white/[0.04] hover:bg-copper/15 hover:border-copper/40 text-[#9C948B] hover:text-[#EDE5DC] border border-white/[0.08] text-[11px] font-mono transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap active:scale-95"
                   >
                     <span>{p.label}</span>
-                    <ArrowRight className="w-2.5 h-2.5 opacity-60 text-copper shrink-0" />
+                    <ArrowRight className="w-2.5 h-2.5 opacity-50 text-copper shrink-0" />
                   </button>
                 ))}
               </div>
             )}
 
-            {/* Input Footer */}
-            <div className="p-3.5 border-t border-[#2A2522] bg-[#171412]">
-              <div className="relative flex items-center">
+            {/* Input Footer — Minimalist Floating Capsule */}
+            <div className="p-3 bg-white/[0.02] border-t border-white/[0.06] relative z-10">
+              <div className="relative flex items-center bg-white/[0.04] focus-within:bg-white/[0.06] border border-white/[0.08] focus-within:border-copper/50 rounded-2xl p-1 pl-3.5 transition-all">
                 <input
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Ask about AI engineering, HCLTech, projects..."
-                  className="w-full bg-[#1E1B18] border border-[#38332E] rounded-xl pl-4 pr-11 py-2.5 text-xs text-[#EDE5DC] placeholder-[#78716C] focus:outline-none focus:border-copper focus:ring-1 focus:ring-copper/40 transition-all font-sans"
+                  placeholder="Ask about AI engineering, HCLTech, stack..."
+                  className="w-full bg-transparent text-xs text-[#FAF7F2] placeholder-[#6E6863] focus:outline-none font-sans pr-2"
                   disabled={isTyping}
                 />
                 <button 
                   onClick={() => handleSend()}
                   disabled={!input.trim() || isTyping}
-                  className="absolute right-1.5 p-1.5 rounded-lg bg-copper hover:bg-copper-600 text-white disabled:opacity-40 transition-all shadow-glow-copper cursor-pointer"
+                  className="w-7 h-7 rounded-xl bg-copper hover:bg-copper-600 text-white disabled:opacity-30 disabled:hover:bg-copper flex items-center justify-center transition-all cursor-pointer shrink-0"
                   aria-label="Send message"
                 >
                   <Send className="w-3.5 h-3.5" />
                 </button>
               </div>
-              <div className="mt-2 px-1 flex items-center justify-between text-[9px] font-mono text-[#78716C]">
-                <span>Cached locally</span>
-                <span>Guardrailed to sonuthomas.me</span>
+              <div className="mt-1.5 text-center text-[9px] font-mono text-[#5C5651]">
+                Knowledge Engine &bull; Sonu Thomas Portfolio
               </div>
             </div>
 

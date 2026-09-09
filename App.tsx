@@ -178,7 +178,7 @@ const AppContent: React.FC = () => {
       {/* Global Scroll Progress Indicator */}
       <motion.div
         style={{ scaleX, transformOrigin: '0%' }}
-        className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary via-copper to-secondary z-[999] pointer-events-none"
+        className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-copper-600 via-copper to-[#E59C7B] z-[999] pointer-events-none"
       />
 
       {/* Subtle Ambient Copper Glow Follower */}

@@ -61,7 +61,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       {!isExiting ? (
         <div
           onClick={handleSkip}
-          className="fixed inset-0 z-[100] select-none cursor-pointer overflow-hidden"
+          className="fixed inset-0 z-[100] select-none cursor-pointer overflow-hidden bg-[#131110]"
         >
           {/* Top Curtain Panel */}
           <motion.div
@@ -105,7 +105,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
           <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 z-10 flex items-center justify-center pointer-events-none px-8">
             <div className="w-full max-w-xl h-[2px] bg-[#2A2522] rounded-full overflow-hidden relative">
               <motion.div
-                className="h-full bg-gradient-to-r from-primary via-copper to-secondary rounded-full shadow-glow-copper"
+                className="h-full bg-gradient-to-r from-copper-600 via-copper to-[#E59C7B] rounded-full shadow-glow-copper"
                 style={{ width: `${progress}%` }}
               />
             </div>
@@ -126,7 +126,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
                 <span className="w-1.5 h-3 bg-copper animate-pulse inline-block" />
               </div>
               <p className="mt-3 text-xs font-mono uppercase tracking-[0.25em] text-[#9C948B]">
-                AI Systems Engineer &bull; IIT Guwahati M.Tech
+                AI Engineer &bull; IIT Guwahati Alumni
               </p>
             </div>
 
