@@ -4,46 +4,8 @@ import {
   GraduationCap,
   Award,
   CheckCircle2,
-  Binary,
-  BrainCircuit,
-  Sigma,
-  Cpu,
-  BookOpen,
-  ArrowUpRight,
-  Sparkles,
 } from 'lucide-react';
 import { EDUCATION_DATA } from '../constants';
-
-const THEORETICAL_COMPETENCIES = [
-  {
-    num: "01",
-    title: "Mathematical Optimization",
-    domain: "Loss Surfaces & Gradients",
-    desc: "Stochastic gradient dynamics, convex optimization, Lagrange multipliers, and convergence bounds in high-dimensional parameter spaces.",
-    icon: Sigma,
-  },
-  {
-    num: "02",
-    title: "Latent Representations",
-    domain: "Vector Spaces & Attention",
-    desc: "Multi-head scaled dot-product attention, positional embeddings, latent dimensionality reduction, and semantic clustering geometry.",
-    icon: BrainCircuit,
-  },
-  {
-    num: "03",
-    title: "Statistical Inference",
-    domain: "Probability & Bayes",
-    desc: "Hypothesis testing, maximum likelihood estimation, Bayesian networks, distribution modeling, and statistical error bounds.",
-    icon: Binary,
-  },
-  {
-    num: "04",
-    title: "Algorithmic Complexity",
-    domain: "Asymptotic Bounds & Memory",
-    desc: "Rigorous Big-O time-space tradeoffs, cache-locality optimization, graph traversal invariants, and computational tractability limits.",
-    icon: Cpu,
-  },
-];
 
 const IIT_COMPUTATIONAL_PILLARS = [
   "High-Dimensional Linear Algebra",
@@ -100,8 +62,8 @@ export const Education: React.FC = () => {
         </p>
       </div>
 
-      {/* 3. Top Row: Asymmetric Academic Bento (8 Cols IIT-G Flagship + 4 Cols Foundations) */}
-      <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch mb-14">
+      {/* 3. Academic Bento (8 Cols IIT-G Flagship + 4 Cols Foundations) */}
+      <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
         
         {/* Flagship Marquee: IIT Guwahati (8 cols) */}
         <motion.div
@@ -238,65 +200,6 @@ export const Education: React.FC = () => {
           })}
         </div>
 
-      </div>
-
-      {/* 4. Bottom Row: 4 Theoretical AI Competency Pods */}
-      <div>
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-2 text-xs font-mono text-[#78716C] dark:text-[#A8A29E] uppercase tracking-wider">
-            <BookOpen className="w-3.5 h-3.5 text-copper" />
-            <span>Mathematical & Computational Foundations</span>
-          </div>
-          <span className="text-[11px] font-mono text-[#A8A19B] dark:text-[#78716C]">
-            [ 04 Theoretical Domains ]
-          </span>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {THEORETICAL_COMPETENCIES.map((comp, idx) => {
-            const Icon = comp.icon;
-            return (
-              <motion.div
-                key={comp.num}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5, delay: idx * 0.08 }}
-                whileHover={{ y: -4 }}
-                className="relative flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-[0_4px_20px_rgba(26,22,20,0.04)] hover:shadow-[0_12px_32px_rgba(196,125,90,0.14)] hover:border-copper/40 transition-all duration-300 group overflow-hidden"
-              >
-                {/* Top Accent Hairline */}
-                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-copper/30 group-hover:via-copper to-transparent transition-all duration-300 opacity-0 group-hover:opacity-100" />
-
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-4">
-                    <span className="text-xs font-mono font-semibold text-copper">
-                      {comp.num}
-                    </span>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#FAF7F2] dark:bg-white/[0.06] border border-[#E8E0D8] dark:border-white/[0.08] text-[#78716C] dark:text-[#A8A29E] uppercase tracking-wider">
-                      {comp.domain}
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-3 mb-2.5">
-                    <div className="w-8 h-8 rounded-xl bg-copper/10 text-copper flex items-center justify-center shrink-0 group-hover:bg-copper group-hover:text-white transition-colors duration-300">
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    <h3 className="font-display font-bold text-lg sm:text-xl text-[#1A1614] dark:text-[#FDFBF7] group-hover:text-copper transition-colors">
-                      {comp.title}
-                    </h3>
-                  </div>
-
-                  <p className="text-xs sm:text-sm text-[#4A4340] dark:text-[#D6D3D1] leading-relaxed font-normal mt-2">
-                    {comp.desc}
-                  </p>
-                </div>
-
-                <div className="w-6 h-0.5 bg-copper/30 group-hover:w-10 group-hover:bg-copper transition-all duration-300 rounded-full mt-5" />
-              </motion.div>
-            );
-          })}
-        </div>
       </div>
     </section>
   );
