@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
-import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail, Sparkles } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
 import { AsciiWave } from './AsciiWave';
 
@@ -94,26 +94,32 @@ export const Hero: React.FC = () => {
         >
           {/* Status Eyebrow Badge */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#FEFCF9] border border-[#E8E0D8] shadow-soft-sm text-xs font-mono tracking-wider text-ink-secondary"
+            className="group inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 dark:bg-[#1E1B18]/80 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-[0_2px_12px_rgba(26,22,20,0.04)] text-xs font-mono tracking-wide hover:border-copper/40 transition-all duration-300 select-none"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-copper opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-copper" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
-            <span className="uppercase text-ink font-medium">AI Systems Engineer &bull; Production LLMs</span>
+            <span className="text-[#1A1614] dark:text-[#EDE5DC] font-medium text-[11px] sm:text-xs">
+              AI Systems Engineer
+            </span>
+            <span className="text-[#A8A19B] dark:text-[#78716C]">&bull;</span>
+            <span className="text-copper font-medium text-[11px] sm:text-xs">
+              Production LLMs & Agents
+            </span>
           </motion.div>
 
-          {/* Cinematic Headline with Clip-Path Reveal */}
-          <div className="space-y-1">
+          {/* Cinematic Headline with Clip-Path Reveal & Copper Gradient */}
+          <div className="space-y-1 sm:space-y-2">
             <div className="overflow-hidden">
               <motion.h1
                 initial={{ y: "110%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-[5.4rem] tracking-tight text-ink leading-[1.03]"
+                className="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight text-[#1A1614] dark:text-[#FDFBF7] leading-[1.02]"
               >
                 I build
               </motion.h1>
@@ -122,8 +128,8 @@ export const Hero: React.FC = () => {
               <motion.h1
                 initial={{ y: "110%" }}
                 animate={{ y: 0 }}
-                transition={{ duration: 0.85, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
-                className="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-[5.4rem] tracking-tight leading-[1.03] gradient-text"
+                transition={{ duration: 0.85, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                className="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight leading-[1.02] bg-gradient-to-r from-copper via-[#E59C7B] to-copper bg-clip-text text-transparent"
               >
                 intelligent
               </motion.h1>
@@ -132,63 +138,69 @@ export const Hero: React.FC = () => {
               <motion.h1
                 initial={{ y: "110%" }}
                 animate={{ y: 0 }}
-                transition={{ duration: 0.85, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-[5.4rem] tracking-tight text-ink leading-[1.03]"
+                transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight text-[#1A1614] dark:text-[#FDFBF7] leading-[1.02]"
               >
                 systems.
               </motion.h1>
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ duration: 0.9, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="h-[3px] flex-1 max-w-[140px] bg-gradient-to-r from-copper to-transparent origin-left hidden sm:block"
+                transition={{ duration: 0.9, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                className="h-[3px] flex-1 max-w-[140px] bg-gradient-to-r from-copper to-transparent origin-left hidden sm:block rounded-full"
               />
             </div>
           </div>
 
-          {/* Personal Bio Paragraph */}
+          {/* Personal Bio Paragraph with Verified Entity Tag */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.55 }}
-            className="text-lg sm:text-xl text-ink-secondary font-light leading-relaxed max-w-xl"
+            transition={{ duration: 0.6, delay: 0.45 }}
+            className="text-base sm:text-lg lg:text-xl text-[#4A4340] dark:text-[#D6D3D1] font-normal leading-relaxed max-w-xl"
           >
-            Fusing enterprise engineering rigor with frontier generative AI, agentic workflows, and large language models. Currently engineering high-throughput software systems at{' '}
-            <span className="font-semibold text-ink border-b border-copper/40 pb-0.5">HCLTech</span>.
+            Fusing enterprise engineering rigor with frontier generative AI, agentic workflows, and high-throughput architectures. Currently engineering production AI platforms at{' '}
+            <span className="inline-flex items-center gap-1 font-semibold text-[#1A1614] dark:text-[#FDFBF7] bg-[#E8E0D8]/40 dark:bg-white/[0.08] px-2 py-0.5 rounded-md border border-[#E8E0D8] dark:border-white/10 hover:border-copper transition-colors">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              HCLTech
+            </span>.
           </motion.p>
 
-          {/* Action CTAs & Socials */}
+          {/* Action CTAs & Social Dock */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.65 }}
-            className="flex flex-wrap items-center gap-4 pt-2"
+            transition={{ duration: 0.6, delay: 0.55 }}
+            className="flex flex-wrap items-center gap-3.5 sm:gap-4 pt-1"
           >
+            {/* Primary Magnetic CTA */}
             <button
               onClick={() => scrollToSection('projects')}
-              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#1A1614] text-[#EDE5DC] font-medium text-sm hover:bg-copper hover:text-white transition-all duration-300 shadow-soft-md hover:shadow-glow-copper hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer"
+              className="relative group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#1A1614] text-[#EDE5DC] dark:bg-[#EDE5DC] dark:text-[#1A1614] font-medium text-sm hover:bg-copper dark:hover:bg-copper hover:text-white dark:hover:text-white transition-all duration-300 shadow-[0_8px_24px_rgba(26,22,20,0.14)] hover:shadow-[0_12px_32px_rgba(196,125,90,0.3)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer overflow-hidden"
             >
-              <span>Explore Selected Work</span>
-              <ArrowUpRight className="w-4 h-4 text-copper group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+              <span className="relative z-10">Explore Selected Work</span>
+              <ArrowUpRight className="relative z-10 w-4 h-4 text-copper group-hover:text-white dark:group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+              <div className="absolute inset-0 bg-gradient-to-r from-copper to-[#D4845E] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </button>
 
+            {/* Secondary Frosted Glass CTA */}
             <a
               href={PERSONAL_DETAILS.resumeLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#FEFCF9] border border-[#E8E0D8] text-ink font-medium text-sm hover:border-copper hover:text-copper hover:-translate-y-0.5 transition-all shadow-soft-sm"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/80 dark:bg-white/[0.06] backdrop-blur-md border border-[#E8E0D8] dark:border-white/10 text-[#1A1614] dark:text-[#EDE5DC] font-medium text-sm hover:border-copper hover:text-copper hover:-translate-y-0.5 transition-all shadow-soft-sm"
             >
               <Download className="w-4 h-4 text-copper" />
               <span>Download CV</span>
             </a>
 
-            {/* Social Icons */}
-            <div className="flex items-center gap-2 pl-2">
+            {/* Glass Social Pill Dock */}
+            <div className="inline-flex items-center gap-1 p-1 rounded-full bg-white/70 dark:bg-white/[0.04] backdrop-blur-md border border-[#E8E0D8] dark:border-white/10 shadow-soft-sm">
               <a
                 href={PERSONAL_DETAILS.social.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 text-ink-secondary hover:text-copper hover:bg-[#FEFCF9] rounded-full border border-transparent hover:border-[#E8E0D8] transition-all"
+                className="p-2.5 text-[#78716C] dark:text-[#A8A29E] hover:text-copper hover:bg-white dark:hover:bg-white/10 rounded-full transition-all"
                 aria-label="GitHub"
               >
                 <Github className="w-4 h-4" />
@@ -197,14 +209,14 @@ export const Hero: React.FC = () => {
                 href={PERSONAL_DETAILS.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 text-ink-secondary hover:text-copper hover:bg-[#FEFCF9] rounded-full border border-transparent hover:border-[#E8E0D8] transition-all"
+                className="p-2.5 text-[#78716C] dark:text-[#A8A29E] hover:text-copper hover:bg-white dark:hover:bg-white/10 rounded-full transition-all"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-4 h-4" />
               </a>
               <a
                 href={`mailto:${PERSONAL_DETAILS.email}`}
-                className="p-2.5 text-ink-secondary hover:text-copper hover:bg-[#FEFCF9] rounded-full border border-transparent hover:border-[#E8E0D8] transition-all"
+                className="p-2.5 text-[#78716C] dark:text-[#A8A29E] hover:text-copper hover:bg-white dark:hover:bg-white/10 rounded-full transition-all"
                 aria-label="Email"
               >
                 <Mail className="w-4 h-4" />
@@ -228,29 +240,25 @@ export const Hero: React.FC = () => {
             className="relative w-full max-w-md"
             style={{ perspective: 1200 }}
           >
-            {/* Layered Geometric Parallax Shapes Behind Photo */}
+            {/* Ambient Radial Mesh Halo */}
+            <div className="absolute -inset-4 rounded-[40px] bg-gradient-to-tr from-copper/25 via-amber-500/10 to-transparent -z-10 blur-2xl opacity-75" />
+
+            {/* Geometric Accent Lines */}
             <motion.div
               style={{
                 y: shape1Y,
                 x: shapeOffsetX,
                 translateY: shapeOffsetY,
               }}
-              className="absolute -top-6 -left-6 w-36 h-36 rounded-3xl bg-gradient-to-br from-copper/20 to-primary/20 -z-10 rotate-12 blur-sm"
-            />
-            <motion.div
-              style={{
-                y: shape2Y,
-                x: useTransform(shapeOffsetX, (v) => -v),
-              }}
-              className="absolute -bottom-8 -right-6 w-44 h-44 rounded-full bg-gradient-to-tr from-primary/15 via-copper/15 to-transparent -z-10 blur-xl"
+              className="absolute -top-5 -left-5 w-28 h-28 rounded-3xl bg-copper/15 -z-10 rotate-12 blur-lg"
             />
 
-            {/* 3D Tilted Photo Frame with Thick Warm Border */}
+            {/* 3D Tilted Photo Frame with Ultra-Thin Specular Glass Border */}
             <motion.div
               style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-              className="relative rounded-3xl overflow-hidden bg-[#FEFCF9] p-3 border-[4px] border-[#E8E0D8] shadow-soft-lg group cursor-pointer"
+              className="relative rounded-[32px] overflow-hidden p-2 bg-gradient-to-b from-white/95 via-white/40 to-white/10 dark:from-white/15 dark:via-white/5 dark:to-transparent border border-white/80 dark:border-white/10 shadow-[0_24px_64px_-12px_rgba(26,22,20,0.16)] dark:shadow-[0_24px_64px_-12px_rgba(0,0,0,0.6)] backdrop-blur-2xl group cursor-pointer"
             >
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-[#EDE5DC]">
+              <div className="relative aspect-[4/5] rounded-[26px] overflow-hidden bg-[#EDE5DC] dark:bg-[#1E1B18]">
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={activePhotoIdx}
@@ -263,32 +271,35 @@ export const Hero: React.FC = () => {
                     className="w-full h-full object-cover object-top transition-transform duration-700 ease-out"
                   />
                 </AnimatePresence>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#131110]/85 via-[#131110]/20 to-transparent opacity-85" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#131110]/85 via-[#131110]/20 to-transparent opacity-90" />
                 
-                {/* Photo Top Badge */}
-                <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#131110]/70 backdrop-blur-md border border-white/10 text-[#EDE5DC] text-[10px] font-mono">
-                  <span className="w-1.5 h-1.5 rounded-full bg-copper" />
+                {/* Photo Top Floating Glass Badge */}
+                <div className="absolute top-3.5 right-3.5 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#131110]/75 backdrop-blur-md border border-white/15 text-[#EDE5DC] text-[11px] font-mono shadow-lg">
+                  <Sparkles className="w-3.5 h-3.5 text-copper" />
                   <span>{PROFESSIONAL_HERO_PHOTOS[activePhotoIdx].tag}</span>
                 </div>
 
-                {/* Photo Bottom Caption & 6-Look Switcher */}
+                {/* Photo Bottom Caption & Modern Look Switcher */}
                 <div className="absolute bottom-3.5 left-3.5 right-3.5 flex items-end justify-between gap-2 text-[#EDE5DC]">
                   <div>
-                    <p className="font-display font-medium text-lg leading-tight">Sonu Thomas</p>
-                    <p className="text-[11px] font-mono text-copper-200">IIT Guwahati &bull; HCLTech Engineer</p>
+                    <div className="flex items-center gap-1.5">
+                      <p className="font-display font-semibold text-lg text-white leading-tight">Sonu Thomas</p>
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    </div>
+                    <p className="text-[11px] font-mono text-copper-200/90 mt-0.5">IIT Guwahati &bull; HCLTech Engineer</p>
                   </div>
 
-                  {/* 6 Photo Switcher Dots */}
+                  {/* 6 Photo Switcher Pills */}
                   <div 
-                    className="flex items-center gap-1 bg-[#131110]/80 backdrop-blur-md px-2 py-1 rounded-full border border-white/10" 
+                    className="flex items-center gap-1 bg-[#131110]/80 backdrop-blur-md p-1 rounded-full border border-white/15 shadow-md" 
                     onClick={(e) => e.stopPropagation()}
                   >
                     {PROFESSIONAL_HERO_PHOTOS.map((_, i) => (
                       <button
                         key={i}
                         onClick={() => setActivePhotoIdx(i)}
-                        className={`w-2 h-2 rounded-full transition-all ${
-                          activePhotoIdx === i ? 'bg-copper w-3.5' : 'bg-white/40 hover:bg-white/80'
+                        className={`h-2 rounded-full transition-all duration-300 ${
+                          activePhotoIdx === i ? 'bg-copper w-4.5' : 'bg-white/40 hover:bg-white/80 w-2'
                         }`}
                         title={`View Look 0${i + 1}: ${PROFESSIONAL_HERO_PHOTOS[i].tag}`}
                         aria-label={`View photo ${i + 1}`}
