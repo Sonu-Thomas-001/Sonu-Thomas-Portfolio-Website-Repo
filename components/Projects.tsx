@@ -8,8 +8,6 @@ import {
   Sparkles, 
   Cpu, 
   Activity, 
-  LayoutGrid, 
-  Table, 
   Search, 
   Terminal
 } from 'lucide-react';
@@ -184,7 +182,6 @@ const CATEGORY_FILTERS = [
 
 export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = false }) => {
   const [activeFilter, setActiveFilter] = useState('All');
-  const [viewMode, setViewMode] = useState<'grid' | 'dossier'>('grid');
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -282,55 +279,24 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
             </p>
           </div>
 
-          {/* View Mode & Quick Search */}
-          <div className="flex flex-wrap items-center gap-3">
-            {/* View Mode Switcher */}
-            <div className="flex items-center p-1 rounded-2xl bg-[#1E1B18] border border-[#332E2A] shadow-soft-sm">
+          {/* Quick Search */}
+          <div className="relative">
+            <Search className="w-3.5 h-3.5 text-[#78716C] absolute left-3 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Filter by tech (e.g. LangGraph)..."
+              className="pl-8 pr-3 py-1.5 rounded-xl bg-[#1E1B18] border border-[#332E2A] text-xs font-mono text-[#EDE5DC] placeholder-[#78716C] focus:outline-none focus:border-copper transition-colors w-52 sm:w-64"
+            />
+            {searchQuery && (
               <button
-                onClick={() => setViewMode('grid')}
-                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer ${
-                  viewMode === 'grid'
-                    ? 'bg-[#25211E] text-copper border border-copper/30 shadow-soft-sm'
-                    : 'text-[#78716C] hover:text-[#EDE5DC]'
-                }`}
-                title="Visual Showcase Grid"
+                onClick={() => setSearchQuery('')}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#78716C] hover:text-[#EDE5DC]"
               >
-                <LayoutGrid className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Showcase Grid</span>
+                <X className="w-3 h-3" />
               </button>
-              <button
-                onClick={() => setViewMode('dossier')}
-                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer ${
-                  viewMode === 'dossier'
-                    ? 'bg-[#25211E] text-copper border border-copper/30 shadow-soft-sm'
-                    : 'text-[#78716C] hover:text-[#EDE5DC]'
-                }`}
-                title="System Dossier & Architecture Matrix"
-              >
-                <Table className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Architecture Matrix</span>
-              </button>
-            </div>
-
-            {/* Quick Search */}
-            <div className="relative">
-              <Search className="w-3.5 h-3.5 text-[#78716C] absolute left-3 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Filter by tech (e.g. LangGraph)..."
-                className="pl-8 pr-3 py-1.5 rounded-xl bg-[#1E1B18] border border-[#332E2A] text-xs font-mono text-[#EDE5DC] placeholder-[#78716C] focus:outline-none focus:border-copper transition-colors w-44 sm:w-56"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#78716C] hover:text-[#EDE5DC]"
-                >
-                  <X className="w-3 h-3" />
-                </button>
-              )}
-            </div>
+            )}
           </div>
         </div>
 
@@ -361,10 +327,9 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
         </div>
 
         {/* ============================================================ */}
-        {/* VIEW MODE 1: ASYMMETRIC BENTO SHOWCASE GRID */}
+        {/* ASYMMETRIC BENTO SHOWCASE GRID */}
         {/* ============================================================ */}
-        {viewMode === 'grid' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-7">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-7">
             <AnimatePresence mode="popLayout">
               {displayProjects.map((project, idx) => {
                 const meta = PROJECT_METRICS[project.id] || {
@@ -438,115 +403,6 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
               })}
             </AnimatePresence>
           </div>
-        )}
-
-        {/* ============================================================ */}
-        {/* VIEW MODE 2: SYSTEM DOSSIER & ARCHITECTURE MATRIX */}
-        {/* ============================================================ */}
-        {viewMode === 'dossier' && (
-          <div className="rounded-3xl border border-[#332E2A] bg-[#1A1715] overflow-hidden shadow-2xl">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className="bg-[#141210] border-b border-[#2A2522] text-[11px] font-mono uppercase tracking-wider text-[#78716C]">
-                    <th className="py-4 px-6">System Architecture</th>
-                    <th className="py-4 px-6">Category</th>
-                    <th className="py-4 px-6">Topology &amp; Engine</th>
-                    <th className="py-4 px-6">Primary Benchmark</th>
-                    <th className="py-4 px-6">Core Stack</th>
-                    <th className="py-4 px-6 text-right">Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[#2A2522] text-xs">
-                  {filteredProjects.map((project) => {
-                    const meta = PROJECT_METRICS[project.id];
-                    return (
-                      <tr 
-                        key={project.id}
-                        className="hover:bg-[#201D1A] transition-colors group cursor-pointer"
-                        onClick={() => setSelectedProject(project)}
-                      >
-                        {/* Title & Role */}
-                        <td className="py-4 px-6">
-                          <div className="font-display font-bold text-sm text-[#EDE5DC] group-hover:text-copper transition-colors">
-                            {project.title}
-                          </div>
-                          <span className="text-[10px] font-mono text-[#78716C] block mt-0.5">
-                            {project.role}
-                          </span>
-                        </td>
-
-                        {/* Category */}
-                        <td className="py-4 px-6">
-                          <span className="px-2.5 py-1 rounded-md bg-[#25211E] text-copper border border-copper/30 font-mono text-[10px]">
-                            {project.category}
-                          </span>
-                        </td>
-
-                        {/* Topology */}
-                        <td className="py-4 px-6 max-w-xs">
-                          <span className="font-mono text-[11px] text-[#C4BCB5] leading-relaxed block">
-                            {meta?.topology || 'Autonomous System'}
-                          </span>
-                        </td>
-
-                        {/* Primary Benchmark */}
-                        <td className="py-4 px-6">
-                          {meta?.telemetry?.[0] ? (
-                            <span className="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-mono text-[11px] font-semibold">
-                              {meta.telemetry[0].value}
-                            </span>
-                          ) : (
-                            <span className="font-mono text-[#78716C]">Production-Ready</span>
-                          )}
-                        </td>
-
-                        {/* Core Stack */}
-                        <td className="py-4 px-6">
-                          <div className="flex flex-wrap gap-1 max-w-xs font-mono text-[10px]">
-                            {project.stack.slice(0, 3).map((s, idx) => (
-                              <span key={idx} className="px-2 py-0.5 rounded bg-[#171412] text-[#9C948B] border border-[#2D2824]">
-                                {s}
-                              </span>
-                            ))}
-                            {project.stack.length > 3 && (
-                              <span className="px-1.5 py-0.5 text-[#78716C]">+{project.stack.length - 3}</span>
-                            )}
-                          </div>
-                        </td>
-
-                        {/* Actions */}
-                        <td className="py-4 px-6 text-right" onClick={(e) => e.stopPropagation()}>
-                          <div className="flex items-center justify-end gap-2">
-                            {project.links?.github && (
-                              <a
-                                href={project.links.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="p-2 rounded-lg bg-[#25211E] hover:bg-copper text-[#EDE5DC] hover:text-white border border-[#38332E] transition-all"
-                                title="Open GitHub Repository"
-                              >
-                                <Github className="w-3.5 h-3.5" />
-                              </a>
-                            )}
-                            <button
-                              onClick={() => setSelectedProject(project)}
-                              className="px-3 py-1.5 rounded-lg bg-copper hover:bg-copper-600 text-white font-mono text-[11px] font-medium transition-all shadow-glow-copper cursor-pointer flex items-center gap-1"
-                            >
-                              <span>Dossier</span>
-                              <ArrowUpRight className="w-3 h-3" />
-                            </button>
-                          </div>
-                        </td>
-
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
 
         {/* Empty State */}
         {filteredProjects.length === 0 && (

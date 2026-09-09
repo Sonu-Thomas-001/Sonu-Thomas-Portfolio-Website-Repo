@@ -7,10 +7,8 @@ import {
   Workflow,
   ArrowUpRight,
   ArrowRight,
-  Sparkles,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { TechPillMarquee } from './TechPillMarquee';
 
 interface Discipline {
   id: string;
@@ -169,18 +167,7 @@ export const Skills: React.FC = () => {
         </p>
       </div>
 
-      {/* 3. Branded Infinite Marquee (Effortless proof of stack) */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.5 }}
-        className="mb-14 sm:mb-20 -mx-6 sm:-mx-8 lg:-mx-12 py-3 border-y border-[#E8E0D8] dark:border-white/10 bg-[#FEFCF9]/60 dark:bg-[#161311]/60 backdrop-blur-md"
-      >
-        <TechPillMarquee speed={38} direction="left" />
-      </motion.div>
-
-      {/* 4. 2x2 Wide Architectural Dossier Cards */}
+      {/* 3. 2x2 Wide Architectural Dossier Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
         {DISCIPLINES.map((disc, idx) => {
           const Icon = disc.icon;
