@@ -60,6 +60,10 @@ export interface CertificationItem {
   date: string;
   link?: string;
   credentialId?: string;
+  category?: string;
+  level?: string;
+  featured?: boolean;
+  skills?: string[];
 }
 
 export interface BlogItem {
@@ -130,4 +134,7 @@ export interface AwardItem {
   issuer: string;
   date: string;
   description: string[];
+  category?: string;
+  badge?: string;
+  featured?: boolean;
 }

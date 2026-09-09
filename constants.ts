@@ -775,72 +775,118 @@ export const EDUCATION_DATA: EducationItem[] = [
 
 export const CERTIFICATIONS_DATA: CertificationItem[] = [
   {
+    id: "aws-sap",
+    title: "AWS Certified Solutions Architect – Professional (SAP-C02)",
+    issuer: "Amazon Web Services (AWS)",
+    date: "2024",
+    category: "AWS Cloud",
+    level: "Professional",
+    featured: true,
+    credentialId: "AWS-PSA-VERIFIED",
+    skills: ["Multi-Tier Architecture", "Disaster Recovery", "High Availability", "Cost Optimization"]
+  },
+  {
+    id: "aws-dop",
+    title: "AWS Certified DevOps Engineer – Professional (DOP-C02)",
+    issuer: "Amazon Web Services (AWS)",
+    date: "2024",
+    category: "AWS Cloud",
+    level: "Professional",
+    featured: true,
+    credentialId: "AWS-DOP-VERIFIED",
+    skills: ["CI/CD Automation", "Infrastructure as Code", "Zero-Downtime Deployment", "Observability"]
+  },
+  {
+    id: "aws-mls",
+    title: "AWS Certified Machine Learning & AI Specialist (MLS-C01)",
+    issuer: "Amazon Web Services (AWS)",
+    date: "2025",
+    category: "AI & ML",
+    level: "Specialist",
+    featured: true,
+    credentialId: "AWS-MLS-VERIFIED",
+    skills: ["Amazon SageMaker", "Feature Engineering", "Model Optimization", "Deep Learning"]
+  },
+  {
+    id: "gcp-cdl",
+    title: "Google Cloud Certified – Cloud Digital Leader",
+    issuer: "Google Cloud",
+    date: "Sep 2024",
+    category: "Google Cloud",
+    level: "Associate",
+    featured: true,
+    credentialId: "5122267686b949689ab761e0005a769d",
+    skills: ["GCP Infrastructure", "Data Modernization", "Cloud Security", "Enterprise Migration"]
+  },
+  {
+    id: "gc-90-badges",
+    title: "90+ Google Cloud Skill Badges & Architecture Labs",
+    issuer: "Google Cloud Skills Boost",
+    date: "Continuous 2024 – 2026",
+    category: "Google Cloud",
+    level: "Mastery",
+    featured: true,
+    credentialId: "90-PLUS-BADGES-VERIFIED",
+    skills: ["Vertex AI", "BigQuery ML", "Kubernetes (GKE)", "Cloud Run", "Terraform GCP"]
+  },
+  {
     id: "gc-vertex",
     title: "Prompt Design in Vertex AI",
     issuer: "Google Cloud Skills Boost",
     date: "May 2025",
-    credentialId: "15478363"
-  },
-  {
-    id: "gc-leader",
-    title: "Cloud Digital Leader",
-    issuer: "Google Cloud Skills Boost",
-    date: "Sep 2024",
-    credentialId: "5122267686b949689ab761e0005a769d"
+    category: "AI & ML",
+    level: "Specialist",
+    featured: true,
+    credentialId: "15478363",
+    skills: ["Prompt Engineering", "Vertex AI Studio", "Few-Shot Reasoning", "Model Tuning"]
   },
   {
     id: "gl-ds",
     title: "Data Science Foundations",
     issuer: "Great Learning Academy",
     date: "Jun 2024",
-    credentialId: "JJIOMJTY"
+    category: "Foundations",
+    level: "Foundational",
+    credentialId: "JJIOMJTY",
+    skills: ["Python", "NumPy", "Pandas", "EDA"]
   },
   {
     id: "gl-ai",
     title: "Introduction to Artificial Intelligence",
     issuer: "Great Learning Academy",
     date: "Jun 2024",
-    credentialId: "OPCYHCVS"
-  },
-  {
-    id: "gl-dm",
-    title: "Introduction to Digital Marketing",
-    issuer: "Great Learning Academy",
-    date: "Jun 2024",
-    credentialId: "GEBIFRNQ"
-  },
-  {
-    id: "gl-excel-int",
-    title: "Excel for Intermediate Level",
-    issuer: "Great Learning Academy",
-    date: "Jun 2024",
-    credentialId: "TCGVAYIP"
-  },
-  {
-    id: "gl-excel-beg",
-    title: "Excel for Beginners",
-    issuer: "Great Learning Academy",
-    date: "Jun 2024",
-    credentialId: "PTWXOAOX"
+    category: "AI & ML",
+    level: "Foundational",
+    credentialId: "OPCYHCVS",
+    skills: ["Neural Networks", "Search Algorithms", "Supervised Learning"]
   },
   {
     id: "brototype-100k",
     title: "100K Coding Challenge",
     issuer: "Brototype",
     date: "Nov 2021",
-    credentialId: "100KCC79797"
+    category: "Engineering",
+    level: "Practical",
+    credentialId: "100KCC79797",
+    skills: ["Data Structures", "Algorithms", "Clean Code"]
   },
   {
     id: "brototype-web",
     title: "Web Designing Challenge",
     issuer: "Brototype",
     date: "Nov 2021",
+    category: "Engineering",
+    level: "Practical",
+    skills: ["Responsive Design", "Modern CSS", "Web Performance"]
   },
   {
     id: "devtown-port",
     title: "Portfolio Website using HTML & CSS",
     issuer: "DevTown",
     date: "Nov 2021",
+    category: "Engineering",
+    level: "Foundational",
+    skills: ["Semantic HTML", "CSS Flexbox", "Web Standards"]
   }
 ];
 
@@ -928,10 +974,27 @@ export const VOLUNTEERING_DATA: VolunteeringItem[] = [
 
 export const AWARDS_DATA: AwardItem[] = [
   {
+    id: "hcl-supercharged",
+    title: "HCLTech Supercharged™ Ambassador",
+    issuer: "HCLTech Global",
+    date: "2024 – Present",
+    category: "Enterprise Leadership",
+    badge: "Official Ambassadorship",
+    featured: true,
+    description: [
+      "Appointed as official HCLTech Supercharged™ Ambassador, representing HCLTech's culture of innovation, engineering rigor, and technical excellence.",
+      "Championing enterprise AI initiatives, knowledge dissemination, and modern cloud architectures across internal teams and external developer communities.",
+      "Active participant in strategic engineering discussions, technical webinars, and university outreach programs."
+    ]
+  },
+  {
     id: "star-techbee",
     title: "Star TechBee Award",
     issuer: "HCLTech – TechBee Program (TSS Team)",
     date: "November 2025",
+    category: "Performance Excellence",
+    badge: "Top Performer Distinction",
+    featured: true,
     description: [
       "Awarded for outstanding performance, consistent growth, and impactful contributions during a two-year journey as a TechBee at HCLTech.",
       "Recognized for hands-on involvement in real-time enterprise projects, effective handling of production change activities, and strong ownership in delivery.",
@@ -944,6 +1007,9 @@ export const AWARDS_DATA: AwardItem[] = [
     title: "Rising Star Award",
     issuer: "St. Joseph’s HSS Vayattupparamba",
     date: "June 2021",
+    category: "Academic Distinction",
+    badge: "Academic Honor",
+    featured: false,
     description: [
       "Recognized for outstanding academic growth, consistent performance, and active participation in academic and co-curricular activities.",
       "Acknowledged initiative, leadership potential, and positive contributions to school programs and student communities.",
