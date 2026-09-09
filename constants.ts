@@ -955,33 +955,111 @@ export const AWARDS_DATA: AwardItem[] = [
 export const BLOG_DATA: BlogItem[] = [
   {
     id: "b1",
-    title: "Best Web Developer in Kannur – What to Look For",
-    excerpt: "When hiring a web developer in Kerala, what are the key traits that distinguish a generic coder from a software engineer who builds scalable products? A comprehensive guide.",
-    date: "May 2, 2026",
-    readTime: "7 min read",
-    category: "Web Development",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1000&auto=format&fit=crop",
-    link: "/insights"
+    title: "Designing Enterprise Multi-Agent Workflows: Routing, Triage & Self-Healing Retries",
+    excerpt: "How to architect resilient agent networks with LangGraph and Gemini 2.0 Flash that reliably handle complex ITSM triage without getting stuck in infinite loops.",
+    date: "Feb 24, 2026",
+    readTime: "8 min read",
+    category: "Agentic AI",
+    tags: ["Multi-Agent", "LangGraph", "Gemini 2.0", "ServiceNow"],
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop",
+    link: "/insights",
+    featured: true
   },
   {
     id: "b2",
-    title: "How AI is Transforming Web Development in Kerala",
-    excerpt: "From AI-powered code generation to intelligent user interfaces, discover how Artificial Intelligence is reshaping the web development landscape specifically for businesses in Kerala.",
-    date: "Aug 15, 2026",
-    readTime: "6 min read",
-    category: "AI & Web",
+    title: "Parameter-Efficient Fine-Tuning (PEFT) with LoRA for Incident Classification",
+    excerpt: "Adapting 7B/14B open models for domain-specific IT Service Management data using QLoRA, achieving 94% intent precision with a single consumer-tier GPU.",
+    date: "Jan 18, 2026",
+    readTime: "10 min read",
+    category: "LLMs & Fine-Tuning",
+    tags: ["LoRA", "HuggingFace", "PyTorch", "PEFT"],
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop",
-    link: "/insights"
+    link: "/insights",
+    featured: true
   },
   {
     id: "b3",
-    title: "Top Software Development Trends in Kerala",
-    excerpt: "As Kerala emerges as a significant IT hub, local and international businesses are adopting new architectures. Here are the top software engineering trends to watch.",
-    date: "Dec 10, 2026",
+    title: "Preventing Double-Bookings at Scale: Distributed Locks & TTL Invalidation",
+    excerpt: "A deep architectural dive into three-tier collision defense: Redisson Lua locks, Redis sliding TTL holds, and PostgreSQL ACID unique constraints under 10,000 req/sec.",
+    date: "Dec 28, 2025",
+    readTime: "9 min read",
+    category: "System Architecture",
+    tags: ["Distributed Systems", "Redis", "Spring Boot", "PostgreSQL"],
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1000&auto=format&fit=crop",
+    link: "/insights",
+    featured: false
+  },
+  {
+    id: "b4",
+    title: "Vector Databases in Production: Benchmarking ChromaDB vs. Pinecone vs. pgvector",
+    excerpt: "Empirical latency and recall analysis across 500k technical documentation chunks. When does hybrid lexical-semantic search beat pure dense embeddings?",
+    date: "Nov 14, 2025",
+    readTime: "7 min read",
+    category: "RAG & Data",
+    tags: ["Vector Search", "ChromaDB", "pgvector", "RAG"],
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1000&auto=format&fit=crop",
+    link: "/insights",
+    featured: false
+  },
+  {
+    id: "b5",
+    title: "Predictive Risk Modeling in DevOps: ML Classifiers for Change Failure Rate",
+    excerpt: "Formulating a live 'Risk Propensity Score' by correlating change volumes, dependency trees, and scheduling conflicts to target zero-downtime deployment windows.",
+    date: "Oct 05, 2025",
+    readTime: "6 min read",
+    category: "MLOps & DevOps",
+    tags: ["Scikit-Learn", "DevOps", "ITIL", "Predictive Analytics"],
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
+    link: "/insights",
+    featured: false
+  },
+  {
+    id: "b6",
+    title: "YOLOv8 vs. Faster R-CNN on Low-Compute Edge Devices",
+    excerpt: "Real-time inference trade-offs on low-power edge nodes. Quantization techniques (INT8 vs FP16) to maximize frames per second without sacrificing bounding-box mAP.",
+    date: "Aug 19, 2025",
     readTime: "8 min read",
-    category: "Software Engineering",
+    category: "Computer Vision",
+    tags: ["Computer Vision", "YOLOv8", "Edge AI", "TensorRT"],
+    image: "https://images.unsplash.com/photo-1507146426996-ef05306b995a?q=80&w=1000&auto=format&fit=crop",
+    link: "/insights",
+    featured: false
+  },
+  {
+    id: "b7",
+    title: "Deterministic Guardrails for Enterprise AI: Eliminating Prompt Injection",
+    excerpt: "Defending autonomous enterprise agents with semantic firewalls, NeMo Guardrails, and strict schema validation before executing production API calls.",
+    date: "Jul 02, 2025",
+    readTime: "7 min read",
+    category: "AI Security",
+    tags: ["AI Safety", "Guardrails", "Cybersecurity", "OWASP LLM"],
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1000&auto=format&fit=crop",
+    link: "/insights",
+    featured: false
+  },
+  {
+    id: "b8",
+    title: "How AI is Transforming Modern Software Architecture",
+    excerpt: "From AI-assisted code generation to intelligent runtime self-healing systems, explore how LLMs are redefining the lifecycle of enterprise systems engineering.",
+    date: "May 12, 2025",
+    readTime: "6 min read",
+    category: "System Architecture",
+    tags: ["Modern Architecture", "AI Integration", "Enterprise"],
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1000&auto=format&fit=crop",
+    link: "/insights",
+    featured: false
+  },
+  {
+    id: "b9",
+    title: "From Software Engineer to AI Systems Architect: The Mathematical Playbook",
+    excerpt: "Bridging the gap between distributed software engineering discipline and frontier neural architectures. Core principles, vector topologies, and career roadmap.",
+    date: "Mar 22, 2025",
+    readTime: "11 min read",
+    category: "Engineering Career",
+    tags: ["Career", "Neural Systems", "System Design"],
     image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1000&auto=format&fit=crop",
-    link: "/insights"
+    link: "/insights",
+    featured: false
   }
 ];
 

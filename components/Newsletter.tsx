@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, ArrowRight, Check, Loader2, ShieldCheck, Zap, Sparkles } from 'lucide-react';
+import { Mail, ArrowRight, Check, Loader2, ShieldCheck, Sparkles, Zap, Users } from 'lucide-react';
 
 export const Newsletter: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -13,65 +13,120 @@ export const Newsletter: React.FC = () => {
     setTimeout(() => {
       setStatus('success');
       setEmail('');
-      setTimeout(() => setStatus('idle'), 3500);
-    }, 1200);
+      setTimeout(() => setStatus('idle'), 4000);
+    }, 1100);
   };
 
   return (
-    <section className="py-20 bg-page relative overflow-hidden border-t border-slate-200/80">
+    <section className="py-20 relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-white border border-slate-200/90 rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden shadow-soft-lg"
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="relative rounded-3xl p-8 sm:p-14 text-center overflow-hidden bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 backdrop-blur-2xl border border-[#E8E0D8] dark:border-white/10 shadow-[0_16px_48px_rgba(26,22,20,0.06)] dark:shadow-[0_24px_64px_rgba(0,0,0,0.4)] group"
         >
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-primary-50 border border-primary/20 mb-6 text-primary">
-            <Mail className="w-6 h-6" />
+          {/* Ambient Glow Mesh Behind the Card */}
+          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-56 bg-copper/15 dark:bg-copper/20 rounded-full blur-3xl pointer-events-none -z-10" />
+          <div className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-80 h-48 bg-amber-500/10 dark:bg-amber-600/10 rounded-full blur-3xl pointer-events-none -z-10" />
+
+          {/* Top Hairline Copper Accent */}
+          <div className="absolute top-0 left-12 right-12 h-[2px] bg-gradient-to-r from-transparent via-copper/50 to-transparent" />
+
+          {/* Floating Icon Header */}
+          <div className="inline-flex items-center justify-center mb-6">
+            <div className="relative p-3.5 rounded-2xl bg-white/90 dark:bg-[#25201D] border border-[#E8E0D8] dark:border-white/15 shadow-[0_4px_20px_rgba(196,125,90,0.15)] group-hover:scale-105 transition-transform duration-300">
+              <Sparkles className="w-6 h-6 text-copper" />
+              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-[#1C1816]" />
+            </div>
           </div>
 
-          <h2 className="font-display font-bold text-3xl sm:text-4xl text-slate-900 mb-3 tracking-tight">
-            Stay Ahead of the AI Curve
+          {/* Eyebrow Pill */}
+          <div className="flex justify-center mb-3">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-copper/10 text-copper text-[11px] font-mono font-semibold tracking-wider uppercase border border-copper/20">
+              <Zap className="w-3 h-3 text-copper" />
+              Curated Engineering Dispatches
+            </span>
+          </div>
+
+          {/* Editorial Headline */}
+          <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-[#1A1614] dark:text-[#FDFBF7] tracking-tight leading-tight max-w-2xl mx-auto">
+            Stay Ahead of the{' '}
+            <span className="bg-gradient-to-r from-[#B85D36] via-copper to-[#A04D28] dark:from-[#F0A584] dark:via-copper dark:to-[#F0A584] bg-clip-text text-transparent">
+              AI Curve
+            </span>
           </h2>
           
-          <p className="text-slate-600 max-w-lg mx-auto mb-8 text-base sm:text-lg leading-relaxed">
-            Periodic engineering dispatches on AI agent architectures, production enterprise lessons, and applied machine learning.
+          <p className="text-[#574F4A] dark:text-[#C5BEB7] max-w-xl mx-auto mt-4 mb-8 text-base sm:text-lg font-light leading-relaxed">
+            In-depth breakdowns on autonomous multi-agent architectures, enterprise LLM fine-tuning, and production system designs delivered straight to your inbox.
           </p>
 
-          <form onSubmit={handleSubmit} className="max-w-md mx-auto relative">
-            <div className="relative">
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="your.email@company.com"
-                className="w-full pl-5 pr-32 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-primary focus:bg-white text-sm"
-              />
+          {/* Interactive Form */}
+          <form onSubmit={handleSubmit} className="max-w-lg mx-auto relative">
+            <div className="relative flex flex-col sm:flex-row items-center gap-2 p-1.5 rounded-2xl sm:rounded-full bg-white/80 dark:bg-[#141210]/90 border border-[#E8E0D8] dark:border-white/15 shadow-[0_4px_20px_rgba(26,22,20,0.05)] focus-within:border-copper focus-within:ring-2 focus-within:ring-copper/20 transition-all">
+              <div className="relative flex-1 w-full flex items-center pl-4">
+                <Mail className="w-4 h-4 text-[#A8A29E] shrink-0" />
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="name@organization.com"
+                  className="w-full px-3 py-2.5 bg-transparent text-[#1A1614] dark:text-[#EDE5DC] placeholder:text-[#A8A29E] text-sm focus:outline-none"
+                />
+              </div>
+
               <button
                 type="submit"
                 disabled={status === 'submitting' || status === 'success'}
-                className="absolute right-1.5 top-1.5 bottom-1.5 px-5 rounded-xl bg-primary hover:bg-primary-600 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-soft-sm cursor-pointer disabled:opacity-50"
+                className="w-full sm:w-auto px-6 py-3 rounded-xl sm:rounded-full bg-gradient-to-r from-copper to-[#A04D28] hover:from-[#B85D36] hover:to-copper text-white font-medium text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_4px_16px_rgba(196,125,90,0.3)] hover:shadow-[0_6px_22px_rgba(196,125,90,0.45)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer disabled:opacity-75 shrink-0"
               >
                 {status === 'submitting' ? (
-                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Transmitting...</span>
+                  </>
                 ) : status === 'success' ? (
                   <>
-                    <Check className="w-3.5 h-3.5" />
-                    <span>Subscribed</span>
+                    <Check className="w-4 h-4 text-white" />
+                    <span>Dispatched &bull; Welcome!</span>
                   </>
                 ) : (
                   <>
                     <span>Subscribe</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                   </>
                 )}
               </button>
             </div>
-            
-            <p className="text-xs text-slate-400 mt-3 font-mono">
-              Strictly zero spam • Unsubscribe anytime
-            </p>
+
+            {/* Success Banner Feedback */}
+            <AnimatePresence>
+              {status === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  className="mt-3 text-xs font-mono text-emerald-600 dark:text-emerald-400 font-medium"
+                >
+                  ✓ You are on the subscriber dispatch list. Verification email sent.
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Trust Badges Ribbon */}
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mt-5 text-[11px] font-mono text-[#78716C] dark:text-[#9C948B]">
+              <span className="flex items-center gap-1.5">
+                <ShieldCheck className="w-3.5 h-3.5 text-copper" />
+                Zero Spam &bull; Unsubscribe Anytime
+              </span>
+              <span className="hidden sm:inline text-copper/40">&bull;</span>
+              <span className="flex items-center gap-1.5">
+                <Users className="w-3.5 h-3.5 text-copper" />
+                Join 1,400+ Engineering Leaders
+              </span>
+            </div>
           </form>
         </motion.div>
       </div>

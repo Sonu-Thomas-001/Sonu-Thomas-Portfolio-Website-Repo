@@ -71,6 +71,8 @@ export interface BlogItem {
   category: string;
   image: string;
   link: string;
+  tags?: string[];
+  featured?: boolean;
 }
 
 export interface TalkItem {
