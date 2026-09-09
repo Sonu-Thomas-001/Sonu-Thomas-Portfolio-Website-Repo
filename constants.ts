@@ -130,64 +130,64 @@ export const SKILLS_DATA: SkillCategory[] = [
   {
     category: "Core Stack",
     items: [
-      { name: "Python", proficiency: "Expert" },
-      { name: "Java", proficiency: "Advanced" },
-      { name: "TypeScript", proficiency: "Advanced" },
-      { name: "React", proficiency: "Advanced" },
-      { name: "SQL / PL/SQL", proficiency: "Advanced" },
-      { name: "C / C++", proficiency: "Intermediate" }
+      { name: "Python", proficiency: "Expert", context: "LangGraph DAGs, FastAPI microservices, and AI agent backends", badge: "Primary" },
+      { name: "Java", proficiency: "Advanced", context: "Enterprise backend services, JDBC, and multithreading at HCLTech", badge: "Enterprise" },
+      { name: "TypeScript", proficiency: "Advanced", context: "Production React/Next.js architectures with strict type safety", badge: "Full-Stack" },
+      { name: "React", proficiency: "Advanced", context: "Custom component design systems, hooks, and kinetic web apps", badge: "UI / UX" },
+      { name: "SQL / PL/SQL", proficiency: "Advanced", context: "High-throughput queries, stored procedures, and Oracle relational pipelines", badge: "Database" },
+      { name: "C / C++", proficiency: "Intermediate", context: "Memory models, algorithmic complexity, and foundational low-level systems", badge: "Systems" }
     ]
   },
   {
     category: "AI & Intelligence",
     items: [
-      { name: "Generative AI" },
-      { name: "LLMs & Agents" },
-      { name: "NLP" },
-      { name: "AI App Dev" },
-      { name: "RAG Pipelines" },
-      { name: "Gemini API" }
+      { name: "Generative AI", proficiency: "Expert", context: "Enterprise GenAI architectures, LLM prompting, and synthetic workflows", badge: "Flagship" },
+      { name: "LLMs & Agents", proficiency: "Expert", context: "Multi-agent coordination, 100+ digital workers, and autonomous state graphs", badge: "Flagship" },
+      { name: "NLP", proficiency: "Advanced", context: "Entity extraction, semantic clustering, and intent classification pipelines", badge: "Applied" },
+      { name: "AI App Dev", proficiency: "Expert", context: "End-to-end intelligent systems integrating frontend, state, and LLM backends", badge: "Architecture" },
+      { name: "RAG Pipelines", proficiency: "Expert", context: "ChromaDB vector retrieval with hybrid semantic search & confidence scoring", badge: "Production" },
+      { name: "Gemini API", proficiency: "Expert", context: "Vertex AI prompt design, structured function calling, and multimodal reasoning", badge: "Certified" }
     ]
   },
   {
     category: "Development Environment",
     items: [
-      { name: "VS Code" },
-      { name: "IntelliJ IDEA" },
-      { name: "Postman" },
-      { name: "Git / GitHub" },
-      { name: "Jupyter" },
-      { name: "Docker" }
+      { name: "VS Code", proficiency: "Expert", context: "Primary IDE configured with custom AI pair-programming and linting tooling", badge: "Primary" },
+      { name: "IntelliJ IDEA", proficiency: "Advanced", context: "Enterprise Java development, Maven/Gradle debugging, and profiling", badge: "Enterprise" },
+      { name: "Postman", proficiency: "Advanced", context: "REST API contract testing, automated mock suites, and latency benchmarking", badge: "Testing" },
+      { name: "Git / GitHub", proficiency: "Advanced", context: "Trunk-based branch governance, pull request reviews, and CI automation", badge: "DevOps" },
+      { name: "Jupyter", proficiency: "Advanced", context: "Exploratory data analysis, model prototyping, and vector visualization", badge: "Research" },
+      { name: "Docker", proficiency: "Intermediate", context: "Multi-stage container builds, service isolation, and local environment staging", badge: "Containers" }
     ]
   },
   {
     category: "Infrastructure & Ops",
     items: [
-      { name: "Oracle DB" },
-      { name: "Linux / Unix" },
-      { name: "Production Support" },
-      { name: "Change Management" },
-      { name: "CI/CD Concepts" }
+      { name: "Oracle DB", proficiency: "Advanced", context: "Mission-critical enterprise database maintenance, schema design, and indexes", badge: "Production" },
+      { name: "Linux / Unix", proficiency: "Advanced", context: "Shell scripting, process management, log auditing, and server telemetry", badge: "Core SRE" },
+      { name: "Production Support", proficiency: "Expert", context: "Real-time incident response, root cause analysis, and 99.99% availability SLAs", badge: "SRE" },
+      { name: "Change Management", proficiency: "Expert", context: "ITIL-compliant production change governance and zero-downtime cutovers", badge: "Awarded" },
+      { name: "CI/CD Concepts", proficiency: "Intermediate", context: "Automated test validation, artifact publishing, and rollback strategies", badge: "DevOps" }
     ]
   },
   {
     category: "Web Ecosystem",
     items: [
-      { name: "Next.js" },
-      { name: "Tailwind CSS" },
-      { name: "WordPress (CMS)" },
-      { name: "HTML5 / CSS3" },
-      { name: "Bootstrap" }
+      { name: "Next.js", proficiency: "Advanced", context: "App Router, server components, edge rendering, and SEO optimization", badge: "Modern" },
+      { name: "Tailwind CSS", proficiency: "Expert", context: "Bespoke design systems, dark mode palettes, and responsive layouts", badge: "Styling" },
+      { name: "WordPress (CMS)", proficiency: "Expert", context: "Custom headless architectures, theme engineering, and 3+ yrs freelance delivery", badge: "3+ Yrs" },
+      { name: "HTML5 / CSS3", proficiency: "Expert", context: "Semantic web structure, WCAG accessibility, and fluid CSS animations", badge: "Standards" },
+      { name: "Bootstrap", proficiency: "Advanced", context: "Rapid component prototyping and responsive grid frameworks", badge: "Framework" }
     ]
   },
   {
     category: "Professional Capabilities",
     items: [
-      { name: "System Design" },
-      { name: "Problem Solving" },
-      { name: "Technical Writing" },
-      { name: "Team Leadership" },
-      { name: "Agile / Scrum" }
+      { name: "System Design", proficiency: "Advanced", context: "Architecting resilient distributed systems, data flows, and failure isolation", badge: "Leadership" },
+      { name: "Problem Solving", proficiency: "Expert", context: "Winner 100K Coding Challenge; fast analytical root-cause diagnostic intuition", badge: "Proven" },
+      { name: "Technical Writing", proficiency: "Advanced", context: "Authoring runbooks, architectural RFCs, and workshop technical tutorials", badge: "Communication" },
+      { name: "Team Leadership", proficiency: "Advanced", context: "Workshop host at IIT-G Tech Club & Little KITEs student technology leader", badge: "Mentorship" },
+      { name: "Agile / Scrum", proficiency: "Advanced", context: "Sprint planning, backlog grooming, cross-functional delivery, and retrospectives", badge: "Delivery" }
     ]
   }
 ];

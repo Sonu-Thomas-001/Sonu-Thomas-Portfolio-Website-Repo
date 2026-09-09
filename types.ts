@@ -18,6 +18,8 @@ export interface SkillItem {
   level?: number; // 1-100 (Optional now)
   proficiency?: string;
   icon?: string;
+  context?: string;
+  badge?: string;
 }
 
 export interface ProjectMetric {

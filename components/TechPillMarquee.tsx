@@ -217,9 +217,9 @@ export const TechPillMarquee: React.FC<TechPillMarqueeProps> = ({
       className={`relative w-full overflow-hidden select-none py-2 ${className}`}
       aria-label="Technologies and frameworks ribbon"
     >
-      {/* Soft gradient edge fade masks matching the warm page background */}
-      <div className="absolute top-0 bottom-0 left-0 w-16 sm:w-28 bg-gradient-to-r from-[#F5F0EB] via-[#F5F0EB]/90 to-transparent z-10 pointer-events-none" />
-      <div className="absolute top-0 bottom-0 right-0 w-16 sm:w-28 bg-gradient-to-l from-[#F5F0EB] via-[#F5F0EB]/90 to-transparent z-10 pointer-events-none" />
+      {/* Soft gradient edge fade masks matching the warm page background & dark mode */}
+      <div className="absolute top-0 bottom-0 left-0 w-16 sm:w-28 bg-gradient-to-r from-[#FAF7F2] dark:from-[#131110] via-[#FAF7F2]/90 dark:via-[#131110]/90 to-transparent z-10 pointer-events-none" />
+      <div className="absolute top-0 bottom-0 right-0 w-16 sm:w-28 bg-gradient-to-l from-[#FAF7F2] dark:from-[#131110] via-[#FAF7F2]/90 dark:via-[#131110]/90 to-transparent z-10 pointer-events-none" />
 
       {/* Marquee Track with Pause on Hover */}
       <div className="flex overflow-hidden w-full group">
@@ -237,12 +237,12 @@ export const TechPillMarquee: React.FC<TechPillMarqueeProps> = ({
           {items.map((tech, idx) => (
             <div
               key={`${tech.name}-${idx}`}
-              className="inline-flex items-center gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white border border-[#E8E0D8] shadow-[0_2px_8px_rgba(26,22,20,0.04)] hover:shadow-[0_6px_20px_rgba(196,125,90,0.18)] hover:border-copper/60 hover:-translate-y-0.5 transition-all duration-200 cursor-default"
+              className="inline-flex items-center gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white/90 dark:bg-[#1E1B18]/90 backdrop-blur-md border border-[#E8E0D8] dark:border-white/10 shadow-[0_2px_8px_rgba(26,22,20,0.04)] hover:shadow-[0_6px_20px_rgba(196,125,90,0.18)] hover:border-copper/60 hover:-translate-y-0.5 transition-all duration-200 cursor-default"
             >
               <span className="flex-shrink-0 flex items-center justify-center w-5 h-5">
                 {tech.icon}
               </span>
-              <span className="text-xs sm:text-sm font-medium text-[#1A1614] tracking-tight">
+              <span className="text-xs sm:text-sm font-medium text-[#1A1614] dark:text-[#FDFBF7] tracking-tight">
                 {tech.name}
               </span>
             </div>
