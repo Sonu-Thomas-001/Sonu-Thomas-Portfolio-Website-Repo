@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
-import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail, Sparkles } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
 
 const PROFESSIONAL_HERO_PHOTOS = [
@@ -298,28 +298,6 @@ export const Hero: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Parallax Floating Badge 1 (Bottom Left) */}
-            <motion.div
-              animate={{ y: [-4, 4, -4] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-6 -left-6 bg-[#FEFCF9]/95 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-[#E8E0D8] shadow-soft-md hidden sm:flex items-center gap-3 z-20"
-            >
-              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-              <div className="text-left">
-                <div className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider">Availability</div>
-                <div className="text-xs font-semibold text-ink">Open for High-Impact Projects</div>
-              </div>
-            </motion.div>
-
-            {/* Parallax Floating Badge 2 (Top Right) */}
-            <motion.div
-              animate={{ y: [4, -4, 4] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -top-5 -right-5 bg-[#FEFCF9]/95 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-[#E8E0D8] shadow-soft-md hidden sm:flex items-center gap-2.5 z-20"
-            >
-              <Sparkles className="w-4 h-4 text-copper" />
-              <span className="text-xs font-mono font-medium text-ink">Production GenAI</span>
-            </motion.div>
           </div>
         </motion.div>
 
