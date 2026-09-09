@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { PERSONAL_DETAILS } from '../constants';
 import { AsciiWave } from './AsciiWave';
 
@@ -13,11 +14,43 @@ const PROFESSIONAL_HERO_PHOTOS = [
   { src: "/images/Professional%20Pic%206.png", label: "Leadership", tag: "Production Leadership" },
 ];
 
-const STATS = [
-  { index: "01", value: "03+", label: "Years Experience", sublabel: "Enterprise AI & Full-Stack" },
-  { index: "02", value: "15+", label: "Systems Engineered", sublabel: "LLMs, Pipelines & Platforms" },
-  { index: "03", value: "HCLTech", live: true, label: "Current Focus", sublabel: "Production Engineering" },
-  { index: "04", value: "IIT-G", label: "Academic Roots", sublabel: "M.Tech Data Science & AI" },
+const PROOF_METRICS = [
+  {
+    index: "01",
+    value: "4x",
+    badge: "AWS & GCP",
+    label: "Cloud Certified",
+    sublabel: "3x AWS Pro / AI Specialist · 1x GCP",
+    href: "/certifications",
+    isInternal: true,
+  },
+  {
+    index: "02",
+    value: "90+",
+    badge: "Cloud Labs",
+    label: "Google Cloud Badges",
+    sublabel: "Architecture, Data & DevOps Labs",
+    href: "/certifications",
+    isInternal: true,
+  },
+  {
+    index: "03",
+    value: "1.2k+",
+    badge: "GitHub",
+    label: "Production Commits",
+    sublabel: "Active Open Engineering Output",
+    href: PERSONAL_DETAILS.social.github,
+    isInternal: false,
+  },
+  {
+    index: "04",
+    value: "9k+",
+    badge: "LinkedIn",
+    label: "Industry Audience",
+    sublabel: "Followers & Thought Leadership",
+    href: PERSONAL_DETAILS.social.linkedin,
+    isInternal: false,
+  },
 ];
 
 export const Hero: React.FC = () => {
@@ -319,47 +352,94 @@ export const Hero: React.FC = () => {
 
       </div>
 
-      {/* Bottom Editorial Stats Strip with Warm Copper Accents */}
+      {/* Bottom Editorial Proof Ledger with Dual-Tier Credentials */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.75, duration: 0.7 }}
-        className="mt-14 pt-8 border-t border-[#E8E0D8] relative z-10"
+        className="mt-14 pt-8 border-t border-[#E8E0D8] dark:border-white/10 relative z-10"
       >
+        {/* Tier 1: Institutional Leadership & Affiliations Ribbon */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 px-1">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-copper" />
+            <span className="text-[11px] font-mono text-copper uppercase tracking-widest font-semibold">
+              Verified Influence &amp; Technical Proof
+            </span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 dark:bg-[#1E1B18]/80 border border-[#E8E0D8] dark:border-white/10 text-[#1A1614] dark:text-[#EDE5DC] text-[11px] font-mono shadow-2xs hover:border-copper/40 transition-colors">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="font-semibold text-emerald-600 dark:text-emerald-400">HCLTech Supercharged™ Ambassador</span>
+            </div>
+
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 dark:bg-[#1E1B18]/80 border border-[#E8E0D8] dark:border-white/10 text-[#1A1614] dark:text-[#EDE5DC] text-[11px] font-mono shadow-2xs hover:border-copper/40 transition-colors">
+              <span className="w-1.5 h-1.5 rounded-full bg-copper" />
+              <span>AI Club Core Team</span>
+            </div>
+
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 dark:bg-[#1E1B18]/80 border border-[#E8E0D8] dark:border-white/10 text-[#78716C] dark:text-[#A8A29E] text-[11px] font-mono shadow-2xs">
+              <span>IIT Guwahati Alumni</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Tier 2: 4 Quantitative Credibility Tiles */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {STATS.map((stat, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ y: -4 }}
-              transition={{ type: "spring", stiffness: 320, damping: 22 }}
-              className="relative flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-[0_4px_20px_rgba(26,22,20,0.04)] hover:shadow-[0_12px_32px_rgba(196,125,90,0.14)] hover:border-copper/40 transition-all duration-300 group overflow-hidden"
-            >
-              {/* Top Accent Hairline */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-copper/30 group-hover:via-copper to-transparent transition-all duration-300 opacity-0 group-hover:opacity-100" />
+          {PROOF_METRICS.map((metric, idx) => {
+            const CardContent = (
+              <motion.div
+                whileHover={{ y: -4 }}
+                transition={{ type: "spring", stiffness: 320, damping: 22 }}
+                className="relative flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-[0_4px_20px_rgba(26,22,20,0.04)] hover:shadow-[0_12px_32px_rgba(196,125,90,0.14)] hover:border-copper/40 transition-all duration-300 group overflow-hidden h-full cursor-pointer"
+              >
+                {/* Top Accent Hairline */}
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-copper/30 group-hover:via-copper to-transparent transition-all duration-300 opacity-0 group-hover:opacity-100" />
 
-              {/* Header: Stat Value + Subtle Index */}
-              <div className="flex items-baseline justify-between gap-2">
-                <span className="font-display font-bold text-3xl sm:text-4xl text-[#1A1614] dark:text-[#FDFBF7] tracking-tight group-hover:text-copper transition-colors">
-                  {stat.value}
-                </span>
-                <span className="text-xs font-mono font-medium text-[#A8A19B] dark:text-[#78716C] group-hover:text-copper transition-colors flex items-center gap-1.5 shrink-0">
-                  {stat.live && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" title="Active" />}
-                  {stat.index}
-                </span>
-              </div>
+                {/* Header: Stat Value + Badge & Arrow */}
+                <div className="flex items-baseline justify-between gap-2">
+                  <span className="font-display font-bold text-3xl sm:text-4xl text-[#1A1614] dark:text-[#FDFBF7] tracking-tight group-hover:text-copper transition-colors">
+                    {metric.value}
+                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-[10px] font-mono font-medium text-copper/90 bg-copper/10 px-1.5 py-0.5 rounded-md border border-copper/20 shrink-0">
+                      {metric.badge}
+                    </span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-copper opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
+                  </div>
+                </div>
 
-              {/* Body: Labels & Copper Indicator */}
-              <div className="mt-3 space-y-1">
-                <div className="text-sm font-semibold text-[#1A1614] dark:text-[#EDE5DC] group-hover:text-copper transition-colors">
-                  {stat.label}
+                {/* Body: Labels & Copper Indicator */}
+                <div className="mt-3 space-y-1">
+                  <div className="text-sm font-semibold text-[#1A1614] dark:text-[#EDE5DC] group-hover:text-copper transition-colors line-clamp-1">
+                    {metric.label}
+                  </div>
+                  <div className="text-xs font-mono text-[#78716C] dark:text-[#9C948B] tracking-tight leading-relaxed line-clamp-1">
+                    {metric.sublabel}
+                  </div>
+                  <div className="w-6 h-0.5 bg-copper/30 group-hover:w-12 group-hover:bg-copper transition-all duration-300 rounded-full mt-2.5" />
                 </div>
-                <div className="text-xs font-mono text-[#78716C] dark:text-[#9C948B] tracking-tight leading-relaxed">
-                  {stat.sublabel}
-                </div>
-                <div className="w-6 h-0.5 bg-copper/30 group-hover:w-10 group-hover:bg-copper transition-all duration-300 rounded-full mt-2.5" />
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+
+            return metric.isInternal ? (
+              <Link key={idx} to={metric.href} className="block h-full" title={`Explore ${metric.label}`}>
+                {CardContent}
+              </Link>
+            ) : (
+              <a
+                key={idx}
+                href={metric.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block h-full"
+                title={`Visit ${metric.label}`}
+              >
+                {CardContent}
+              </a>
+            );
+          })}
         </div>
       </motion.div>
 
