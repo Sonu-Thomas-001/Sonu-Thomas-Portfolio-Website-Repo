@@ -1,4 +1,4 @@
-# ⚡ Sonu Thomas | Next-Gen AI Portfolio Architecture
+# Sonu Thomas | Next-Gen AI Portfolio Architecture
 
 ![React](https://img.shields.io/badge/React-18-blue?logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)
@@ -13,7 +13,7 @@ This repository houses the source code for a premium, futuristic portfolio platf
 
 ---
 
-## 🧠 Core Intelligence: "Qubi" AI Agent
+## Core Intelligence: "Qubi" AI Agent
 
 The crown jewel of this portfolio is **Qubi**, a deeply integrated AI assistant that fundamentally changes how recruiters and clients interact with the candidate's profile.
 
@@ -30,7 +30,7 @@ Qubi is not just a chatbot; it is an agent with control over the UI.
 
 ---
 
-## 🎨 Design Philosophy: Cyber-Minimalism
+## Design Philosophy: Cyber-Minimalism
 
 The UI aims to capture the essence of high-tech engineering without sacrificing readability or professional polish.
 
@@ -47,7 +47,7 @@ First-time visitors are greeted with a cinematic **System Boot** preloader. This
 
 ---
 
-## 🏗️ Technical Architecture
+## Technical Architecture
 
 The application is built as a Single Page Application (SPA) using **Vite**, prioritizing performance and type safety.
 
@@ -67,7 +67,7 @@ The codebase follows a strict atomic design principle within `src/components/`, 
 
 ---
 
-## 🛠️ Technology Stack Deep Dive
+## Technology Stack Deep Dive
 
 ### Frontend Core
 *   **React 18:** Utilizing concurrent features and hooks (`useState`, `useEffect`, `useRef`) for reactive state management.
@@ -84,7 +84,7 @@ The codebase follows a strict atomic design principle within `src/components/`, 
 
 ---
 
-## 📂 Project Structure Overview
+## Project Structure Overview
 
 ```bash
 src/
@@ -105,7 +105,7 @@ src/
 
 ---
 
-## 🔮 Future Engineering Roadmap
+## Future Engineering Roadmap
 
 This project is in active development, with plans to expand its capabilities:
 

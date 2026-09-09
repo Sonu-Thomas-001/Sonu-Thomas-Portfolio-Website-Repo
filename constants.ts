@@ -218,7 +218,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
       "MongoDB Atlas"
     ],
     description: "Building the Future-Ready Digital Working Taskforce: Deploy a fleet of 100+ Core Digital Workers—coordinated by an intelligent Central Brain—to automate ITSM, DevOps, SRE, security, and operational intelligence workflows in production environments with 70% MTTR reduction.",
-    detailedDescription: `## 🌐 The Solution & Ultimate Aim
+    detailedDescription: `## The Solution & Ultimate Aim
 Our ultimate aim is to build the **future-ready digital working taskforce**—an autonomous, highly specialized, and collaborative synthetic workforce that operates 24/7 alongside human engineering teams to eliminate toil, accelerate incident resolution, and ensure enterprise resilience.
 
 ### The Agentic Co-Worker Platform achieves this through:
@@ -235,7 +235,7 @@ Our ultimate aim is to build the **future-ready digital working taskforce**—an
 
 ---
 
-## ⚡ Core Capabilities
+## Core Capabilities
 
 | Capability | Description | Benefit |
 | :--- | :--- | :--- |
@@ -252,7 +252,7 @@ Our ultimate aim is to build the **future-ready digital working taskforce**—an
 
 ---
 
-## 🏗️ Architecture & Technical Foundation
+## Architecture & Technical Foundation
 - **Multi-Agent State Machines**: Deterministic orchestration built with **LangGraph** enabling strict conditional branches, human-in-the-loop approvals, and automated state rollbacks.
 - **Model Context Protocol (MCP)**: Standardized dynamic tool discovery and execution allowing digital workers to plug seamlessly into enterprise systems.
 - **Hybrid Memory Architecture**: Combines **ChromaDB** vector stores for semantic retrieval of historical remediation playbooks with MongoDB Atlas for persistent audit logging.
@@ -278,7 +278,7 @@ Our ultimate aim is to build the **future-ready digital working taskforce**—an
       "Python"
     ],
     description: "Your AI-Powered Change Management Intelligence Platform: An enterprise-grade Multi-Agent AI system built on a collaborative network of 5 specialized AI agents powered by Gemini 2.5 Flash and RAG. Automates change creation, risk scoring, conflict detection, and compliance reports through natural conversation.",
-    detailedDescription: `## 🎯 What is Change Co-Worker?
+    detailedDescription: `## What is Change Co-Worker?
 ## What is Change Co-Worker?
 **Change Co-Worker** is an enterprise-grade **Multi-Agent AI System** that transforms how organisations manage IT changes. Built on a collaborative network of **5 specialised AI agents** powered by **Google Gemini 2.5 Flash** and **RAG (Retrieval-Augmented Generation)**, it provides SOP-accurate answers, automates change creation, assesses risk, and generates compliance reports — all through **natural conversation**.
 
@@ -286,22 +286,22 @@ Our ultimate aim is to build the **future-ready digital working taskforce**—an
 
 ---
 
-## ✨ Key Highlights & Capabilities
+## Key Highlights & Capabilities
 
 | Highlight | Core Mechanism | Enterprise Value |
 | :--- | :--- | :--- |
-| 🧠 **Knowledge Engine** | SOP-accurate answers via grounded RAG | **Zero hallucinations** with strict policy adherence |
-| ⚡ **Smart Change Creation** | Natural language intent parsing | **One sentence → full change request** in seconds |
-| 🔮 **Risk Intelligence** | AI-powered risk scoring & conflict detection | Proactive collision detection across deployment schedules |
-| 📊 **Live Analytics** | Real-time dashboards & visual insights | End-to-end visibility into change pipelines and velocity |
-| 🌍 **50+ Languages** | Auto-detected multilingual support | Enables seamless global operational collaboration |
-| 📧 **Email Automation** | SOP-compliant drafts with mailto links | Instant CAB notifications and stakeholder sign-offs |
-| 🎙️ **Gemini Live Voice** | Real-time bidirectional multimodal audio | Hands-free verbal change reviews and CAB briefings |
-| 🔗 **ServiceNow Native** | Live bi-directional ITSM sync | Automated ticket updates, state changes, and sync |
+| **Knowledge Engine** | SOP-accurate answers via grounded RAG | **Zero hallucinations** with strict policy adherence |
+| **Smart Change Creation** | Natural language intent parsing | **One sentence → full change request** in seconds |
+| **Risk Intelligence** | AI-powered risk scoring & conflict detection | Proactive collision detection across deployment schedules |
+| **Live Analytics** | Real-time dashboards & visual insights | End-to-end visibility into change pipelines and velocity |
+| **50+ Languages** | Auto-detected multilingual support | Enables seamless global operational collaboration |
+| **Email Automation** | SOP-compliant drafts with mailto links | Instant CAB notifications and stakeholder sign-offs |
+| **Gemini Live Voice** | Real-time bidirectional multimodal audio | Hands-free verbal change reviews and CAB briefings |
+| **ServiceNow Native** | Live bi-directional ITSM sync | Automated ticket updates, state changes, and sync |
 
 ---
 
-## 🏗️ Multi-Agent Architecture
+## Multi-Agent Architecture
 Change Co-Worker utilizes a **Hub-and-Spoke** architecture where a central **Orchestrator Agent** intelligently routes every incoming request to the best-suited specialist agent:
 1. **Change Creation Specialist**: Formulates structured, standard/normal/emergency change requests from colloquial text.
 2. **Risk & Conflict Analyzer**: Cross-examines maintenance windows, overlapping configuration items (CIs), and blast radiuses.
@@ -329,27 +329,27 @@ Change Co-Worker utilizes a **Hub-and-Spoke** architecture where a central **Orc
       "React / Web UI"
     ],
     description: "AI-Powered Root Cause Analysis System for Production Incidents: Combines automated multi-step reasoning, ChromaDB vector retrieval across operational datasets (logs, runbooks, incident history, changes), and Gemini LLM embeddings to deliver structured root cause diagnostics and actionable remediation plans.",
-    detailedDescription: `## 🎯 What is RCA-Agent?
+    detailedDescription: `## What is RCA-Agent?
 **RCA-Agent** is an enterprise AI-powered **Root Cause Analysis system** designed for complex production outages. It combines retrieval from operational data (incidents, logs, runbooks, changes) with Gemini LLM reasoning to produce structured RCA outputs and action recommendations.
 
 > *"From raw logs, anomalous traces, and telemetry spikes to structured, evidence-backed root cause diagnoses in minutes rather than hours."*
 
 ---
 
-## ✨ Features & Capabilities
+## Features & Capabilities
 
 | Feature | Mechanism | Operational Value |
 | :--- | :--- | :--- |
-| ⚡ **Automated Multi-Step RCA** | Multi-phase hypothesis formulation & verification workflow | Automates investigative triage and accelerates causal diagnosis |
-| 🧠 **ChromaDB Vector RAG** | High-dimensional embedding store & similarity search | Instant grounded retrieval of historical incidents & runbooks |
-| 🔮 **Gemini Reasoning & Embeddings** | Google Gemini LLM with structured output schema enforcement | High-precision causal attribution with zero hallucinations |
-| ⚙️ **Flask Asynchronous API** | Background worker queue for high-compute log ingestion jobs | Non-blocking analysis orchestration supporting heavy enterprise payloads |
-| 🖥️ **Interactive Web UI** | Real-time diagnostic console with step-by-step telemetry inspect | Live visibility into hypotheses, evidence traces, and remediation actions |
-| 📦 **Unified Ingestion Pipeline** | Multi-source parsing across incidents, logs, runbooks, & changes | Single operational pane correlating alerts directly with recent change events |
+| **Automated Multi-Step RCA** | Multi-phase hypothesis formulation & verification workflow | Automates investigative triage and accelerates causal diagnosis |
+| **ChromaDB Vector RAG** | High-dimensional embedding store & similarity search | Instant grounded retrieval of historical incidents & runbooks |
+| **Gemini Reasoning & Embeddings** | Google Gemini LLM with structured output schema enforcement | High-precision causal attribution with zero hallucinations |
+| **Flask Asynchronous API** | Background worker queue for high-compute log ingestion jobs | Non-blocking analysis orchestration supporting heavy enterprise payloads |
+| **Interactive Web UI** | Real-time diagnostic console with step-by-step telemetry inspect | Live visibility into hypotheses, evidence traces, and remediation actions |
+| **Unified Ingestion Pipeline** | Multi-source parsing across incidents, logs, runbooks, & changes | Single operational pane correlating alerts directly with recent change events |
 
 ---
 
-## 🏗️ Multi-Step RCA Workflow
+## Multi-Step RCA Workflow
 RCA-Agent coordinates an automated 5-step diagnostic pipeline:
 1. **Telemetry & Dataset Ingestion**: Ingests incident metadata, application logs, error traces, runbooks, and recent change records.
 2. **Operational Vector Retrieval**: Queries ChromaDB vector store for semantically similar past incidents and matching resolution playbooks.
@@ -377,29 +377,29 @@ RCA-Agent coordinates an automated 5-step diagnostic pipeline:
       "Prometheus & Grafana"
     ],
     description: "Production-Grade Travel & Event Ticket Booking Platform: Engineered as a modular monolith in Spring Boot 3 and React 18 to handle the complete ticketing lifecycle. Features a three-layer double-booking defense (Redis locks → Redis TTL holds → PostgreSQL unique constraints) guaranteeing zero race-condition collisions at scale.",
-    detailedDescription: `## 🎯 What is TicketWave?
+    detailedDescription: `## What is TicketWave?
 **TicketWave** is a full-stack, enterprise-grade ticket booking platform engineered to handle the complete lifecycle of high-demand travel and event ticketing—from real-time discovery and seat selection through payment, confirmation, cancellation, and automated refunds. Built as a **modular monolith** with Spring Boot 3 backend and React 18 frontend, it solves the critical challenge of preventing double-bookings at scale using distributed locking, idempotent operations, and webhook-driven payment flows.
 
 > *"Zero double-bookings, sub-100ms booking latency, and complete audit trail compliance across high-concurrency ticket reservations."*
 
 ---
 
-## ⚡ Key Architectural Differentiators & Highlights
+## Key Architectural Differentiators & Highlights
 
 | Differentiator | Implementation Mechanism | Operational Advantage |
 | :--- | :--- | :--- |
-| 🛡️ **Zero Double-Bookings** | Three-layer defense: Redisson lock → Redis TTL hold → PostgreSQL unique constraint | **100% collision prevention** even during flash sales |
-| ⚡ **Sub-100ms Latency** | Optimized batch queries & HikariCP connection pooling | **5x faster confirmation** (reduced 15 queries to 3) |
-| 🔒 **Idempotent Operations** | Idempotency keys on all state mutations with safe retries | **Zero duplicate charges** or orphaned bookings on network retries |
-| 💰 **Dynamic Demand Pricing** | Three-tier algorithmic pricing (1.0x Base, 1.5x Surge, 1.8x Peak) | Maximizes revenue occupancy based on live seat inventory |
-| 🎫 **Smart Seat Holds** | Redis-based 10-minute TTL locks with interactive visual countdown | Prevents seat hoarding while guaranteeing friction-free checkout |
-| 📜 **Full Audit Compliance** | Structured audit logging with user ID, IP, correlation ID, and state deltas | **SOC 2 & GDPR readiness** with cryptographic PNR references |
-| 💳 **Secure Payment Webhooks** | Cryptographic signature verification and atomic status updates | Robust defense against replay attacks and payment spoofing |
-| 🏗️ **Modular Monolith** | Strict DDD bounded contexts (Booking, Inventory, Payment, User) | Microservice-ready architecture without distributed transaction overhead |
+| **Zero Double-Bookings** | Three-layer defense: Redisson lock → Redis TTL hold → PostgreSQL unique constraint | **100% collision prevention** even during flash sales |
+| **Sub-100ms Latency** | Optimized batch queries & HikariCP connection pooling | **5x faster confirmation** (reduced 15 queries to 3) |
+| **Idempotent Operations** | Idempotency keys on all state mutations with safe retries | **Zero duplicate charges** or orphaned bookings on network retries |
+| **Dynamic Demand Pricing** | Three-tier algorithmic pricing (1.0x Base, 1.5x Surge, 1.8x Peak) | Maximizes revenue occupancy based on live seat inventory |
+| **Smart Seat Holds** | Redis-based 10-minute TTL locks with interactive visual countdown | Prevents seat hoarding while guaranteeing friction-free checkout |
+| **Full Audit Compliance** | Structured audit logging with user ID, IP, correlation ID, and state deltas | **SOC 2 & GDPR readiness** with cryptographic PNR references |
+| **Secure Payment Webhooks** | Cryptographic signature verification and atomic status updates | Robust defense against replay attacks and payment spoofing |
+| **Modular Monolith** | Strict DDD bounded contexts (Booking, Inventory, Payment, User) | Microservice-ready architecture without distributed transaction overhead |
 
 ---
 
-## 🏗️ Three-Layer Double-Booking Defense
+## Three-Layer Double-Booking Defense
 TicketWave guarantees zero double-bookings through a defense-in-depth architectural model:
 1. **Layer 1: Distributed Lock (Redisson)**: High-concurrency seat requests acquire an atomic Redis distributed lock via Lua script (\`lock:seat:{schedule_id}:{seat_id}\`) with a 3-second wait limit and 10-second auto-release lease.
 2. **Layer 2: Redis TTL Seat Hold**: Upon lock acquisition, a temporary seat hold is established in Redis with a 10-minute TTL (\`seat:hold:{schedule_id}:{seat_id}\`), providing instant visibility across all active user sessions without touching the relational database.
@@ -407,7 +407,7 @@ TicketWave guarantees zero double-bookings through a defense-in-depth architectu
 
 ---
 
-## 🔄 Dynamic Pricing & Intelligent Discovery
+## Dynamic Pricing & Intelligent Discovery
 - **Demand-Based Pricing**: Real-time evaluation calculates occupancy percentage:
   - **Tier 1 (Base, 1.0x)**: Less than 50% seats reserved.
   - **Tier 2 (Surge, 1.5x)**: 50% to 80% seats reserved.
@@ -436,27 +436,27 @@ TicketWave guarantees zero double-bookings through a defense-in-depth architectu
       "Vector Embeddings"
     ],
     description: "Intelligent Multi-Agent Incident Management Platform: Agentic IT incident triage and resolution system powered by Gemini 2.0 Flash and ChromaDB vector search. Automatically detects, classifies, assigns, and resolves ServiceNow incidents across 8 specialist teams with a self-learning feedback loop.",
-    detailedDescription: `## 🎯 What is SmartDesk AI?
+    detailedDescription: `## What is SmartDesk AI?
 **SmartDesk AI** is an enterprise-grade **agentic IT incident triage and resolution system** that leverages LLM-powered agents (**Gemini 2.0 Flash**) and vector similarity search (**ChromaDB**) to automatically detect, classify, assign, and resolve ServiceNow incidents. It eliminates manual IT ticket routing bottlenecks with intelligent, self-improving AI agents that continuously learn from operational feedback.
 
 > *"Replaces manual IT ticket routing with intelligent, self-improving AI agents that continuously learn from feedback."*
 
 ---
 
-## ✨ Key Capabilities & System Features
+## Key Capabilities & System Features
 
 | Feature | Technical Architecture | Enterprise Impact |
 | :--- | :--- | :--- |
-| 🤖 **Multi-Agent Coordination** | Classification Agent, Resolver Agent, & Synthetic Incident Generator | End-to-end automated handling from triage to step-by-step fix guides |
-| 🧬 **Vector Knowledge Base** | ChromaDB with cosine similarity on \`all-MiniLM-L6-v2\` embeddings | Grounded retrieval across **25+ KB playbooks** covering Network, IAM, DB, Cloud |
-| ⚡ **Intelligent Routing** | Configurable confidence thresholds across 8 specialist support teams | **Auto-assign (≥80%)**, Suggest (50-79%), or Fallback triage (<50%) |
-| 🔄 **ServiceNow Native Sync** | Bi-directional REST API integration with 30s auto-polling & webhooks | Automatically writes AI work notes and resolution steps directly to tickets |
-| 🎯 **Self-Learning Loop** | Human-in-the-loop correction engine feeding back into embeddings | Inaccurate classifications update vector memory for continuous accuracy gains |
-| 📊 **Glassmorphism Dashboard** | Live incident feed, confidence meters, team load charts, and step views | Real-time observability and operator override control in one pane |
+| **Multi-Agent Coordination** | Classification Agent, Resolver Agent, & Synthetic Incident Generator | End-to-end automated handling from triage to step-by-step fix guides |
+| **Vector Knowledge Base** | ChromaDB with cosine similarity on \`all-MiniLM-L6-v2\` embeddings | Grounded retrieval across **25+ KB playbooks** covering Network, IAM, DB, Cloud |
+| **Intelligent Routing** | Configurable confidence thresholds across 8 specialist support teams | **Auto-assign (≥80%)**, Suggest (50-79%), or Fallback triage (<50%) |
+| **ServiceNow Native Sync** | Bi-directional REST API integration with 30s auto-polling & webhooks | Automatically writes AI work notes and resolution steps directly to tickets |
+| **Self-Learning Loop** | Human-in-the-loop correction engine feeding back into embeddings | Inaccurate classifications update vector memory for continuous accuracy gains |
+| **Glassmorphism Dashboard** | Live incident feed, confidence meters, team load charts, and step views | Real-time observability and operator override control in one pane |
 
 ---
 
-## 🏗️ Multi-Agent Architecture & Operational Workflow
+## Multi-Agent Architecture & Operational Workflow
 SmartDesk AI coordinates a closed-loop 7-step incident resolution workflow:
 1. **Incident Detection**: Continuously polls ServiceNow every 30s via authenticated REST API endpoints or captures real-time incoming webhook triggers.
 2. **Similarity Search**: Performs cosine similarity retrieval in **ChromaDB** against historical outages and 25+ verified standard operating procedures.
@@ -489,28 +489,28 @@ SmartDesk AI coordinates a closed-loop 7-step incident resolution workflow:
       "Docker"
     ],
     description: "Enterprise-Grade Multi-Agent AI Operating System: Orchestrates swarms of specialized AI agents with LangGraph state machines, Enterprise RAG, external tool calling, and human-in-the-loop manager approval nodes. Features SOC2 compliance, granular 5-tier RBAC, and persistent long-term vector memory.",
-    detailedDescription: `## 🎯 What is QubiMind?
+    detailedDescription: `## What is QubiMind?
 **QubiMind** is an enterprise-grade **Multi-Agent AI Operating System** developed by QubiQode that enables organizations to deploy, manage, and orchestrate fleets of specialized AI agents. Built with a modern, production-ready stack (Next.js 15, FastAPI, LangGraph, and RAG), it provides intelligent automation, enterprise knowledge retrieval, and scalable workflow orchestration through a secure, high-governance architecture.
 
 > *"Enables organizations to deploy, manage, and orchestrate fleets of specialized AI agents through an enterprise-grade, secure operating system."*
 
 ---
 
-## ✨ Key Features & Capabilities
+## Key Features & Capabilities
 
 | Feature | Technical Implementation | Enterprise Operational Impact |
 | :--- | :--- | :--- |
-| 🤖 **Multi-Agent Collaboration** | Swarm topology with inter-agent communication & task delegation | Agents verify each other's outputs and autonomously execute complex workflows |
-| 📚 **Enterprise RAG** | Advanced vector database integration & semantic search | Grounds agents in company SOPs and documents with secure indexing |
-| 🔧 **Tool Calling & Integration** | Structured function calling across SQL, email, & enterprise APIs | Directly interacts with legacy enterprise software and updates CRM/ERP records |
-| 👤 **Human-in-the-Loop (HITL)** | LangGraph interrupt nodes for manager reviews & overrides | Guarantees safe execution on high-stakes financial or destructive actions |
-| 🔒 **Bank-Grade Security** | SOC2-compliant, 5-tier RBAC, audit logging, & AES encryption | Granular permissions across SUPER_ADMIN, ORG_ADMIN, MANAGER, EMPLOYEE, & GUEST |
-| 🚀 **Workflow Automation** | Multi-step stateful execution with conditional branching | Real-time monitoring, telemetry observability, and workflow analytics |
-| 💾 **Long-Term Vector Memory** | Persistent context storage across user sessions in vector DB | Remembers user preferences, historical sessions, and past decisions |
+| **Multi-Agent Collaboration** | Swarm topology with inter-agent communication & task delegation | Agents verify each other's outputs and autonomously execute complex workflows |
+| **Enterprise RAG** | Advanced vector database integration & semantic search | Grounds agents in company SOPs and documents with secure indexing |
+| **Tool Calling & Integration** | Structured function calling across SQL, email, & enterprise APIs | Directly interacts with legacy enterprise software and updates CRM/ERP records |
+| **Human-in-the-Loop (HITL)** | LangGraph interrupt nodes for manager reviews & overrides | Guarantees safe execution on high-stakes financial or destructive actions |
+| **Bank-Grade Security** | SOC2-compliant, 5-tier RBAC, audit logging, & AES encryption | Granular permissions across SUPER_ADMIN, ORG_ADMIN, MANAGER, EMPLOYEE, & GUEST |
+| **Workflow Automation** | Multi-step stateful execution with conditional branching | Real-time monitoring, telemetry observability, and workflow analytics |
+| **Long-Term Vector Memory** | Persistent context storage across user sessions in vector DB | Remembers user preferences, historical sessions, and past decisions |
 
 ---
 
-## 🏗️ Core Architecture & Tech Stack
+## Core Architecture & Tech Stack
 
 | Layer | Technologies & Frameworks | Purpose & Role |
 | :--- | :--- | :--- |
@@ -524,7 +524,7 @@ SmartDesk AI coordinates a closed-loop 7-step incident resolution workflow:
 
 ---
 
-## 🔐 Authentication & Access Governance
+## Authentication & Access Governance
 - **5-Tier Role-Based Access Control**:
   1. \`SUPER_ADMIN\`: Full platform infrastructure, tenant, and global model configuration.
   2. \`ORG_ADMIN\`: Organization-level billing, agent deployment, and policy controls.
@@ -556,14 +556,14 @@ SmartDesk AI coordinates a closed-loop 7-step incident resolution workflow:
       "SQLite / SQLAlchemy"
     ],
     description: "Enterprise Multi-Agent Platform & Hybrid RAG Engine: Orchestrates 7 specialized AI micro-agents in concurrent, stateful LangGraph channels. Features a dual-retriever hybrid RAG pipeline (sparse BM25 + dense ChromaDB with Reciprocal Rank Fusion, k=60), an isolated serverless Python code execution sandbox, and bank-grade 256-bit JWT authentication with 16 granular RBAC permissions.",
-    detailedDescription: `## 🎯 What is Multi-Agent Enterprise AI Assistant?
+    detailedDescription: `## What is Multi-Agent Enterprise AI Assistant?
 **Multi-Agent Enterprise AI Assistant** is an end-to-end, flagship enterprise AI SaaS platform designed to solve the critical vulnerabilities of single-prompt LLMs when handling complex, multi-step enterprise tasks. Built on a **Supervisor-Decomposed Agent Topology** using **LangGraph**, it enables **7 autonomous micro-agents** to collaborate deterministically across stateful channels with full audit traceability.
 
 > *"Single-prompt LLMs fail when confronted with multi-step enterprise workflows requiring document research, data transformation, sandboxed code execution, and security compliance verification. Multi-Agent Enterprise AI Assistant solves this through decomposed agent specialization and deterministic guardrails."*
 
 ---
 
-## ✨ Key Features & Architectural Comparison
+## Key Features & Architectural Comparison
 
 | Capability | Traditional Single LLM | Basic RAG Wrapper | Multi-Agent Enterprise AI Assistant |
 | :--- | :--- | :--- | :--- |
@@ -576,7 +576,7 @@ SmartDesk AI coordinates a closed-loop 7-step incident resolution workflow:
 
 ---
 
-## 🤖 The 7 Autonomous Micro-Agents
+## The 7 Autonomous Micro-Agents
 The platform coordinates 7 specialized micro-agents operating concurrently within LangGraph channels:
 1. **Supervisor / Planner Agent**: Decomposes complex user inquiries into directed acyclic graph (DAG) tasks and intelligently routes execution across workers.
 2. **Document Research Agent**: Interrogates enterprise documentation using hybrid reciprocal rank fusion retrieval with zero hallucinations.
@@ -588,7 +588,7 @@ The platform coordinates 7 specialized micro-agents operating concurrently withi
 
 ---
 
-## 🔍 Dual-Retriever Hybrid RAG (Reciprocal Rank Fusion k=60)
+## Dual-Retriever Hybrid RAG (Reciprocal Rank Fusion k=60)
 All document queries undergo dual retrieval:
 - **Sparse BM25 Search**: Matches exact keyword tokens, product IDs, SKU codes, and technical jargon.
 - **Dense ChromaDB Vector Search**: Captures high-dimensional 1024-dimension semantic relationships and conceptual intent.
@@ -596,14 +596,14 @@ All document queries undergo dual retrieval:
 
 ---
 
-## 💻 Serverless Python Code Execution Sandbox
+## Serverless Python Code Execution Sandbox
 - Runs inside an isolated Python subprocess environment with strict execution quotas (5.0s CPU timeout, 256MB memory cap).
 - Sockets and host filesystem access are completely disabled to prevent privilege escalation.
 - Native support for **Pandas** dataframe queries and **Matplotlib** dynamic plot generation.
 
 ---
 
-## 🔐 Enterprise Security & Granular RBAC
+## Enterprise Security & Granular RBAC
 - **256-bit JWT Authentication**: Secure, tamper-proof session verification.
 - **16 Granular Permissions**: Scoped authorization rules spanning RAG document access, sandbox execution, agent state override, and audit query.
 - **6 Synthetic Persona Presets**: One-click switching between Admin, Research, Analyst, Operator, Auditor, and Guest roles for comprehensive enterprise policy testing.
@@ -631,14 +631,14 @@ All document queries undergo dual retrieval:
       "GSE / CEFR Scoring"
     ],
     description: "Realistic Speaking & Listening Exam Simulator: Production-grade mock Versant test platform built with React 19, TypeScript, and Google Gemini AI. Features real-time speech recognition, text-to-speech audio delivery, automated GSE & CEFR proficiency scoring (10-90 scale), adaptive exam timers, and AI-generated diagnostic feedback across 6 core test sections (Parts A-F).",
-    detailedDescription: `## 🎯 What is Versant Practice Test Simulator?
+    detailedDescription: `## What is Versant Practice Test Simulator?
 **Versant Practice Test Simulator** is a clean, mobile-friendly mock Versant-style speaking and listening exam simulator built with **React 19**, **TypeScript**, and **Google Gemini AI**. It provides candidates with a realistic, high-fidelity testing environment to practice and master professional English communication skills with automated scoring, word-by-word diff analysis, and detailed AI-generated diagnostic feedback.
 
 > *"Provides candidates with a realistic, high-fidelity testing environment to practice and master professional English communication skills with automated scoring and AI-generated diagnostic feedback."*
 
 ---
 
-## 📋 Comprehensive Test Sections (Parts A–F)
+## Comprehensive Test Sections (Parts A–F)
 
 | Section | Format | Core Skill Assessed | Operational Mechanism |
 | :--- | :--- | :--- | :--- |
@@ -651,14 +651,14 @@ All document queries undergo dual retrieval:
 
 ---
 
-## 🎙️ Speech Recognition & Audio Pipeline
+## Speech Recognition & Audio Pipeline
 - **Speech Recognition Integration**: Leverages Web Speech API for low-latency client-side voice transcription during speaking assessments.
 - **Text-to-Speech (TTS) Engine**: Synthesizes natural, standardized native-speed audio prompts across multiple English accents (en-US and en-GB).
 - **Interactive Audio Waveform**: Real-time visual feedback indicating microphone input levels, speech cadence, and recording state.
 
 ---
 
-## 🤖 Google Gemini AI Automated Scoring & CEFR Mapping
+## Google Gemini AI Automated Scoring & CEFR Mapping
 - **Deep Linguistic Evaluation**: Analyzes candidate transcripts against ground truth, assessing phonetic accuracy, syntactic cohesion, lexical appropriateness, and grammatical integrity.
 - **Pearson GSE & CEFR Alignment**: Calibrated against official standards on a **10–90 scale**:
   - \`C2 (85–90)\`: Mastery / Native-equivalent fluency
@@ -671,7 +671,7 @@ All document queries undergo dual retrieval:
 
 ---
 
-## ⚡ Exam UX & Diagnostic Features
+## Exam UX & Diagnostic Features
 - **Adaptive Timers**: Real-time per-question countdown clocks enforcing authentic exam pressure with zero overrun.
 - **Distraction-Free Fullscreen Mode**: Minimizes visual clutter, browser tab distractions, and extraneous UI elements.
 - **Print-Ready PDF Reports**: Instant one-click export of official-style candidate diagnostic scorecards for interview preparation and institutional assessment.`,
@@ -698,30 +698,30 @@ All document queries undergo dual retrieval:
       "Docker"
     ],
     description: "Intelligent IT Service Desk Assistant & 15-Node LangGraph State Machine: Enterprise proof-of-concept powered by Google Gemini, LangGraph, and ChromaDB vector RAG. Features automated troubleshooting, simulated diagnostic tools (VPN, email, account, device health), dynamic confidence scoring, human-in-the-loop approval pauses (interrupt_before), and secure synthetic data isolation.",
-    detailedDescription: `## 🎯 What is ResolveAI?
+    detailedDescription: `## What is ResolveAI?
 **ResolveAI** is an AI-powered IT service desk agent built as a production-grade enterprise proof-of-concept (POC) leveraging **FastAPI**, **LangChain**, **LangGraph**, **ChromaDB**, and **Google Gemini** on Vertex AI. It delivers automated troubleshooting, intelligent diagnostic checks, and incident ticket routing using purely **synthetic enterprise data**—guaranteeing complete privacy and isolation from real operational infrastructure.
 
 > *"Replaces manual IT ticket triage bottlenecks with a 15-node LangGraph state machine combining ChromaDB vector retrieval, simulated diagnostic tool suites, and human-in-the-loop approval pauses."*
 
 ---
 
-## ✨ Key Capabilities & System Features
+## Key Capabilities & System Features
 
 | Feature | Technical Architecture | Operational Impact |
 | :--- | :--- | :--- |
-| 🤖 **AI-Powered Troubleshooting** | Google Gemini on Vertex AI with structured schema output | Fast, accurate multi-step diagnostic plans with zero hallucinations |
-| 📚 **ChromaDB Vector RAG** | High-dimensional embedding search over SOP knowledge articles | Grounded retrieval matching symptom descriptions to verified runbooks |
-| 🔄 **15-Node LangGraph Engine** | Stateful cyclic directed graph with deterministic validation | End-to-end orchestration from intake and tool runs to final ticket creation |
-| 🛠️ **Mock Diagnostic Tools** | Simulated tools for VPN, email, account, device health, & service | Safely tests network connectivity, token lockouts, and host telemetry |
-| ✅ **Human-in-the-Loop (HITL)** | \`interrupt_before\` pauses requiring explicit approval before ticketing | Prevents spurious tickets and enforces manager oversight on sensitive actions |
-| 🔐 **Security-First Design** | Prompt injection filters, access controls, & cross-employee blocking | Prevents privilege escalation and cross-tenant data leaks |
-| 📊 **Synthetic Data Isolation** | Self-contained mock employees, services, & \`.invalid\` email domains | Zero dependency on production credentials; 100% risk-free testing |
-| 🎭 **Offline Demo Mode** | Rule-based classification & deterministic hash-based embeddings | Runs anywhere locally with zero Google Cloud credentials required |
-| 📈 **Dynamic Confidence Scoring** | Multi-factor heuristic weighing KB similarity, tool signal, & completeness | Scores &ge;80% auto-resolve; 50–79% request approval; &lt;50% escalate |
+| **AI-Powered Troubleshooting** | Google Gemini on Vertex AI with structured schema output | Fast, accurate multi-step diagnostic plans with zero hallucinations |
+| **ChromaDB Vector RAG** | High-dimensional embedding search over SOP knowledge articles | Grounded retrieval matching symptom descriptions to verified runbooks |
+| **15-Node LangGraph Engine** | Stateful cyclic directed graph with deterministic validation | End-to-end orchestration from intake and tool runs to final ticket creation |
+| **Mock Diagnostic Tools** | Simulated tools for VPN, email, account, device health, & service | Safely tests network connectivity, token lockouts, and host telemetry |
+| **Human-in-the-Loop (HITL)** | \`interrupt_before\` pauses requiring explicit approval before ticketing | Prevents spurious tickets and enforces manager oversight on sensitive actions |
+| **Security-First Design** | Prompt injection filters, access controls, & cross-employee blocking | Prevents privilege escalation and cross-tenant data leaks |
+| **Synthetic Data Isolation** | Self-contained mock employees, services, & \`.invalid\` email domains | Zero dependency on production credentials; 100% risk-free testing |
+| **Offline Demo Mode** | Rule-based classification & deterministic hash-based embeddings | Runs anywhere locally with zero Google Cloud credentials required |
+| **Dynamic Confidence Scoring** | Multi-factor heuristic weighing KB similarity, tool signal, & completeness | Scores &ge;80% auto-resolve; 50–79% request approval; &lt;50% escalate |
 
 ---
 
-## 🏗️ The 15-Node LangGraph Workflow Pipeline
+## The 15-Node LangGraph Workflow Pipeline
 ResolveAI processes each user incident through a structured 15-node state machine:
 \`\`\`
 User Input → Validate → Classify → Check Info → Retrieve KB → Run Tools → 
@@ -739,7 +739,7 @@ Create Ticket → Final Response
 
 ---
 
-## 🛠️ Simulated Diagnostic Tool Suite
+## Simulated Diagnostic Tool Suite
 - **\`check_vpn_status(user_id)\`**: Inspects simulated Cisco AnyConnect gateway sessions, detects tunnel drops, and checks IP lease status.
 - **\`check_account_status(user_id)\`**: Queries synthetic Active Directory for password expiry, account lockouts, and MFA status.
 - **\`check_device_health(device_id)\`**: Verifies host CPU utilization, disk capacity, and EDR antivirus process state.

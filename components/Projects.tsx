@@ -518,8 +518,9 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
                     <Markdown
                       components={{
                         h2: ({ children }) => (
-                          <h2 className="font-display font-bold text-xl text-[#EDE5DC] border-b border-[#2A2522] pb-2 mt-6 mb-3">
-                            {children}
+                          <h2 className="font-display font-bold text-xl text-[#EDE5DC] border-b border-[#2A2522] pb-2 mt-6 mb-3 flex items-center gap-2.5">
+                            <span className="w-1.5 h-4 rounded-full bg-copper inline-block flex-shrink-0" />
+                            <span>{children}</span>
                           </h2>
                         ),
                         h3: ({ children }) => (

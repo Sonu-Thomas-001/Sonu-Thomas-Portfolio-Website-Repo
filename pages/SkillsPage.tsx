@@ -554,17 +554,21 @@ export const SkillsPage: React.FC = () => {
 
           {/* Positioning Tagline Pills */}
           <div className="mt-6 flex flex-wrap items-center gap-2.5">
-            <span className="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 text-xs font-mono text-[#1A1614] dark:text-[#FDFBF7] shadow-xs">
-              🤖 AI &amp; Agent Engineering
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 text-xs font-mono text-[#1A1614] dark:text-[#FDFBF7] shadow-xs">
+              <Bot className="w-3.5 h-3.5 text-copper" />
+              <span>AI &amp; Agent Engineering</span>
             </span>
-            <span className="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 text-xs font-mono text-[#1A1614] dark:text-[#FDFBF7] shadow-xs">
-              💻 Full-Stack Systems
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 text-xs font-mono text-[#1A1614] dark:text-[#FDFBF7] shadow-xs">
+              <Code2 className="w-3.5 h-3.5 text-copper" />
+              <span>Full-Stack Systems</span>
             </span>
-            <span className="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 text-xs font-mono text-[#1A1614] dark:text-[#FDFBF7] shadow-xs">
-              ☁️ Cloud &amp; Data Infrastructure
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 text-xs font-mono text-[#1A1614] dark:text-[#FDFBF7] shadow-xs">
+              <Cloud className="w-3.5 h-3.5 text-copper" />
+              <span>Cloud &amp; Data Infrastructure</span>
             </span>
-            <span className="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 text-xs font-mono text-[#1A1614] dark:text-[#FDFBF7] shadow-xs">
-              🔌 Enterprise Systems Integration
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 text-xs font-mono text-[#1A1614] dark:text-[#FDFBF7] shadow-xs">
+              <Workflow className="w-3.5 h-3.5 text-copper" />
+              <span>Enterprise Systems Integration</span>
             </span>
           </div>
 
