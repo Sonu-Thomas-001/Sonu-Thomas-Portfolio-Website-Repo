@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail, Sparkles } from 'lucide-react';
 import { PERSONAL_DETAILS } from '../constants';
@@ -24,6 +24,17 @@ export const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
+  const [isPhotoHovered, setIsPhotoHovered] = useState(false);
+
+  // Auto-switch portrait every 4 seconds (The optimal balance: enough time to comfortably view, dynamic enough to feel alive)
+  useEffect(() => {
+    if (isPhotoHovered) return;
+    const interval = setInterval(() => {
+      setActivePhotoIdx((prev) => (prev + 1) % PROFESSIONAL_HERO_PHOTOS.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [isPhotoHovered]);
 
   // Scroll Parallax Transforms
   const { scrollY } = useScroll();
@@ -236,7 +247,11 @@ export const Hero: React.FC = () => {
           <div
             ref={cardRef}
             onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
+            onMouseEnter={() => setIsPhotoHovered(true)}
+            onMouseLeave={() => {
+              setIsPhotoHovered(false);
+              handleMouseLeave();
+            }}
             className="relative w-full max-w-md"
             style={{ perspective: 1200 }}
           >
@@ -262,10 +277,10 @@ export const Hero: React.FC = () => {
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={activePhotoIdx}
-                    initial={{ opacity: 0.8, scale: 1.05 }}
+                    initial={{ opacity: 0.2, scale: 1.04 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0.8, scale: 0.98 }}
-                    transition={{ duration: 0.35, ease: "easeOut" }}
+                    exit={{ opacity: 0.2, scale: 0.98 }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     src={PROFESSIONAL_HERO_PHOTOS[activePhotoIdx].src}
                     alt={`Sonu Thomas — ${PROFESSIONAL_HERO_PHOTOS[activePhotoIdx].tag}`}
                     className="w-full h-full object-cover object-top transition-transform duration-700 ease-out"
