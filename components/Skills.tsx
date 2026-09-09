@@ -158,14 +158,20 @@ export const Skills: React.FC = () => {
       </div>
 
       {/* 2. Editorial Headline & Subtitle */}
-      <div className="max-w-3xl mb-12 sm:mb-16">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-3xl mb-12 sm:mb-16"
+      >
         <h2 className="font-display font-bold text-3xl sm:text-5xl lg:text-6xl text-[#1A1614] dark:text-[#FDFBF7] tracking-tight leading-[1.12]">
           Positioned for <span className="text-copper">applied intelligence</span>.
         </h2>
         <p className="mt-4 text-base sm:text-lg text-[#4A4340] dark:text-[#D6D3D1] font-normal leading-relaxed">
           Bridging cutting-edge agentic workflows and production LLMs with enterprise systems, scalable cloud data infrastructure, and full-stack engineering.
         </p>
-      </div>
+      </motion.div>
 
       {/* 3. 2x2 Wide Architectural Dossier Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">

@@ -53,14 +53,20 @@ export const Education: React.FC = () => {
       </div>
 
       {/* 2. Editorial Headline & Subtitle */}
-      <div className="max-w-4xl mb-14 sm:mb-20">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-4xl mb-14 sm:mb-20"
+      >
         <h2 className="font-display font-bold text-3xl sm:text-5xl lg:text-6xl text-[#1A1614] dark:text-[#FDFBF7] tracking-tight leading-[1.12]">
           Theoretical depth meets <span className="text-copper">computational rigor</span>.
         </h2>
         <p className="mt-4 text-base sm:text-lg text-[#4A4340] dark:text-[#D6D3D1] font-normal leading-relaxed max-w-2xl">
           Deep theoretical grounding in high-dimensional linear algebra, algorithmic complexity, deep neural architectures, and statistical learning from India&apos;s premier technical institute.
         </p>
-      </div>
+      </motion.div>
 
       {/* 3. Academic Bento (8 Cols IIT-G Flagship + 4 Cols Foundations) */}
       <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">

@@ -259,7 +259,13 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
         {/* ============================================================ */}
         {/* SECTION HEADER & CONTROLS */}
         {/* ============================================================ */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12 sm:mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12 sm:mb-16"
+        >
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-2">
               <span className="font-mono text-xs text-copper font-semibold tracking-widest uppercase">
@@ -298,10 +304,17 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
               </button>
             )}
           </div>
-        </div>
+        </motion.div>
 
         {/* Category Pills Bar */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 scrollbar-none no-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <motion.div 
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.45, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 scrollbar-none no-scrollbar" 
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           {CATEGORY_FILTERS.map((cat) => {
             const isActive = activeFilter === cat.id;
             const count = categoryCounts[cat.id] ?? 0;
@@ -324,7 +337,7 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
               </button>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* ============================================================ */}
         {/* ASYMMETRIC BENTO SHOWCASE GRID */}
@@ -350,10 +363,11 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
                   <motion.div
                     key={project.id}
                     layout
-                    initial={{ opacity: 0, y: 24 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 32 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.15 }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.4, delay: idx * 0.05 }}
+                    transition={{ duration: 0.5, delay: (idx % 2) * 0.08, ease: [0.16, 1, 0.3, 1] }}
                     onClick={() => setSelectedProject(project)}
                     className={`group relative overflow-hidden rounded-[28px] sm:rounded-[32px] min-h-[340px] sm:min-h-[380px] md:min-h-[420px] border border-white/10 hover:border-white/30 shadow-xl hover:shadow-[0_25px_60px_rgba(0,0,0,0.45)] transition-all duration-500 cursor-pointer flex flex-col justify-between ${colSpanClass} col-span-12 md:col-span-6`}
                   >
@@ -425,7 +439,13 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
         {/* HOMEPAGE FOOTER CTA */}
         {/* ============================================================ */}
         {isHomepage && (
-          <div className="mt-16 text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-16 text-center"
+          >
             <Link
               to="/projects"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#EDE5DC] hover:bg-copper text-[#131110] hover:text-white text-sm font-semibold transition-all duration-300 shadow-soft-md group cursor-pointer"
@@ -433,7 +453,7 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
               <span>Explore All {PROJECTS_DATA.length} Systems &amp; Case Studies</span>
               <ArrowUpRight className="w-4 h-4 text-copper group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
             </Link>
-          </div>
+          </motion.div>
         )}
 
       </div>

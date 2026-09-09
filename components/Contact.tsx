@@ -90,7 +90,13 @@ export const Contact: React.FC = () => {
       />
 
       {/* 1. Section Header & Narrative Across Top */}
-      <div className="max-w-3xl mb-12 sm:mb-16 relative z-10">
+      <motion.div 
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-3xl mb-12 sm:mb-16 relative z-10"
+      >
         <div className="flex items-center gap-2 mb-3">
           <span className="font-mono text-xs text-copper font-semibold tracking-widest uppercase">
             06 // DIRECT CHANNELS &amp; COLLABORATION
@@ -107,13 +113,19 @@ export const Contact: React.FC = () => {
         <p className="mt-4 text-base sm:text-lg text-[#4A4340] dark:text-[#D6D3D1] font-normal leading-relaxed">
           Whether you are architecting autonomous AI agents, planning an enterprise integration, or exploring technical consulting — my direct channels are open.
         </p>
-      </div>
+      </motion.div>
 
       {/* 2. Symmetrical 2-Column Grid (6 cols / 6 cols) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch relative z-10">
         
         {/* Left Column (6 cols): Channels Dossier & Direct Comms */}
-        <div className="lg:col-span-6 flex flex-col justify-between gap-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-6 flex flex-col justify-between gap-4"
+        >
           
           {/* Profile Card */}
           <div className="p-4 sm:p-5 rounded-3xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 shadow-soft-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -330,10 +342,16 @@ export const Contact: React.FC = () => {
             </div>
           </div>
 
-        </div>
+        </motion.div>
 
         {/* Right Column (6 cols): Direct Message Form */}
-        <div className="lg:col-span-6 flex flex-col">
+        <motion.div 
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-6 flex flex-col"
+        >
           <form
             onSubmit={handleSubmit}
             className="bg-white dark:bg-[#1E1B18] p-7 sm:p-9 rounded-3xl border border-[#E8E0D8] dark:border-white/10 shadow-soft-md hover:shadow-soft-lg transition-shadow duration-300 h-full flex flex-col justify-between space-y-5"
@@ -440,7 +458,7 @@ export const Contact: React.FC = () => {
               )}
             </motion.button>
           </form>
-        </div>
+        </motion.div>
 
       </div>
 

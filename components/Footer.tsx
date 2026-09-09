@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { ArrowUp, ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { PERSONAL_DETAILS } from '../constants';
@@ -56,7 +57,11 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         
         {/* Top: Identity, SEO Micro-Bio & Fast Channels */}
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col lg:flex-row lg:items-center justify-between pb-8 border-b border-[#26221F] gap-6"
           itemScope
           itemType="https://schema.org/Person"
@@ -130,8 +135,16 @@ export const Footer: React.FC = () => {
               <ArrowUp className="w-3.5 h-3.5" />
             </button>
           </div>
-        </div>        {/* Middle: Compact 4-Column Semantic SEO Navigation */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8 py-8 sm:py-9">
+        </motion.div>
+
+        {/* Middle: Compact 4-Column Semantic SEO Navigation */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8 py-8 sm:py-9"
+        >
           
           {/* Column 1: Core Navigation Index */}
           <nav 
@@ -461,10 +474,16 @@ export const Footer: React.FC = () => {
               </li>
             </ul>
           </nav>
-        </div>
+        </motion.div>
 
         {/* Bottom Bar: Tight & Minimalist */}
-        <div className="pt-6 border-t border-[#26221F] flex flex-col sm:flex-row justify-between items-center gap-3 text-[11px] font-mono text-[#6E6863]">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="pt-6 border-t border-[#26221F] flex flex-col sm:flex-row justify-between items-center gap-3 text-[11px] font-mono text-[#6E6863]"
+        >
           <div>
             &copy; {currentYear} Sonu Thomas &bull; The Neural Canvas v3.0
           </div>
@@ -472,7 +491,7 @@ export const Footer: React.FC = () => {
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse inline-block" />
             <span>Kerala, India &bull; Available Worldwide</span>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </footer>

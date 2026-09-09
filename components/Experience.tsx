@@ -183,19 +183,29 @@ export const Experience: React.FC = () => {
       {/* MOBILE VERTICAL STACKED TIMELINE (Visible only on mobile)    */}
       {/* ============================================================ */}
       <div className="md:hidden py-20 px-6 max-w-xl mx-auto">
-        <div className="mb-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-10"
+        >
           <span className="font-mono text-xs text-copper font-semibold tracking-widest uppercase block mb-1">
             02 // Career Journey
           </span>
           <h2 className="font-display font-bold text-3xl text-[#EDE5DC] tracking-tight">
             Experience & Track Record
           </h2>
-        </div>
+        </motion.div>
 
         <div className="space-y-6">
           {EXPERIENCE_DATA.map((item, index) => (
-            <div
+            <motion.div
               key={item.id}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
               className="bg-[#1E1B18] rounded-2xl p-6 border border-[#332E2A] shadow-soft-md space-y-4 overflow-hidden"
             >
               {item.company.toLowerCase().includes('hcltech') && (
@@ -259,7 +269,7 @@ export const Experience: React.FC = () => {
                   ))}
                 </div>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
