@@ -49,6 +49,34 @@ const routes = [
     `
   },
   {
+    path: '/skills',
+    title: 'Technical Arsenal & Engineering Capability Map | Sonu Thomas',
+    description: 'Comprehensive technical capability map of Sonu Thomas across AI, LLMs, LangGraph multi-agent orchestration, full-stack software, cloud infrastructure, vector databases, and enterprise ITSM systems integration.',
+    h1: 'Technical Arsenal & Engineering Capability Map',
+    subtitle: 'From Autonomous LLM Agents to Enterprise Production Infrastructure',
+    content: `
+      <p>A comprehensive, capability-driven technical map detailing competencies across 9 core engineering disciplines, end-to-end AI system architecture, and verifiable production project associations.</p>
+      <h2>01 — AI, LLM &amp; Agent Engineering</h2>
+      <p>Google Gemini, Anthropic Claude, AWS Bedrock, Vertex AI, LangGraph cyclic state machines, LangChain, Multi-Agent Systems, Tool/Function Calling, Human-in-the-Loop governance, Enterprise Hybrid RAG (BM25 + ChromaDB), and context engineering.</p>
+      <h2>02 — Programming &amp; Software Engineering</h2>
+      <p>Python, TypeScript, JavaScript, SQL, Java, C++, Object-Oriented Programming, Data Structures &amp; Algorithms, API Design, and Modular Architecture.</p>
+      <h2>03 — Frontend Engineering</h2>
+      <p>React 19, Next.js 15, Tailwind CSS, Kinetic UI, Component Architecture, State Management, and sub-second Web Performance Optimization.</p>
+      <h2>04 — Backend &amp; API Engineering</h2>
+      <p>FastAPI, Flask, Node.js, Express.js, REST APIs, Microservices, Async Python, Webhooks, and Third-Party System Integration.</p>
+      <h2>05 — Cloud &amp; Infrastructure</h2>
+      <p>Google Cloud (Vertex AI, BigQuery), AWS (Bedrock), Docker containers, Linux SRE, CI/CD automated deployment pipelines.</p>
+      <h2>06 — Databases &amp; Data Engineering</h2>
+      <p>PostgreSQL, Oracle Database, SQL, BigQuery analytics, ChromaDB vector stores, ETL/ELT pipelines, and data modeling.</p>
+      <h2>07 — Enterprise Integration &amp; Automation</h2>
+      <p>ServiceNow REST APIs, Jira, Confluence, Playwright browser automation, and mission-critical enterprise workflow automation.</p>
+      <h2>08 — Development Tools &amp; Workflow</h2>
+      <p>Git, GitHub Actions, VS Code, Linux workstation tools, and systematic debugging.</p>
+      <h2>09 — End-to-End AI System Architecture</h2>
+      <p>Integrated blueprint connecting client UI layers, FastAPI gateways, LangGraph multi-agent runtimes, tool sandboxes, and enterprise databases.</p>
+    `
+  },
+  {
     path: '/projects',
     title: 'Flagship AI Systems & Enterprise Architecture | Sonu Thomas',
     description: 'Explore flagship autonomous AI platforms and enterprise architectures: Agentic Co-Worker Platform (100+ Digital Workers), Change Co-Worker (Change Management Platform), RCA-Agent (Root Cause Analysis System), TicketWave (High-Concurrency Ticketing), SmartDesk AI (Multi-Agent Incident Management Platform), QubiMind (Multi-Agent AI Operating System), Multi-Agent Enterprise AI Assistant (7 Micro-Agents & Hybrid RAG), Versant Practice Test Simulator (Speech AI & GSE/CEFR Scoring), and ResolveAI (15-Node LangGraph Service Desk Agent).',

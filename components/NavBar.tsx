@@ -10,7 +10,8 @@ import {
   BookOpen, 
   Award, 
   Trophy, 
-  HeartHandshake 
+  HeartHandshake,
+  Cpu
 } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { PERSONAL_DETAILS } from '../constants';
@@ -37,6 +38,12 @@ const primaryNavLinks: NavItem[] = [
 ];
 
 const otherPages: SubPageItem[] = [
+  {
+    title: 'Technical Arsenal',
+    path: '/skills',
+    desc: 'Deep AI & engineering capability map',
+    icon: Cpu,
+  },
   {
     title: 'Projects & Case Studies',
     path: '/projects',

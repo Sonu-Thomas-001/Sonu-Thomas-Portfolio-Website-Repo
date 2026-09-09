@@ -6,11 +6,15 @@ import {
   Cloud,
   Workflow,
   ArrowUpRight,
+  ArrowRight,
+  Sparkles,
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { TechPillMarquee } from './TechPillMarquee';
 
 interface Discipline {
   id: string;
+  anchorId: string;
   name: string;
   roleTag: string;
   tagline: string;
@@ -24,6 +28,7 @@ interface Discipline {
 const DISCIPLINES: Discipline[] = [
   {
     id: "01",
+    anchorId: "ai-agents",
     name: "AI, LLM & Agent Engineering",
     roleTag: "Autonomous Systems & Reasoning",
     tagline: "Designing multi-agent state graphs, grounded vector retrieval, and custom tool integrations with deterministic safeguards.",
@@ -35,21 +40,18 @@ const DISCIPLINES: Discipline[] = [
       { name: "LangGraph", highlight: true },
       { name: "LangChain" },
       { name: "Google Vertex AI", highlight: true },
-      { name: "Vertex AI Agent Builder" },
       { name: "AWS Bedrock" },
       { name: "Gemini", highlight: true },
       { name: "Claude" },
       { name: "RAG", highlight: true },
       { name: "AI Agents", highlight: true },
-      { name: "Agentic Workflows" },
       { name: "ChromaDB", highlight: true },
-      { name: "PyTorch" },
-      { name: "Embeddings" },
       { name: "Tool / Function Calling", highlight: true },
     ],
   },
   {
     id: "02",
+    anchorId: "software-engineering",
     name: "Full-Stack Engineering",
     roleTag: "Core Systems & Web Runtimes",
     tagline: "Building resilient, high-concurrency software and kinetic client applications end-to-end with strict type safety.",
@@ -60,23 +62,18 @@ const DISCIPLINES: Discipline[] = [
     skills: [
       { name: "Python", highlight: true },
       { name: "TypeScript", highlight: true },
-      { name: "JavaScript" },
-      { name: "Java", highlight: true },
-      { name: "C++" },
-      { name: "SQL", highlight: true },
       { name: "React", highlight: true },
       { name: "Next.js", highlight: true },
-      { name: "Node.js" },
-      { name: "Express.js" },
       { name: "FastAPI", highlight: true },
-      { name: "Flask" },
+      { name: "Node.js" },
+      { name: "SQL", highlight: true },
+      { name: "Java", highlight: true },
       { name: "Tailwind CSS", highlight: true },
-      { name: "HTML5" },
-      { name: "CSS3" },
     ],
   },
   {
     id: "03",
+    anchorId: "cloud-infrastructure",
     name: "Cloud, Data & Infrastructure",
     roleTag: "Distributed Systems & SRE",
     tagline: "Architecting scalable cloud infrastructure, relational database engines, and high-availability production pipelines.",
@@ -89,17 +86,16 @@ const DISCIPLINES: Discipline[] = [
       { name: "AWS" },
       { name: "Docker", highlight: true },
       { name: "Linux", highlight: true },
-      { name: "BigQuery" },
       { name: "PostgreSQL", highlight: true },
+      { name: "BigQuery" },
       { name: "Oracle Database", highlight: true },
-      { name: "Git" },
       { name: "CI/CD", highlight: true },
-      { name: "Cloud Deployment" },
       { name: "Vector Databases", highlight: true },
     ],
   },
   {
     id: "04",
+    anchorId: "enterprise-integration",
     name: "Enterprise Integration & Automation",
     roleTag: "ITSM Governance & Interoperability",
     tagline: "Bridging mission-critical enterprise systems, automated ticket triage, and seamless API interoperability across platforms.",
@@ -116,10 +112,7 @@ const DISCIPLINES: Discipline[] = [
       { name: "Playwright" },
       { name: "Workflow Automation", highlight: true },
       { name: "AI Automation", highlight: true },
-      { name: "Webhooks" },
-      { name: "Third-Party Integrations" },
       { name: "Microservices", highlight: true },
-      { name: "System Integration" },
     ],
   },
 ];
@@ -254,10 +247,24 @@ export const Skills: React.FC = () => {
                     </span>
                   ))}
                 </div>
+                {/* Explore all skills link */}
+                <div className="mt-5 pt-4 border-t border-[#E8E0D8]/60 dark:border-white/[0.08] flex items-center justify-between">
+                  <Link
+                    to={`/skills#${disc.anchorId}`}
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-copper hover:text-copper-dark font-medium transition-colors group/link"
+                  >
+                    <span>Explore all skills in Arsenal</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+                  </Link>
+
+                  <span className="text-[10px] font-mono text-[#78716C] dark:text-[#A8A29E]">
+                    // 0{idx + 1}
+                  </span>
+                </div>
               </div>
 
               {/* Bottom Production Spec Bar */}
-              <div className="mt-7 pt-4 border-t border-[#E8E0D8]/70 dark:border-white/[0.08] flex items-center justify-between text-xs font-mono text-[#78716C] dark:text-[#A8A29E]">
+              <div className="mt-5 pt-3 border-t border-[#E8E0D8]/50 dark:border-white/[0.06] flex items-center justify-between text-xs font-mono text-[#78716C] dark:text-[#A8A29E]">
                 <div className="flex items-center gap-2 text-[#4A4340] dark:text-[#D6D3D1]">
                   <span className="w-2 h-2 rounded-full bg-copper" />
                   <span className="font-medium text-[11px] sm:text-xs tracking-wide">
@@ -270,6 +277,37 @@ export const Skills: React.FC = () => {
           );
         })}
       </div>
+
+      {/* 5. Bottom Callout Banner to Full /skills Page */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mt-12 sm:mt-16 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-copper/10 via-[#FAF7F2] to-copper/5 dark:from-copper/15 dark:via-[#1C1816] dark:to-transparent border border-copper/30 flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-soft-sm"
+      >
+        <div className="space-y-1.5">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="font-mono text-xs text-copper font-bold uppercase tracking-widest">
+              DEDICATED TECHNICAL ARSENAL
+            </span>
+          </div>
+          <h3 className="font-display font-bold text-xl sm:text-2xl text-[#1A1614] dark:text-[#FDFBF7]">
+            Looking for my complete technical capability map?
+          </h3>
+          <p className="text-xs sm:text-sm text-[#4A4340] dark:text-[#D6D3D1]">
+            Explore in-depth competencies across 9 disciplines, interactive architecture blueprints, and verifiable project associations.
+          </p>
+        </div>
+
+        <Link
+          to="/skills"
+          className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-copper hover:bg-copper-dark text-white font-mono text-xs font-medium transition-all shadow-soft-sm hover:shadow-soft-md shrink-0 group cursor-pointer"
+        >
+          <span>Explore Full Technical Arsenal</span>
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </Link>
+      </motion.div>
     </section>
   );
 };

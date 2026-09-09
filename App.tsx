@@ -23,6 +23,7 @@ import { ContactPage } from './pages/ContactPage';
 import { WebDeveloperKannur } from './pages/WebDeveloperKannur';
 import { AIDeveloperKerala } from './pages/AIDeveloperKerala';
 import { SoftwareEngineerKerala } from './pages/SoftwareEngineerKerala';
+import { SkillsPage } from './pages/SkillsPage';
 
 // Custom Dual Cursor (Dot + Lagging Ring with Hover Expansion)
 const CustomCursor: React.FC = () => {
@@ -204,6 +205,11 @@ const AppContent: React.FC = () => {
                 <Route path="/projects" element={
                   <PageTransition>
                     <ProjectsPage />
+                  </PageTransition>
+                } />
+                <Route path="/skills" element={
+                  <PageTransition>
+                    <SkillsPage />
                   </PageTransition>
                 } />
                 <Route path="/insights" element={
