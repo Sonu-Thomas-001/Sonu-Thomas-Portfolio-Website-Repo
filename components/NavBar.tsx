@@ -76,12 +76,6 @@ const otherPages: SubPageItem[] = [
   },
 ];
 
-const regionalLinks = [
-  { title: 'AI Developer Kerala', path: '/ai-developer-kerala' },
-  { title: 'Software Engineer Kerala', path: '/software-engineer-kerala' },
-  { title: 'Web Developer Kannur', path: '/web-developer-kannur' },
-];
-
 export const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -121,8 +115,7 @@ export const NavBar: React.FC = () => {
     setIsOpen(false);
   }, [location.pathname]);
 
-  const isOtherActive = otherPages.some((p) => location.pathname === p.path) ||
-                        regionalLinks.some((r) => location.pathname === r.path);
+  const isOtherActive = otherPages.some((p) => location.pathname === p.path);
 
   // Hide on scroll down past 200px, reveal when scrolling up
   useMotionValueEvent(scrollY, 'change', (latest) => {
@@ -332,8 +325,8 @@ export const NavBar: React.FC = () => {
                     className="absolute top-full right-0 mt-2.5 w-72 sm:w-80 rounded-2xl bg-[#FEFCF9]/95 backdrop-blur-2xl border border-[#E8E0D8] shadow-2xl p-2.5 z-50 text-ink ring-1 ring-black/5"
                   >
                     <div className="px-3 py-1.5 text-[10px] font-mono uppercase tracking-widest text-[#78716C] border-b border-[#E8E0D8] mb-1.5 flex items-center justify-between">
-                      <span>Other Pages // Index</span>
-                      <span className="text-copper">05 Pages</span>
+                      <span>Exploration // Index</span>
+                      <span className="text-copper">06 Specializations</span>
                     </div>
 
                     <div className="space-y-1">
@@ -369,28 +362,6 @@ export const NavBar: React.FC = () => {
                           </Link>
                         );
                       })}
-                    </div>
-
-                    {/* Regional Engineering Pages */}
-                    <div className="pt-2 mt-2 border-t border-[#E8E0D8]/80 px-2">
-                      <div className="text-[10px] font-mono text-[#78716C] uppercase tracking-wider mb-1.5">
-                        Regional Profiles
-                      </div>
-                      <div className="flex flex-wrap gap-1.5">
-                        {regionalLinks.map((reg) => (
-                          <Link
-                            key={reg.path}
-                            to={reg.path}
-                            onClick={() => {
-                              setIsOthersOpen(false);
-                              window.scrollTo({ top: 0, behavior: 'smooth' });
-                            }}
-                            className="px-2.5 py-1 rounded-lg bg-[#F5F0EB] hover:bg-[#EDE5DC] text-ink hover:text-copper text-[10px] font-mono transition-colors"
-                          >
-                            {reg.title}
-                          </Link>
-                        ))}
-                      </div>
                     </div>
                   </motion.div>
                 )}
@@ -483,8 +454,8 @@ export const NavBar: React.FC = () => {
                   <Link to="/volunteering" onClick={() => setIsOpen(false)} className="hover:text-copper">
                     Volunteering & FOSS
                   </Link>
-                  <Link to="/ai-developer-kerala" onClick={() => setIsOpen(false)} className="hover:text-copper">
-                    AI Developer Kerala
+                  <Link to="/skills" onClick={() => setIsOpen(false)} className="hover:text-copper">
+                    Technical Arsenal
                   </Link>
                 </div>
               </motion.div>

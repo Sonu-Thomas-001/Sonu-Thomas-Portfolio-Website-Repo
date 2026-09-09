@@ -20,9 +20,6 @@ import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { TermsOfService } from './pages/TermsOfService';
 import { CookiePolicy } from './pages/CookiePolicy';
 import { ContactPage } from './pages/ContactPage';
-import { WebDeveloperKannur } from './pages/WebDeveloperKannur';
-import { AIDeveloperKerala } from './pages/AIDeveloperKerala';
-import { SoftwareEngineerKerala } from './pages/SoftwareEngineerKerala';
 import { SkillsPage } from './pages/SkillsPage';
 
 // Custom Dual Cursor (Dot + Lagging Ring with Hover Expansion)
@@ -252,15 +249,9 @@ const AppContent: React.FC = () => {
                     <ContactPage />
                   </PageTransition>
                 } />
-                <Route path="/web-developer-kannur" element={
-                  <WebDeveloperKannur />
-                } />
-                <Route path="/ai-developer-kerala" element={
-                  <AIDeveloperKerala />
-                } />
-                <Route path="/software-engineer-kerala" element={
-                  <SoftwareEngineerKerala />
-                } />
+                <Route path="/web-developer-kannur" element={<Navigate to="/" replace />} />
+                <Route path="/ai-developer-kerala" element={<Navigate to="/" replace />} />
+                <Route path="/software-engineer-kerala" element={<Navigate to="/" replace />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </AnimatePresence>

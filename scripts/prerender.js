@@ -207,36 +207,6 @@ const routes = [
     `
   },
   {
-    path: '/web-developer-kannur',
-    title: 'Web Developer in Kannur | Sonu Thomas',
-    description: 'Freelance web designer and full-stack developer in Kannur, Kerala offering modern website development, SEO optimization, and web applications.',
-    h1: 'Web Developer & Designer in Kannur, Kerala',
-    subtitle: 'Modern web solutions crafted with precision',
-    content: `
-      <p>Sonu Thomas provides professional web design and full-stack development services in Kannur, Kerala. Delivering high-performance, mobile-responsive, and SEO-optimized web platforms for businesses and startups.</p>
-    `
-  },
-  {
-    path: '/ai-developer-kerala',
-    title: 'AI Developer in Kerala | Sonu Thomas',
-    description: 'AI Software Engineer based in Kerala specializing in Generative AI, LLM agents, intelligent workflows, and custom AI applications.',
-    h1: 'AI Software Engineer & Intelligent Systems Developer in Kerala',
-    subtitle: 'Applied Artificial Intelligence engineering',
-    content: `
-      <p>Based in Kerala, Sonu Thomas designs and builds production-grade Artificial Intelligence solutions, custom LLM agents, Retrieval-Augmented Generation (RAG) systems, and machine learning pipelines.</p>
-    `
-  },
-  {
-    path: '/software-engineer-kerala',
-    title: 'Software Engineer in Kerala | Sonu Thomas',
-    description: 'Enterprise software engineer in Kerala experienced in Java, Python, TypeScript, and cloud-native application architectures.',
-    h1: 'Full-Stack Software Engineer in Kerala',
-    subtitle: 'Enterprise reliability meets modern software design',
-    content: `
-      <p>Sonu Thomas is an experienced software engineer based in Kerala with a background spanning enterprise backend systems at HCLTech, full-stack web platforms, and data science foundations at IIT Guwahati.</p>
-    `
-  },
-  {
     path: '/privacy',
     title: 'Privacy Policy | Sonu Thomas Portfolio',
     description: 'Privacy policy for sonuthomas.me detailing data handling and visitor protection practices.',

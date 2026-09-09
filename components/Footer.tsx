@@ -83,7 +83,7 @@ export const Footer: React.FC = () => {
               itemProp="description"
               className="text-xs text-[#78716C] max-w-2xl mt-1.5 leading-relaxed"
             >
-              Architecting production AI agents, autonomous LLM swarms, RAG pipelines, and enterprise systems. Based in Kannur, Kerala &bull; Delivering worldwide.
+              Architecting production AI agents, autonomous LLM swarms, RAG pipelines, and enterprise systems. Based in Kerala, India &bull; Available for Global Roles &amp; Distributed Systems.
             </p>
           </div>
 
@@ -130,35 +130,39 @@ export const Footer: React.FC = () => {
               <ArrowUp className="w-3.5 h-3.5" />
             </button>
           </div>
-        </div>
-
-        {/* Middle: Compact 4-Column Semantic SEO Navigation */}
+        </div>        {/* Middle: Compact 4-Column Semantic SEO Navigation */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8 py-8 sm:py-9">
           
-          {/* Column 1: Index */}
-          <nav aria-label="Site Navigation" className="space-y-3">
+          {/* Column 1: Core Navigation Index */}
+          <nav 
+            aria-label="Core Site Navigation" 
+            itemScope 
+            itemType="https://schema.org/SiteNavigationElement" 
+            className="space-y-3"
+          >
             <div className="flex items-center gap-1.5 pb-1.5 border-b border-[#26221F]">
               <span className="w-1.5 h-1.5 rounded-full bg-copper" />
-              <span className="font-mono text-[11px] uppercase tracking-wider text-[#EDE5DC] font-semibold">
+              <h3 className="font-mono text-[11px] uppercase tracking-wider text-[#EDE5DC] font-semibold">
                 Site Index
-              </span>
+              </h3>
             </div>
             <ul className="space-y-1.5 text-xs">
               {[
-                { name: 'Introduction', id: 'hero', label: 'Portfolio Hero Overview' },
-                { name: 'About Sonu', id: 'about', label: 'Engineering Story & Bio' },
-                { name: 'Experience Track', id: 'experience', label: 'Career Track at HCLTech' },
-                { name: 'Featured Work', id: 'projects', label: 'Flagship Systems & Projects' },
-                { name: 'Direct Channels', id: 'contact', label: 'Contact & Collaboration Form' },
+                { name: 'AI Systems Home', id: 'hero', label: 'Sonu Thomas AI Engineer Portfolio Homepage' },
+                { name: 'About Sonu Thomas', id: 'about', label: 'AI Engineer Background, Education at IIT Guwahati & Philosophy' },
+                { name: 'HCLTech Career Track', id: 'experience', label: 'Production Software Engineering Track at HCLTech' },
+                { name: 'Flagship AI Systems', id: 'projects', label: 'Enterprise AI Incident Management & TicketWave Architecture' },
+                { name: 'Contact & Inquiries', id: 'contact', label: 'Direct Channel to Hire or Consult Sonu Thomas' },
               ].map((link) => (
                 <li key={link.id}>
                   <a
                     href={`#${link.id}`}
+                    itemProp="url"
                     onClick={(e) => handleScroll(e, link.id)}
                     title={link.label}
                     className="group flex items-center justify-between text-[#8E8780] hover:text-[#EDE5DC] transition-colors py-0.5 cursor-pointer"
                   >
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">
+                    <span itemProp="name" className="group-hover:translate-x-1 transition-transform duration-200">
                       {link.name}
                     </span>
                     <span className="text-copper opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-mono">
@@ -170,23 +174,29 @@ export const Footer: React.FC = () => {
             </ul>
           </nav>
 
-          {/* Column 2: Deep Dives & Skills */}
-          <nav aria-label="Technical Capabilities" className="space-y-3">
+          {/* Column 2: Deep Dives & Capability Index */}
+          <nav 
+            aria-label="Technical Capabilities & Engineering Pages" 
+            itemScope 
+            itemType="https://schema.org/SiteNavigationElement" 
+            className="space-y-3"
+          >
             <div className="flex items-center gap-1.5 pb-1.5 border-b border-[#26221F]">
               <span className="w-1.5 h-1.5 rounded-full bg-copper" />
-              <span className="font-mono text-[11px] uppercase tracking-wider text-[#EDE5DC] font-semibold">
+              <h3 className="font-mono text-[11px] uppercase tracking-wider text-[#EDE5DC] font-semibold">
                 Deep Dives
-              </span>
+              </h3>
             </div>
             <ul className="space-y-1.5 text-xs">
               <li>
                 <Link
                   to="/skills"
-                  title="Comprehensive AI Engineering & Full-Stack Arsenal"
+                  itemProp="url"
+                  title="Comprehensive AI Engineering, LangGraph, Python, & Cloud Arsenal"
                   className="group flex items-center justify-between text-[#8E8780] hover:text-[#EDE5DC] transition-colors py-0.5"
                 >
                   <span className="flex items-center gap-1.5 group-hover:translate-x-1 transition-transform duration-200">
-                    <span>Technical Arsenal</span>
+                    <span itemProp="name">Technical Arsenal</span>
                     <span className="px-1 py-0.2 rounded text-[8px] font-mono font-semibold bg-copper/20 text-copper border border-copper/30">
                       NEW
                     </span>
@@ -197,10 +207,11 @@ export const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/projects"
-                  title="Autonomous AI and Production Software Case Studies"
+                  itemProp="url"
+                  title="Autonomous AI Incident Triage and Distributed Software Case Studies"
                   className="group flex items-center justify-between text-[#8E8780] hover:text-[#EDE5DC] transition-colors py-0.5"
                 >
-                  <span className="group-hover:translate-x-1 transition-transform duration-200">
+                  <span itemProp="name" className="group-hover:translate-x-1 transition-transform duration-200">
                     Flagship Architecture
                   </span>
                   <ArrowUpRight className="w-3 h-3 text-copper opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -209,10 +220,11 @@ export const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/insights"
-                  title="Technical Publications & AI System Notes"
+                  itemProp="url"
+                  title="Technical Publications on LLM Fine-Tuning, Multi-Agent Systems & Distributed Locks"
                   className="group flex items-center justify-between text-[#8E8780] hover:text-[#EDE5DC] transition-colors py-0.5"
                 >
-                  <span className="group-hover:translate-x-1 transition-transform duration-200">
+                  <span itemProp="name" className="group-hover:translate-x-1 transition-transform duration-200">
                     Technical Articles
                   </span>
                   <ArrowUpRight className="w-3 h-3 text-copper opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -221,11 +233,12 @@ export const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/certifications"
-                  title="Cloud, Data & AI Engineering Certifications"
+                  itemProp="url"
+                  title="AWS Professional, Machine Learning Specialist, and Google Cloud Certifications"
                   className="group flex items-center justify-between text-[#8E8780] hover:text-[#EDE5DC] transition-colors py-0.5"
                 >
-                  <span className="group-hover:translate-x-1 transition-transform duration-200">
-                    Certifications
+                  <span itemProp="name" className="group-hover:translate-x-1 transition-transform duration-200">
+                    AWS &amp; GCP Certifications
                   </span>
                   <ArrowUpRight className="w-3 h-3 text-copper opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
@@ -233,11 +246,12 @@ export const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/awards"
-                  title="Honors, Hackathons & Industry Recognitions"
+                  itemProp="url"
+                  title="HCLTech Supercharged Ambassador, Star TechBee Award, and Industry Honors"
                   className="group flex items-center justify-between text-[#8E8780] hover:text-[#EDE5DC] transition-colors py-0.5"
                 >
-                  <span className="group-hover:translate-x-1 transition-transform duration-200">
-                    Honors &amp; Awards
+                  <span itemProp="name" className="group-hover:translate-x-1 transition-transform duration-200">
+                    Honors &amp; Recognitions
                   </span>
                   <ArrowUpRight className="w-3 h-3 text-copper opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
@@ -245,11 +259,12 @@ export const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/volunteering"
-                  title="Community Leadership & Technical Mentorship"
+                  itemProp="url"
+                  title="Statewide ICT Student Enablement, AI Club Core Member, and Community Mentorship"
                   className="group flex items-center justify-between text-[#8E8780] hover:text-[#EDE5DC] transition-colors py-0.5"
                 >
-                  <span className="group-hover:translate-x-1 transition-transform duration-200">
-                    Volunteering &amp; Impact
+                  <span itemProp="name" className="group-hover:translate-x-1 transition-transform duration-200">
+                    Volunteering &amp; Leadership
                   </span>
                   <ArrowUpRight className="w-3 h-3 text-copper opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
@@ -257,47 +272,81 @@ export const Footer: React.FC = () => {
             </ul>
           </nav>
 
-          {/* Column 3: Regional Engineering Hubs (High SEO Value) */}
-          <nav aria-label="Regional Engineering Hubs" className="space-y-3">
+          {/* Column 3: Core Specializations & Direct AI Channels */}
+          <nav 
+            aria-label="AI Specializations & Advisory Channels" 
+            itemScope 
+            itemType="https://schema.org/SiteNavigationElement" 
+            className="space-y-3"
+          >
             <div className="flex items-center gap-1.5 pb-1.5 border-b border-[#26221F]">
               <span className="w-1.5 h-1.5 rounded-full bg-copper" />
-              <span className="font-mono text-[11px] uppercase tracking-wider text-[#EDE5DC] font-semibold">
-                Regional Hubs
-              </span>
+              <h3 className="font-mono text-[11px] uppercase tracking-wider text-[#EDE5DC] font-semibold">
+                Specializations
+              </h3>
             </div>
             <ul className="space-y-1.5 text-xs">
               <li>
                 <Link
-                  to="/ai-developer-kerala"
-                  title="AI Developer in Kerala — Agentic AI & LLM Engineering"
+                  to="/skills"
+                  itemProp="url"
+                  title="Autonomous Agentic AI, Cyclic State Machines, & LangGraph Orchestration"
                   className="group flex items-center justify-between text-[#8E8780] hover:text-[#EDE5DC] transition-colors py-0.5"
                 >
-                  <span className="group-hover:translate-x-1 transition-transform duration-200">
-                    AI Developer Kerala
+                  <span itemProp="name" className="group-hover:translate-x-1 transition-transform duration-200">
+                    Agentic AI &amp; LangGraph
                   </span>
                   <ArrowUpRight className="w-3 h-3 text-copper opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/web-developer-kannur"
-                  title="Web Developer in Kannur — React, Next.js & Modern Web Systems"
+                  to="/skills"
+                  itemProp="url"
+                  title="Enterprise Hybrid RAG Pipelines, ChromaDB, BM25, & Vector Embeddings"
                   className="group flex items-center justify-between text-[#8E8780] hover:text-[#EDE5DC] transition-colors py-0.5"
                 >
-                  <span className="group-hover:translate-x-1 transition-transform duration-200">
-                    Web Developer Kannur
+                  <span itemProp="name" className="group-hover:translate-x-1 transition-transform duration-200">
+                    Hybrid RAG Architecture
                   </span>
                   <ArrowUpRight className="w-3 h-3 text-copper opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/software-engineer-kerala"
-                  title="Software Engineer in Kerala — Full-Stack & Cloud Architecture"
+                  to="/projects"
+                  itemProp="url"
+                  title="Multi-Agent Incident Management & Self-Healing Production Triage Systems"
                   className="group flex items-center justify-between text-[#8E8780] hover:text-[#EDE5DC] transition-colors py-0.5"
                 >
-                  <span className="group-hover:translate-x-1 transition-transform duration-200">
-                    Software Engineer Kerala
+                  <span itemProp="name" className="group-hover:translate-x-1 transition-transform duration-200">
+                    Autonomous Incident Triage
+                  </span>
+                  <ArrowUpRight className="w-3 h-3 text-copper opacity-0 group-hover:opacity-100 transition-opacity" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/certifications"
+                  itemProp="url"
+                  title="Enterprise Cloud Architecture & Distributed Systems on AWS & Google Cloud"
+                  className="group flex items-center justify-between text-[#8E8780] hover:text-[#EDE5DC] transition-colors py-0.5"
+                >
+                  <span itemProp="name" className="group-hover:translate-x-1 transition-transform duration-200">
+                    Cloud Systems &amp; AWS
+                  </span>
+                  <ArrowUpRight className="w-3 h-3 text-copper opacity-0 group-hover:opacity-100 transition-opacity" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contact"
+                  itemProp="url"
+                  title="Direct AI Engineering & Technical Architecture Consultation"
+                  className="group flex items-center justify-between text-[#8E8780] hover:text-[#EDE5DC] transition-colors py-0.5"
+                >
+                  <span itemProp="name" className="group-hover:translate-x-1 transition-transform duration-200">
+                    AI Architecture Advisory
                   </span>
                   <ArrowUpRight className="w-3 h-3 text-copper opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
@@ -305,23 +354,12 @@ export const Footer: React.FC = () => {
               <li>
                 <a
                   href="mailto:sonuthomas.ai@gmail.com"
-                  title="Primary AI & LLM Consulting Channel"
+                  itemProp="url"
+                  title="Primary Direct AI Engineering Consultation Channel: sonuthomas.ai@gmail.com"
                   className="group flex items-center justify-between text-[#8E8780] hover:text-copper transition-colors py-0.5"
                 >
-                  <span className="group-hover:translate-x-1 transition-transform duration-200 truncate">
+                  <span itemProp="name" className="group-hover:translate-x-1 transition-transform duration-200 truncate">
                     AI Consulting Channel
-                  </span>
-                  <ArrowUpRight className="w-3 h-3 text-copper opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="mailto:sonuthomas.dev@gmail.com"
-                  title="Systems & Web Architecture Channel"
-                  className="group flex items-center justify-between text-[#8E8780] hover:text-copper transition-colors py-0.5"
-                >
-                  <span className="group-hover:translate-x-1 transition-transform duration-200 truncate">
-                    Systems Architecture
                   </span>
                   <ArrowUpRight className="w-3 h-3 text-copper opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                 </a>
@@ -329,25 +367,31 @@ export const Footer: React.FC = () => {
             </ul>
           </nav>
 
-          {/* Column 4: Dossier & Governance */}
-          <nav aria-label="Dossier & Governance" className="space-y-3">
+          {/* Column 4: Dossier & Legal Governance */}
+          <nav 
+            aria-label="Executive Dossier, Contact & Legal Policies" 
+            itemScope 
+            itemType="https://schema.org/SiteNavigationElement" 
+            className="space-y-3"
+          >
             <div className="flex items-center gap-1.5 pb-1.5 border-b border-[#26221F]">
               <span className="w-1.5 h-1.5 rounded-full bg-copper" />
-              <span className="font-mono text-[11px] uppercase tracking-wider text-[#EDE5DC] font-semibold">
+              <h3 className="font-mono text-[11px] uppercase tracking-wider text-[#EDE5DC] font-semibold">
                 Dossier &amp; Legal
-              </span>
+              </h3>
             </div>
             <ul className="space-y-1.5 text-xs">
               <li>
                 <a
                   href={PERSONAL_DETAILS.resumeLink}
+                  itemProp="url"
                   target="_blank"
                   rel="noopener noreferrer"
-                  title="Download Sonu Thomas Official CV (PDF)"
+                  title="Download Sonu Thomas Official Executive Resume (PDF)"
                   className="group flex items-center justify-between text-[#8E8780] hover:text-[#EDE5DC] transition-colors py-0.5"
                 >
                   <span className="flex items-center gap-1.5 group-hover:translate-x-1 transition-transform duration-200">
-                    <span>Executive Resume</span>
+                    <span itemProp="name">Executive Resume</span>
                     <span className="px-1 py-0.2 rounded text-[8px] font-mono bg-white/5 text-[#A8A29E] border border-white/10">
                       PDF
                     </span>
@@ -358,12 +402,13 @@ export const Footer: React.FC = () => {
               <li>
                 <a
                   href={PERSONAL_DETAILS.social.whatsapp}
+                  itemProp="url"
                   target="_blank"
                   rel="noopener noreferrer"
-                  title="Direct WhatsApp Messaging"
+                  title="Instant Messaging and Consultation via WhatsApp"
                   className="group flex items-center justify-between text-[#8E8780] hover:text-emerald-400 transition-colors py-0.5"
                 >
-                  <span className="group-hover:translate-x-1 transition-transform duration-200">
+                  <span itemProp="name" className="group-hover:translate-x-1 transition-transform duration-200">
                     WhatsApp Direct
                   </span>
                   <ArrowUpRight className="w-3 h-3 text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -372,10 +417,11 @@ export const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/privacy"
-                  title="Portfolio Privacy Policy"
+                  itemProp="url"
+                  title="Sonu Thomas Portfolio Privacy Policy & Data Security"
                   className="group flex items-center justify-between text-[#8E8780] hover:text-[#EDE5DC] transition-colors py-0.5"
                 >
-                  <span className="group-hover:translate-x-1 transition-transform duration-200">
+                  <span itemProp="name" className="group-hover:translate-x-1 transition-transform duration-200">
                     Privacy Policy
                   </span>
                   <span className="text-copper opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-mono">
@@ -386,10 +432,11 @@ export const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/terms"
-                  title="Terms of Service & Usage Conditions"
+                  itemProp="url"
+                  title="Terms of Service & Portfolio Usage Guidelines"
                   className="group flex items-center justify-between text-[#8E8780] hover:text-[#EDE5DC] transition-colors py-0.5"
                 >
-                  <span className="group-hover:translate-x-1 transition-transform duration-200">
+                  <span itemProp="name" className="group-hover:translate-x-1 transition-transform duration-200">
                     Terms of Service
                   </span>
                   <span className="text-copper opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-mono">
@@ -400,10 +447,11 @@ export const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/cookies"
-                  title="Cookie & Storage Policy"
+                  itemProp="url"
+                  title="Cookie & Client Storage Preferences Policy"
                   className="group flex items-center justify-between text-[#8E8780] hover:text-[#EDE5DC] transition-colors py-0.5"
                 >
-                  <span className="group-hover:translate-x-1 transition-transform duration-200">
+                  <span itemProp="name" className="group-hover:translate-x-1 transition-transform duration-200">
                     Cookie Policy
                   </span>
                   <span className="text-copper opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-mono">
@@ -413,7 +461,6 @@ export const Footer: React.FC = () => {
               </li>
             </ul>
           </nav>
-
         </div>
 
         {/* Bottom Bar: Tight & Minimalist */}
@@ -423,7 +470,7 @@ export const Footer: React.FC = () => {
           </div>
           <div className="flex items-center gap-2 text-copper">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse inline-block" />
-            <span>Kannur &bull; Kerala &bull; Global Delivery</span>
+            <span>Kerala, India &bull; Available Worldwide</span>
           </div>
         </div>
 
