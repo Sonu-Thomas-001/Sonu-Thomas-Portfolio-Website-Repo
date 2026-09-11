@@ -99,11 +99,11 @@ export const Hero: React.FC = () => {
   const textY = useParallax(exitProgress, [0, -140], [0, 1], 0);
   const textScale = useParallax(exitProgress, [1, 0.92], [0, 1], 1);
   const heroOpacity = useParallax(exitProgress, [1, 0.1], [0, 0.65], 1);
-  const imageY = useParallax(exitProgress, [0, 180], [0, 1], 0);
+  const imageY = useParallax(exitProgress, [0, 110], [0, 1], 0);
   const imageRotate = useParallax(exitProgress, [0, -3], [0, 1], 0);
   const watermarkX = useParallax(exitProgress, ['0%', '-38%'], [0, 1], '0%');
   const shape1Y = useParallax(exitProgress, [0, -110], [0, 1], 0);
-  const ledgerY = useParallax(exitProgress, [0, -70], [0, 1], 0);
+  const ledgerY = useParallax(exitProgress, [0, -40], [0, 1], 0);
   const waveOpacity = useParallax(exitProgress, [1, 0], [0, 0.5], 1);
 
   // 3D Tilt Mouse Interaction for Photo Card

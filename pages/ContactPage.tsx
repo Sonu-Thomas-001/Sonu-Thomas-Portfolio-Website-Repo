@@ -1,8 +1,8 @@
 import React from 'react';
+import { MessageSquare } from 'lucide-react';
 import { Contact } from '../components/Contact';
 import { SEO } from '../components/SEO';
-import { Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { PageHero } from '../components/PageHero';
 
 export const ContactPage: React.FC = () => {
   return (
@@ -12,15 +12,17 @@ export const ContactPage: React.FC = () => {
         description="Get in touch with Sonu Thomas, AI Software Engineer based in India. Available for collaborations, consultations, and enterprise engineering."
         url="/contact"
       />
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-4">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 font-mono text-xs uppercase tracking-wider mb-4 group"
-        >
-          <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-          <span>Back to Home</span>
-        </Link>
-      </div>
+
+      <PageHero
+        badge={{ icon: <MessageSquare className="w-3.5 h-3.5" />, text: 'Accepting inquiries' }}
+        title={
+          <>
+            Get in <span className="text-copper">touch</span>
+          </>
+        }
+        subtitle="Direct channels for collaborations, technical consulting, and enterprise AI engineering engagements."
+      />
+
       <Contact />
     </div>
   );

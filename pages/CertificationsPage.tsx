@@ -1,14 +1,17 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BadgeCheck, Calendar, ArrowLeft, Award, Search, Sparkles, ExternalLink, ShieldCheck, Layers, Cloud } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { BadgeCheck, Calendar, Award, Search, Sparkles, ExternalLink, ShieldCheck, Layers, Cloud } from 'lucide-react';
 import { CERTIFICATIONS_DATA } from '../constants';
 import { SEO } from '../components/SEO';
+import { PageHero } from '../components/PageHero';
 import { AmbientParticles } from '../components/AmbientParticles';
 import { NeuralGridLines } from '../components/NeuralGridLines';
 import { SonarRings } from '../components/SonarRings';
+import { useSectionProgress } from '../hooks/useSectionProgress';
 
 export const CertificationsPage: React.FC = () => {
+  const pageRef = useRef<HTMLDivElement>(null);
+  const pageProgress = useSectionProgress(pageRef);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
@@ -34,83 +37,34 @@ export const CertificationsPage: React.FC = () => {
   }, [selectedCategory, searchQuery]);
 
   return (
-    <div className="pt-28 pb-24 min-h-screen bg-page relative overflow-x-clip">
-      <SEO 
+    <div ref={pageRef} className="pt-28 pb-24 min-h-screen bg-page relative overflow-x-clip">
+      <SEO
         title="Licenses & Certifications | Sonu Thomas"
         description="Professional cloud certifications, AWS & GCP credentials, and 90+ Google Cloud skill badges held by Sonu Thomas."
         url="/certifications"
       />
 
-      {/* Background Parallax Glow */}
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-copper/10 dark:bg-copper/15 rounded-full blur-[120px] pointer-events-none -z-10" />
+      <AmbientParticles variant="minimal" density="subtle" progress={pageProgress} />
+      <NeuralGridLines rows={7} cols={9} scanBar={true} progress={pageProgress} />
+      <SonarRings progress={pageProgress} />
 
-      {/* Ambient Cyber-Orbs */}
-      <AmbientParticles variant="minimal" density="subtle" />
-
-      {/* Tech credential grid backdrop */}
-      <NeuralGridLines rows={7} cols={9} scanBar={true} />
-
-      {/* Subtle sonar depth */}
-      <SonarRings />
-
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-12 relative z-10">
-        <Link 
-          to="/" 
-          className="inline-flex items-center gap-2 text-[#78716C] dark:text-[#A8A29E] hover:text-copper font-mono text-xs uppercase tracking-wider mb-8 group transition-colors"
-        >
-          <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" /> 
-          <span>Back to Home</span>
-        </Link>
-
-        <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-copper/10 border border-copper/20 text-copper text-xs font-mono font-semibold tracking-wider uppercase mb-4">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Audited Credentials &bull; 100% Verifiable</span>
-          </div>
-
-          <h1 className="font-display font-bold text-4xl sm:text-6xl text-[#1A1614] dark:text-[#FDFBF7] tracking-tight leading-tight">
+      <PageHero
+        badge={{ icon: <ShieldCheck className="w-3.5 h-3.5" />, text: 'Audited credentials, 100% verifiable' }}
+        title={
+          <>
             Licenses &amp; <br />
-            <span className="bg-gradient-to-r from-[#B85D36] via-copper to-[#A04D28] dark:from-[#F0A584] dark:via-copper dark:to-[#F0A584] bg-clip-text text-transparent">
-              Certifications
-            </span>
-          </h1>
+            <span className="text-copper">certifications</span>
+          </>
+        }
+        subtitle="A comprehensive record of accredited enterprise credentials across AWS, Google Cloud, AI/ML specialization, and distributed systems architecture."
+        stats={[
+          { label: 'Cloud authority', value: '4x', note: '3x AWS Pro / AI · 1x GCP certified', icon: <Cloud className="w-4 h-4 text-copper" /> },
+          { label: 'Hands-on labs', value: '90+', note: 'Google Cloud architecture & AI badges', icon: <Layers className="w-4 h-4 text-copper" />, tone: 'copper' },
+          { label: 'Audit status', value: '100%', note: 'Verified with credential IDs', icon: <BadgeCheck className="w-4 h-4 text-emerald-500" />, tone: 'emerald' },
+        ]}
+        className="mb-12"
+      />
 
-          <p className="text-[#574F4A] dark:text-[#C5BEB7] text-base sm:text-lg mt-4 font-light leading-relaxed">
-            A comprehensive record of accredited enterprise credentials across AWS, Google Cloud, AI/ML specialization, and distributed systems architecture.
-          </p>
-        </div>
-
-        {/* 3 Executive Proof Tiles */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-10">
-          <div className="p-5 rounded-2xl bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-soft-sm">
-            <div className="flex items-center justify-between text-xs font-mono text-copper mb-2">
-              <span>CLOUD AUTHORITY</span>
-              <Cloud className="w-4 h-4" />
-            </div>
-            <div className="font-display font-bold text-3xl sm:text-4xl text-[#1A1614] dark:text-[#FDFBF7]">4x</div>
-            <div className="text-xs font-mono text-[#78716C] dark:text-[#9C948B] mt-1">3x AWS Pro / AI · 1x GCP Certified</div>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-soft-sm">
-            <div className="flex items-center justify-between text-xs font-mono text-copper mb-2">
-              <span>HANDS-ON LABS</span>
-              <Layers className="w-4 h-4" />
-            </div>
-            <div className="font-display font-bold text-3xl sm:text-4xl text-[#1A1614] dark:text-[#FDFBF7]">90+</div>
-            <div className="text-xs font-mono text-[#78716C] dark:text-[#9C948B] mt-1">Google Cloud Architecture &amp; AI Badges</div>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-soft-sm">
-            <div className="flex items-center justify-between text-xs font-mono text-copper mb-2">
-              <span>AUDIT STATUS</span>
-              <BadgeCheck className="w-4 h-4 text-emerald-500" />
-            </div>
-            <div className="font-display font-bold text-3xl sm:text-4xl text-[#1A1614] dark:text-[#FDFBF7]">100%</div>
-            <div className="text-xs font-mono text-emerald-600 dark:text-emerald-400 mt-1">Verified with Credential IDs</div>
-          </div>
-        </div>
-      </div>
-      
       {/* Search & Category Filter Controls */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-8 relative z-10">
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
@@ -175,10 +129,10 @@ export const CertificationsPage: React.FC = () => {
                   <motion.div
                     layout
                     key={cert.id}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.04 }}
+                    initial={{ opacity: 0, y: 24, x: idx % 2 === 0 ? -28 : 28 }}
+                    whileInView={{ opacity: 1, y: 0, x: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.55, delay: (idx % 2) * 0.08, ease: [0.16, 1, 0.3, 1] }}
                     className="relative flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 hover:border-copper/40 shadow-[0_4px_20px_rgba(26,22,20,0.04)] hover:shadow-[0_12px_32px_rgba(196,125,90,0.12)] transition-all duration-300 group overflow-hidden"
                   >
                     {/* Top Specular Accent */}

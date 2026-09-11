@@ -20,6 +20,7 @@ import Markdown from 'react-markdown';
 import { AmbientParticles } from './AmbientParticles';
 import { ConstellationWeb } from './ConstellationWeb';
 import { DataStreamTicker } from './DataStreamTicker';
+import { ParallaxImage } from './ParallaxImage';
 
 // Structured Metadata Schema for all 9 Flagship Systems
 interface ProjectMeta {
@@ -184,23 +185,6 @@ const CATEGORY_FILTERS = [
   { id: 'Distributed', label: 'Distributed Systems', matchCategories: ['Distributed Systems & Web Platforms'] },
   { id: 'Applied AI', label: 'Speech & Applied AI', matchCategories: ['Applied AI & Speech Systems'] },
 ];
-
-const ParallaxImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
-  const frameRef = useRef<HTMLDivElement>(null);
-  const progress = useSectionProgress(frameRef);
-  const y = useParallax(progress, ['-9%', '9%'], [0, 1], '0%');
-  return (
-    <div ref={frameRef} className="absolute inset-0 overflow-hidden">
-      <motion.img
-        src={src}
-        alt={alt}
-        style={{ y, scale: 1.18 }}
-        className="absolute inset-0 w-full h-full object-cover will-change-transform"
-        loading="lazy"
-      />
-    </div>
-  );
-};
 
 export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = false }) => {
   const sectionRef = useRef<HTMLElement>(null);

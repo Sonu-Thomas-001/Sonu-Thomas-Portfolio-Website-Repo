@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, ArrowRight, Check, Loader2, ShieldCheck, Sparkles, Zap, Users } from 'lucide-react';
+import { useSectionProgress } from '../hooks/useSectionProgress';
+import { useParallax } from '../hooks/useParallax';
 
 export const Newsletter: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const progress = useSectionProgress(sectionRef);
+  const glowTopY = useParallax(progress, ['-20%', '25%'], [0, 1], '0%');
+  const glowBottomY = useParallax(progress, ['25%', '-20%'], [0, 1], '0%');
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
 
@@ -18,7 +24,7 @@ export const Newsletter: React.FC = () => {
   };
 
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section ref={sectionRef} className="py-20 relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -28,8 +34,14 @@ export const Newsletter: React.FC = () => {
           className="relative rounded-3xl p-8 sm:p-14 text-center overflow-hidden bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 backdrop-blur-2xl border border-[#E8E0D8] dark:border-white/10 shadow-[0_16px_48px_rgba(26,22,20,0.06)] dark:shadow-[0_24px_64px_rgba(0,0,0,0.4)] group"
         >
           {/* Ambient Glow Mesh Behind the Card */}
-          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-56 bg-copper/15 dark:bg-copper/20 rounded-full blur-3xl pointer-events-none -z-10" />
-          <div className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-80 h-48 bg-amber-500/10 dark:bg-amber-600/10 rounded-full blur-3xl pointer-events-none -z-10" />
+          <motion.div
+            style={{ y: glowTopY, x: '-50%' }}
+            className="absolute -top-24 left-1/2 w-96 h-56 bg-copper/15 dark:bg-copper/20 rounded-full blur-3xl pointer-events-none -z-10 will-change-transform"
+          />
+          <motion.div
+            style={{ y: glowBottomY, x: '-50%' }}
+            className="absolute -bottom-24 left-1/2 w-80 h-48 bg-amber-500/10 dark:bg-amber-600/10 rounded-full blur-3xl pointer-events-none -z-10 will-change-transform"
+          />
 
           {/* Top Hairline Copper Accent */}
           <div className="absolute top-0 left-12 right-12 h-[2px] bg-gradient-to-r from-transparent via-copper/50 to-transparent" />

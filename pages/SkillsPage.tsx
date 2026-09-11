@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Bot,
@@ -10,16 +10,19 @@ import {
   Workflow,
   Wrench,
   ArrowRight,
-  ArrowLeft,
   ShieldCheck,
   Radio,
   Zap,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
+import { PageHero } from '../components/PageHero';
+import { ScrubReveal } from '../components/ScrubReveal';
 import { AmbientParticles } from '../components/AmbientParticles';
 import { NeuralGridLines } from '../components/NeuralGridLines';
 import { DataStreamTicker } from '../components/DataStreamTicker';
+import { useSectionProgress, PINNED_OFFSET } from '../hooks/useSectionProgress';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 // --- DATA STRUCTURES ---
 
@@ -498,6 +501,12 @@ const CURRENTLY_EXPLORING = [
 ];
 
 export const SkillsPage: React.FC = () => {
+  const pageRef = useRef<HTMLDivElement>(null);
+  const archRunwayRef = useRef<HTMLElement>(null);
+  const pageProgress = useSectionProgress(pageRef);
+  const archProgress = useSectionProgress(archRunwayRef, PINNED_OFFSET);
+  // The architecture card is ~850px tall; only pin it where it fits under the nav.
+  const pinArch = useMediaQuery('(min-width: 1024px) and (min-height: 960px)');
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedArchNode, setSelectedArchNode] = useState<string>('agents');
@@ -517,51 +526,36 @@ export const SkillsPage: React.FC = () => {
   });
 
   return (
-    <div className="pt-28 pb-24 min-h-screen bg-page relative overflow-x-clip">
+    <div ref={pageRef} className="pt-28 pb-24 min-h-screen bg-page relative overflow-x-clip">
       <SEO
         title="Technical Arsenal & Engineering Capability Map | Sonu Thomas"
         description="Comprehensive technical capabilities of Sonu Thomas: AI, LLM & Agent Engineering, Full-Stack Software, Cloud Infrastructure, Databases, Enterprise Integrations, and System Architecture."
         url="/skills"
       />
 
-      {/* Ambient Neural Particles */}
-      <AmbientParticles variant="minimal" density="subtle" />
+      <AmbientParticles variant="minimal" density="subtle" progress={pageProgress} />
+      <NeuralGridLines rows={9} cols={11} scanBar={true} progress={pageProgress} />
+      <DataStreamTicker columns={8} intensity={0.7} progress={pageProgress} />
 
-      {/* Neural perspective grid — tech discipline backdrop */}
-      <NeuralGridLines rows={9} cols={11} scanBar={true} />
-
-      {/* Hex data streams in margins */}
-      <DataStreamTicker columns={8} intensity={0.7} />
-
-      {/* Hero Header */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-12 sm:mb-16">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm text-[#78716C] dark:text-[#A8A29E] hover:text-copper dark:hover:text-copper transition-colors group"
-          >
-            <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-            <span>Back to home</span>
-          </Link>
-
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-copper/10 border border-copper/30 text-copper text-xs">
-            <Radio className="w-3 h-3 animate-pulse" />
-            <span>Living capability map, updated 2025–2026</span>
-          </div>
-        </div>
-
-        {/* Hero Title & Subhead */}
-        <div className="max-w-4xl">
-          <h1 className="font-display font-bold text-4xl sm:text-6xl lg:text-7xl text-[#1A1614] dark:text-[#FDFBF7] tracking-tight leading-[1.08]">
+      <PageHero
+        badge={{ icon: <Radio className="w-3 h-3 animate-pulse" />, text: 'Living capability map, updated 2025–2026' }}
+        title={
+          <>
             I build across the entire <br />
             <span className="text-copper">AI engineering stack</span>.
-          </h1>
-          <p className="mt-6 text-lg sm:text-xl text-[#4A4340] dark:text-[#D6D3D1] font-normal leading-relaxed max-w-3xl">
-            From LLM orchestration and autonomous agents to production APIs, cloud infrastructure, databases, and enterprise integrations.
-          </p>
-
+          </>
+        }
+        subtitle="From LLM orchestration and autonomous agents to production APIs, cloud infrastructure, databases, and enterprise integrations."
+        stats={[
+          { label: 'Deep disciplines', value: '9', note: 'Across the full stack' },
+          { label: 'Tools & capabilities', value: '100+', note: 'Production-proven', tone: 'copper' },
+          { label: 'MTTR reduction', value: '70%', note: 'On enterprise triage', tone: 'emerald' },
+          { label: 'Generic star ratings', value: '0%', note: 'Only verifiable proof', tone: 'violet' },
+        ]}
+        className="mb-12 sm:mb-16"
+      >
           {/* Positioning Tagline Pills */}
-          <div className="mt-6 flex flex-wrap items-center gap-2.5">
+          <div className="flex flex-wrap items-center gap-2.5">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 text-sm text-[#1A1614] dark:text-[#FDFBF7] shadow-xs">
               <Bot className="w-3.5 h-3.5 text-copper" />
               <span>AI &amp; agent engineering</span>
@@ -579,44 +573,7 @@ export const SkillsPage: React.FC = () => {
               <span>Enterprise systems integration</span>
             </span>
           </div>
-
-          {/* High-Impact Stat Strip */}
-          <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-6 border-t border-[#E8E0D8] dark:border-white/10">
-            <div className="p-3.5 rounded-2xl bg-[#FAF7F2] dark:bg-white/[0.03] border border-[#E8E0D8] dark:border-white/05">
-              <span className="text-2xl sm:text-3xl font-bold font-mono text-[#1A1614] dark:text-[#FDFBF7] block">
-                9
-              </span>
-              <span className="text-xs text-[#78716C] dark:text-[#A8A29E]">
-                Deep disciplines
-              </span>
-            </div>
-            <div className="p-3.5 rounded-2xl bg-[#FAF7F2] dark:bg-white/[0.03] border border-[#E8E0D8] dark:border-white/05">
-              <span className="text-2xl sm:text-3xl font-bold font-mono text-copper block">
-                100+
-              </span>
-              <span className="text-xs text-[#78716C] dark:text-[#A8A29E]">
-                Tools &amp; capabilities
-              </span>
-            </div>
-            <div className="p-3.5 rounded-2xl bg-[#FAF7F2] dark:bg-white/[0.03] border border-[#E8E0D8] dark:border-white/05">
-              <span className="text-2xl sm:text-3xl font-bold font-mono text-emerald-500 block">
-                70%
-              </span>
-              <span className="text-xs text-[#78716C] dark:text-[#A8A29E]">
-                MTTR reduction
-              </span>
-            </div>
-            <div className="p-3.5 rounded-2xl bg-[#FAF7F2] dark:bg-white/[0.03] border border-[#E8E0D8] dark:border-white/05">
-              <span className="text-2xl sm:text-3xl font-bold font-mono text-[#8B5CF6] block">
-                0%
-              </span>
-              <span className="text-xs text-[#78716C] dark:text-[#A8A29E]">
-                Generic star ratings
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+      </PageHero>
 
       {/* Layer 1: Interactive Category Navigation & Search */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-10 sticky top-20 z-30">
@@ -688,9 +645,15 @@ export const SkillsPage: React.FC = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-baseline gap-2.5 flex-wrap">
-                    <span className="font-mono text-xs text-[#78716C] dark:text-[#A8A29E]">
+                    <motion.span
+                      initial={{ opacity: 0, x: -14 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: '-60px' }}
+                      transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                      className="font-mono text-xs text-[#78716C] dark:text-[#A8A29E]"
+                    >
                       {discipline.num}
-                    </span>
+                    </motion.span>
                     <h2 className="font-display font-bold text-2xl sm:text-3xl text-[#1A1614] dark:text-[#FDFBF7]">
                       {discipline.title}
                     </h2>
@@ -787,8 +750,12 @@ export const SkillsPage: React.FC = () => {
       </section>
 
       {/* Section 09: Visual AI System Architecture Diagram */}
-      <section id="architecture-blueprint" className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-24 scroll-mt-32">
-        <div className="p-6 sm:p-10 rounded-3xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 shadow-soft-sm relative overflow-hidden">
+      <section
+        ref={archRunwayRef}
+        id="architecture-blueprint"
+        className={`max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-24 scroll-mt-32 ${pinArch ? 'h-[220vh]' : ''}`}
+      >
+        <div className={`p-6 sm:p-10 rounded-3xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 shadow-soft-sm relative overflow-hidden ${pinArch ? 'sticky top-24' : ''}`}>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <div>
               <span className="font-mono text-xs text-[#78716C] dark:text-[#A8A29E]">09</span>
@@ -801,7 +768,7 @@ export const SkillsPage: React.FC = () => {
             </div>
 
             <div className="px-3.5 py-1.5 rounded-full bg-copper/10 border border-copper/30 text-copper text-xs shrink-0">
-              Click a tier to inspect it
+              {pinArch ? 'Scroll to build the system, click a tier to inspect it' : 'Click a tier to inspect it'}
             </div>
           </div>
 
@@ -809,6 +776,7 @@ export const SkillsPage: React.FC = () => {
           <div className="py-6 px-4 sm:px-8 rounded-2xl bg-[#FAF7F2] dark:bg-black/30 border border-[#E8E0D8] dark:border-white/05 space-y-6">
             
             {/* Level 1: Client / User */}
+            <ScrubReveal progress={archProgress} range={[0.06, 0.18]} enabled={pinArch}>
             <div className="flex flex-col items-center">
               <div
                 onClick={() => setSelectedArchNode('client')}
@@ -826,7 +794,10 @@ export const SkillsPage: React.FC = () => {
               <div className="w-2 h-2 rounded-full bg-copper" />
             </div>
 
+            </ScrubReveal>
+
             {/* Level 2: API Gateway */}
+            <ScrubReveal progress={archProgress} range={[0.2, 0.32]} enabled={pinArch}>
             <div className="flex flex-col items-center">
               <div
                 onClick={() => setSelectedArchNode('api')}
@@ -844,7 +815,10 @@ export const SkillsPage: React.FC = () => {
               <div className="w-2 h-2 rounded-full bg-[#8B5CF6]" />
             </div>
 
+            </ScrubReveal>
+
             {/* Level 3: Triad Intelligence Tier (LLMs + Agents + RAG) */}
+            <ScrubReveal progress={archProgress} range={[0.34, 0.48]} enabled={pinArch}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
               <div
                 onClick={() => setSelectedArchNode('llms')}
@@ -886,7 +860,10 @@ export const SkillsPage: React.FC = () => {
               </div>
             </div>
 
+            </ScrubReveal>
+
             {/* Level 4: Execution & Sandboxing */}
+            <ScrubReveal progress={archProgress} range={[0.5, 0.62]} enabled={pinArch}>
             <div className="flex flex-col items-center">
               <div className="w-2 h-2 rounded-full bg-emerald-500" />
               <div className="w-px h-6 bg-emerald-500/40 dark:bg-emerald-500/60 my-1" />
@@ -906,7 +883,10 @@ export const SkillsPage: React.FC = () => {
               <div className="w-2 h-2 rounded-full bg-emerald-500" />
             </div>
 
+            </ScrubReveal>
+
             {/* Level 5: Storage & Enterprise Systems */}
+            <ScrubReveal progress={archProgress} range={[0.64, 0.78]} enabled={pinArch}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
               <div
                 onClick={() => setSelectedArchNode('relational')}
@@ -948,7 +928,10 @@ export const SkillsPage: React.FC = () => {
               </div>
             </div>
 
+            </ScrubReveal>
+
             {/* Architecture Node Insight Box */}
+            <ScrubReveal progress={archProgress} range={[0.82, 0.92]} enabled={pinArch} y={12}>
             <div className="mt-6 p-4 rounded-xl bg-white dark:bg-[#1E1B18] border border-copper/30 flex items-start gap-3">
               <Zap className="w-5 h-5 text-copper shrink-0 mt-0.5" />
               <div>
@@ -968,6 +951,7 @@ export const SkillsPage: React.FC = () => {
                 </p>
               </div>
             </div>
+            </ScrubReveal>
 
           </div>
         </div>

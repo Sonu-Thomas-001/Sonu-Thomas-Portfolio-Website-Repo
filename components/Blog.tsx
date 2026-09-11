@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BookOpen, Calendar, Clock, ArrowRight, Tag, Search, Sparkles, SlidersHorizontal } from 'lucide-react';
 import { BLOG_DATA } from '../constants';
+import { ParallaxImage } from './ParallaxImage';
 
 export const Blog: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
@@ -46,8 +47,8 @@ export const Blog: React.FC = () => {
               <BookOpen className="w-3.5 h-3.5" />
               <span>Technical Publications &bull; Research Ledger</span>
             </div>
-            <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-[#1A1614] dark:text-[#FDFBF7] tracking-tight">
-              Selected Technical Articles
+            <h2 className="font-display font-bold text-2xl sm:text-3xl text-[#1A1614] dark:text-[#FDFBF7] tracking-tight">
+              Selected technical articles
             </h2>
             <p className="text-[#574F4A] dark:text-[#C5BEB7] max-w-xl mt-3 text-base font-light leading-relaxed">
               Deep dives into production multi-agent workflows, parameter-efficient fine-tuning, high-concurrency systems, and real-time inference.
@@ -159,12 +160,7 @@ export const Blog: React.FC = () => {
 
                   {/* Article Hero Image with Gradient Vignette */}
                   <div className="relative h-48 sm:h-52 overflow-hidden bg-[#EDE5DC] dark:bg-[#12100E]">
-                    <img 
-                      src={post.image} 
-                      alt={post.title} 
-                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
-                      loading="lazy"
-                    />
+                    <ParallaxImage src={post.image} alt={post.title} travel={['-12%', '12%']} scale={1.22} />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#141210]/90 via-[#141210]/20 to-transparent" />
                     
                     {/* Top Left: Category Badge */}

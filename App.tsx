@@ -109,7 +109,14 @@ const CustomCursor: React.FC = () => {
 const AppContent: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
-  const { scrollTo } = useLenisScroll();
+  const { scrollTo, scrollToId } = useLenisScroll();
+
+  // After a page exits, land at the top — or at the requested #anchor once the new page has mounted.
+  const handleRouteExitComplete = () => {
+    scrollTo(0, { immediate: true });
+    const hash = window.location.hash.slice(1);
+    if (hash) setTimeout(() => scrollToId(hash), 120);
+  };
 
   const { scrollYProgress: scaleX } = useScroll();
 
@@ -155,7 +162,7 @@ const AppContent: React.FC = () => {
         <>
           <NavBar />
           <main className="min-h-screen">
-            <AnimatePresence mode="wait" onExitComplete={() => scrollTo(0, { immediate: true })}>
+            <AnimatePresence mode="wait" onExitComplete={handleRouteExitComplete}>
               <Routes location={location} key={location.pathname}>
                 <Route path="/" element={
                   <PageTransition>
