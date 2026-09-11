@@ -11,7 +11,6 @@ import {
   Wrench,
   ArrowRight,
   ArrowLeft,
-  ExternalLink,
   ShieldCheck,
   Radio,
   Zap,
@@ -539,23 +538,20 @@ export const SkillsPage: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-[#78716C] dark:text-[#A8A29E] hover:text-copper dark:hover:text-copper font-mono text-xs uppercase tracking-wider transition-colors group"
+            className="inline-flex items-center gap-2 text-sm text-[#78716C] dark:text-[#A8A29E] hover:text-copper dark:hover:text-copper transition-colors group"
           >
             <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-            <span>Back to Home</span>
+            <span>Back to home</span>
           </Link>
 
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-copper/10 border border-copper/30 text-copper text-[11px] font-mono">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-copper/10 border border-copper/30 text-copper text-xs">
             <Radio className="w-3 h-3 animate-pulse" />
-            <span>Living Capability Map // 2025–2026 Production Arsenal</span>
+            <span>Living capability map, updated 2025–2026</span>
           </div>
         </div>
 
         {/* Hero Title & Subhead */}
         <div className="max-w-4xl">
-          <span className="font-mono text-xs text-copper font-semibold tracking-widest uppercase block mb-3">
-            TECHNICAL ARSENAL // COMPREHENSIVE CAPABILITY MAP
-          </span>
           <h1 className="font-display font-bold text-4xl sm:text-6xl lg:text-7xl text-[#1A1614] dark:text-[#FDFBF7] tracking-tight leading-[1.08]">
             I build across the entire <br />
             <span className="text-copper">AI engineering stack</span>.
@@ -566,21 +562,21 @@ export const SkillsPage: React.FC = () => {
 
           {/* Positioning Tagline Pills */}
           <div className="mt-6 flex flex-wrap items-center gap-2.5">
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 text-xs font-mono text-[#1A1614] dark:text-[#FDFBF7] shadow-xs">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 text-sm text-[#1A1614] dark:text-[#FDFBF7] shadow-xs">
               <Bot className="w-3.5 h-3.5 text-copper" />
-              <span>AI &amp; Agent Engineering</span>
+              <span>AI &amp; agent engineering</span>
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 text-xs font-mono text-[#1A1614] dark:text-[#FDFBF7] shadow-xs">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 text-sm text-[#1A1614] dark:text-[#FDFBF7] shadow-xs">
               <Code2 className="w-3.5 h-3.5 text-copper" />
-              <span>Full-Stack Systems</span>
+              <span>Full-stack systems</span>
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 text-xs font-mono text-[#1A1614] dark:text-[#FDFBF7] shadow-xs">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 text-sm text-[#1A1614] dark:text-[#FDFBF7] shadow-xs">
               <Cloud className="w-3.5 h-3.5 text-copper" />
-              <span>Cloud &amp; Data Infrastructure</span>
+              <span>Cloud &amp; data infrastructure</span>
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 text-xs font-mono text-[#1A1614] dark:text-[#FDFBF7] shadow-xs">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 text-sm text-[#1A1614] dark:text-[#FDFBF7] shadow-xs">
               <Workflow className="w-3.5 h-3.5 text-copper" />
-              <span>Enterprise Systems Integration</span>
+              <span>Enterprise systems integration</span>
             </span>
           </div>
 
@@ -588,34 +584,34 @@ export const SkillsPage: React.FC = () => {
           <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-6 border-t border-[#E8E0D8] dark:border-white/10">
             <div className="p-3.5 rounded-2xl bg-[#FAF7F2] dark:bg-white/[0.03] border border-[#E8E0D8] dark:border-white/05">
               <span className="text-2xl sm:text-3xl font-bold font-mono text-[#1A1614] dark:text-[#FDFBF7] block">
-                09
+                9
               </span>
-              <span className="text-[11px] font-mono text-[#78716C] dark:text-[#A8A29E] uppercase tracking-wider">
-                Deep Disciplines
+              <span className="text-xs text-[#78716C] dark:text-[#A8A29E]">
+                Deep disciplines
               </span>
             </div>
             <div className="p-3.5 rounded-2xl bg-[#FAF7F2] dark:bg-white/[0.03] border border-[#E8E0D8] dark:border-white/05">
               <span className="text-2xl sm:text-3xl font-bold font-mono text-copper block">
                 100+
               </span>
-              <span className="text-[11px] font-mono text-[#78716C] dark:text-[#A8A29E] uppercase tracking-wider">
-                Tools &amp; Capabilities
+              <span className="text-xs text-[#78716C] dark:text-[#A8A29E]">
+                Tools &amp; capabilities
               </span>
             </div>
             <div className="p-3.5 rounded-2xl bg-[#FAF7F2] dark:bg-white/[0.03] border border-[#E8E0D8] dark:border-white/05">
               <span className="text-2xl sm:text-3xl font-bold font-mono text-emerald-500 block">
                 70%
               </span>
-              <span className="text-[11px] font-mono text-[#78716C] dark:text-[#A8A29E] uppercase tracking-wider">
-                MTTR Reduction
+              <span className="text-xs text-[#78716C] dark:text-[#A8A29E]">
+                MTTR reduction
               </span>
             </div>
             <div className="p-3.5 rounded-2xl bg-[#FAF7F2] dark:bg-white/[0.03] border border-[#E8E0D8] dark:border-white/05">
               <span className="text-2xl sm:text-3xl font-bold font-mono text-[#8B5CF6] block">
                 0%
               </span>
-              <span className="text-[11px] font-mono text-[#78716C] dark:text-[#A8A29E] uppercase tracking-wider">
-                Generic Star Ratings
+              <span className="text-xs text-[#78716C] dark:text-[#A8A29E]">
+                Generic star ratings
               </span>
             </div>
           </div>
@@ -629,32 +625,32 @@ export const SkillsPage: React.FC = () => {
           <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 md:pb-0">
             <button
               onClick={() => setActiveFilter('all')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all shrink-0 cursor-pointer ${
+              className={`px-3 py-1.5 rounded-xl text-sm transition-all shrink-0 cursor-pointer ${
                 activeFilter === 'all'
                   ? 'bg-copper text-white shadow-xs'
                   : 'bg-[#FAF7F2] dark:bg-white/[0.04] text-[#4A4340] dark:text-[#D6D3D1] hover:bg-copper/10 hover:text-copper'
               }`}
             >
-              All Disciplines (08)
+              All disciplines
             </button>
             {DISCIPLINES.map((d) => (
               <button
                 key={d.id}
                 onClick={() => setActiveFilter(d.id)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all shrink-0 cursor-pointer ${
+                className={`px-3 py-1.5 rounded-xl text-sm transition-all shrink-0 cursor-pointer ${
                   activeFilter === d.id
                     ? 'bg-copper text-white shadow-xs'
                     : 'bg-[#FAF7F2] dark:bg-white/[0.04] text-[#4A4340] dark:text-[#D6D3D1] hover:bg-copper/10 hover:text-copper'
                 }`}
               >
-                {d.num} · {d.title.split(' ')[0]}
+                {d.title.split(' ')[0]}
               </button>
             ))}
             <a
               href="#architecture-blueprint"
-              className="px-3 py-1.5 rounded-xl text-xs font-mono bg-copper/10 border border-copper/30 text-copper hover:bg-copper hover:text-white transition-colors shrink-0"
+              className="px-3 py-1.5 rounded-xl text-sm bg-copper/10 border border-copper/30 text-copper hover:bg-copper hover:text-white transition-colors shrink-0"
             >
-              09 · Architecture
+              Architecture
             </a>
           </div>
 
@@ -665,7 +661,7 @@ export const SkillsPage: React.FC = () => {
               placeholder="Search technologies or concepts..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-3.5 py-1.5 rounded-xl text-xs font-mono bg-[#FAF7F2] dark:bg-white/[0.04] border border-[#E8E0D8] dark:border-white/10 text-[#1A1614] dark:text-white placeholder-[#78716C] focus:outline-none focus:border-copper"
+              className="w-full px-3.5 py-1.5 rounded-xl text-sm bg-[#FAF7F2] dark:bg-white/[0.04] border border-[#E8E0D8] dark:border-white/10 text-[#1A1614] dark:text-white placeholder-[#78716C] focus:outline-none focus:border-copper"
             />
           </div>
         </div>
@@ -685,98 +681,106 @@ export const SkillsPage: React.FC = () => {
               transition={{ duration: 0.4 }}
               className="scroll-mt-36"
             >
-              {/* Discipline Card Header */}
-              <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 shadow-soft-sm relative overflow-hidden group">
-                <div className="absolute top-4 right-6 text-7xl sm:text-8xl font-mono font-black text-black/[0.03] dark:text-white/[0.03] pointer-events-none select-none">
-                  {discipline.num}
+              {/* Discipline Header — running editorial header, no card wrapper */}
+              <div className="flex items-start gap-4 pb-6 border-b border-[#E8E0D8] dark:border-white/10">
+                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${discipline.badgeBg} border`}>
+                  <Icon className="w-6 h-6" />
                 </div>
-
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 relative z-10">
-                  <div className="flex items-center gap-3.5">
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${discipline.badgeBg} border`}>
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-mono text-xs text-copper font-bold uppercase tracking-wider">
-                          DISCIPLINE {discipline.num}
-                        </span>
-                        <span className="text-xs text-[#78716C] dark:text-[#A8A29E] font-mono">
-                          // {discipline.subtitle}
-                        </span>
-                      </div>
-                      <h2 className="font-display font-bold text-2xl sm:text-3xl text-[#1A1614] dark:text-[#FDFBF7]">
-                        {discipline.title}
-                      </h2>
-                    </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-baseline gap-2.5 flex-wrap">
+                    <span className="font-mono text-xs text-[#78716C] dark:text-[#A8A29E]">
+                      {discipline.num}
+                    </span>
+                    <h2 className="font-display font-bold text-2xl sm:text-3xl text-[#1A1614] dark:text-[#FDFBF7]">
+                      {discipline.title}
+                    </h2>
                   </div>
+                  <p className="text-sm text-[#78716C] dark:text-[#A8A29E] mt-1">
+                    {discipline.subtitle}
+                  </p>
                 </div>
+              </div>
 
-                <p className="text-[#4A4340] dark:text-[#D6D3D1] text-sm sm:text-base leading-relaxed mb-8 max-w-4xl relative z-10">
-                  {discipline.description}
-                </p>
+              <p className="text-[#4A4340] dark:text-[#D6D3D1] text-sm sm:text-base leading-relaxed mt-6 mb-8 max-w-4xl">
+                {discipline.description}
+              </p>
 
-                {/* Sub-Groups with Competency + Context Cards */}
-                <div className="space-y-8 relative z-10">
-                  {discipline.groups.map((group) => (
+              {/* Sub-Groups: flagship items as cards, the rest as a plain list */}
+              <div className="space-y-8">
+                {discipline.groups.map((group) => {
+                  const flagship = group.items.filter((tech) => tech.highlight);
+                  const rest = group.items.filter((tech) => !tech.highlight);
+                  return (
                     <div key={group.groupName} className="space-y-3">
-                      <div className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-copper" />
-                        <h3 className="font-mono text-xs uppercase tracking-widest text-[#78716C] dark:text-[#A8A29E] font-semibold">
-                          {group.groupName}
-                        </h3>
-                      </div>
+                      <h3 className="text-sm font-medium text-[#78716C] dark:text-[#A8A29E]">
+                        {group.groupName}
+                      </h3>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                        {group.items.map((tech) => (
-                          <div
-                            key={tech.name}
-                            className={`p-4 rounded-2xl border transition-all duration-200 flex flex-col justify-between ${
-                              tech.highlight
-                                ? 'bg-[#FAF7F2] dark:bg-white/[0.04] border-copper/30 hover:border-copper/70 shadow-xs'
-                                : 'bg-white dark:bg-white/[0.02] border-[#E8E0D8] dark:border-white/[0.06] hover:border-copper/40'
-                            }`}
-                          >
-                            <div>
+                      {flagship.length > 0 && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                          {flagship.map((tech) => (
+                            <div
+                              key={tech.name}
+                              className="p-4 rounded-2xl border border-copper/30 bg-[#FAF7F2] dark:bg-white/[0.04] hover:border-copper/70 transition-colors duration-200"
+                            >
                               <div className="flex items-center justify-between gap-2 mb-2">
-                                <h4 className="font-display font-semibold text-sm sm:text-base text-[#1A1614] dark:text-[#FDFBF7] flex items-center gap-1.5">
+                                <h4 className="font-display font-semibold text-sm sm:text-base text-[#1A1614] dark:text-[#FDFBF7] flex items-center gap-2">
+                                  <span className="w-1 h-3.5 rounded-full bg-copper shrink-0" />
                                   {tech.name}
-                                  {tech.highlight && (
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-                                  )}
                                 </h4>
-                                <span className="text-[10px] font-mono text-[#78716C] dark:text-[#A8A29E] px-2 py-0.5 rounded-md bg-[#E8E0D8]/50 dark:bg-white/10 shrink-0">
+                                <span className="text-xs text-[#78716C] dark:text-[#A8A29E] shrink-0">
                                   {tech.category}
                                 </span>
                               </div>
-                              <p className="text-xs text-[#4A4340] dark:text-[#A8A29E] leading-relaxed font-light">
+                              <p className="text-xs text-[#4A4340] dark:text-[#A8A29E] leading-relaxed">
                                 {tech.description}
                               </p>
                             </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                          ))}
+                        </div>
+                      )}
 
-                {/* Special Discipline 07 Enterprise Positioning Callout */}
-                {discipline.id === "enterprise-integration" && (
-                  <div className="mt-8 p-5 sm:p-6 rounded-2xl bg-amber-500/[0.07] border border-amber-500/30 relative z-10">
-                    <div className="flex items-start gap-3">
-                      <ShieldCheck className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
-                      <div>
-                        <span className="font-mono text-xs uppercase tracking-wider text-amber-700 dark:text-amber-300 font-bold block mb-1">
-                          The Enterprise Reality // Field Engineering Philosophy
-                        </span>
-                        <p className="text-sm text-[#1A1614] dark:text-[#FDFBF7] font-medium leading-relaxed">
-                          "I don't just build isolated AI demos. I connect autonomous AI directly to existing business systems—ServiceNow, Jira, Confluence, relational databases, and enterprise APIs—with deterministic guardrails, human-in-the-loop pauses, and zero operational downtime."
-                        </p>
-                      </div>
+                      {rest.length > 0 && (
+                        <div className="divide-y divide-[#E8E0D8]/60 dark:divide-white/[0.06] border-t border-[#E8E0D8]/60 dark:border-white/[0.06]">
+                          {rest.map((tech) => (
+                            <div
+                              key={tech.name}
+                              className="py-3 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4"
+                            >
+                              <div className="sm:w-52 shrink-0 flex items-baseline gap-2">
+                                <span className="font-display font-medium text-sm text-[#1A1614] dark:text-[#FDFBF7]">
+                                  {tech.name}
+                                </span>
+                                <span className="text-[11px] text-[#78716C] dark:text-[#A8A29E]">
+                                  {tech.category}
+                                </span>
+                              </div>
+                              <p className="text-xs text-[#4A4340] dark:text-[#A8A29E] leading-relaxed">
+                                {tech.description}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                  </div>
-                )}
+                  );
+                })}
               </div>
+
+              {/* Special Discipline 07 Enterprise Positioning Callout */}
+              {discipline.id === "enterprise-integration" && (
+                <div className="mt-8 p-5 sm:p-6 rounded-2xl bg-amber-500/[0.07] border border-amber-500/30 flex items-start gap-3">
+                  <ShieldCheck className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-sm font-semibold text-amber-700 dark:text-amber-300 block mb-1">
+                      The enterprise reality
+                    </span>
+                    <p className="text-sm text-[#1A1614] dark:text-[#FDFBF7] font-medium leading-relaxed">
+                      "I don't just build isolated AI demos. I connect autonomous AI directly to existing business systems—ServiceNow, Jira, Confluence, relational databases, and enterprise APIs—with deterministic guardrails, human-in-the-loop pauses, and zero operational downtime."
+                    </p>
+                  </div>
+                </div>
+              )}
             </motion.div>
           );
         })}
@@ -787,19 +791,17 @@ export const SkillsPage: React.FC = () => {
         <div className="p-6 sm:p-10 rounded-3xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 shadow-soft-sm relative overflow-hidden">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <div>
-              <span className="font-mono text-xs text-copper font-bold uppercase tracking-widest block mb-2">
-                09 // ARCHITECTURE BLUEPRINT
-              </span>
-              <h2 className="font-display font-bold text-2xl sm:text-4xl text-[#1A1614] dark:text-[#FDFBF7]">
-                End-to-End Autonomous AI System Architecture
+              <span className="font-mono text-xs text-[#78716C] dark:text-[#A8A29E]">09</span>
+              <h2 className="font-display font-bold text-2xl sm:text-4xl text-[#1A1614] dark:text-[#FDFBF7] mt-1">
+                End-to-end autonomous AI system architecture
               </h2>
               <p className="text-sm sm:text-base text-[#4A4340] dark:text-[#D6D3D1] mt-2 max-w-2xl">
                 How I orchestrate user clients, API gateways, probabilistic intelligence tiers, and enterprise persistence into a unified runtime.
               </p>
             </div>
 
-            <div className="px-3.5 py-1.5 rounded-full bg-copper/10 border border-copper/30 text-copper text-xs font-mono shrink-0">
-              Interactive System Map
+            <div className="px-3.5 py-1.5 rounded-full bg-copper/10 border border-copper/30 text-copper text-xs shrink-0">
+              Click a tier to inspect it
             </div>
           </div>
 
@@ -816,9 +818,9 @@ export const SkillsPage: React.FC = () => {
                     : 'bg-white dark:bg-[#1A1614] border-[#E8E0D8] dark:border-white/10 hover:border-copper/60 text-[#1A1614] dark:text-[#FDFBF7]'
                 }`}
               >
-                <div className="text-[10px] font-mono tracking-widest uppercase opacity-80">// LAYER 1</div>
-                <div className="font-display font-bold text-sm">USER &amp; CLIENT INTERFACE</div>
-                <div className="text-xs opacity-90 mt-0.5">React 19 · Next.js · Tailwind CSS · WebSocket Streams</div>
+                <div className="text-[10px] font-mono opacity-70">Layer 1</div>
+                <div className="font-display font-bold text-sm">User &amp; client interface</div>
+                <div className="text-xs opacity-90 mt-0.5">React 19 · Next.js · Tailwind CSS · WebSocket streams</div>
               </div>
               <div className="w-px h-6 bg-copper/40 dark:bg-copper/60 my-1" />
               <div className="w-2 h-2 rounded-full bg-copper" />
@@ -834,9 +836,9 @@ export const SkillsPage: React.FC = () => {
                     : 'bg-white dark:bg-[#1A1614] border-[#E8E0D8] dark:border-white/10 hover:border-[#8B5CF6]/60 text-[#1A1614] dark:text-[#FDFBF7]'
                 }`}
               >
-                <div className="text-[10px] font-mono tracking-widest uppercase opacity-80">// LAYER 2</div>
-                <div className="font-display font-bold text-sm">API GATEWAY &amp; VALIDATION</div>
-                <div className="text-xs opacity-90 mt-0.5">FastAPI · Node.js · Pydantic Schemas · JWT RBAC</div>
+                <div className="text-[10px] font-mono opacity-70">Layer 2</div>
+                <div className="font-display font-bold text-sm">API gateway &amp; validation</div>
+                <div className="text-xs opacity-90 mt-0.5">FastAPI · Node.js · Pydantic schemas · JWT RBAC</div>
               </div>
               <div className="w-px h-6 bg-[#8B5CF6]/40 dark:bg-[#8B5CF6]/60 my-1" />
               <div className="w-2 h-2 rounded-full bg-[#8B5CF6]" />
@@ -852,8 +854,8 @@ export const SkillsPage: React.FC = () => {
                     : 'bg-white dark:bg-[#1A1614] border-[#E8E0D8] dark:border-white/10 hover:border-amber-500/60 text-[#1A1614] dark:text-[#FDFBF7]'
                 }`}
               >
-                <div className="text-[10px] font-mono tracking-widest uppercase opacity-80">// FOUNDATION</div>
-                <div className="font-display font-bold text-sm">LLM PROVIDERS</div>
+                <div className="text-[10px] font-mono opacity-70">Foundation</div>
+                <div className="font-display font-bold text-sm">LLM providers</div>
                 <div className="text-xs opacity-90 mt-0.5">Gemini 2.5 · Claude · AWS Bedrock</div>
               </div>
 
@@ -865,9 +867,9 @@ export const SkillsPage: React.FC = () => {
                     : 'bg-white dark:bg-[#1A1614] border-[#E8E0D8] dark:border-white/10 hover:border-copper/60 text-[#1A1614] dark:text-[#FDFBF7]'
                 }`}
               >
-                <div className="text-[10px] font-mono tracking-widest uppercase opacity-80">// ORCHESTRATION</div>
-                <div className="font-display font-bold text-sm">AGENT STATE MACHINE</div>
-                <div className="text-xs opacity-90 mt-0.5">LangGraph DAGs · HITL · Sub-Agents</div>
+                <div className="text-[10px] font-mono opacity-70">Orchestration</div>
+                <div className="font-display font-bold text-sm">Agent state machine</div>
+                <div className="text-xs opacity-90 mt-0.5">LangGraph DAGs · HITL · Sub-agents</div>
               </div>
 
               <div
@@ -878,9 +880,9 @@ export const SkillsPage: React.FC = () => {
                     : 'bg-white dark:bg-[#1A1614] border-[#E8E0D8] dark:border-white/10 hover:border-sky-500/60 text-[#1A1614] dark:text-[#FDFBF7]'
                 }`}
               >
-                <div className="text-[10px] font-mono tracking-widest uppercase opacity-80">// RETRIEVAL</div>
-                <div className="font-display font-bold text-sm">HYBRID RAG PIPELINE</div>
-                <div className="text-xs opacity-90 mt-0.5">BM25 + ChromaDB + Reciprocal Rank</div>
+                <div className="text-[10px] font-mono opacity-70">Retrieval</div>
+                <div className="font-display font-bold text-sm">Hybrid RAG pipeline</div>
+                <div className="text-xs opacity-90 mt-0.5">BM25 + ChromaDB + reciprocal rank</div>
               </div>
             </div>
 
@@ -896,9 +898,9 @@ export const SkillsPage: React.FC = () => {
                     : 'bg-white dark:bg-[#1A1614] border-[#E8E0D8] dark:border-white/10 hover:border-emerald-500/60 text-[#1A1614] dark:text-[#FDFBF7]'
                 }`}
               >
-                <div className="text-[10px] font-mono tracking-widest uppercase opacity-80">// LAYER 4</div>
-                <div className="font-display font-bold text-sm">TOOL EXECUTION &amp; SANDBOX</div>
-                <div className="text-xs opacity-90 mt-0.5">Python Sandbox · REST Tool Calling · Playwright</div>
+                <div className="text-[10px] font-mono opacity-70">Layer 4</div>
+                <div className="font-display font-bold text-sm">Tool execution &amp; sandbox</div>
+                <div className="text-xs opacity-90 mt-0.5">Python sandbox · REST tool calling · Playwright</div>
               </div>
               <div className="w-px h-6 bg-emerald-500/40 dark:bg-emerald-500/60 my-1" />
               <div className="w-2 h-2 rounded-full bg-emerald-500" />
@@ -914,9 +916,9 @@ export const SkillsPage: React.FC = () => {
                     : 'bg-white dark:bg-[#1A1614] border-[#E8E0D8] dark:border-white/10 hover:border-indigo-500/60 text-[#1A1614] dark:text-[#FDFBF7]'
                 }`}
               >
-                <div className="text-[10px] font-mono tracking-widest uppercase opacity-80">// RELATIONAL</div>
+                <div className="text-[10px] font-mono opacity-70">Relational</div>
                 <div className="font-display font-bold text-sm">PostgreSQL / Oracle</div>
-                <div className="text-xs opacity-90 mt-0.5">ACID Transactions &amp; State</div>
+                <div className="text-xs opacity-90 mt-0.5">ACID transactions &amp; state</div>
               </div>
 
               <div
@@ -927,9 +929,9 @@ export const SkillsPage: React.FC = () => {
                     : 'bg-white dark:bg-[#1A1614] border-[#E8E0D8] dark:border-white/10 hover:border-rose-500/60 text-[#1A1614] dark:text-[#FDFBF7]'
                 }`}
               >
-                <div className="text-[10px] font-mono tracking-widest uppercase opacity-80">// ANALYTICS</div>
-                <div className="font-display font-bold text-sm">BigQuery / Logs</div>
-                <div className="text-xs opacity-90 mt-0.5">Petabyte Telemetry &amp; Runs</div>
+                <div className="text-[10px] font-mono opacity-70">Analytics</div>
+                <div className="font-display font-bold text-sm">BigQuery / logs</div>
+                <div className="text-xs opacity-90 mt-0.5">Petabyte telemetry &amp; runs</div>
               </div>
 
               <div
@@ -940,9 +942,9 @@ export const SkillsPage: React.FC = () => {
                     : 'bg-white dark:bg-[#1A1614] border-[#E8E0D8] dark:border-white/10 hover:border-amber-500/60 text-[#1A1614] dark:text-[#FDFBF7]'
                 }`}
               >
-                <div className="text-[10px] font-mono tracking-widest uppercase opacity-80">// ENTERPRISE</div>
+                <div className="text-[10px] font-mono opacity-70">Enterprise</div>
                 <div className="font-display font-bold text-sm">ServiceNow &amp; Jira</div>
-                <div className="text-xs opacity-90 mt-0.5">Automated Incident Triage</div>
+                <div className="text-xs opacity-90 mt-0.5">Automated incident triage</div>
               </div>
             </div>
 
@@ -950,8 +952,8 @@ export const SkillsPage: React.FC = () => {
             <div className="mt-6 p-4 rounded-xl bg-white dark:bg-[#1E1B18] border border-copper/30 flex items-start gap-3">
               <Zap className="w-5 h-5 text-copper shrink-0 mt-0.5" />
               <div>
-                <span className="font-mono text-xs uppercase tracking-wider text-copper font-bold block">
-                  Node Analysis // Selected Tier: {selectedArchNode.toUpperCase()}
+                <span className="text-sm font-semibold text-copper block">
+                  Selected tier
                 </span>
                 <p className="text-xs sm:text-sm text-[#4A4340] dark:text-[#D6D3D1] mt-1 leading-relaxed">
                   {selectedArchNode === 'agents' && "LangGraph maintains deterministic cyclic execution graphs. It handles state checkpoints, conditional routing to tools, and interrupt policies for human approvals before performing database writes."}
@@ -974,29 +976,26 @@ export const SkillsPage: React.FC = () => {
       {/* Layer 4: Proof & Project Associations */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-24">
         <div className="mb-10">
-          <span className="font-mono text-xs text-copper font-bold uppercase tracking-widest block mb-2">
-            LAYER 4 // VERIFIABLE PROOF
-          </span>
           <h2 className="font-display font-bold text-2xl sm:text-4xl text-[#1A1614] dark:text-[#FDFBF7]">
-            Technology → Capability → Production Project
+            Technology in production, not just on a resume
           </h2>
           <p className="text-sm sm:text-base text-[#4A4340] dark:text-[#D6D3D1] mt-2 max-w-2xl">
             Directly tying technologies to the actual enterprise and flagship software systems I engineered.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
           {PROOF_MAPPINGS.map((proof) => (
             <div
               key={proof.technology}
-              className="p-6 rounded-3xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 hover:border-copper/50 transition-all flex flex-col justify-between group shadow-soft-sm"
+              className="pl-5 border-l-2 border-copper/30 hover:border-copper transition-colors flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="font-mono text-xs text-copper font-bold px-2.5 py-1 rounded-lg bg-copper/10 border border-copper/20">
+                  <span className="text-sm font-medium text-copper">
                     {proof.technology}
                   </span>
-                  <span className="text-[11px] font-mono text-[#78716C] dark:text-[#A8A29E]">
+                  <span className="text-xs text-[#78716C] dark:text-[#A8A29E]">
                     {proof.roleTag}
                   </span>
                 </div>
@@ -1005,17 +1004,16 @@ export const SkillsPage: React.FC = () => {
                   {proof.projectName}
                 </h3>
 
-                <p className="text-xs sm:text-sm text-[#4A4340] dark:text-[#D6D3D1] leading-relaxed font-light mb-6">
+                <p className="text-xs sm:text-sm text-[#4A4340] dark:text-[#D6D3D1] leading-relaxed mb-4">
                   {proof.whatIBuilt}
                 </p>
               </div>
 
               <Link
                 to={proof.projectUrl}
-                className="inline-flex items-center gap-2 text-xs font-mono text-copper hover:underline uppercase tracking-wider pt-4 border-t border-[#E8E0D8]/60 dark:border-white/10"
+                className="inline-flex items-center text-sm text-copper hover:underline"
               >
-                <span>View Project Case Study</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                View project case study
               </Link>
             </div>
           ))}
@@ -1025,14 +1023,8 @@ export const SkillsPage: React.FC = () => {
       {/* Currently Exploring Section */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-24">
         <div className="p-6 sm:p-10 rounded-3xl bg-gradient-to-br from-[#FAF7F2] to-white dark:from-[#1E1B18] dark:to-[#171412] border border-[#E8E0D8] dark:border-white/10 shadow-soft-sm">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="w-2 h-2 rounded-full bg-copper animate-ping" />
-            <span className="font-mono text-xs text-copper font-bold uppercase tracking-widest">
-              FORWARD RADAR // CONTINUOUS INQUIRY
-            </span>
-          </div>
           <h2 className="font-display font-bold text-2xl sm:text-4xl text-[#1A1614] dark:text-[#FDFBF7] mb-4">
-            Currently Exploring &amp; Researching
+            Currently exploring &amp; researching
           </h2>
           <p className="text-sm sm:text-base text-[#4A4340] dark:text-[#D6D3D1] max-w-3xl mb-8 leading-relaxed">
             Rather than claiming mastery over emerging concepts prematurely, here is the active research frontier I am currently benchmarking, prototyping, and integrating into experimental stacks.
@@ -1048,7 +1040,7 @@ export const SkillsPage: React.FC = () => {
                   <h3 className="font-display font-semibold text-sm sm:text-base text-[#1A1614] dark:text-[#FDFBF7]">
                     {item.title}
                   </h3>
-                  <span className="text-[10px] font-mono text-copper bg-copper/10 px-2 py-0.5 rounded-md shrink-0">
+                  <span className="text-xs text-copper bg-copper/10 px-2 py-0.5 rounded-md shrink-0">
                     {item.tag}
                   </span>
                 </div>
@@ -1073,17 +1065,16 @@ export const SkillsPage: React.FC = () => {
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Link
               to="/projects"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-copper text-white text-xs font-mono font-medium hover:bg-copper-dark transition-colors shadow-soft-sm"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-copper text-white text-sm font-medium hover:bg-copper-dark transition-colors shadow-soft-sm"
             >
-              <span>Explore Flagship Projects</span>
+              <span>Explore flagship projects</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#FAF7F2] dark:bg-white/05 border border-[#E8E0D8] dark:border-white/10 text-xs font-mono text-[#1A1614] dark:text-[#FDFBF7] hover:border-copper transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#FAF7F2] dark:bg-white/05 border border-[#E8E0D8] dark:border-white/10 text-sm text-[#1A1614] dark:text-[#FDFBF7] hover:border-copper transition-colors"
             >
-              <span>Initiate Collaboration</span>
-              <ExternalLink className="w-3.5 h-3.5" />
+              <span>Get in touch</span>
             </Link>
           </div>
         </div>
