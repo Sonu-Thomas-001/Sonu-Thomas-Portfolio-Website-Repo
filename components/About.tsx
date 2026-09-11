@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
+import { motion, MotionValue, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import { useLenisScroll } from '../hooks/useLenisScroll';
 import { useSectionProgress } from '../hooks/useSectionProgress';
 import {
@@ -18,6 +18,24 @@ import { PERSONAL_DETAILS } from '../constants';
 import { AmbientParticles } from './AmbientParticles';
 import { SonarRings } from './SonarRings';
 import { ConstellationWeb } from './ConstellationWeb';
+import { useParallax } from '../hooks/useParallax';
+
+const ScrubWord: React.FC<{ progress: MotionValue<number>; index: number; className?: string; children: React.ReactNode }> = ({
+  progress,
+  index,
+  className = '',
+  children,
+}) => {
+  const start = 0.04 + index * 0.012;
+  const opacity = useParallax(progress, [0, 1], [start, start + 0.09], 1);
+  const y = useParallax(progress, [18, 0], [start, start + 0.09], 0);
+  const blur = useParallax(progress, ['blur(6px)', 'blur(0px)'], [start, start + 0.09], 'blur(0px)');
+  return (
+    <motion.span style={{ opacity, y, filter: blur }} className={`inline-block mr-[0.25em] ${className}`}>
+      {children}
+    </motion.span>
+  );
+};
 
 const ABOUT_LOOKS = [
   {
@@ -127,13 +145,13 @@ export const About: React.FC = () => {
       className="scroll-mt-24 sm:scroll-mt-28 py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto relative overflow-x-clip"
     >
       {/* Floating Ambient Cyber-Orbs */}
-      <AmbientParticles variant="orbs" density="subtle" />
+      <AmbientParticles variant="orbs" density="subtle" progress={scrollYProgress} />
 
       {/* Sonar emitters for ambient depth */}
-      <SonarRings />
+      <SonarRings progress={scrollYProgress} />
 
       {/* Constellation node network */}
-      <ConstellationWeb nodeCount={12} maxEdges={14} />
+      <ConstellationWeb nodeCount={12} maxEdges={14} progress={scrollYProgress} />
 
       {/* 1. Section Header & Identifier Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-12">
@@ -157,30 +175,24 @@ export const About: React.FC = () => {
       <div className="max-w-4xl mb-14 sm:mb-20 select-none">
         <h2 className="font-display font-bold text-3xl sm:text-5xl lg:text-6xl text-[#1A1614] dark:text-[#FDFBF7] tracking-tight leading-[1.12]">
           {headlineWords.map((word, i) => (
-            <motion.span
+            <ScrubWord
               key={i}
-              initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{
-                duration: 0.45,
-                delay: i * 0.028,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className={`inline-block mr-[0.25em] ${
+              progress={scrollYProgress}
+              index={i}
+              className={
                 word.toLowerCase().includes('precision') || word.toLowerCase().includes('clarity')
                   ? 'text-copper'
                   : ''
-              }`}
+              }
             >
               {word}
-            </motion.span>
+            </ScrubWord>
           ))}
         </h2>
       </div>
 
       {/* 3. Top Row: Asymmetric Bento Grid (7 Cols Manifesto + 5 Cols Portrait Spotlight) */}
-      <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch mb-12">
+      <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch lg:items-start mb-12">
         
         {/* Left Bento: Lead Narrative & Manifesto (7 cols) */}
         <motion.div
@@ -235,7 +247,7 @@ export const About: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="lg:col-span-5 flex flex-col justify-between"
+          className="lg:col-span-5 flex flex-col justify-between lg:sticky lg:top-28"
         >
           <div
             ref={cardRef}
@@ -250,7 +262,7 @@ export const About: React.FC = () => {
             {/* Glass Portrait Card */}
             <motion.div
               style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-              className="relative w-full h-full min-h-[460px] lg:min-h-full rounded-[32px] overflow-hidden p-2 bg-gradient-to-b from-white/95 via-white/40 to-white/10 dark:from-white/15 dark:via-white/5 dark:to-transparent border border-white/80 dark:border-white/10 shadow-[0_24px_64px_-12px_rgba(26,22,20,0.16)] dark:shadow-[0_24px_64px_-12px_rgba(0,0,0,0.6)] backdrop-blur-2xl flex flex-col group cursor-pointer"
+              className="relative w-full h-full min-h-[460px] lg:min-h-[600px] rounded-[32px] overflow-hidden p-2 bg-gradient-to-b from-white/95 via-white/40 to-white/10 dark:from-white/15 dark:via-white/5 dark:to-transparent border border-white/80 dark:border-white/10 shadow-[0_24px_64px_-12px_rgba(26,22,20,0.16)] dark:shadow-[0_24px_64px_-12px_rgba(0,0,0,0.6)] backdrop-blur-2xl flex flex-col group cursor-pointer"
             >
               <div className="relative flex-1 w-full rounded-[26px] overflow-hidden bg-[#EDE5DC] dark:bg-[#1E1B18]">
                 <AnimatePresence mode="wait">

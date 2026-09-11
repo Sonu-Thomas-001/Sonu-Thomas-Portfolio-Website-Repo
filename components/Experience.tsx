@@ -1,19 +1,30 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useTransform } from 'framer-motion';
 import { Building2, CheckCircle2, ArrowRight } from 'lucide-react';
 import { EXPERIENCE_DATA } from '../constants';
+import { useSectionProgress, PINNED_OFFSET } from '../hooks/useSectionProgress';
 
 export const Experience: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  
-  // Track scroll through this section
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [travel, setTravel] = useState(0);
 
-  // Snappy horizontal scroll across 4 career cards
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-52%"]);
+  const scrollYProgress = useSectionProgress(containerRef, PINNED_OFFSET);
+
+  // Measure how far the card track must move so the last card lands fully in view.
+  useEffect(() => {
+    const track = trackRef.current;
+    const viewport = track?.parentElement;
+    if (!track || !viewport) return;
+    const measure = () => setTravel(Math.max(0, track.scrollWidth - viewport.clientWidth));
+    const ro = new ResizeObserver(measure);
+    ro.observe(track);
+    ro.observe(viewport);
+    measure();
+    return () => ro.disconnect();
+  }, []);
+
+  const x = useTransform(scrollYProgress, [0, 1], [0, -travel]);
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const watermarkShift = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
 
@@ -60,7 +71,7 @@ export const Experience: React.FC = () => {
 
           {/* Horizontally Moving Cards Track */}
           <div className="my-auto overflow-visible py-4">
-            <motion.div style={{ x }} className="flex gap-8 items-stretch w-max pr-32">
+            <motion.div ref={trackRef} style={{ x }} className="flex gap-8 items-stretch w-max pr-32 will-change-transform">
               {EXPERIENCE_DATA.map((item, index) => (
                 <div
                   key={item.id}

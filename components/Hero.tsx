@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
+import { motion, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
+import { useSectionProgress } from '../hooks/useSectionProgress';
+import { useParallax } from '../hooks/useParallax';
 import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PERSONAL_DETAILS } from '../constants';
@@ -92,14 +94,17 @@ export const Hero: React.FC = () => {
     return () => clearInterval(interval);
   }, [isPhotoHovered]);
 
-  // Scroll Parallax Transforms
-  const { scrollY } = useScroll();
-  const textY = useTransform(scrollY, [0, 700], [0, -50]);
-  const imageY = useTransform(scrollY, [0, 700], [0, 45]);
-  const watermarkX = useTransform(scrollY, [0, 800], ["0%", "-20%"]);
-  const shape1Y = useTransform(scrollY, [0, 700], [0, -70]);
-  const shape2Y = useTransform(scrollY, [0, 700], [0, 60]);
-  const heroOpacity = useTransform(scrollY, [0, 500], [1, 0.2]);
+  // Scroll-scrubbed exit: 0 when the hero top is at the viewport top, 1 when its bottom leaves.
+  const exitProgress = useSectionProgress(containerRef, ['start start', 'end start']);
+  const textY = useParallax(exitProgress, [0, -140], [0, 1], 0);
+  const textScale = useParallax(exitProgress, [1, 0.92], [0, 1], 1);
+  const heroOpacity = useParallax(exitProgress, [1, 0.1], [0, 0.65], 1);
+  const imageY = useParallax(exitProgress, [0, 180], [0, 1], 0);
+  const imageRotate = useParallax(exitProgress, [0, -3], [0, 1], 0);
+  const watermarkX = useParallax(exitProgress, ['0%', '-38%'], [0, 1], '0%');
+  const shape1Y = useParallax(exitProgress, [0, -110], [0, 1], 0);
+  const ledgerY = useParallax(exitProgress, [0, -70], [0, 1], 0);
+  const waveOpacity = useParallax(exitProgress, [1, 0], [0, 0.5], 1);
 
   // 3D Tilt Mouse Interaction for Photo Card
   const mouseX = useMotionValue(0);
@@ -146,19 +151,19 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* Floating Ambient Neural Cyber-Orbs & Beacons */}
-      <AmbientParticles variant="neural" density="normal" />
+      <AmbientParticles variant="neural" density="normal" progress={exitProgress} />
 
       {/* Constellation star-node network */}
-      <ConstellationWeb nodeCount={14} maxEdges={18} />
+      <ConstellationWeb nodeCount={14} maxEdges={18} progress={exitProgress} />
 
       {/* Subtle hex data streams in far margins */}
-      <DataStreamTicker columns={10} intensity={0.85} />
+      <DataStreamTicker columns={10} intensity={0.85} progress={exitProgress} />
 
       <div className="grid lg:grid-cols-12 gap-12 lg:gap-14 items-center my-auto relative z-10">
         
         {/* Left Column (7 cols): Editorial Typography & Staggered Reveal */}
         <motion.div
-          style={{ y: textY, opacity: heroOpacity }}
+          style={{ y: textY, opacity: heroOpacity, scale: textScale, transformOrigin: 'left center' }}
           className="lg:col-span-7 flex flex-col items-start space-y-7"
         >
           {/* Status Eyebrow Badge */}
@@ -345,7 +350,7 @@ export const Hero: React.FC = () => {
 
         {/* Right Column (5 cols): Layered Depth Portrait Showcase */}
         <motion.div
-          style={{ y: imageY }}
+          style={{ y: imageY, rotate: imageRotate }}
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
@@ -438,6 +443,7 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* Bottom Editorial Proof Ledger with Dual-Tier Credentials */}
+      <motion.div style={{ y: ledgerY }} className="relative z-10">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
@@ -527,6 +533,7 @@ export const Hero: React.FC = () => {
           })}
         </div>
       </motion.div>
+      </motion.div>
 
       {/* Minimal Vertical Scroll Pulse Indicator */}
       <div className="relative z-10 flex flex-col items-center justify-center pt-8">
@@ -546,9 +553,14 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* Interactive ASCII Wave Horizon - Compact Floor Tide */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 pointer-events-none overflow-hidden z-0 opacity-40 dark:opacity-50 hover:opacity-65 transition-opacity duration-300">
-        <AsciiWave speed={0.8} density={1.0} baseLevel={0.62} />
-      </div>
+      <motion.div
+        style={{ opacity: waveOpacity }}
+        className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 pointer-events-none overflow-hidden z-0"
+      >
+        <div className="w-full h-full opacity-40 dark:opacity-50">
+          <AsciiWave speed={0.8} density={1.0} baseLevel={0.62} />
+        </div>
+      </motion.div>
     </section>
   );
 };

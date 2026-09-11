@@ -1,11 +1,14 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useTransform } from 'framer-motion';
 import {
-  GraduationCap,
   Award,
   CheckCircle2,
 } from 'lucide-react';
 import { EDUCATION_DATA } from '../constants';
+import { useSectionProgress, PINNED_OFFSET } from '../hooks/useSectionProgress';
+import { useParallax } from '../hooks/useParallax';
+import { useIsDesktop } from '../hooks/useMediaQuery';
+import { ScrubReveal } from './ScrubReveal';
 
 const IIT_COMPUTATIONAL_PILLARS = [
   "High-Dimensional Linear Algebra",
@@ -18,13 +21,18 @@ const IIT_COMPUTATIONAL_PILLARS = [
 
 export const Education: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const runwayRef = useRef<HTMLDivElement>(null);
+  const isDesktop = useIsDesktop();
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
+  const scrollYProgress = useSectionProgress(containerRef);
   const dividerWidth = useTransform(scrollYProgress, [0, 0.35], ["0%", "100%"]);
+
+  // Pinned campus scene (lg+): the flagship card sticks while the runway scrolls beneath it.
+  const pinProgress = useSectionProgress(runwayRef, PINNED_OFFSET);
+  const sceneProgress = isDesktop ? pinProgress : scrollYProgress;
+  const campusScale = useParallax(sceneProgress, [1.18, 1], [0, 0.85], 1);
+  const campusY = useParallax(sceneProgress, ['-6%', '4%'], [0, 1], '0%');
+  const foundationsY = useParallax(pinProgress, [32, -32], [0, 1], 0);
 
   const iitData = EDUCATION_DATA.find((e) => e.institution.toLowerCase().includes('guwahati')) || EDUCATION_DATA[0];
   const foundationalData = EDUCATION_DATA.filter((e) => !e.institution.toLowerCase().includes('guwahati'));
@@ -69,22 +77,24 @@ export const Education: React.FC = () => {
       </motion.div>
 
       {/* 3. Academic Bento (8 Cols IIT-G Flagship + 4 Cols Foundations) */}
-      <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-        
-        {/* Flagship Marquee: IIT Guwahati (8 cols) */}
+      <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+
+        {/* Flagship Marquee: IIT Guwahati (8 cols) — pinned runway on desktop */}
+        <div ref={runwayRef} className="lg:col-span-8 lg:h-[150vh]">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="lg:col-span-8 relative rounded-[32px] overflow-hidden bg-[#131110] border border-[#E8E0D8] dark:border-white/15 shadow-[0_24px_64px_-12px_rgba(26,22,20,0.18)] flex flex-col justify-between group min-h-[500px]"
+          className="lg:sticky lg:top-24 relative rounded-[32px] overflow-hidden bg-[#131110] border border-[#E8E0D8] dark:border-white/15 shadow-[0_24px_64px_-12px_rgba(26,22,20,0.18)] flex flex-col justify-between group min-h-[500px]"
         >
-          {/* Full-bleed Cinematic Campus Background Image */}
+          {/* Full-bleed Cinematic Campus Background Image — scroll-scrubbed zoom */}
           <div className="absolute inset-0 z-0 overflow-hidden">
-            <img
+            <motion.img
               src="/images/IITG.jpg"
               alt="IIT Guwahati Campus"
-              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-1000 ease-out opacity-45"
+              style={{ scale: campusScale, y: campusY }}
+              className="w-full h-full object-cover object-center opacity-45 will-change-transform"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#131110] via-[#131110]/85 to-[#131110]/40" />
           </div>
@@ -103,7 +113,7 @@ export const Education: React.FC = () => {
 
           {/* Main Degree & Curriculum Details */}
           <div className="relative z-10 p-7 sm:p-9 pt-0 space-y-6">
-            <div>
+            <ScrubReveal progress={pinProgress} range={[0.12, 0.32]} enabled={isDesktop}>
               <span className="text-xs font-mono text-copper uppercase tracking-widest block mb-2">
                 Honors Degree Program
               </span>
@@ -113,40 +123,53 @@ export const Education: React.FC = () => {
               <p className="text-sm sm:text-base text-[#EDE5DC]/80 font-light mt-2.5 max-w-2xl leading-relaxed">
                 {iitData.details} Advanced study exploring the convergence of mathematical statistics, deep neural representations, and scalable computing.
               </p>
-            </div>
+            </ScrubReveal>
 
-            {/* Computational Pillars Matrix */}
+            {/* Computational Pillars Matrix — chips reveal one after another */}
             <div>
-              <span className="text-[11px] font-mono text-[#9C948B] uppercase tracking-wider block mb-3">
-                Core Computational Invariants & Coursework:
-              </span>
+              <ScrubReveal progress={pinProgress} range={[0.36, 0.48]} enabled={isDesktop} y={12}>
+                <span className="text-[11px] font-mono text-[#9C948B] uppercase tracking-wider block mb-3">
+                  Core Computational Invariants & Coursework:
+                </span>
+              </ScrubReveal>
               <div className="flex flex-wrap gap-2">
                 {IIT_COMPUTATIONAL_PILLARS.map((pillar, i) => (
-                  <span
+                  <ScrubReveal
                     key={i}
-                    className="text-xs font-mono px-3 py-1.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] border border-white/15 text-[#EDE5DC] transition-colors"
+                    progress={pinProgress}
+                    range={[0.4 + i * 0.04, 0.52 + i * 0.04]}
+                    enabled={isDesktop}
+                    y={14}
                   >
-                    {pillar}
-                  </span>
+                    <span className="inline-block text-xs font-mono px-3 py-1.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] border border-white/15 text-[#EDE5DC] transition-colors">
+                      {pillar}
+                    </span>
+                  </ScrubReveal>
                 ))}
               </div>
             </div>
 
             {/* Bottom Verification Footer */}
-            <div className="pt-5 border-t border-white/15 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-[#9C948B]">
-              <div className="flex items-center gap-2 text-emerald-400">
-                <CheckCircle2 className="w-4 h-4" />
-                <span className="text-[#EDE5DC]">Verified Academic Credential</span>
+            <ScrubReveal progress={pinProgress} range={[0.72, 0.88]} enabled={isDesktop} y={16}>
+              <div className="pt-5 border-t border-white/15 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-[#9C948B]">
+                <div className="flex items-center gap-2 text-emerald-400">
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span className="text-[#EDE5DC]">Verified Academic Credential</span>
+                </div>
+                <span className="text-copper-200">
+                  Data Science & AI Scholar
+                </span>
               </div>
-              <span className="text-copper-200">
-                Data Science & AI Scholar
-              </span>
-            </div>
+            </ScrubReveal>
           </div>
         </motion.div>
+        </div>
 
-        {/* Foundations Companion Stack (4 cols) */}
-        <div className="lg:col-span-4 flex flex-col justify-between gap-6">
+        {/* Foundations Companion Stack (4 cols) — pinned alongside with a slower drift */}
+        <motion.div
+          style={{ y: isDesktop ? foundationsY : 0 }}
+          className="lg:col-span-4 lg:sticky lg:top-24 flex flex-col justify-between gap-6"
+        >
           {foundationalData.map((edu, idx) => {
             const isPlusTwo = edu.institution.toLowerCase().includes('plus') || edu.degree.toLowerCase().includes('higher');
             const campusImg = isPlusTwo ? "/images/Sjhss_plustwo.jpeg" : "/images/Sjhss_10th.webp";
@@ -204,7 +227,7 @@ export const Education: React.FC = () => {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
       </div>
     </section>

@@ -1,5 +1,8 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useTransform } from 'framer-motion';
+import { useSectionProgress } from '../hooks/useSectionProgress';
+import { useParallax } from '../hooks/useParallax';
+import { useIsDesktop } from '../hooks/useMediaQuery';
 import {
   Bot,
   Code2,
@@ -117,13 +120,13 @@ const DISCIPLINES: Discipline[] = [
 
 export const Skills: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const isDesktop = useIsDesktop();
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
+  const scrollYProgress = useSectionProgress(containerRef);
   const dividerWidth = useTransform(scrollYProgress, [0, 0.35], ["0%", "100%"]);
+  const gridY = useParallax(scrollYProgress, [0, -160], [0, 1], 0);
+  const numeralY = useParallax(scrollYProgress, [28, -28], [0, 1], 0);
+  const oddColumnY = useParallax(scrollYProgress, [56, -24], [0, 1], 0);
 
   return (
     <section
@@ -131,10 +134,11 @@ export const Skills: React.FC = () => {
       id="skills"
       className="scroll-mt-24 sm:scroll-mt-28 py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-[#E8E0D8] dark:border-white/10 relative overflow-x-clip"
     >
-      {/* Subtle Graph Grid Accent */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-30 dark:opacity-15 -z-10"
+      {/* Subtle Graph Grid Accent — drifts slower than the content */}
+      <motion.div
+        className="absolute -inset-y-40 inset-x-0 pointer-events-none opacity-30 dark:opacity-15 -z-10 will-change-transform"
         style={{
+          y: gridY,
           backgroundImage: 'radial-gradient(rgba(196, 125, 90, 0.18) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
@@ -178,14 +182,14 @@ export const Skills: React.FC = () => {
         {DISCIPLINES.map((disc, idx) => {
           const Icon = disc.icon;
           return (
+            <motion.div key={disc.id} style={{ y: isDesktop && idx % 2 === 1 ? oddColumnY : 0 }}>
             <motion.div
-              key={disc.id}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               whileHover={{ y: -4 }}
-              className={`relative p-7 sm:p-9 rounded-[30px] bg-[#FEFCF9]/95 dark:bg-[#1C1816]/95 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-[0_4px_24px_rgba(26,22,20,0.03)] transition-all duration-300 group overflow-hidden flex flex-col justify-between ${disc.glowAccent}`}
+              className={`relative h-full p-7 sm:p-9 rounded-[30px] bg-[#FEFCF9]/95 dark:bg-[#1C1816]/95 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-[0_4px_24px_rgba(26,22,20,0.03)] transition-all duration-300 group overflow-hidden flex flex-col justify-between ${disc.glowAccent}`}
             >
               {/* Top Accent Hairline */}
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-copper/40 group-hover:via-copper to-transparent transition-all duration-300 opacity-0 group-hover:opacity-100" />
@@ -207,9 +211,12 @@ export const Skills: React.FC = () => {
                     </div>
                   </div>
 
-                  <span className="text-3xl sm:text-4xl font-display font-black text-[#E8E0D8] dark:text-white/[0.08] select-none group-hover:text-copper/30 transition-colors">
+                  <motion.span
+                    style={{ y: numeralY }}
+                    className="text-3xl sm:text-4xl font-display font-black text-[#E8E0D8] dark:text-white/[0.08] select-none group-hover:text-copper/30 transition-colors"
+                  >
                     0{idx + 1}
-                  </span>
+                  </motion.span>
                 </div>
 
                 {/* Title & Architecture Narrative */}
@@ -266,6 +273,7 @@ export const Skills: React.FC = () => {
                 </div>
                 <ArrowUpRight className="w-4 h-4 opacity-40 group-hover:opacity-100 group-hover:text-copper group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               </div>
+            </motion.div>
             </motion.div>
           );
         })}

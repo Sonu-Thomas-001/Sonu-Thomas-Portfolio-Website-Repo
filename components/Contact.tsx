@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useTransform } from 'framer-motion';
+import { useSectionProgress } from '../hooks/useSectionProgress';
+import { useParallax } from '../hooks/useParallax';
 import {
   ArrowUpRight,
   Loader2,
@@ -22,12 +24,16 @@ import { NeuralGridLines } from './NeuralGridLines';
 
 export const Contact: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
+  const scrollYProgress = useSectionProgress(containerRef);
 
   const ambientOrbY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
+  const headlineClip = useParallax(
+    scrollYProgress,
+    ['inset(0% 0% 100% 0%)', 'inset(0% 0% 0% 0%)'],
+    [0.06, 0.26],
+    'inset(0% 0% 0% 0%)'
+  );
+  const headlineY = useParallax(scrollYProgress, [40, 0], [0.06, 0.26], 0);
 
   const [formState, setFormState] = useState({
     name: '',
@@ -92,10 +98,10 @@ export const Contact: React.FC = () => {
       />
 
       {/* Ambient Floating Cyber-Orbs */}
-      <AmbientParticles variant="orbs" density="subtle" />
+      <AmbientParticles variant="orbs" density="subtle" progress={scrollYProgress} />
 
-      {/* Perspective neural grid — signals/connections theme */}
-      <NeuralGridLines rows={8} cols={10} scanBar={true} />
+      {/* Perspective neural grid — rushes toward the viewer as the section scrolls */}
+      <NeuralGridLines rows={8} cols={10} scanBar={true} progress={scrollYProgress} />
 
       {/* 1. Section Header & Narrative Across Top */}
       <motion.div 
@@ -115,16 +121,19 @@ export const Contact: React.FC = () => {
             <span>Accepting Inquiries</span>
           </div>
         </div>
-        <h2 className="font-display font-bold text-3xl sm:text-5xl lg:text-6xl text-[#1A1614] dark:text-[#FDFBF7] tracking-tight leading-[1.08]">
+        <motion.h2
+          style={{ clipPath: headlineClip, y: headlineY }}
+          className="font-display font-bold text-3xl sm:text-5xl lg:text-6xl text-[#1A1614] dark:text-[#FDFBF7] tracking-tight leading-[1.08]"
+        >
           Let's create something <span className="text-copper">remarkable</span>.
-        </h2>
+        </motion.h2>
         <p className="mt-4 text-base sm:text-lg text-[#4A4340] dark:text-[#D6D3D1] font-normal leading-relaxed">
           Whether you are architecting autonomous AI agents, planning an enterprise integration, or exploring technical consulting — my direct channels are open.
         </p>
       </motion.div>
 
       {/* 2. Symmetrical 2-Column Grid (6 cols / 6 cols) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch relative z-10">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch lg:items-start relative z-10">
         
         {/* Left Column (6 cols): Channels Dossier & Direct Comms */}
         <motion.div 
@@ -358,7 +367,7 @@ export const Contact: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-6 flex flex-col"
+          className="lg:col-span-6 flex flex-col lg:sticky lg:top-28"
         >
           <form
             onSubmit={handleSubmit}

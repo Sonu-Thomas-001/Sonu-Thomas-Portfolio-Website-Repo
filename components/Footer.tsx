@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useSectionProgress } from '../hooks/useSectionProgress';
+import { useParallax } from '../hooks/useParallax';
 import { ArrowUp, ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { PERSONAL_DETAILS } from '../constants';
@@ -10,6 +12,11 @@ export const Footer: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { scrollTo, scrollToId } = useLenisScroll();
+  const footerRef = useRef<HTMLElement>(null);
+  const approach = useSectionProgress(footerRef, ['start end', 'end end']);
+  const watermarkY = useParallax(approach, ['34%', '0%'], [0, 1], '0%');
+  const watermarkOpacity = useParallax(approach, [0, 0.2], [0.1, 0.9], 0.2);
+  const identityY = useParallax(approach, [24, 0], [0, 0.6], 0);
 
   const handleScroll = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
@@ -25,12 +32,16 @@ export const Footer: React.FC = () => {
 
   return (
     <footer
+      ref={footerRef}
       className="bg-[#110F0E] text-[#9C948B] pt-12 sm:pt-14 pb-8 text-sm border-t border-[#26221F] relative overflow-hidden select-none"
       itemScope
       itemType="https://schema.org/WPFooter"
     >
-      {/* Typographic Signature Watermark — Compact and Subtle */}
-      <div className="absolute -bottom-4 left-0 right-0 pointer-events-none overflow-hidden select-none z-0 flex justify-center opacity-20">
+      {/* Typographic Signature Watermark — rises into place as the footer approaches */}
+      <motion.div
+        style={{ y: watermarkY, opacity: watermarkOpacity }}
+        className="absolute -bottom-4 left-0 right-0 pointer-events-none overflow-hidden select-none z-0 flex justify-center will-change-transform"
+      >
         <span
           className="font-display font-black text-[12vw] tracking-tighter leading-none whitespace-nowrap"
           style={{
@@ -40,14 +51,15 @@ export const Footer: React.FC = () => {
         >
           SONU THOMAS
         </span>
-      </div>
+      </motion.div>
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-        
+
         {/* Top: Identity, SEO Micro-Bio & Fast Channels */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          style={{ y: identityY }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col lg:flex-row lg:items-center justify-between pb-8 border-b border-[#26221F] gap-6"

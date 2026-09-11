@@ -1,5 +1,7 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSectionProgress } from '../hooks/useSectionProgress';
+import { useParallax } from '../hooks/useParallax';
 import { 
   ExternalLink, 
   Github, 
@@ -183,7 +185,27 @@ const CATEGORY_FILTERS = [
   { id: 'Applied AI', label: 'Speech & Applied AI', matchCategories: ['Applied AI & Speech Systems'] },
 ];
 
+const ParallaxImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
+  const frameRef = useRef<HTMLDivElement>(null);
+  const progress = useSectionProgress(frameRef);
+  const y = useParallax(progress, ['-9%', '9%'], [0, 1], '0%');
+  return (
+    <div ref={frameRef} className="absolute inset-0 overflow-hidden">
+      <motion.img
+        src={src}
+        alt={alt}
+        style={{ y, scale: 1.18 }}
+        className="absolute inset-0 w-full h-full object-cover will-change-transform"
+        loading="lazy"
+      />
+    </div>
+  );
+};
+
 export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = false }) => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const sectionProgress = useSectionProgress(sectionRef);
+  const gridY = useParallax(sectionProgress, [0, -160], [0, 1], 0);
   const [activeFilter, setActiveFilter] = useState('All');
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -247,24 +269,25 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
   }, [isHomepage, activeFilter, searchQuery, filteredProjects]);
 
   return (
-    <section id="projects" className="scroll-mt-24 sm:scroll-mt-28 py-24 sm:py-32 px-6 sm:px-8 lg:px-12 bg-[#131110] text-[#EDE5DC] border-y border-[#2A2522] relative">
-      {/* Subtle Graph Grid Accent */}
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-20 -z-0"
+    <section ref={sectionRef} id="projects" className="scroll-mt-24 sm:scroll-mt-28 py-24 sm:py-32 px-6 sm:px-8 lg:px-12 bg-[#131110] text-[#EDE5DC] border-y border-[#2A2522] relative">
+      {/* Subtle Graph Grid Accent — drifts slower than the content */}
+      <motion.div
+        className="absolute -inset-y-40 inset-x-0 pointer-events-none opacity-20 -z-0 will-change-transform"
         style={{
+          y: gridY,
           backgroundImage: 'radial-gradient(rgba(196, 125, 90, 0.22) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       />
 
       {/* Floating Ambient Neural Beacons & Orbs */}
-      <AmbientParticles variant="neural" density="subtle" />
+      <AmbientParticles variant="neural" density="subtle" progress={sectionProgress} />
 
       {/* Engineering systems network */}
-      <ConstellationWeb nodeCount={10} maxEdges={12} />
+      <ConstellationWeb nodeCount={10} maxEdges={12} progress={sectionProgress} />
 
       {/* Hex data streams in margins */}
-      <DataStreamTicker columns={6} intensity={0.6} />
+      <DataStreamTicker columns={6} intensity={0.6} progress={sectionProgress} />
 
       <div className="max-w-7xl mx-auto relative z-10">
         
@@ -281,7 +304,7 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-2">
               <span className="font-mono text-xs text-copper font-semibold tracking-widest uppercase">
-                05 // Flagship Engineering
+                {isHomepage ? '05 // Flagship Engineering' : 'Flagship Engineering'}
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-copper" />
               <span className="font-mono text-[11px] text-[#78716C]">
@@ -375,21 +398,16 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
                   <motion.div
                     key={project.id}
                     layout
-                    initial={{ opacity: 0, y: 32 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 32, x: isWide ? -40 : 40 }}
+                    whileInView={{ opacity: 1, y: 0, x: 0 }}
                     viewport={{ once: true, amount: 0.15 }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.5, delay: (idx % 2) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.6, delay: (idx % 2) * 0.08, ease: [0.16, 1, 0.3, 1] }}
                     onClick={() => setSelectedProject(project)}
                     className={`group relative overflow-hidden rounded-[28px] sm:rounded-[32px] min-h-[340px] sm:min-h-[380px] md:min-h-[420px] border border-white/10 hover:border-white/30 shadow-xl hover:shadow-[0_25px_60px_rgba(0,0,0,0.45)] transition-all duration-500 cursor-pointer flex flex-col justify-between ${colSpanClass} col-span-12 md:col-span-6`}
                   >
-                    {/* Full-Bleed High-Resolution Image Background with Zoom */}
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                      loading="lazy"
-                    />
+                    {/* Full-Bleed Image Background — scroll parallax on an inner layer so `layout` stays clean */}
+                    <ParallaxImage src={project.image} alt={project.title} />
 
                     {/* Rich Dark Cinematic Gradient Overlay for Maximum Readability */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-black/15 group-hover:via-black/55 transition-colors duration-300 pointer-events-none" />
