@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
+import { motion, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
+import { useLenisScroll } from '../hooks/useLenisScroll';
+import { useSectionProgress } from '../hooks/useSectionProgress';
 import {
   ShieldCheck,
   Workflow,
@@ -72,6 +74,7 @@ export const About: React.FC = () => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
   const [localTime, setLocalTime] = useState<string>('');
+  const { scrollToId } = useLenisScroll();
 
   // Live ticking IST clock for Kannur, Kerala
   useEffect(() => {
@@ -91,11 +94,7 @@ export const About: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Parallax Scroll Tracking
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
+  const scrollYProgress = useSectionProgress(containerRef);
 
   const dividerWidth = useTransform(scrollYProgress, [0, 0.35], ["0%", "100%"]);
 
@@ -125,7 +124,7 @@ export const About: React.FC = () => {
     <section
       ref={containerRef}
       id="about"
-      className="scroll-mt-24 sm:scroll-mt-28 py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto relative overflow-hidden"
+      className="scroll-mt-24 sm:scroll-mt-28 py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto relative overflow-x-clip"
     >
       {/* Floating Ambient Cyber-Orbs */}
       <AmbientParticles variant="orbs" density="subtle" />
@@ -451,10 +450,7 @@ export const About: React.FC = () => {
           transition={{ duration: 0.5, delay: 0.16 }}
           whileHover={{ y: -3 }}
           className="p-5 sm:p-6 rounded-2xl bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-soft-sm flex items-center justify-between group cursor-pointer"
-          onClick={() => {
-            const el = document.getElementById('contact');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
+          onClick={() => scrollToId('contact')}
         >
           <div>
             <span className="text-[10px] font-mono uppercase tracking-wider text-copper block">

@@ -9,7 +9,7 @@ import { ConstellationWeb } from '../components/ConstellationWeb';
 
 export const HonorsAwardsPage: React.FC = () => {
   return (
-    <div className="pt-28 pb-24 min-h-screen bg-page relative overflow-hidden">
+    <div className="pt-28 pb-24 min-h-screen bg-page relative overflow-x-clip">
       <SEO 
         title="Honors & Awards | Sonu Thomas"
         description="Recognition, enterprise awards, and brand ambassador commendations received by Sonu Thomas for technical excellence and impact."

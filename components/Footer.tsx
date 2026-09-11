@@ -3,37 +3,25 @@ import { motion } from 'framer-motion';
 import { ArrowUp, ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { PERSONAL_DETAILS } from '../constants';
+import { useLenisScroll } from '../hooks/useLenisScroll';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
   const location = useLocation();
   const navigate = useNavigate();
+  const { scrollTo, scrollToId } = useLenisScroll();
 
   const handleScroll = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     if (location.pathname !== '/') {
       navigate('/');
-      setTimeout(() => {
-        const el = document.getElementById(id);
-        if (el) {
-          const navOffset = 90;
-          const targetY = id === 'hero' ? 0 : el.getBoundingClientRect().top + window.pageYOffset - navOffset;
-          window.scrollTo({ top: targetY, behavior: 'smooth' });
-        }
-      }, 400);
+      setTimeout(() => scrollToId(id), 450);
     } else {
-      const el = document.getElementById(id);
-      if (el) {
-        const navOffset = 90;
-        const targetY = id === 'hero' ? 0 : el.getBoundingClientRect().top + window.pageYOffset - navOffset;
-        window.scrollTo({ top: targetY, behavior: 'smooth' });
-      }
+      scrollToId(id);
     }
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const scrollToTop = () => scrollTo(0);
 
   return (
     <footer

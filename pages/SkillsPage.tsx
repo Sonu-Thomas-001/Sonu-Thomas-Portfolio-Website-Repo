@@ -517,7 +517,7 @@ export const SkillsPage: React.FC = () => {
   });
 
   return (
-    <div className="pt-28 pb-24 min-h-screen bg-page relative overflow-hidden">
+    <div className="pt-28 pb-24 min-h-screen bg-page relative overflow-x-clip">
       <SEO
         title="Technical Arsenal & Engineering Capability Map | Sonu Thomas"
         description="Comprehensive technical capabilities of Sonu Thomas: AI, LLM & Agent Engineering, Full-Stack Software, Cloud Infrastructure, Databases, Enterprise Integrations, and System Architecture."

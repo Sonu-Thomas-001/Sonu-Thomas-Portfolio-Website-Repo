@@ -33,7 +33,7 @@ export const Education: React.FC = () => {
     <section
       ref={containerRef}
       id="education"
-      className="scroll-mt-24 sm:scroll-mt-28 py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto relative overflow-hidden"
+      className="scroll-mt-24 sm:scroll-mt-28 py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto relative overflow-x-clip"
     >
       {/* 1. Header & Section Indicator */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-12">

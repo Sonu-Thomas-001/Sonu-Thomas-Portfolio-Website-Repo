@@ -7,6 +7,7 @@ import { AsciiWave } from './AsciiWave';
 import { AmbientParticles } from './AmbientParticles';
 import { ConstellationWeb } from './ConstellationWeb';
 import { DataStreamTicker } from './DataStreamTicker';
+import { useLenisScroll } from '../hooks/useLenisScroll';
 
 const PROFESSIONAL_HERO_PHOTOS = [
   { src: "/images/Professional%20Pic%201.png", label: "Executive", tag: "System Design" },
@@ -70,6 +71,7 @@ export const Hero: React.FC = () => {
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
   const [isPhotoHovered, setIsPhotoHovered] = useState(false);
   const [activeWordIdx, setActiveWordIdx] = useState(0);
+  const { scrollToId } = useLenisScroll();
 
   // Looping Dynamic Word Rotator (Cycles through core specializations every 3 seconds)
   useEffect(() => {
@@ -125,20 +127,13 @@ export const Hero: React.FC = () => {
     mouseY.set(0);
   };
 
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      const navOffset = 90;
-      const targetY = el.getBoundingClientRect().top + window.pageYOffset - navOffset;
-      window.scrollTo({ top: targetY, behavior: 'smooth' });
-    }
-  };
+  const scrollToSection = (id: string) => scrollToId(id);
 
   return (
     <section
       ref={containerRef}
       id="hero"
-      className="relative isolate min-h-screen flex flex-col justify-between pt-28 sm:pt-36 pb-12 sm:pb-16 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto overflow-hidden"
+      className="relative isolate min-h-screen flex flex-col justify-between pt-28 sm:pt-36 pb-12 sm:pb-16 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto overflow-x-clip"
     >
       {/* Background Kinetic Watermark Parallax */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden select-none -z-10 flex items-center">

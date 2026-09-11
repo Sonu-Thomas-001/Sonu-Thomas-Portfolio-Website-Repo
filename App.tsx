@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { AnimatePresence, motion, useScroll, useSpring, useMotionValue } from 'framer-motion';
+import { AnimatePresence, MotionConfig, motion, useScroll, useSpring, useMotionValue } from 'framer-motion';
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import Lenis from 'lenis';
 import { ThemeProvider } from './components/ThemeContext';
+import { LenisProvider, useLenisScroll } from './hooks/useLenisScroll';
 import { NavBar } from './components/NavBar';
 import { Footer } from './components/Footer';
 import { AIAssistant } from './components/AIAssistant';
@@ -109,39 +109,9 @@ const CustomCursor: React.FC = () => {
 const AppContent: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
+  const { scrollTo } = useLenisScroll();
 
-  // Lenis Smooth Inertial Scrolling
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      touchMultiplier: 1.5,
-    });
-
-    (window as any).lenis = lenis;
-
-    let rafId: number;
-    function raf(time: number) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
-    rafId = requestAnimationFrame(raf);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      (window as any).lenis = null;
-      lenis.destroy();
-    };
-  }, []);
-
-  // Global Scroll Progress Tracker
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 400,
-    damping: 40,
-    restDelta: 0.001
-  });
+  const { scrollYProgress: scaleX } = useScroll();
 
   // Soft Ambient Warm Glow Follower
   const cursorX = useMotionValue(-100);
@@ -158,13 +128,6 @@ const AppContent: React.FC = () => {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [cursorX, cursorY]);
-
-  // Scroll to top on route change
-  useEffect(() => {
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 200); 
-  }, [location.pathname]);
 
   return (
     <div className="bg-page min-h-screen text-ink-secondary font-sans selection:bg-copper/20 selection:text-ink transition-colors duration-300 relative overflow-x-clip">
@@ -192,7 +155,7 @@ const AppContent: React.FC = () => {
         <>
           <NavBar />
           <main className="min-h-screen">
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" onExitComplete={() => scrollTo(0, { immediate: true })}>
               <Routes location={location} key={location.pathname}>
                 <Route path="/" element={
                   <PageTransition>
@@ -270,7 +233,11 @@ function App() {
     <HelmetProvider>
       <ThemeProvider>
         <BrowserRouter>
-          <AppContent />
+          <MotionConfig reducedMotion="user">
+            <LenisProvider>
+              <AppContent />
+            </LenisProvider>
+          </MotionConfig>
         </BrowserRouter>
       </ThemeProvider>
     </HelmetProvider>

@@ -1,5 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useId } from 'react';
+import { motion, MotionValue } from 'framer-motion';
+import { AmbientLayer, hexToRgba } from './AmbientLayer';
 
 export interface NeuralGridLinesProps {
   /** Number of horizontal lines in the grid */
@@ -9,6 +10,7 @@ export interface NeuralGridLinesProps {
   color?: string;
   /** Show animated horizontal scan bar */
   scanBar?: boolean;
+  progress?: MotionValue<number>;
   className?: string;
 }
 
@@ -23,8 +25,14 @@ export const NeuralGridLines: React.FC<NeuralGridLinesProps> = ({
   cols = 12,
   color = '#C47D5A',
   scanBar = true,
+  progress,
   className = '',
 }) => {
+  const uid = useId().replace(/:/g, '');
+  const maskVId = `ngl-mask-v-${uid}`;
+  const fadeId = `ngl-fade-${uid}`;
+  const scanId = `ngl-scan-${uid}`;
+  const glowId = `ngl-glow-${uid}`;
   const vp = { x: 50, y: 45 }; // vanishing point (%)
 
   // Horizontal lines spread from vanishing point toward bottom edge
@@ -44,17 +52,10 @@ export const NeuralGridLines: React.FC<NeuralGridLinesProps> = ({
     return { x1: xBottom, y1: 100, x2: vp.x, y2: vp.y, opacity, key: `v${i}` };
   });
 
-  // Parse hex color to r,g,b
-  const r = parseInt(color.slice(1, 3), 16);
-  const g = parseInt(color.slice(3, 5), 16);
-  const b = parseInt(color.slice(5, 7), 16);
-  const rgba = (a: number) => `rgba(${r},${g},${b},${a})`;
+  const rgba = (a: number) => hexToRgba(color, a);
 
   return (
-    <div
-      aria-hidden="true"
-      className={`absolute inset-0 overflow-hidden pointer-events-none select-none z-0 ${className}`}
-    >
+    <AmbientLayer progress={progress} drift={8} className={className}>
       <svg
         className="absolute inset-0 w-full h-full"
         viewBox="0 0 100 100"
@@ -62,32 +63,32 @@ export const NeuralGridLines: React.FC<NeuralGridLinesProps> = ({
       >
         <defs>
           {/* Fade-out mask: grid fades near top (vanishing point) and edges */}
-          <linearGradient id="ngl-mask-v" x1="0" y1="0" x2="0" y2="1">
+          <linearGradient id={maskVId} x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%"   stopColor="white" stopOpacity="0" />
             <stop offset="40%"  stopColor="white" stopOpacity="0.2" />
             <stop offset="75%"  stopColor="white" stopOpacity="0.8" />
             <stop offset="100%" stopColor="white" stopOpacity="1" />
           </linearGradient>
-          <mask id="ngl-fade">
-            <rect width="100" height="100" fill="url(#ngl-mask-v)" />
+          <mask id={fadeId}>
+            <rect width="100" height="100" fill={`url(#${maskVId})`} />
           </mask>
 
           {/* Scan bar gradient */}
-          <linearGradient id="ngl-scan" x1="0" y1="0" x2="0" y2="1">
+          <linearGradient id={scanId} x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%"   stopColor={rgba(0)} />
             <stop offset="40%"  stopColor={rgba(0.5)} />
             <stop offset="60%"  stopColor={rgba(0.5)} />
             <stop offset="100%" stopColor={rgba(0)} />
           </linearGradient>
 
-          <filter id="ngl-glow">
+          <filter id={glowId}>
             <feGaussianBlur stdDeviation="0.3" result="blur" />
             <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
           </filter>
         </defs>
 
         {/* Grid group with fade mask */}
-        <g mask="url(#ngl-fade)">
+        <g mask={`url(#${fadeId})`}>
           {/* Vertical convergence lines */}
           {vLines.map((l) => (
             <line
@@ -96,7 +97,7 @@ export const NeuralGridLines: React.FC<NeuralGridLinesProps> = ({
               x2={`${l.x2}%`} y2={`${l.y2}%`}
               stroke={rgba(l.opacity)}
               strokeWidth="0.15"
-              filter="url(#ngl-glow)"
+              filter={`url(#${glowId})`}
             />
           ))}
 
@@ -146,8 +147,8 @@ export const NeuralGridLines: React.FC<NeuralGridLinesProps> = ({
         {scanBar && (
           <motion.rect
             x="0" width="100" height="3"
-            fill="url(#ngl-scan)"
-            mask="url(#ngl-fade)"
+            fill={`url(#${scanId})`}
+            mask={`url(#${fadeId})`}
             animate={{ y: [vp.y - 2, 102] }}
             transition={{ duration: 4.5, repeat: Infinity, ease: 'linear' }}
           />
@@ -165,6 +166,6 @@ export const NeuralGridLines: React.FC<NeuralGridLinesProps> = ({
         }}
         className="absolute w-16 h-16 rounded-full blur-2xl"
       />
-    </div>
+    </AmbientLayer>
   );
 };

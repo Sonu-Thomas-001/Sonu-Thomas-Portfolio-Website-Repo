@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
-import { 
+import { useLenisScroll } from '../hooks/useLenisScroll';
+import {
   Menu, 
   X, 
   ArrowUpRight, 
@@ -89,6 +90,7 @@ export const NavBar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { scrollY } = useScroll();
+  const { scrollTo, scrollToId, stop, start } = useLenisScroll();
   const lastScrollY = useRef(0);
 
   // Close dropdown on click outside or escape
@@ -170,43 +172,26 @@ export const NavBar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleSpy);
   }, [location.pathname]);
 
-  // Prevent background scroll when mobile drawer is open
+  // Freeze Lenis while the mobile drawer is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
+    if (!isOpen) return;
+    stop();
+    return () => start();
+  }, [isOpen, stop, start]);
 
   const handleLinkClick = (path: string, e?: React.MouseEvent) => {
     if (path.startsWith('/#') || path === '/') {
       if (e) e.preventDefault();
       const targetId = path.startsWith('/#') ? path.replace('/#', '') : 'hero';
 
-      const performScroll = () => {
-        const el = document.getElementById(targetId);
-        if (el) {
-          const navOffset = 90;
-          const targetY = targetId === 'hero' ? 0 : el.getBoundingClientRect().top + window.pageYOffset - navOffset;
-          window.scrollTo({ top: targetY, behavior: 'smooth' });
-        }
-      };
-
       if (location.pathname !== '/') {
         navigate('/');
-        setTimeout(performScroll, 400);
+        setTimeout(() => scrollToId(targetId), 450);
       } else {
-        performScroll();
+        scrollToId(targetId);
       }
-      setIsOpen(false);
-    } else {
-      window.scrollTo(0, 0);
-      setIsOpen(false);
     }
+    setIsOpen(false);
   };
 
   return (
@@ -337,10 +322,7 @@ export const NavBar: React.FC = () => {
                           <Link
                             key={page.path}
                             to={page.path}
-                            onClick={() => {
-                              setIsOthersOpen(false);
-                              window.scrollTo({ top: 0, behavior: 'smooth' });
-                            }}
+                            onClick={() => setIsOthersOpen(false)}
                             className={`flex items-start gap-3 p-2.5 rounded-xl transition-all group/item ${
                               isCurrent
                                 ? 'bg-[#EDE5DC] text-copper font-semibold'

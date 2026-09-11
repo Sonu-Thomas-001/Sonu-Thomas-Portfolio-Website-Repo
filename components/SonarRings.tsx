@@ -1,8 +1,10 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, MotionValue } from 'framer-motion';
+import { AmbientLayer, hexToRgba } from './AmbientLayer';
 
 export interface SonarRingsProps {
   color?: string;
+  progress?: MotionValue<number>;
   className?: string;
 }
 
@@ -58,13 +60,6 @@ const EMITTERS: Emitter[] = [
   },
 ];
 
-function hexToRgba(hex: string, alpha: number): string {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-  return `rgba(${r},${g},${b},${alpha})`;
-}
-
 /**
  * SonarRings
  * Multiple radar / sonar emitters placed around the canvas. Each emitter
@@ -73,13 +68,11 @@ function hexToRgba(hex: string, alpha: number): string {
  */
 export const SonarRings: React.FC<SonarRingsProps> = ({
   color = '#C47D5A',
+  progress,
   className = '',
 }) => {
   return (
-    <div
-      aria-hidden="true"
-      className={`absolute inset-0 overflow-hidden pointer-events-none select-none z-0 ${className}`}
-    >
+    <AmbientLayer progress={progress} drift={14} className={className}>
       {EMITTERS.map((emitter) => (
         /* Drifting container for each emitter */
         <motion.div
@@ -152,6 +145,6 @@ export const SonarRings: React.FC<SonarRingsProps> = ({
           />
         </motion.div>
       ))}
-    </div>
+    </AmbientLayer>
   );
 };

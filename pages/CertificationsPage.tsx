@@ -34,7 +34,7 @@ export const CertificationsPage: React.FC = () => {
   }, [selectedCategory, searchQuery]);
 
   return (
-    <div className="pt-28 pb-24 min-h-screen bg-page relative overflow-hidden">
+    <div className="pt-28 pb-24 min-h-screen bg-page relative overflow-x-clip">
       <SEO 
         title="Licenses & Certifications | Sonu Thomas"
         description="Professional cloud certifications, AWS & GCP credentials, and 90+ Google Cloud skill badges held by Sonu Thomas."

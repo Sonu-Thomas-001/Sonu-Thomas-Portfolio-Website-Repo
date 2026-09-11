@@ -83,7 +83,7 @@ export const Contact: React.FC = () => {
     <section
       ref={containerRef}
       id="contact"
-      className="scroll-mt-24 sm:scroll-mt-28 py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-[#E8E0D8] dark:border-white/10 relative overflow-hidden"
+      className="scroll-mt-24 sm:scroll-mt-28 py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-[#E8E0D8] dark:border-white/10 relative overflow-x-clip"
     >
       {/* Subtle Floating Ambient Warm Copper Glow Layer */}
       <motion.div

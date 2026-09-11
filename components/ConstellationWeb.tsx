@@ -1,10 +1,12 @@
-import React, { useMemo } from 'react';
-import { motion } from 'framer-motion';
+import React, { useId, useMemo } from 'react';
+import { motion, MotionValue } from 'framer-motion';
+import { AmbientLayer, hexToRgba } from './AmbientLayer';
 
 export interface ConstellationWebProps {
   nodeCount?: number;
   maxEdges?: number;
   color?: string;
+  progress?: MotionValue<number>;
   className?: string;
 }
 
@@ -66,13 +68,6 @@ function getEdges(nodes: StarNode[], maxEdges: number): Edge[] {
   return edges;
 }
 
-function hexToRgba(hex: string, alpha: number): string {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-  return `rgba(${r},${g},${b},${alpha})`;
-}
-
 /**
  * ConstellationWeb
  * Floating star nodes joined by pulsing constellation lines.
@@ -82,16 +77,15 @@ export const ConstellationWeb: React.FC<ConstellationWebProps> = ({
   nodeCount = 18,
   maxEdges = 24,
   color = '#C47D5A',
+  progress,
   className = '',
 }) => {
+  const glowId = `cw-glow-${useId().replace(/:/g, '')}`;
   const nodes = useMemo(() => NODES_CONFIG.slice(0, nodeCount), [nodeCount]);
   const edges = useMemo(() => getEdges(nodes, maxEdges), [nodes, maxEdges]);
 
   return (
-    <div
-      aria-hidden="true"
-      className={`absolute inset-0 overflow-hidden pointer-events-none select-none z-0 ${className}`}
-    >
+    <AmbientLayer progress={progress} drift={12} className={className}>
       {/* SVG Edge Lines */}
       <svg
         className="absolute inset-0 w-full h-full"
@@ -99,7 +93,7 @@ export const ConstellationWeb: React.FC<ConstellationWebProps> = ({
         preserveAspectRatio="xMidYMid slice"
       >
         <defs>
-          <filter id="cw-glow">
+          <filter id={glowId}>
             <feGaussianBlur stdDeviation="0.25" result="blur" />
             <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
           </filter>
@@ -111,7 +105,7 @@ export const ConstellationWeb: React.FC<ConstellationWebProps> = ({
             x2={`${e.x2}%`} y2={`${e.y2}%`}
             stroke={hexToRgba(color, e.opacity)}
             strokeWidth="0.16"
-            filter="url(#cw-glow)"
+            filter={`url(#${glowId})`}
             animate={{ opacity: [e.opacity, e.opacity * 2.4, e.opacity] }}
             transition={{ duration: 5 + (idx % 5), repeat: Infinity, ease: 'easeInOut', delay: idx * 0.22 }}
           />
@@ -144,6 +138,6 @@ export const ConstellationWeb: React.FC<ConstellationWebProps> = ({
           )}
         </motion.div>
       ))}
-    </div>
+    </AmbientLayer>
   );
 };

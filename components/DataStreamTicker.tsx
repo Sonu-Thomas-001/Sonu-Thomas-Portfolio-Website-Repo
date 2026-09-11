@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { motion, MotionValue } from 'framer-motion';
+import { AmbientLayer, hexToRgba } from './AmbientLayer';
 
 export interface DataStreamTickerProps {
   /** Number of vertical columns */
@@ -7,6 +8,7 @@ export interface DataStreamTickerProps {
   color?: string;
   /** Opacity multiplier (0–1) */
   intensity?: number;
+  progress?: MotionValue<number>;
   className?: string;
 }
 
@@ -53,13 +55,6 @@ const COLUMNS_DATA: Column[] = Array.from({ length: COLUMN_COUNT }, (_, i) => {
   };
 });
 
-function hexToRgba(hex: string, alpha: number): string {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-  return `rgba(${r},${g},${b},${alpha})`;
-}
-
 /**
  * DataStreamTicker
  * Vertical columns of flowing hex / binary / symbol characters placed
@@ -71,16 +66,13 @@ export const DataStreamTicker: React.FC<DataStreamTickerProps> = ({
   columns = COLUMN_COUNT,
   color = '#C47D5A',
   intensity = 1,
+  progress,
   className = '',
 }) => {
   const cols = useMemo(() => COLUMNS_DATA.slice(0, columns), [columns]);
-  const totalHeight = CHARS_PER_COL * 16; // pixels
 
   return (
-    <div
-      aria-hidden="true"
-      className={`absolute inset-0 overflow-hidden pointer-events-none select-none z-0 ${className}`}
-    >
+    <AmbientLayer progress={progress} drift={6} className={className}>
       {cols.map((col) => {
         const colOpacity = col.opacity * intensity;
 
@@ -156,6 +148,6 @@ export const DataStreamTicker: React.FC<DataStreamTickerProps> = ({
           </div>
         );
       })}
-    </div>
+    </AmbientLayer>
   );
 };

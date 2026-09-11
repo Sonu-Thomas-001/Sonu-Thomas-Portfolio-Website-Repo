@@ -1,10 +1,12 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, MotionValue } from 'framer-motion';
+import { AmbientLayer } from './AmbientLayer';
 
 export interface AmbientParticlesProps {
   variant?: 'neural' | 'orbs' | 'minimal';
   density?: 'subtle' | 'normal';
   colorScheme?: 'copper' | 'mixed';
+  progress?: MotionValue<number>;
   className?: string;
 }
 
@@ -174,6 +176,7 @@ export const AmbientParticles: React.FC<AmbientParticlesProps> = ({
   variant = 'neural',
   density = 'normal',
   colorScheme = 'copper',
+  progress,
   className = '',
 }) => {
   const rawList = density === 'subtle' ? PARTICLES_DATA_SUBTLE : PARTICLES_DATA_NORMAL;
@@ -186,10 +189,7 @@ export const AmbientParticles: React.FC<AmbientParticlesProps> = ({
   });
 
   return (
-    <div
-      aria-hidden="true"
-      className={`absolute inset-0 overflow-hidden pointer-events-none select-none z-0 ${className}`}
-    >
+    <AmbientLayer progress={progress} drift={10} className={className}>
       {particles.map((p) => {
         if (p.type === 'orb') {
           return (
@@ -329,6 +329,6 @@ export const AmbientParticles: React.FC<AmbientParticlesProps> = ({
 
         return null;
       })}
-    </div>
+    </AmbientLayer>
   );
 };

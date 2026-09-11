@@ -9,7 +9,7 @@ import { SonarRings } from '../components/SonarRings';
 
 export const VolunteeringPage: React.FC = () => {
   return (
-    <div className="pt-28 pb-24 min-h-screen bg-page relative overflow-hidden">
+    <div className="pt-28 pb-24 min-h-screen bg-page relative overflow-x-clip">
       <SEO 
         title="Volunteering & Leadership | Sonu Thomas"
         description="Statewide educational technology initiatives, AI Club leadership, and student mentoring contributions by Sonu Thomas."

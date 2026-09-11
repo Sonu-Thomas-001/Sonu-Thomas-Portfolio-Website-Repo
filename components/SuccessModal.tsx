@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Check } from 'lucide-react';
+import { useLenisScroll } from '../hooks/useLenisScroll';
 
 interface SuccessModalProps {
   isOpen: boolean;
@@ -12,24 +13,20 @@ interface SuccessModalProps {
 export const SuccessModal: React.FC<SuccessModalProps> = ({ isOpen, onClose, name, userName }) => {
   const displayName = userName || name;
   const modalRef = useRef<HTMLDivElement>(null);
+  const { stop, start } = useLenisScroll();
 
   useEffect(() => {
+    if (!isOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
-
-    if (isOpen) {
-      document.addEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-
+    document.addEventListener('keydown', handleKeyDown);
+    stop();
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'unset';
+      start();
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, stop, start]);
 
   useEffect(() => {
     if (isOpen && modalRef.current) {
