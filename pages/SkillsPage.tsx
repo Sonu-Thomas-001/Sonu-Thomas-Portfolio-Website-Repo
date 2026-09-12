@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Bot,
   Code2,
@@ -13,6 +13,8 @@ import {
   ShieldCheck,
   Radio,
   Zap,
+  Search,
+  X,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
@@ -500,16 +502,31 @@ const CURRENTLY_EXPLORING = [
   },
 ];
 
+// Single orchestrated cascade for the flagship spec grid in each group — one
+// scroll-triggered moment per group, not an independent pop-in per card.
+const FLAGSHIP_GRID_VARIANTS = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.06 } },
+};
+const FLAGSHIP_ITEM_VARIANTS = {
+  hidden: { opacity: 0, y: 14 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] as const } },
+};
+
 export const SkillsPage: React.FC = () => {
   const pageRef = useRef<HTMLDivElement>(null);
   const archRunwayRef = useRef<HTMLElement>(null);
+  const disciplinesSectionRef = useRef<HTMLElement>(null);
   const pageProgress = useSectionProgress(pageRef);
   const archProgress = useSectionProgress(archRunwayRef, PINNED_OFFSET);
+  const disciplinesProgress = useSectionProgress(disciplinesSectionRef);
   // The architecture card is ~850px tall; only pin it where it fits under the nav.
   const pinArch = useMediaQuery('(min-width: 1024px) and (min-height: 960px)');
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedArchNode, setSelectedArchNode] = useState<string>('agents');
+  const [activeDisciplineId, setActiveDisciplineId] = useState<string>(DISCIPLINES[0].id);
+  const [openTechDetail, setOpenTechDetail] = useState<string | null>(null);
 
   // Filter disciplines or search
   const filteredDisciplines = DISCIPLINES.filter((disc) => {
@@ -524,6 +541,25 @@ export const SkillsPage: React.FC = () => {
     );
     return matchesTitle || matchesTech;
   });
+
+  // Scroll-spy the discipline wayfinding spine — only meaningful when the full list is visible
+  const showSpine = activeFilter === 'all' && !searchQuery.trim();
+  useEffect(() => {
+    if (!showSpine) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveDisciplineId(entry.target.id);
+        });
+      },
+      { rootMargin: '-35% 0px -55% 0px', threshold: 0 }
+    );
+    DISCIPLINES.forEach((d) => {
+      const el = document.getElementById(d.id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, [showSpine]);
 
   return (
     <div ref={pageRef} className="pt-28 pb-24 min-h-screen bg-page relative overflow-x-clip">
@@ -577,55 +613,111 @@ export const SkillsPage: React.FC = () => {
 
       {/* Layer 1: Interactive Category Navigation & Search */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-10 sticky top-20 z-30">
-        <div className="p-3 rounded-2xl bg-white/90 dark:bg-[#1A1614]/90 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-soft-sm flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
-          {/* Category Tabs */}
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 md:pb-0">
-            <button
-              onClick={() => setActiveFilter('all')}
-              className={`px-3 py-1.5 rounded-xl text-sm transition-all shrink-0 cursor-pointer ${
-                activeFilter === 'all'
-                  ? 'bg-copper text-white shadow-xs'
-                  : 'bg-[#FAF7F2] dark:bg-white/[0.04] text-[#4A4340] dark:text-[#D6D3D1] hover:bg-copper/10 hover:text-copper'
-              }`}
-            >
-              All disciplines
-            </button>
-            {DISCIPLINES.map((d) => (
-              <button
-                key={d.id}
-                onClick={() => setActiveFilter(d.id)}
-                className={`px-3 py-1.5 rounded-xl text-sm transition-all shrink-0 cursor-pointer ${
-                  activeFilter === d.id
-                    ? 'bg-copper text-white shadow-xs'
-                    : 'bg-[#FAF7F2] dark:bg-white/[0.04] text-[#4A4340] dark:text-[#D6D3D1] hover:bg-copper/10 hover:text-copper'
-                }`}
-              >
-                {d.title.split(' ')[0]}
-              </button>
-            ))}
+        <div className="rounded-2xl bg-white/95 dark:bg-[#1A1614]/95 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-soft-sm">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-1 lg:gap-4 px-4 sm:px-5">
+
+            {/* Discipline Index — underline tab rail with edge fades so it never clips */}
+            <div className="relative flex-1 min-w-0">
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-5 bg-gradient-to-r from-white dark:from-[#1A1614] to-transparent z-10" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-5 bg-gradient-to-l from-white dark:from-[#1A1614] to-transparent z-10" />
+              <div className="flex items-center gap-6 overflow-x-auto no-scrollbar py-3.5">
+                <button
+                  onClick={() => setActiveFilter('all')}
+                  className="relative shrink-0 text-sm transition-colors cursor-pointer whitespace-nowrap"
+                >
+                  <span className={activeFilter === 'all' ? 'text-[#1A1614] dark:text-white' : 'text-[#78716C] dark:text-[#A8A29E] hover:text-[#1A1614] dark:hover:text-white'}>
+                    All disciplines
+                  </span>
+                  {activeFilter === 'all' && (
+                    <motion.span layoutId="discipline-tab-underline" className="absolute -bottom-1.5 left-0 right-0 h-[2px] bg-copper rounded-full" />
+                  )}
+                </button>
+                {DISCIPLINES.map((d) => (
+                  <button
+                    key={d.id}
+                    onClick={() => setActiveFilter(d.id)}
+                    className="relative shrink-0 text-sm transition-colors cursor-pointer whitespace-nowrap"
+                  >
+                    <span className={activeFilter === d.id ? 'text-[#1A1614] dark:text-white' : 'text-[#78716C] dark:text-[#A8A29E] hover:text-[#1A1614] dark:hover:text-white'}>
+                      <span className="text-copper/70 mr-1.5">{d.num}</span>
+                      {d.title.split(' ')[0]}
+                    </span>
+                    {activeFilter === d.id && (
+                      <motion.span layoutId="discipline-tab-underline" className="absolute -bottom-1.5 left-0 right-0 h-[2px] bg-copper rounded-full" />
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="hidden lg:block w-px h-6 bg-[#E8E0D8] dark:bg-white/10 shrink-0" />
+
             <a
               href="#architecture-blueprint"
-              className="px-3 py-1.5 rounded-xl text-sm bg-copper/10 border border-copper/30 text-copper hover:bg-copper hover:text-white transition-colors shrink-0"
+              className="hidden lg:inline-flex items-center text-sm text-[#78716C] dark:text-[#A8A29E] hover:text-copper transition-colors shrink-0 whitespace-nowrap"
             >
-              Architecture
+              System diagram
             </a>
-          </div>
 
-          {/* Quick Search */}
-          <div className="relative shrink-0 md:w-64">
-            <input
-              type="text"
-              placeholder="Search technologies or concepts..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-3.5 py-1.5 rounded-xl text-sm bg-[#FAF7F2] dark:bg-white/[0.04] border border-[#E8E0D8] dark:border-white/10 text-[#1A1614] dark:text-white placeholder-[#78716C] focus:outline-none focus:border-copper"
-            />
+            <div className="hidden lg:block w-px h-6 bg-[#E8E0D8] dark:bg-white/10 shrink-0" />
+
+            {/* Search */}
+            <div className="relative shrink-0 w-full lg:w-56 py-2 lg:py-0 border-t border-[#E8E0D8] dark:border-white/10 lg:border-t-0">
+              <Search className="w-3.5 h-3.5 text-[#78716C] dark:text-[#A8A29E] absolute left-0 lg:left-0 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                placeholder="Search technologies…"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-5 pr-6 py-2 lg:py-3.5 text-sm bg-transparent text-[#1A1614] dark:text-white placeholder-[#78716C] dark:placeholder-[#A8A29E] focus:outline-none"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 text-[#78716C] hover:text-copper cursor-pointer"
+                  aria-label="Clear search"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
 
+      {/* Discipline wayfinding spine — desktop-only immersive scroll nav, fills as you read down */}
+      {showSpine && (
+        <div className="hidden 2xl:flex fixed right-8 top-1/2 -translate-y-1/2 z-40">
+          <div className="relative flex flex-col justify-between h-72 py-1">
+            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-[#E8E0D8] dark:bg-white/10" />
+            <motion.div
+              className="absolute left-1/2 -translate-x-1/2 top-0 w-px bg-copper origin-top"
+              style={{ height: '100%', scaleY: disciplinesProgress }}
+            />
+            {DISCIPLINES.map((d) => {
+              const isActive = activeDisciplineId === d.id;
+              return (
+                <button
+                  key={d.id}
+                  onClick={() => {
+                    document.getElementById(d.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }}
+                  className="relative z-10 group flex items-center justify-end cursor-pointer py-1"
+                  aria-label={`Jump to ${d.title}`}
+                >
+                  <span className={`mr-3 text-[11px] whitespace-nowrap transition-opacity duration-200 ${isActive ? 'opacity-100 text-copper' : 'opacity-0 group-hover:opacity-70 text-[#78716C] dark:text-[#A8A29E]'}`}>
+                    {d.num} · {d.title.split(' ')[0]}
+                  </span>
+                  <span className={`w-2 h-2 rounded-full border transition-all duration-200 ${isActive ? 'bg-copper border-copper scale-125' : 'bg-[#FEFCF9] dark:bg-[#1A1614] border-[#CBBFB3] dark:border-white/20 group-hover:border-copper'}`} />
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       {/* Layer 2: Deep Disciplines Breakdown (01 to 08) */}
-      <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 space-y-16">
+      <section ref={disciplinesSectionRef} className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 space-y-16">
         {filteredDisciplines.map((discipline) => {
           const Icon = discipline.icon;
           return (
@@ -638,37 +730,34 @@ export const SkillsPage: React.FC = () => {
               transition={{ duration: 0.4 }}
               className="scroll-mt-36"
             >
-              {/* Discipline Header — running editorial header, no card wrapper */}
-              <div className="flex items-start gap-4 pb-6 border-b border-[#E8E0D8] dark:border-white/10">
-                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${discipline.badgeBg} border`}>
-                  <Icon className="w-6 h-6" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-baseline gap-2.5 flex-wrap">
-                    <motion.span
-                      initial={{ opacity: 0, x: -14 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true, margin: '-60px' }}
-                      transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                      className="font-mono text-xs text-[#78716C] dark:text-[#A8A29E]"
-                    >
-                      {discipline.num}
-                    </motion.span>
+              {/* Discipline Header — chapter numeral watermark, no card wrapper */}
+              <div className="relative pb-6 border-b border-[#E8E0D8] dark:border-white/10">
+                <span
+                  aria-hidden="true"
+                  className="absolute -top-6 sm:-top-9 -left-1 font-display font-bold text-[76px] sm:text-[104px] leading-none text-[#1A1614]/[0.05] dark:text-white/[0.045] select-none pointer-events-none"
+                >
+                  {discipline.num}
+                </span>
+                <div className="relative flex items-start gap-3.5 pl-10 sm:pl-14">
+                  <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 mt-0.5 ${discipline.badgeBg} border`}>
+                    <Icon className="w-4.5 h-4.5" />
+                  </div>
+                  <div className="flex-1 min-w-0">
                     <h2 className="font-display font-bold text-2xl sm:text-3xl text-[#1A1614] dark:text-[#FDFBF7]">
                       {discipline.title}
                     </h2>
+                    <p className="text-sm text-[#78716C] dark:text-[#A8A29E] mt-1">
+                      {discipline.subtitle}
+                    </p>
                   </div>
-                  <p className="text-sm text-[#78716C] dark:text-[#A8A29E] mt-1">
-                    {discipline.subtitle}
-                  </p>
                 </div>
               </div>
 
-              <p className="text-[#4A4340] dark:text-[#D6D3D1] text-sm sm:text-base leading-relaxed mt-6 mb-8 max-w-4xl">
+              <p className="text-[#4A4340] dark:text-[#D6D3D1] text-sm sm:text-base leading-relaxed mt-6 mb-8 max-w-4xl pl-10 sm:pl-14">
                 {discipline.description}
               </p>
 
-              {/* Sub-Groups: flagship items as cards, the rest as a plain list */}
+              {/* Sub-Groups: flagship items as blueprint spec entries, the rest as a plain list */}
               <div className="space-y-8">
                 {discipline.groups.map((group) => {
                   const flagship = group.items.filter((tech) => tech.highlight);
@@ -680,15 +769,25 @@ export const SkillsPage: React.FC = () => {
                       </h3>
 
                       {flagship.length > 0 && (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <motion.div
+                          variants={FLAGSHIP_GRID_VARIANTS}
+                          initial="hidden"
+                          whileInView="visible"
+                          viewport={{ once: true, amount: 0.2 }}
+                          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-5"
+                        >
                           {flagship.map((tech) => (
-                            <div
+                            <motion.div
                               key={tech.name}
-                              className="p-4 rounded-2xl border border-copper/30 bg-[#FAF7F2] dark:bg-white/[0.04] hover:border-copper/70 transition-colors duration-200"
+                              variants={FLAGSHIP_ITEM_VARIANTS}
+                              className="group relative p-4 hover:bg-copper/[0.04] dark:hover:bg-white/[0.02] transition-colors duration-200"
                             >
+                              <span className="absolute top-0 left-0 w-2.5 h-2.5 border-l-2 border-t-2 border-copper/40 group-hover:border-copper transition-colors" />
+                              <span className="absolute top-0 right-0 w-2.5 h-2.5 border-r-2 border-t-2 border-copper/40 group-hover:border-copper transition-colors" />
+                              <span className="absolute bottom-0 left-0 w-2.5 h-2.5 border-l-2 border-b-2 border-copper/40 group-hover:border-copper transition-colors" />
+                              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-r-2 border-b-2 border-copper/40 group-hover:border-copper transition-colors" />
                               <div className="flex items-center justify-between gap-2 mb-2">
-                                <h4 className="font-display font-semibold text-sm sm:text-base text-[#1A1614] dark:text-[#FDFBF7] flex items-center gap-2">
-                                  <span className="w-1 h-3.5 rounded-full bg-copper shrink-0" />
+                                <h4 className="font-display font-semibold text-sm sm:text-base text-[#1A1614] dark:text-[#FDFBF7]">
                                   {tech.name}
                                 </h4>
                                 <span className="text-xs text-[#78716C] dark:text-[#A8A29E] shrink-0">
@@ -698,33 +797,52 @@ export const SkillsPage: React.FC = () => {
                               <p className="text-xs text-[#4A4340] dark:text-[#A8A29E] leading-relaxed">
                                 {tech.description}
                               </p>
-                            </div>
+                            </motion.div>
                           ))}
+                        </motion.div>
+                      )}
+
+                      {/* Secondary capabilities collapse to chips — tap one to read what it covers */}
+                      {rest.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {rest.map((tech) => {
+                            const key = `${discipline.id}|${group.groupName}|${tech.name}`;
+                            const isOpen = openTechDetail === key;
+                            return (
+                              <button
+                                key={tech.name}
+                                onClick={() => setOpenTechDetail(isOpen ? null : key)}
+                                className={`px-3 py-1.5 rounded-full text-xs border transition-colors cursor-pointer ${
+                                  isOpen
+                                    ? 'bg-copper text-white border-copper'
+                                    : 'bg-[#FAF7F2] dark:bg-white/[0.04] border-[#E8E0D8] dark:border-white/10 text-[#4A4340] dark:text-[#D6D3D1] hover:border-copper/50 hover:text-copper'
+                                }`}
+                              >
+                                {tech.name}
+                              </button>
+                            );
+                          })}
                         </div>
                       )}
 
-                      {rest.length > 0 && (
-                        <div className="divide-y divide-[#E8E0D8]/60 dark:divide-white/[0.06] border-t border-[#E8E0D8]/60 dark:border-white/[0.06]">
-                          {rest.map((tech) => (
-                            <div
+                      <AnimatePresence mode="wait">
+                        {rest
+                          .filter((tech) => openTechDetail === `${discipline.id}|${group.groupName}|${tech.name}`)
+                          .map((tech) => (
+                            <motion.div
                               key={tech.name}
-                              className="py-3 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4"
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                              className="overflow-hidden"
                             >
-                              <div className="sm:w-52 shrink-0 flex items-baseline gap-2">
-                                <span className="font-display font-medium text-sm text-[#1A1614] dark:text-[#FDFBF7]">
-                                  {tech.name}
-                                </span>
-                                <span className="text-[11px] text-[#78716C] dark:text-[#A8A29E]">
-                                  {tech.category}
-                                </span>
-                              </div>
-                              <p className="text-xs text-[#4A4340] dark:text-[#A8A29E] leading-relaxed">
-                                {tech.description}
+                              <p className="text-xs text-[#4A4340] dark:text-[#A8A29E] leading-relaxed pl-1 pt-1">
+                                <span className="text-copper">{tech.category}</span> — {tech.description}
                               </p>
-                            </div>
+                            </motion.div>
                           ))}
-                        </div>
-                      )}
+                      </AnimatePresence>
                     </div>
                   );
                 })}
@@ -732,13 +850,13 @@ export const SkillsPage: React.FC = () => {
 
               {/* Special Discipline 07 Enterprise Positioning Callout */}
               {discipline.id === "enterprise-integration" && (
-                <div className="mt-8 p-5 sm:p-6 rounded-2xl bg-amber-500/[0.07] border border-amber-500/30 flex items-start gap-3">
-                  <ShieldCheck className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                <div className="mt-8 pl-5 border-l-2 border-amber-500/50 flex items-start gap-3">
+                  <ShieldCheck className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-1" />
                   <div>
-                    <span className="text-sm font-semibold text-amber-700 dark:text-amber-300 block mb-1">
+                    <span className="text-sm font-semibold text-amber-700 dark:text-amber-300 block mb-1.5">
                       The enterprise reality
                     </span>
-                    <p className="text-sm text-[#1A1614] dark:text-[#FDFBF7] font-medium leading-relaxed">
+                    <p className="text-base text-[#1A1614] dark:text-[#FDFBF7] font-medium leading-relaxed italic">
                       "I don't just build isolated AI demos. I connect autonomous AI directly to existing business systems—ServiceNow, Jira, Confluence, relational databases, and enterprise APIs—with deterministic guardrails, human-in-the-loop pauses, and zero operational downtime."
                     </p>
                   </div>
@@ -755,10 +873,15 @@ export const SkillsPage: React.FC = () => {
         id="architecture-blueprint"
         className={`max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-24 scroll-mt-32 ${pinArch ? 'h-[220vh]' : ''}`}
       >
-        <div className={`p-6 sm:p-10 rounded-3xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 shadow-soft-sm relative overflow-hidden ${pinArch ? 'sticky top-24' : ''}`}>
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div className={`p-6 sm:p-10 rounded-2xl bg-[#FEFCF9] dark:bg-[#1A1614] border border-[#E8E0D8] dark:border-white/10 relative overflow-hidden ${pinArch ? 'sticky top-24' : ''}`}>
+          <span aria-hidden="true" className="absolute top-4 left-4 w-4 h-4 border-l-2 border-t-2 border-copper/40" />
+          <span aria-hidden="true" className="absolute top-4 right-4 w-4 h-4 border-r-2 border-t-2 border-copper/40" />
+          <span aria-hidden="true" className="absolute bottom-4 left-4 w-4 h-4 border-l-2 border-b-2 border-copper/40" />
+          <span aria-hidden="true" className="absolute bottom-4 right-4 w-4 h-4 border-r-2 border-b-2 border-copper/40" />
+
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
             <div>
-              <span className="font-mono text-xs text-[#78716C] dark:text-[#A8A29E]">09</span>
+              <span className="text-sm text-[#78716C] dark:text-[#A8A29E]">Layer 09 of the capability map</span>
               <h2 className="font-display font-bold text-2xl sm:text-4xl text-[#1A1614] dark:text-[#FDFBF7] mt-1">
                 End-to-end autonomous AI system architecture
               </h2>
@@ -767,9 +890,9 @@ export const SkillsPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="px-3.5 py-1.5 rounded-full bg-copper/10 border border-copper/30 text-copper text-xs shrink-0">
+            <span className="text-xs text-copper shrink-0">
               {pinArch ? 'Scroll to build the system, click a tier to inspect it' : 'Click a tier to inspect it'}
-            </div>
+            </span>
           </div>
 
           {/* The Visual Architecture Flow */}
@@ -1006,60 +1129,69 @@ export const SkillsPage: React.FC = () => {
 
       {/* Currently Exploring Section */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-24">
-        <div className="p-6 sm:p-10 rounded-3xl bg-gradient-to-br from-[#FAF7F2] to-white dark:from-[#1E1B18] dark:to-[#171412] border border-[#E8E0D8] dark:border-white/10 shadow-soft-sm">
-          <h2 className="font-display font-bold text-2xl sm:text-4xl text-[#1A1614] dark:text-[#FDFBF7] mb-4">
-            Currently exploring &amp; researching
-          </h2>
-          <p className="text-sm sm:text-base text-[#4A4340] dark:text-[#D6D3D1] max-w-3xl mb-8 leading-relaxed">
-            Rather than claiming mastery over emerging concepts prematurely, here is the active research frontier I am currently benchmarking, prototyping, and integrating into experimental stacks.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {CURRENTLY_EXPLORING.map((item) => (
-              <div
-                key={item.title}
-                className="p-5 rounded-2xl bg-white/70 dark:bg-white/[0.03] border border-[#E8E0D8] dark:border-white/[0.08] hover:border-copper/40 transition-all"
-              >
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <h3 className="font-display font-semibold text-sm sm:text-base text-[#1A1614] dark:text-[#FDFBF7]">
-                    {item.title}
-                  </h3>
-                  <span className="text-xs text-copper bg-copper/10 px-2 py-0.5 rounded-md shrink-0">
-                    {item.tag}
-                  </span>
-                </div>
-                <p className="text-xs text-[#4A4340] dark:text-[#A8A29E] leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 mb-8 border-b border-[#E8E0D8] dark:border-white/10">
+          <div>
+            <h2 className="font-display font-bold text-2xl sm:text-4xl text-[#1A1614] dark:text-[#FDFBF7]">
+              Currently exploring &amp; researching
+            </h2>
+            <p className="text-sm sm:text-base text-[#4A4340] dark:text-[#D6D3D1] max-w-2xl mt-2 leading-relaxed">
+              Rather than claiming mastery over emerging concepts prematurely, here is the active research frontier I am currently benchmarking, prototyping, and integrating into experimental stacks.
+            </p>
           </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
+          {CURRENTLY_EXPLORING.map((item) => (
+            <div
+              key={item.title}
+              className="pl-4 border-l-2 border-[#E8E0D8] dark:border-white/10 hover:border-copper transition-colors"
+            >
+              <span className="text-xs text-copper">
+                {item.tag}
+              </span>
+              <h3 className="font-display font-semibold text-base text-[#1A1614] dark:text-[#FDFBF7] mt-1">
+                {item.title}
+              </h3>
+              <p className="text-xs text-[#4A4340] dark:text-[#A8A29E] leading-relaxed mt-1.5">
+                {item.desc}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* Bottom CTA to Projects & Contact */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-20 text-center">
-        <div className="max-w-2xl mx-auto p-8 rounded-3xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 shadow-soft-md">
-          <h3 className="font-display font-bold text-2xl text-[#1A1614] dark:text-[#FDFBF7] mb-3">
-            Want to see these capabilities in action?
-          </h3>
-          <p className="text-sm text-[#4A4340] dark:text-[#D6D3D1] mb-6">
-            Inspect the live enterprise architectures, codebases, and case studies I have built.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <Link
-              to="/projects"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-copper text-white text-sm font-medium hover:bg-copper-dark transition-colors shadow-soft-sm"
-            >
-              <span>Explore flagship projects</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#FAF7F2] dark:bg-white/05 border border-[#E8E0D8] dark:border-white/10 text-sm text-[#1A1614] dark:text-[#FDFBF7] hover:border-copper transition-colors"
-            >
-              <span>Get in touch</span>
-            </Link>
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-24">
+        <div className="relative overflow-hidden rounded-2xl bg-[#1A1614] dark:bg-[#0F0D0C] px-6 sm:px-10 py-10 sm:py-12">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-[0.08]"
+            style={{ backgroundImage: 'radial-gradient(rgba(196, 125, 90, 0.9) 1px, transparent 1px)', backgroundSize: '22px 22px' }}
+          />
+          <div className="relative flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div>
+              <h3 className="font-display font-bold text-2xl sm:text-3xl text-white">
+                Want to see these capabilities in action?
+              </h3>
+              <p className="text-sm text-white/60 mt-2 max-w-md">
+                Inspect the live enterprise architectures, codebases, and case studies I have built.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-3 shrink-0">
+              <Link
+                to="/projects"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-copper text-white text-sm font-medium hover:bg-copper-dark transition-colors"
+              >
+                <span>Explore flagship projects</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 text-sm text-white hover:border-white/40 transition-colors"
+              >
+                <span>Get in touch</span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

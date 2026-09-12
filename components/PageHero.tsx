@@ -34,6 +34,13 @@ const TONE_CLASS: Record<NonNullable<PageHeroStat['tone']>, string> = {
   violet: 'text-[#8B5CF6]',
 };
 
+const TONE_BORDER: Record<NonNullable<PageHeroStat['tone']>, string> = {
+  ink: 'border-[#E8E0D8] dark:border-white/15',
+  copper: 'border-copper/50',
+  emerald: 'border-emerald-500/50',
+  violet: 'border-[#8B5CF6]/50',
+};
+
 // Animates the numeric prefix of values like "4x", "90+", "100%", "100k+"; leaves text values alone.
 const StatValue: React.FC<{ value: string; className: string }> = ({ value, className }) => {
   const ref = useRef<HTMLSpanElement>(null);
@@ -158,28 +165,28 @@ export const PageHero: React.FC<PageHeroProps> = ({
 
       {stats && stats.length > 0 && (
         <div
-          className={`grid grid-cols-2 gap-3 sm:gap-4 mt-10 pt-6 border-t border-[#E8E0D8] dark:border-white/10 ${
+          className={`grid grid-cols-2 gap-x-6 gap-y-8 sm:gap-x-8 mt-12 pt-7 border-t border-[#E8E0D8] dark:border-white/10 ${
             stats.length >= 4 ? 'sm:grid-cols-4' : 'sm:grid-cols-3'
           }`}
         >
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.5, delay: 0.1 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
-              className="p-4 rounded-2xl bg-[#FAF7F2] dark:bg-white/[0.03] border border-[#E8E0D8] dark:border-white/[0.06]"
+              className={`pl-4 border-l-2 ${TONE_BORDER[stat.tone ?? 'ink']}`}
             >
-              <div className="flex items-center justify-between text-xs text-[#78716C] dark:text-[#A8A29E] mb-2">
-                <span>{stat.label}</span>
+              <div className="flex items-center gap-1.5 text-xs text-[#78716C] dark:text-[#A8A29E] mb-2">
                 {stat.icon}
+                <span>{stat.label}</span>
               </div>
               <StatValue
                 value={stat.value}
-                className={`block font-display font-bold text-2xl sm:text-3xl ${TONE_CLASS[stat.tone ?? 'ink']}`}
+                className={`block font-display font-bold text-3xl sm:text-4xl ${TONE_CLASS[stat.tone ?? 'ink']}`}
               />
-              <div className="text-xs text-[#78716C] dark:text-[#A8A29E] mt-1">{stat.note}</div>
+              <div className="text-xs text-[#78716C] dark:text-[#A8A29E] mt-1.5">{stat.note}</div>
             </motion.div>
           ))}
         </div>
