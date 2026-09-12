@@ -112,7 +112,7 @@ export const Contact: React.FC = () => {
         className="max-w-3xl mb-12 sm:mb-16 relative z-10"
       >
         <div className="flex items-center gap-2 mb-3">
-          <span className="font-mono text-xs text-copper font-semibold tracking-widest uppercase">
+          <span className="font-mono text-xs text-copper-700 dark:text-copper font-semibold tracking-widest uppercase">
             06 // DIRECT CHANNELS &amp; COLLABORATION
           </span>
           <span className="w-1.5 h-1.5 rounded-full bg-copper" />
@@ -156,9 +156,9 @@ export const Contact: React.FC = () => {
                 <span className="absolute bottom-1 right-1 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-[#1E1B18]" />
               </div>
               <div>
-                <h4 className="font-display font-bold text-base text-[#1A1614] dark:text-[#FDFBF7] leading-tight">
+                <p className="font-display font-bold text-base text-[#1A1614] dark:text-[#FDFBF7] leading-tight">
                   Sonu Thomas
-                </h4>
+                </p>
                 <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-medium flex items-center gap-1.5 mt-0.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   Active &bull; Open for Collaboration
@@ -190,7 +190,7 @@ export const Contact: React.FC = () => {
                   <Bot className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-mono text-copper font-bold uppercase tracking-wider block">
+                  <span className="text-[10px] font-mono text-copper-700 dark:text-copper font-bold uppercase tracking-wider block">
                     // PRIMARY AI INBOX
                   </span>
                   <span className="text-[11px] font-mono text-[#78716C] dark:text-[#A8A29E]">
@@ -375,7 +375,7 @@ export const Contact: React.FC = () => {
           >
             <div className="flex items-center justify-between pb-3 border-b border-[#E8E0D8]/60 dark:border-white/06">
               <div>
-                <span className="text-[10px] font-mono text-copper font-bold uppercase tracking-widest block">
+                <span className="text-[10px] font-mono text-copper-700 dark:text-copper font-bold uppercase tracking-widest block">
                   // DISPATCH TRANSMISSION
                 </span>
                 <h3 className="font-display font-bold text-xl sm:text-2xl text-[#1A1614] dark:text-[#FDFBF7]">

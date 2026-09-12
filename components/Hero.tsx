@@ -435,12 +435,16 @@ export const Hero: React.FC = () => {
                       <button
                         key={i}
                         onClick={() => setActivePhotoIdx(i)}
-                        className={`h-2 rounded-full transition-all duration-300 ${
-                          activePhotoIdx === i ? 'bg-copper w-4.5' : 'bg-white/40 hover:bg-white/80 w-2'
-                        }`}
+                        className="group flex items-center justify-center w-6 h-6 cursor-pointer"
                         title={`View Look 0${i + 1}: ${PROFESSIONAL_HERO_PHOTOS[i].tag}`}
                         aria-label={`View photo ${i + 1}`}
-                      />
+                      >
+                        <span
+                          className={`block h-2 rounded-full transition-all duration-300 ${
+                            activePhotoIdx === i ? 'bg-copper w-4.5' : 'bg-white/40 group-hover:bg-white/80 w-2'
+                          }`}
+                        />
+                      </button>
                     ))}
                   </div>
                 </div>
@@ -464,7 +468,7 @@ export const Hero: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 px-1">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-copper" />
-            <span className="text-[11px] font-mono text-copper uppercase tracking-widest font-semibold">
+            <span className="text-[11px] font-mono text-copper-700 dark:text-copper uppercase tracking-widest font-semibold">
               Verified Influence &amp; Technical Proof
             </span>
           </div>

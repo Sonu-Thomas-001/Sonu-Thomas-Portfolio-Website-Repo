@@ -127,14 +127,14 @@ export const TechMarquee: React.FC = () => {
       </motion.div>
 
       {/* Row 3: Flowing Left - Fast Micro Tech Strip */}
-      <div className="flex overflow-hidden w-full opacity-60 pt-1">
+      <div className="flex overflow-hidden w-full pt-1">
         <motion.div
           animate={{ x: ["0%", "-50%"] }}
           transition={{ duration: 18, ease: "linear", repeat: Infinity }}
           className="flex flex-shrink-0 items-center gap-6 sm:gap-10 whitespace-nowrap"
         >
           {[...MARQUEE_ITEMS_3, ...MARQUEE_ITEMS_3, ...MARQUEE_ITEMS_3].map((tech, index) => (
-            <div key={`r3-${index}`} className="flex items-center gap-6 sm:gap-10 text-xs font-mono text-[#78716C]">
+            <div key={`r3-${index}`} className="flex items-center gap-6 sm:gap-10 text-xs font-mono text-[#9C948B]">
               <span>{tech}</span>
               <span className="text-copper/50">&bull;</span>
             </div>

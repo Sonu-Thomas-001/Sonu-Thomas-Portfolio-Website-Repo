@@ -56,7 +56,7 @@ export const Newsletter: React.FC = () => {
 
           {/* Eyebrow Pill */}
           <div className="flex justify-center mb-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-copper/10 text-copper text-[11px] font-mono font-semibold tracking-wider uppercase border border-copper/20">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-copper/10 text-copper-700 dark:text-copper text-[11px] font-mono font-semibold tracking-wider uppercase border border-copper/20">
               <Zap className="w-3 h-3 text-copper" />
               Curated Engineering Dispatches
             </span>

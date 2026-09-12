@@ -128,7 +128,7 @@ export const VolunteeringPage: React.FC = () => {
                     {/* Key Impact Ribbon */}
                     {item.impact && item.impact.length > 0 && (
                       <div className="p-3.5 rounded-2xl bg-white/60 dark:bg-white/[0.03] border border-[#E8E0D8]/70 dark:border-white/5 space-y-1">
-                        <span className="text-[10px] font-mono font-semibold uppercase text-copper tracking-wider block">
+                        <span className="text-[10px] font-mono font-semibold uppercase text-copper-700 dark:text-copper tracking-wider block">
                           Demonstrated Impact
                         </span>
                         {item.impact.map((imp, iIdx) => (

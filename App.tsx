@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { AnimatePresence, MotionConfig, motion, useScroll, useSpring, useMotionValue } from 'framer-motion';
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
@@ -10,17 +10,21 @@ import { AIAssistant } from './components/AIAssistant';
 import { ScrollToTop } from './components/ScrollToTop';
 import { Preloader } from './components/Preloader';
 import { PageTransition } from './components/PageTransition';
-import { Home } from './pages/Home';
-import { ProjectsPage } from './pages/ProjectsPage';
-import { InsightsPage } from './pages/InsightsPage';
-import { CertificationsPage } from './pages/CertificationsPage';
-import { VolunteeringPage } from './pages/VolunteeringPage';
-import { HonorsAwardsPage } from './pages/HonorsAwardsPage';
-import { PrivacyPolicy } from './pages/PrivacyPolicy';
-import { TermsOfService } from './pages/TermsOfService';
-import { CookiePolicy } from './pages/CookiePolicy';
-import { ContactPage } from './pages/ContactPage';
-import { SkillsPage } from './pages/SkillsPage';
+
+// Route-level code splitting — each page ships its own chunk instead of one
+// monolithic bundle, since prerendering already gives every route correct
+// static HTML/meta independent of when the JS chunk loads.
+const Home = lazy(() => import('./pages/Home').then((m) => ({ default: m.Home })));
+const ProjectsPage = lazy(() => import('./pages/ProjectsPage').then((m) => ({ default: m.ProjectsPage })));
+const InsightsPage = lazy(() => import('./pages/InsightsPage').then((m) => ({ default: m.InsightsPage })));
+const CertificationsPage = lazy(() => import('./pages/CertificationsPage').then((m) => ({ default: m.CertificationsPage })));
+const VolunteeringPage = lazy(() => import('./pages/VolunteeringPage').then((m) => ({ default: m.VolunteeringPage })));
+const HonorsAwardsPage = lazy(() => import('./pages/HonorsAwardsPage').then((m) => ({ default: m.HonorsAwardsPage })));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy').then((m) => ({ default: m.PrivacyPolicy })));
+const TermsOfService = lazy(() => import('./pages/TermsOfService').then((m) => ({ default: m.TermsOfService })));
+const CookiePolicy = lazy(() => import('./pages/CookiePolicy').then((m) => ({ default: m.CookiePolicy })));
+const ContactPage = lazy(() => import('./pages/ContactPage').then((m) => ({ default: m.ContactPage })));
+const SkillsPage = lazy(() => import('./pages/SkillsPage').then((m) => ({ default: m.SkillsPage })));
 
 // Custom Dual Cursor (Dot + Lagging Ring with Hover Expansion)
 const CustomCursor: React.FC = () => {
@@ -163,6 +167,7 @@ const AppContent: React.FC = () => {
           <NavBar />
           <main className="min-h-screen">
             <AnimatePresence mode="wait" onExitComplete={handleRouteExitComplete}>
+              <Suspense fallback={null}>
               <Routes location={location} key={location.pathname}>
                 <Route path="/" element={
                   <PageTransition>
@@ -224,6 +229,7 @@ const AppContent: React.FC = () => {
                 <Route path="/software-engineer-kerala" element={<Navigate to="/" replace />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
+              </Suspense>
             </AnimatePresence>
           </main>
           <ScrollToTop />

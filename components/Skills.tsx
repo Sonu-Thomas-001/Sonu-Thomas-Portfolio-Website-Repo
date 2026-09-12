@@ -147,7 +147,7 @@ export const Skills: React.FC = () => {
       {/* 1. Header & Section Indicator */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-12">
         <div className="flex items-center gap-3">
-          <span className="font-mono text-xs text-copper font-semibold tracking-widest uppercase">
+          <span className="font-mono text-xs text-copper-700 dark:text-copper font-semibold tracking-widest uppercase">
             04 // TECHNICAL ECOSYSTEM & POSITIONING
           </span>
           <div className="h-px bg-[#E8E0D8] dark:bg-white/10 w-24 sm:w-40 overflow-hidden">
@@ -202,7 +202,7 @@ export const Skills: React.FC = () => {
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <span className="text-[10px] font-mono text-copper font-bold tracking-widest uppercase block">
+                      <span className="text-[10px] font-mono text-copper-700 dark:text-copper font-bold tracking-widest uppercase block">
                         // DISCIPLINE {disc.id}
                       </span>
                       <span className="text-xs font-mono text-[#78716C] dark:text-[#A8A29E] font-medium">
@@ -289,7 +289,7 @@ export const Skills: React.FC = () => {
         <div className="space-y-1.5">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-mono text-xs text-copper font-bold uppercase tracking-widest">
+            <span className="font-mono text-xs text-copper-700 dark:text-copper font-bold uppercase tracking-widest">
               DEDICATED TECHNICAL ARSENAL
             </span>
           </div>

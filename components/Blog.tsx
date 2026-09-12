@@ -43,7 +43,7 @@ export const Blog: React.FC = () => {
           className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-10"
         >
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-copper/10 border border-copper/20 text-copper text-xs font-mono font-semibold uppercase tracking-wider mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-copper/10 border border-copper/20 text-copper-700 dark:text-copper text-xs font-mono font-semibold uppercase tracking-wider mb-4">
               <BookOpen className="w-3.5 h-3.5" />
               <span>Technical Publications &bull; Research Ledger</span>
             </div>

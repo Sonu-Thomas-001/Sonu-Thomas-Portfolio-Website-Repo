@@ -46,7 +46,7 @@ export const Education: React.FC = () => {
       {/* 1. Header & Section Indicator */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-12">
         <div className="flex items-center gap-3">
-          <span className="font-mono text-xs text-copper font-semibold tracking-widest uppercase">
+          <span className="font-mono text-xs text-copper-700 dark:text-copper font-semibold tracking-widest uppercase">
             03 // ACADEMIC RIGOR & FOUNDATIONS
           </span>
           <div className="h-px bg-[#E8E0D8] dark:bg-white/10 w-24 sm:w-40 overflow-hidden">

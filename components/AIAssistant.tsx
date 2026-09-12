@@ -458,7 +458,6 @@ If the user asks questions referring to "this page", "here", or what they are vi
         className={`fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 px-3.5 py-2 rounded-full bg-[#161311]/90 backdrop-blur-xl border border-white/10 hover:border-copper/50 text-[#EDE5DC] shadow-xl hover:shadow-glow-copper flex items-center gap-2.5 cursor-pointer group transition-all duration-300 ${
           isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`}
-        aria-label="Open AI Assistant"
       >
         <div className="w-6 h-6 rounded-lg bg-copper/15 text-copper border border-copper/30 flex items-center justify-center group-hover:scale-105 group-hover:bg-copper group-hover:text-white transition-all">
           <BrainCircuit className="w-3.5 h-3.5" />
