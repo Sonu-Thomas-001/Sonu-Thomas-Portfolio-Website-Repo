@@ -274,7 +274,7 @@ export const About: React.FC = () => {
                     transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                     src={ABOUT_LOOKS[activePhotoIdx].src}
                     alt={`Sonu Thomas — ${ABOUT_LOOKS[activePhotoIdx].tag}`}
-                    className="w-full h-full object-cover object-top"
+                    className="absolute inset-0 w-full h-full object-cover object-top"
                   />
                 </AnimatePresence>
 
