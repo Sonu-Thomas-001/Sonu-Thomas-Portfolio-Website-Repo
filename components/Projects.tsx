@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom';
 import { PROJECTS_DATA } from '../constants';
 import { ProjectItem } from '../types';
 import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { AmbientParticles } from './AmbientParticles';
 import { ConstellationWeb } from './ConstellationWeb';
 import { DataStreamTicker } from './DataStreamTicker';
@@ -550,6 +551,7 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
                 <div className="prose prose-invert max-w-none text-sm font-normal space-y-4">
                   {selectedProject.detailedDescription ? (
                     <Markdown
+                      remarkPlugins={[remarkGfm]}
                       components={{
                         h2: ({ children }) => (
                           <h2 className="font-display font-bold text-xl text-[#EDE5DC] border-b border-[#2A2522] pb-2 mt-6 mb-3 flex items-center gap-2.5">
@@ -594,6 +596,10 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
                             {children}
                           </code>
                         ),
+                        strong: ({ children }) => (
+                          <strong className="font-semibold text-[#EDE5DC]">{children}</strong>
+                        ),
+                        hr: () => <hr className="border-t border-[#2A2522] my-6" />,
                       }}
                     >
                       {selectedProject.detailedDescription}
