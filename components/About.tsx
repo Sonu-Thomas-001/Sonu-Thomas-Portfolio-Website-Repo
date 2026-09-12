@@ -39,13 +39,13 @@ const ScrubWord: React.FC<{ progress: MotionValue<number>; index: number; classN
 
 const ABOUT_LOOKS = [
   {
-    src: "/images/Professional%20Pic%202.png",
+    src: "/images/Professional%20Pic%202.jpg",
     tag: "Production Delivery",
     caption: "Steering enterprise change governance at HCLTech",
     label: "Execution",
   },
   {
-    src: "/images/Professional%20Pic%203.png",
+    src: "/images/Professional%20Pic%203.jpg",
     tag: "Applied AI Strategy",
     caption: "Architecting agentic LLM systems & vector pipelines",
     label: "Architecture",

@@ -149,7 +149,7 @@ export const Contact: React.FC = () => {
             <div className="flex items-center gap-3.5">
               <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden border border-copper/40 shrink-0 shadow-xs">
                 <img
-                  src="/images/Professional%20Pic%206.png"
+                  src="/images/Professional%20Pic%206.jpg"
                   alt="Sonu Thomas — Direct Collaboration"
                   className="w-full h-full object-cover object-top block"
                 />

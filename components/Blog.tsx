@@ -59,7 +59,7 @@ export const Blog: React.FC = () => {
           <div className="flex items-center gap-3.5 p-3 rounded-2xl bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 border border-[#E8E0D8] dark:border-white/10 shadow-soft-sm backdrop-blur-md shrink-0">
             <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-copper/30 shrink-0">
               <img
-                src="/images/Professional%20Pic%205.png"
+                src="/images/Professional%20Pic%205.jpg"
                 alt="Sonu Thomas — AI Engineering Author"
                 className="w-full h-full object-cover object-top"
               />

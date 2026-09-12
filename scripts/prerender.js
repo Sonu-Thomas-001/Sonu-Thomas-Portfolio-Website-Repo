@@ -305,7 +305,7 @@ function generateHtmlForRoute(route) {
         "@id": `${DOMAIN}/#person`,
         "name": "Sonu Thomas",
         "url": `${DOMAIN}/`,
-        "image": "https://www.sonuthomas.me/images/Professional%20Pic%20Square.png",
+        "image": "https://www.sonuthomas.me/images/Professional%20Pic%20Square.jpg",
         "jobTitle": "AI Software Engineer",
         "description": "AI Software Engineer at HCLTech and Data Science & AI scholar at IIT Guwahati building scalable intelligent systems, LLM solutions, and modern software.",
         "worksFor": { "@type": "Organization", "name": "HCLTech", "url": "https://www.hcltech.com/" },

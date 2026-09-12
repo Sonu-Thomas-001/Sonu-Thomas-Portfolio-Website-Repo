@@ -41,7 +41,7 @@ export const VolunteeringPage: React.FC = () => {
           <div className="relative rounded-3xl overflow-hidden bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 p-2.5 border border-[#E8E0D8] dark:border-white/10 shadow-[0_16px_40px_rgba(26,22,20,0.06)] backdrop-blur-xl">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#EDE5DC] dark:bg-[#1E1B18]">
               <ParallaxImage
-                src="/images/Professional%20Pic%201.png"
+                src="/images/Professional%20Pic%201.jpg"
                 alt="Sonu Thomas technical mentorship and community leadership"
                 travel={['-10%', '10%']}
                 scale={1.12}

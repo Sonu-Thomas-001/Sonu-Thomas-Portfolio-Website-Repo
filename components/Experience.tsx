@@ -92,7 +92,7 @@ export const Experience: React.FC = () => {
                   {item.company.toLowerCase().includes('hcltech') && (
                     <div className="relative h-28 -mx-8 -mt-8 lg:-mx-10 lg:-mt-10 mb-6 overflow-hidden rounded-t-3xl">
                       <img
-                        src="/images/hcltechmdu.jfif"
+                        src="/images/hcltechmdu.jpg"
                         alt="HCLTech Madurai Campus"
                         className="w-full h-full object-cover object-center brightness-[0.8] group-hover:brightness-95 group-hover:scale-105 transition-all duration-700 ease-out"
                       />
@@ -109,7 +109,7 @@ export const Experience: React.FC = () => {
                   {item.id === 'freelance' && (
                     <div className="relative h-28 -mx-8 -mt-8 lg:-mx-10 lg:-mt-10 mb-6 overflow-hidden rounded-t-3xl">
                       <img
-                        src="/images/Professional%20Pic%204.png"
+                        src="/images/Professional%20Pic%204.jpg"
                         alt="Sonu Thomas — Web & AI Engineering"
                         className="w-full h-full object-cover object-top brightness-[0.85] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-out"
                       />
@@ -222,7 +222,7 @@ export const Experience: React.FC = () => {
               {item.company.toLowerCase().includes('hcltech') && (
                 <div className="relative h-24 -mx-6 -mt-6 mb-2 overflow-hidden">
                   <img
-                    src="/images/hcltechmdu.jfif"
+                    src="/images/hcltechmdu.jpg"
                     alt="HCLTech Madurai Campus"
                     className="w-full h-full object-cover object-center brightness-[0.8]"
                   />
@@ -235,7 +235,7 @@ export const Experience: React.FC = () => {
               {item.id === 'freelance' && (
                 <div className="relative h-24 -mx-6 -mt-6 mb-2 overflow-hidden">
                   <img
-                    src="/images/Professional%20Pic%204.png"
+                    src="/images/Professional%20Pic%204.jpg"
                     alt="Sonu Thomas — Independent Delivery"
                     className="w-full h-full object-cover object-top brightness-[0.85]"
                   />

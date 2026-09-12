@@ -12,12 +12,12 @@ import { DataStreamTicker } from './DataStreamTicker';
 import { useLenisScroll } from '../hooks/useLenisScroll';
 
 const PROFESSIONAL_HERO_PHOTOS = [
-  { src: "/images/Professional%20Pic%201.png", label: "Executive", tag: "System Design" },
-  { src: "/images/Professional%20Pic%202.png", label: "Architecture", tag: "Enterprise Execution" },
-  { src: "/images/Professional%20Pic%203.png", label: "Engineering", tag: "Neural Architectures" },
-  { src: "/images/Professional%20Pic%204.png", label: "Delivery", tag: "Independent Delivery" },
-  { src: "/images/Professional%20Pic%205.png", label: "Research", tag: "Technical Research" },
-  { src: "/images/Professional%20Pic%206.png", label: "Leadership", tag: "Production Leadership" },
+  { src: "/images/Professional%20Pic%201.jpg", label: "Executive", tag: "System Design" },
+  { src: "/images/Professional%20Pic%202.jpg", label: "Architecture", tag: "Enterprise Execution" },
+  { src: "/images/Professional%20Pic%203.jpg", label: "Engineering", tag: "Neural Architectures" },
+  { src: "/images/Professional%20Pic%204.jpg", label: "Delivery", tag: "Independent Delivery" },
+  { src: "/images/Professional%20Pic%205.jpg", label: "Research", tag: "Technical Research" },
+  { src: "/images/Professional%20Pic%206.jpg", label: "Leadership", tag: "Production Leadership" },
 ];
 
 const HERO_DYNAMIC_WORDS = [
