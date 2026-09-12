@@ -386,24 +386,34 @@ export const Hero: React.FC = () => {
               className="relative rounded-[32px] overflow-hidden p-2 bg-gradient-to-b from-white/95 via-white/40 to-white/10 dark:from-white/15 dark:via-white/5 dark:to-transparent border border-white/80 dark:border-white/10 shadow-[0_24px_64px_-12px_rgba(26,22,20,0.16)] dark:shadow-[0_24px_64px_-12px_rgba(0,0,0,0.6)] backdrop-blur-2xl group cursor-pointer"
             >
               <div className="relative aspect-[4/5] rounded-[26px] overflow-hidden bg-[#EDE5DC] dark:bg-[#1E1B18]">
-                <AnimatePresence mode="wait">
+                <AnimatePresence initial={false}>
                   <motion.img
                     key={activePhotoIdx}
-                    initial={{ opacity: 0.2, scale: 1.04 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0.2, scale: 0.98 }}
-                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    initial={{ opacity: 0, scale: 1.06, filter: 'blur(10px)' }}
+                    animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, scale: 1, filter: 'blur(6px)' }}
+                    transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
                     src={PROFESSIONAL_HERO_PHOTOS[activePhotoIdx].src}
                     alt={`Sonu Thomas — ${PROFESSIONAL_HERO_PHOTOS[activePhotoIdx].tag}`}
-                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out"
+                    className="absolute inset-0 w-full h-full object-cover object-top"
                   />
                 </AnimatePresence>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#131110]/85 via-[#131110]/20 to-transparent opacity-90" />
-                
+
                 {/* Photo Top Floating Glass Badge */}
-                <div className="absolute top-3.5 right-3.5 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#131110]/75 backdrop-blur-md border border-white/15 text-[#EDE5DC] text-[11px] font-mono shadow-lg">
-                  <Sparkles className="w-3.5 h-3.5 text-copper" />
-                  <span>{PROFESSIONAL_HERO_PHOTOS[activePhotoIdx].tag}</span>
+                <div className="absolute top-3.5 right-3.5 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#131110]/75 backdrop-blur-md border border-white/15 text-[#EDE5DC] text-[11px] font-mono shadow-lg overflow-hidden">
+                  <Sparkles className="w-3.5 h-3.5 text-copper shrink-0" />
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.span
+                      key={activePhotoIdx}
+                      initial={{ opacity: 0, y: -6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 6 }}
+                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                      {PROFESSIONAL_HERO_PHOTOS[activePhotoIdx].tag}
+                    </motion.span>
+                  </AnimatePresence>
                 </div>
 
                 {/* Photo Bottom Caption & Modern Look Switcher */}
