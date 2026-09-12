@@ -27,6 +27,7 @@ lerna-debug.log*
 # Editor & IDE directories
 .vscode/
 .idea/
+.claude/
 *.suo
 *.ntvs*
 *.njsproj
