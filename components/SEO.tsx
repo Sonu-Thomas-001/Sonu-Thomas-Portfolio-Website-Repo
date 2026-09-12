@@ -12,7 +12,8 @@ interface SEOProps {
 export const SEO: React.FC<SEOProps> = ({ title, description, url, image }) => {
   const normalizedPath = url ? (url.startsWith('/') ? url : `/${url}`) : '';
   const canonicalUrl = `https://www.sonuthomas.me${normalizedPath === '/' ? '' : normalizedPath}`;
-  const ogImage = image || "https://www.sonuthomas.me/images/Professional%20Pic%20Square.jpg";
+  const ogImage = image || "https://www.sonuthomas.me/images/og-image.jpg";
+  const personImage = "https://www.sonuthomas.me/images/Professional%20Pic%20Square.jpg";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -38,7 +39,7 @@ export const SEO: React.FC<SEOProps> = ({ title, description, url, image }) => {
         "@id": "https://www.sonuthomas.me/#person",
         "name": "Sonu Thomas",
         "url": "https://www.sonuthomas.me/",
-        "image": ogImage,
+        "image": personImage,
         "jobTitle": "AI Engineer",
         "worksFor": {
           "@type": "Organization",
@@ -91,9 +92,12 @@ export const SEO: React.FC<SEOProps> = ({ title, description, url, image }) => {
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:type" content="image/jpeg" />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="Sonu Thomas Portfolio" />
-      
+
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
