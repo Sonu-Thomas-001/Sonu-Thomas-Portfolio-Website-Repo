@@ -103,21 +103,27 @@ Both classic SEO and GEO ultimately depend on **being talked about elsewhere**, 
    - Modernized `robots.txt` with explicit allowances for AI answer engines (`GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `CCBot`, `Applebot-Extended`, `Amazonbot`, `Bytespider`).
 2. [x] **Resolve the rendering / crawler visibility issue** *(Completed)*
    - Implemented automated static pre-rendering pipeline in `scripts/prerender.js` hooked directly to `npm run build`.
-   - Pre-renders static HTML files with route-specific metadata, canonical tags, and rich semantic content (`h1`, `h2`, case studies, credentials) for all 13 routes into `dist/`.
+   - Pre-renders static HTML files with route-specific metadata, canonical tags, and rich semantic content (`h1`, `h2`, case studies, credentials) for all 11 routes into `dist/`.
    - AI bots and search engine crawlers without JavaScript execution now receive 100% crawlable, indexable content on first HTTP fetch.
 3. [x] **Generate and configure complete sitemap.xml** *(Completed)*
-   - Updated `sitemap.xml` listing all 13 valid routes (core portfolio, local landing pages, and legal pages) with updated ISO timestamps and accurate priorities.
+   - Updated `sitemap.xml` listing all 11 valid routes (core portfolio, local landing pages, and legal pages) with updated ISO timestamps and accurate priorities.
 4. [x] **Add Person, ProfilePage & WebSite JSON-LD Schema** *(Completed)*
    - Implemented Schema.org `@graph` combining `WebSite`, `ProfilePage`, and detailed `Person` entities with `sameAs`, `knowsAbout`, education at IIT Guwahati, and role at HCLTech.
 5. [x] **Deploy llms.txt & llms-full.txt for GEO / AI Citation** *(Completed)*
    - Created standard `public/llms.txt` and comprehensive dossier `public/llms-full.txt` featuring structured project case studies, system architectures, and canonical entity details.
-6. [ ] **Manual Step: Verify domain in Google Search Console & Bing Webmaster Tools** *(Pending User Action)*
-   - Open [Google Search Console](https://search.google.com/search-console) and [Bing Webmaster Tools](https://www.bing.com/webmasters).
-   - Add property `https://www.sonuthomas.me/`.
-   - Verification: Copy the meta tag verification code provided by GSC/Bing and paste it into the placeholder in `index.html`:
+6. [x] **Google Search Console: verified** *(Completed)* / [ ] **Bing Webmaster Tools: pending**
+   - Google Search Console ownership confirmed via DNS domain verification (covers all subdomains/protocols — no HTML meta tag needed).
+   - Bing Webmaster Tools not yet verified. Open [Bing Webmaster Tools](https://www.bing.com/webmasters), add property `https://www.sonuthomas.me/`, and paste the verification code into `index.html`:
      ```html
-     <meta name="google-site-verification" content="YOUR_CODE_HERE" />
      <meta name="msvalidate.01" content="YOUR_CODE_HERE" />
      ```
-   - Submit your sitemap URL: `https://www.sonuthomas.me/sitemap.xml`.
-   - Request indexing for the homepage `https://www.sonuthomas.me/`.
+   - Submit sitemap URL to both consoles: `https://www.sonuthomas.me/sitemap.xml`.
+   - Request indexing for the homepage `https://www.sonuthomas.me/` in GSC.
+7. [x] **Technical audit follow-up: performance & structured-data fixes** *(Completed 2026-09-12)*
+   - Migrated Tailwind from the production CDN JIT script (`cdn.tailwindcss.com`) to a real build-time PostCSS pipeline (`tailwind.config.js` + `postcss.config.js` + `index.css`) — removes a render-blocking runtime compiler from every page load, a direct Core Web Vitals win.
+   - Fixed `scripts/prerender.js` to inject a route-correct `WebPage`/`ProfilePage` JSON-LD node per page instead of shipping the homepage's graph on every prerendered route.
+   - Fixed inconsistent `Person.sameAs` between the static graph and `SEO.tsx`'s dynamic graph (was missing the canonical website link in one of the two).
+   - Removed the dead, never-rendered `keywords` prop from `SEO.tsx`.
+   - Corrected `sitemap.xml` `<lastmod>` dates to each page's actual last-modified date (previously identical/fabricated across all 11 URLs).
+   - Fixed stale placeholder project names in the pre-hydration crawler fallback in `index.html` (was naming projects that don't exist; now references real flagship projects).
+   - **Found, not fixed:** `components/FAQ.tsx` has real FAQ content but is not imported/rendered on any page — it's dead code, and adding `FAQPage` schema for it is moot until it's actually wired into a page. Flagged as a product decision, not a technical fix.

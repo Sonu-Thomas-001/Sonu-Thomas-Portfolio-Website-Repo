@@ -7,7 +7,6 @@ interface SEOProps {
   description: string;
   url?: string;
   image?: string;
-  keywords?: string;
 }
 
 export const SEO: React.FC<SEOProps> = ({ title, description, url, image }) => {

@@ -204,7 +204,29 @@ const routes = [
         <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/sonuthomasai/">linkedin.com/in/sonuthomasai</a></li>
         <li><strong>GitHub:</strong> <a href="https://github.com/Sonu-Thomas-001">github.com/Sonu-Thomas-001</a></li>
       </ul>
-    `
+    `,
+    faqs: [
+      {
+        question: 'Are you open to freelance or contract work?',
+        answer: 'Yes, I am currently accepting select freelance projects, particularly those involving full-stack web development, AI/LLM integration, and automation scripting. I am also open to long-term consulting contracts.',
+      },
+      {
+        question: 'What is your primary technology stack?',
+        answer: 'For AI engineering, I work with Google Gemini, Anthropic Claude, LangGraph, and ChromaDB-backed RAG pipelines. For web development, I specialize in React (Next.js, TypeScript, Tailwind CSS). For backend and enterprise systems, I rely on Python, Java, and SQL/PostgreSQL.',
+      },
+      {
+        question: 'Do you handle enterprise-level projects?',
+        answer: 'Absolutely. My full-time role at HCLTech involves orchestrating critical change governance for large-scale enterprise environments. I understand the importance of compliance, risk analysis, and zero-downtime deployments.',
+      },
+      {
+        question: 'Where are you located and can you work remotely?',
+        answer: 'I am based in Kannur, Kerala, India. I am fully equipped for remote work and have experience collaborating with cross-functional teams across different time zones.',
+      },
+      {
+        question: 'How do you approach AI integration in projects?',
+        answer: 'I view AI as a tool for measurable efficiency. Whether it is an autonomous agent for incident triage, a RAG pipeline for enterprise knowledge, or a predictive model for data analysis, I focus on practical, production-hardened implementations with deterministic guardrails.',
+      },
+    ],
   },
   {
     path: '/privacy',
@@ -255,6 +277,76 @@ function generateHtmlForRoute(route) {
   html = html.replace(/<meta name="twitter:description" content=".*?" \/>/s, `<meta name="twitter:description" content="${route.description}" />`);
   html = html.replace(/<meta name="twitter:url" content=".*?" \/>/s, `<meta name="twitter:url" content="${canonicalUrl}" />`);
 
+  // Replace JSON-LD graph with a route-correct WebPage/ProfilePage node instead of
+  // shipping the homepage's graph verbatim on every prerendered route.
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${DOMAIN}/#website`,
+        "url": `${DOMAIN}/`,
+        "name": "Sonu Thomas Portfolio",
+        "description": "Personal portfolio of Sonu Thomas, an AI Software Engineer crafting intelligent systems and production software.",
+        "publisher": { "@id": `${DOMAIN}/#person` }
+      },
+      {
+        "@type": route.path === '/' ? "ProfilePage" : "WebPage",
+        "@id": `${canonicalUrl}#webpage`,
+        "url": canonicalUrl,
+        "name": route.title,
+        "description": route.description,
+        "isPartOf": { "@id": `${DOMAIN}/#website` },
+        "about": { "@id": `${DOMAIN}/#person` },
+        "mainEntity": route.path === '/' ? { "@id": `${DOMAIN}/#person` } : undefined
+      },
+      {
+        "@type": "Person",
+        "@id": `${DOMAIN}/#person`,
+        "name": "Sonu Thomas",
+        "url": `${DOMAIN}/`,
+        "image": "https://www.sonuthomas.me/images/Professional%20Pic%20Square.png",
+        "jobTitle": "AI Software Engineer",
+        "description": "AI Software Engineer at HCLTech and Data Science & AI scholar at IIT Guwahati building scalable intelligent systems, LLM solutions, and modern software.",
+        "worksFor": { "@type": "Organization", "name": "HCLTech", "url": "https://www.hcltech.com/" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "IIT Guwahati", "url": "https://www.iitg.ac.in/" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Kannur", "addressRegion": "Kerala", "addressCountry": "India" },
+        "sameAs": [
+          "https://www.linkedin.com/in/sonuthomasai/",
+          "https://github.com/Sonu-Thomas-001",
+          "https://www.instagram.com/sonu_thomz/",
+          `${DOMAIN}/`
+        ],
+        "knowsAbout": [
+          "Artificial Intelligence", "Generative AI", "Large Language Models", "Agentic AI",
+          "Retrieval-Augmented Generation", "Full Stack Development", "Python", "Java", "TypeScript",
+          "React", "Enterprise Backend Architecture"
+        ]
+      }
+    ]
+  };
+  html = html.replace(
+    /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
+    `<script type="application/ld+json">\n    ${JSON.stringify(jsonLd)}\n    </script>`
+  );
+
+  // Inject FAQPage schema for routes with an FAQ block (e.g. /contact)
+  if (route.faqs && route.faqs.length > 0) {
+    const faqJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": route.faqs.map((faq) => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+      })),
+    };
+    html = html.replace(
+      '</head>',
+      `  <script type="application/ld+json">${JSON.stringify(faqJsonLd)}</script>\n  </head>`
+    );
+  }
+
   // Replace #root inner semantic content
   const rootReplacement = `<div id="root">
       <!-- Semantic Crawler & Pre-render Fallback (Instant extraction for AI bots and Search Engines before client hydration) -->
@@ -275,6 +367,15 @@ function generateHtmlForRoute(route) {
       </header>
       <main style="max-width: 900px; margin: 0 auto; padding: 0 20px; font-family: system-ui, sans-serif;">
         ${route.content}
+        ${route.faqs ? `
+        <section aria-labelledby="faq-heading" style="margin-top: 32px;">
+          <h2 id="faq-heading" style="font-size: 1.5rem; color: #1A1614; border-bottom: 1px solid #E8E0D8; padding-bottom: 8px;">Frequently Asked Questions</h2>
+          ${route.faqs.map((faq) => `
+          <article style="margin: 16px 0;">
+            <h3 style="font-size: 1.1rem; color: #1A1614; margin-bottom: 4px;">${faq.question}</h3>
+            <p style="color: #4A4340; line-height: 1.6; margin: 0;">${faq.answer}</p>
+          </article>`).join('')}
+        </section>` : ''}
       </main>
     </div>`;
 

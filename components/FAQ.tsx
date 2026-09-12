@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus, HelpCircle } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
 
-const FAQS = [
+export const FAQS = [
   {
     question: "Are you open to freelance or contract work?",
-    answer: "Yes, I am currently accepting select freelance projects, particularly those involving full-stack web development, WordPress optimization, and automation scripting. I am also open to long-term consulting contracts."
+    answer: "Yes, I am currently accepting select freelance projects, particularly those involving full-stack web development, AI/LLM integration, and automation scripting. I am also open to long-term consulting contracts."
   },
   {
     question: "What is your primary technology stack?",
-    answer: "For web development, I specialize in the React ecosystem (Next.js, TypeScript, Tailwind CSS). For backend and enterprise systems, I rely on Java, Python, and SQL/Oracle DB. I also have experience with shell scripting for automation."
+    answer: "For AI engineering, I work with Google Gemini, Anthropic Claude, LangGraph, and ChromaDB-backed RAG pipelines. For web development, I specialize in React (Next.js, TypeScript, Tailwind CSS). For backend and enterprise systems, I rely on Python, Java, and SQL/PostgreSQL."
   },
   {
     question: "Do you handle enterprise-level projects?",
-    answer: "Absolutely. My full-time role at HCLTech as a Production Change Manager involves orchestrating critical changes for large-scale enterprise environments. I understand the importance of compliance, risk analysis, and zero-downtime deployments."
+    answer: "Absolutely. My full-time role at HCLTech involves orchestrating critical change governance for large-scale enterprise environments. I understand the importance of compliance, risk analysis, and zero-downtime deployments."
   },
   {
     question: "Where are you located and can you work remotely?",
@@ -21,7 +21,7 @@ const FAQS = [
   },
   {
     question: "How do you approach AI integration in projects?",
-    answer: "I view AI as a tool for efficiency. Whether it's integrating an LLM for customer support, using predictive models for data analysis, or automating routine tasks, I focus on practical, high-impact implementations."
+    answer: "I view AI as a tool for measurable efficiency. Whether it's an autonomous agent for incident triage, a RAG pipeline for enterprise knowledge, or a predictive model for data analysis, I focus on practical, production-hardened implementations with deterministic guardrails."
   }
 ];
 
@@ -29,68 +29,52 @@ export const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-24 bg-surface relative overflow-hidden">
-      {/* Background Decoration */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-      
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300 text-sm font-medium mb-4">
-            <HelpCircle className="w-4 h-4" />
-            <span>Common Queries</span>
-          </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Frequently Asked Questions</h2>
-          <p className="text-slate-400 text-lg">
-            Quick answers to the most common questions regarding my work, availability, and technical expertise.
-          </p>
-        </motion.div>
+    <section className="py-16 sm:py-20 max-w-3xl mx-auto px-6 sm:px-8 lg:px-12">
+      <div className="pb-6 mb-8 border-b border-[#E8E0D8] dark:border-white/10">
+        <h2 className="font-display font-bold text-2xl sm:text-3xl text-[#1A1614] dark:text-[#FDFBF7]">
+          Frequently asked questions
+        </h2>
+        <p className="text-sm sm:text-base text-[#4A4340] dark:text-[#D6D3D1] mt-2">
+          Quick answers on availability, technical scope, and how I work.
+        </p>
+      </div>
 
-        <div className="space-y-4">
-          {FAQS.map((faq, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="border border-white/5 rounded-2xl bg-dark/50 overflow-hidden"
-            >
+      <div className="space-y-1">
+        {FAQS.map((faq, idx) => {
+          const isOpen = openIndex === idx;
+          return (
+            <div key={faq.question} className="border-b border-[#E8E0D8] dark:border-white/10">
               <button
-                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                className="w-full flex items-center justify-between p-6 text-left hover:bg-white/5 transition-colors"
+                onClick={() => setOpenIndex(isOpen ? null : idx)}
+                className="w-full flex items-center justify-between gap-4 py-5 text-left cursor-pointer group"
+                aria-expanded={isOpen}
               >
-                <span className={`font-bold text-lg transition-colors ${openIndex === idx ? 'text-primary' : 'text-white'}`}>
+                <span className={`font-display font-medium text-base sm:text-lg transition-colors ${isOpen ? 'text-copper' : 'text-[#1A1614] dark:text-[#FDFBF7] group-hover:text-copper'}`}>
                   {faq.question}
                 </span>
-                <div className={`p-2 rounded-full ${openIndex === idx ? 'bg-primary/20 text-primary' : 'bg-white/5 text-slate-400'}`}>
-                  {openIndex === idx ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                </div>
+                <span className={`shrink-0 p-1.5 rounded-full border transition-colors ${isOpen ? 'bg-copper border-copper text-white' : 'border-[#E8E0D8] dark:border-white/15 text-[#78716C] dark:text-[#A8A29E]'}`}>
+                  {isOpen ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
+                </span>
               </button>
-              
-              <AnimatePresence>
-                {openIndex === idx && (
+
+              <AnimatePresence initial={false}>
+                {isOpen && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
+                    animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    className="overflow-hidden"
                   >
-                    <div className="px-6 pb-6 pt-0 text-slate-400 leading-relaxed border-t border-white/5 mt-2 pt-4">
+                    <p className="text-sm sm:text-base text-[#4A4340] dark:text-[#D6D3D1] leading-relaxed pb-5 pr-8">
                       {faq.answer}
-                    </div>
+                    </p>
                   </motion.div>
                 )}
               </AnimatePresence>
-            </motion.div>
-          ))}
-        </div>
-
+            </div>
+          );
+        })}
       </div>
     </section>
   );
