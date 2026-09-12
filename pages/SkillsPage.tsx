@@ -591,7 +591,7 @@ export const SkillsPage: React.FC = () => {
         className="mb-12 sm:mb-16"
       >
           {/* Positioning Tagline Pills */}
-          <div className="flex flex-wrap items-center gap-2.5">
+          <div className="flex flex-wrap items-center gap-2.5 mb-4 sm:mb-0">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#1E1B18] border border-[#E8E0D8] dark:border-white/10 text-sm text-[#1A1614] dark:text-[#FDFBF7] shadow-xs">
               <Bot className="w-3.5 h-3.5 text-copper" />
               <span>AI &amp; agent engineering</span>
