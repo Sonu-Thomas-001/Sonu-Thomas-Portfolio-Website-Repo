@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useTransform } from 'framer-motion';
+import { motion, MotionValue, useTransform } from 'framer-motion';
 import {
   Award,
   CheckCircle2,
@@ -9,6 +9,39 @@ import { useSectionProgress, PINNED_OFFSET } from '../hooks/useSectionProgress';
 import { useParallax } from '../hooks/useParallax';
 import { useIsDesktop } from '../hooks/useMediaQuery';
 import { ScrubReveal } from './ScrubReveal';
+
+// Desktop pins the campus card and scrubs its reveals to a continuous scroll
+// runway. Mobile has no pinned runway to scrub against, so it falls back to
+// a real per-element whileInView cascade instead of ScrubReveal's static
+// "just show it" disabled state — same content, an actual mobile entrance.
+const Reveal: React.FC<{
+  isDesktop: boolean;
+  progress: MotionValue<number>;
+  range: [number, number];
+  delay?: number;
+  y?: number;
+  className?: string;
+  children: React.ReactNode;
+}> = ({ isDesktop, progress, range, delay = 0, y = 16, className, children }) => {
+  if (isDesktop) {
+    return (
+      <ScrubReveal progress={progress} range={range} y={y} className={className}>
+        {children}
+      </ScrubReveal>
+    );
+  }
+  return (
+    <motion.div
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.4 }}
+      transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 const IIT_COMPUTATIONAL_PILLARS = [
   "High-Dimensional Linear Algebra",
@@ -113,7 +146,7 @@ export const Education: React.FC = () => {
 
           {/* Main Degree & Curriculum Details */}
           <div className="relative z-10 p-7 sm:p-9 pt-0 space-y-6">
-            <ScrubReveal progress={pinProgress} range={[0.12, 0.32]} enabled={isDesktop}>
+            <Reveal isDesktop={isDesktop} progress={pinProgress} range={[0.12, 0.32]}>
               <span className="text-xs font-mono text-copper uppercase tracking-widest block mb-2">
                 Honors Degree Program
               </span>
@@ -123,34 +156,35 @@ export const Education: React.FC = () => {
               <p className="text-sm sm:text-base text-[#EDE5DC]/80 font-light mt-2.5 max-w-2xl leading-relaxed">
                 {iitData.details} Advanced study exploring the convergence of mathematical statistics, deep neural representations, and scalable computing.
               </p>
-            </ScrubReveal>
+            </Reveal>
 
             {/* Computational Pillars Matrix — chips reveal one after another */}
             <div>
-              <ScrubReveal progress={pinProgress} range={[0.36, 0.48]} enabled={isDesktop} y={12}>
+              <Reveal isDesktop={isDesktop} progress={pinProgress} range={[0.36, 0.48]} delay={0.15} y={12}>
                 <span className="text-[11px] font-mono text-[#9C948B] uppercase tracking-wider block mb-3">
                   Core Computational Invariants & Coursework:
                 </span>
-              </ScrubReveal>
+              </Reveal>
               <div className="flex flex-wrap gap-2">
                 {IIT_COMPUTATIONAL_PILLARS.map((pillar, i) => (
-                  <ScrubReveal
+                  <Reveal
                     key={i}
+                    isDesktop={isDesktop}
                     progress={pinProgress}
                     range={[0.4 + i * 0.04, 0.52 + i * 0.04]}
-                    enabled={isDesktop}
+                    delay={0.22 + i * 0.06}
                     y={14}
                   >
                     <span className="inline-block text-xs font-mono px-3 py-1.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] border border-white/15 text-[#EDE5DC] transition-colors">
                       {pillar}
                     </span>
-                  </ScrubReveal>
+                  </Reveal>
                 ))}
               </div>
             </div>
 
             {/* Bottom Verification Footer */}
-            <ScrubReveal progress={pinProgress} range={[0.72, 0.88]} enabled={isDesktop} y={16}>
+            <Reveal isDesktop={isDesktop} progress={pinProgress} range={[0.72, 0.88]} delay={0.65} y={16}>
               <div className="pt-5 border-t border-white/15 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-[#9C948B]">
                 <div className="flex items-center gap-2 text-emerald-400">
                   <CheckCircle2 className="w-4 h-4" />
@@ -160,7 +194,7 @@ export const Education: React.FC = () => {
                   Data Science & AI Scholar
                 </span>
               </div>
-            </ScrubReveal>
+            </Reveal>
           </div>
         </motion.div>
         </div>
