@@ -260,7 +260,7 @@ Our ultimate aim is to build the **future-ready digital working taskforce**—an
     links: {
       demo: "#"
     },
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1200&auto=format&fit=crop"
+    image: "/images/projects/Agentic%20Co-Worker%20Platform.webp"
   },
   {
     id: "change-coworker",
@@ -311,7 +311,7 @@ Change Co-Worker utilizes a **Hub-and-Spoke** architecture where a central **Orc
     links: {
       demo: "#"
     },
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop"
+    image: "/images/projects/Change%20Co-Worker.webp"
   },
   {
     id: "rca-agent",
@@ -359,7 +359,7 @@ RCA-Agent coordinates an automated 5-step diagnostic pipeline:
     links: {
       demo: "#"
     },
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop"
+    image: "/images/projects/RCA-Agent.webp"
   },
   {
     id: "ticketwave",
@@ -418,7 +418,7 @@ TicketWave guarantees zero double-bookings through a defense-in-depth architectu
       github: "https://github.com/Sonu-Thomas-001/TicketWave",
       demo: "#"
     },
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop"
+    image: "/images/projects/TicketWave.webp"
   },
   {
     id: "smartdesk-ai",
@@ -469,7 +469,7 @@ SmartDesk AI coordinates a closed-loop 7-step incident resolution workflow:
       github: "https://github.com/Sonu-Thomas-001/SmartDesk-Ai",
       demo: "#"
     },
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200&auto=format&fit=crop"
+    image: "/images/projects/SmartDesk%20AI.webp"
   },
   {
     id: "qubimind",
@@ -536,7 +536,7 @@ SmartDesk AI coordinates a closed-loop 7-step incident resolution workflow:
       github: "https://github.com/Sonu-Thomas-001/QubiMind",
       demo: "#"
     },
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop"
+    image: "/images/projects/QubiMind.webp"
   },
   {
     id: "multi-agent-enterprise-ai-assistant",
@@ -612,7 +612,7 @@ All document queries undergo dual retrieval:
       github: "https://github.com/Sonu-Thomas-001/Multi-Agent-Enterprise-AI-Assistant",
       demo: "#"
     },
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop"
+    image: "/images/projects/Multi-Agent%20Enterprise%20AI%20Assistant.webp"
   },
   {
     id: "versant-practice-test",
@@ -679,7 +679,7 @@ All document queries undergo dual retrieval:
       github: "https://github.com/Sonu-Thomas-001/Versant-Practice-Test",
       demo: "#"
     },
-    image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1200&auto=format&fit=crop"
+    image: "/images/projects/Versant%20Practice%20Test%20Simulator.webp"
   },
   {
     id: "resolveai",
@@ -748,7 +748,7 @@ Create Ticket → Final Response
       github: "https://github.com/Sonu-Thomas-001/IT-Service-Desk-Agent",
       demo: "#"
     },
-    image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=1200&auto=format&fit=crop"
+    image: "/images/projects/ResolveAI%20-%20IT%20Service%20Desk%20Agent.webp"
   }
 ];
 
