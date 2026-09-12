@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSectionProgress } from '../hooks/useSectionProgress';
 import { useParallax } from '../hooks/useParallax';
@@ -254,6 +255,7 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
   }, [isHomepage, activeFilter, searchQuery, filteredProjects]);
 
   return (
+    <>
     <section ref={sectionRef} id="projects" className="scroll-mt-24 sm:scroll-mt-28 py-24 sm:py-32 px-6 sm:px-8 lg:px-12 bg-[#131110] text-[#EDE5DC] border-y border-[#2A2522] relative">
       {/* Subtle Graph Grid Accent — drifts slower than the content */}
       <motion.div
@@ -473,9 +475,15 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
 
       </div>
 
+    </section>
+
       {/* ============================================================ */}
       {/* ARCHITECTURAL CASE STUDY DOSSIER MODAL */}
+      {/* Rendered via portal to <body> — a transformed/will-change ancestor */}
+      {/* (e.g. ProjectsPage's parallax band wrapper) would otherwise turn */}
+      {/* this modal's `fixed` positioning into a relative one, breaking it. */}
       {/* ============================================================ */}
+      {createPortal(
       <AnimatePresence>
         {selectedProject && (
           <div
@@ -665,8 +673,9 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
             </motion.div>
           </div>
         )}
-      </AnimatePresence>
-
-    </section>
+      </AnimatePresence>,
+      document.body
+      )}
+    </>
   );
 };
