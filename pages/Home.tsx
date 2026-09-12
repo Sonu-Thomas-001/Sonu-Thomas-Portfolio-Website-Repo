@@ -13,8 +13,8 @@ export const Home: React.FC = () => {
   return (
     <div className="bg-page">
       <SEO 
-        title="Sonu Thomas | AI Software Engineer | Intelligent Systems & Web Apps"
-        description="Sonu Thomas is an AI Software Engineer at HCLTech specializing in AI agents, enterprise systems, full-stack web engineering, and machine learning."
+        title="Sonu Thomas | AI Engineer | Intelligent Systems & Web Apps"
+        description="Sonu Thomas is an AI Engineer at HCLTech specializing in AI agents, enterprise systems, full-stack web engineering, and machine learning."
         url="/"
       />
       <Hero />

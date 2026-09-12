@@ -48,7 +48,7 @@ This is what turns "a person exists on the internet" into "a machine-readable en
 # llms.txt example structure
 # Sonu Thomas
 
-> AI Software Engineer building intelligent systems, LLM-powered
+> AI Engineer building intelligent systems, LLM-powered
 > tools, and full-stack applications.
 
 ## Pages

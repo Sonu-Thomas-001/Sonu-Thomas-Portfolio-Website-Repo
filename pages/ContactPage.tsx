@@ -23,8 +23,8 @@ export const ContactPage: React.FC = () => {
   return (
     <div className="pt-28 min-h-screen bg-page">
       <SEO
-        title="Contact Sonu Thomas | AI Software Engineer"
-        description="Get in touch with Sonu Thomas, AI Software Engineer based in India. Available for collaborations, consultations, and enterprise engineering."
+        title="Contact Sonu Thomas | AI Engineer"
+        description="Get in touch with Sonu Thomas, AI Engineer based in India. Available for collaborations, consultations, and enterprise engineering."
         url="/contact"
       />
       <Helmet>

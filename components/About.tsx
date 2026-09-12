@@ -211,7 +211,7 @@ export const About: React.FC = () => {
               <span className="float-left text-5xl sm:text-6xl font-display font-bold text-copper leading-[0.85] pr-3.5 pt-1">
                 I
               </span>
-              'm Sonu Thomas, an AI Software Engineer based in Kannur, Kerala. 
+              'm Sonu Thomas, an AI Engineer based in Kannur, Kerala. 
               My practice lives at the intersection of production-grade software architecture and frontier generative intelligence.
             </p>
 

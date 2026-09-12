@@ -1,8 +1,8 @@
 # Sonu Thomas
 
-> AI Software Engineer specializing in agentic systems, production LLM applications, enterprise backend architectures, and modern web platforms.
+> AI Engineer specializing in agentic systems, production LLM applications, enterprise backend architectures, and modern web platforms.
 
-Sonu Thomas is an AI Software Engineer at HCLTech and a Data Science & Artificial Intelligence scholar at IIT Guwahati (BSc Hons, 2024–2028). With hands-on experience in software development and applied engineering, Sonu designs and evaluates scalable, reliable, and observable AI-powered systems.
+Sonu Thomas is an AI Engineer at HCLTech and a Data Science & Artificial Intelligence scholar at IIT Guwahati (BSc Hons, 2024–2028). With hands-on experience in software development and applied engineering, Sonu designs and evaluates scalable, reliable, and observable AI-powered systems.
 
 ## Primary Pages
 - [Home](https://www.sonuthomas.me/): Comprehensive portfolio overview, engineering philosophy, interactive AI assistant, and project showcases.

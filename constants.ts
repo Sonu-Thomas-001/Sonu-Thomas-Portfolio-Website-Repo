@@ -16,8 +16,8 @@ import {
 
 export const PERSONAL_DETAILS = {
   name: "Sonu Thomas",
-  role: "AI Software Engineer | Production Change Manager",
-  tagline: "AI Software Engineer | Building Scalable Intelligent Systems",
+  role: "AI Engineer | Production Change Manager",
+  tagline: "AI Engineer | Building Scalable Intelligent Systems",
   location: "Kannur, Kerala, India",
   email: "sonuthomas.ai@gmail.com",
   secondaryEmail: "sonuthomas.dev@gmail.com",
@@ -26,7 +26,7 @@ export const PERSONAL_DETAILS = {
     dev: "sonuthomas.dev@gmail.com"
   },
   phone: "+91 8921 526656",
-  about: "I am an AI Software Engineer with over 3+ years of hands-on experience in software development, web technologies, and building production-ready digital systems, combined with a strong and growing focus on Artificial Intelligence, intelligent automation, and applied AI engineering.",
+  about: "I am an AI Engineer with over 3+ years of hands-on experience in software development, web technologies, and building production-ready digital systems, combined with a strong and growing focus on Artificial Intelligence, intelligent automation, and applied AI engineering.",
   expandedAbout: "My technology journey began early through independent software engineering and evolved through 3+ years of freelance development. Today, at HCLTech, I focus on AI engineering—treating intelligent automation not just as experimentation, but as a disciplined engineering practice emphasizing system design, scalability, and business impact.",
   resumeLink: "https://cdn.jsdelivr.net/gh/Sonu-Thomas-001/image-host/Sonu-Thomas-Portfolio-Website-Repo/Resume.pdf",
   social: {

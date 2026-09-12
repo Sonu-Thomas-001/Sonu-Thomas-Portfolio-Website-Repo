@@ -80,7 +80,7 @@ export const Footer: React.FC = () => {
                 className="font-mono text-xs text-copper uppercase tracking-wider flex items-center gap-1.5 font-medium"
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                AI Software Engineer &amp; Full-Stack Architect
+                AI Engineer &amp; Full-Stack Architect
               </span>
             </div>
 

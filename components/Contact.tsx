@@ -164,7 +164,7 @@ export const Contact: React.FC = () => {
                   Active &bull; Open for Collaboration
                 </span>
                 <span className="text-[11px] font-mono text-[#78716C] dark:text-[#A8A29E] block mt-0.5">
-                  AI Software Engineer &bull; HCLTech
+                  AI Engineer &bull; HCLTech
                 </span>
               </div>
             </div>

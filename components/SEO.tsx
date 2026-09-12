@@ -39,7 +39,7 @@ export const SEO: React.FC<SEOProps> = ({ title, description, url, image }) => {
         "name": "Sonu Thomas",
         "url": "https://www.sonuthomas.me/",
         "image": ogImage,
-        "jobTitle": "AI Software Engineer",
+        "jobTitle": "AI Engineer",
         "worksFor": {
           "@type": "Organization",
           "name": "HCLTech",

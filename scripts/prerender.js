@@ -20,12 +20,12 @@ const DOMAIN = 'https://www.sonuthomas.me';
 const routes = [
   {
     path: '/',
-    title: 'Sonu Thomas — AI Software Engineer & Intelligent Systems',
-    description: 'Personal portfolio of Sonu Thomas, an AI Software Engineer crafting intelligent systems, LLM solutions, and full-stack software with editorial precision.',
+    title: 'Sonu Thomas — AI Engineer & Intelligent Systems',
+    description: 'Personal portfolio of Sonu Thomas, an AI Engineer crafting intelligent systems, LLM solutions, and full-stack software with editorial precision.',
     h1: 'Sonu Thomas',
-    subtitle: 'AI Software Engineer & Intelligent Systems',
+    subtitle: 'AI Engineer & Intelligent Systems',
     content: `
-      <p>Sonu Thomas is an AI Software Engineer at HCLTech and a Data Science &amp; Artificial Intelligence scholar at IIT Guwahati (BSc Hons). Specializing in production-grade intelligent systems, Generative AI applications, agentic workflows, and scalable full-stack web platforms.</p>
+      <p>Sonu Thomas is an AI Engineer at HCLTech and a Data Science &amp; Artificial Intelligence scholar at IIT Guwahati (BSc Hons). Specializing in production-grade intelligent systems, Generative AI applications, agentic workflows, and scalable full-stack web platforms.</p>
       <h2>Core Engineering Competencies</h2>
       <ul>
         <li><strong>AI &amp; Generative Systems:</strong> LLM Agents, RAG Pipelines, Prompt Engineering, Gemini API, OpenAI APIs, Stable Diffusion, ControlNet, NLP.</li>
@@ -191,7 +191,7 @@ const routes = [
   },
   {
     path: '/contact',
-    title: 'Contact Sonu Thomas | AI Software Engineer',
+    title: 'Contact Sonu Thomas | AI Engineer',
     description: 'Get in touch with Sonu Thomas for AI engineering collaborations, software development consulting, or enterprise inquiries.',
     h1: 'Connect & Collaborate',
     subtitle: 'Let\'s build intelligent systems together',
@@ -287,7 +287,7 @@ function generateHtmlForRoute(route) {
         "@id": `${DOMAIN}/#website`,
         "url": `${DOMAIN}/`,
         "name": "Sonu Thomas Portfolio",
-        "description": "Personal portfolio of Sonu Thomas, an AI Software Engineer crafting intelligent systems and production software.",
+        "description": "Personal portfolio of Sonu Thomas, an AI Engineer crafting intelligent systems and production software.",
         "publisher": { "@id": `${DOMAIN}/#person` }
       },
       {
@@ -306,8 +306,8 @@ function generateHtmlForRoute(route) {
         "name": "Sonu Thomas",
         "url": `${DOMAIN}/`,
         "image": "https://www.sonuthomas.me/images/Professional%20Pic%20Square.jpg",
-        "jobTitle": "AI Software Engineer",
-        "description": "AI Software Engineer at HCLTech and Data Science & AI scholar at IIT Guwahati building scalable intelligent systems, LLM solutions, and modern software.",
+        "jobTitle": "AI Engineer",
+        "description": "AI Engineer at HCLTech and Data Science & AI scholar at IIT Guwahati building scalable intelligent systems, LLM solutions, and modern software.",
         "worksFor": { "@type": "Organization", "name": "HCLTech", "url": "https://www.hcltech.com/" },
         "alumniOf": { "@type": "CollegeOrUniversity", "name": "IIT Guwahati", "url": "https://www.iitg.ac.in/" },
         "address": { "@type": "PostalAddress", "addressLocality": "Kannur", "addressRegion": "Kerala", "addressCountry": "India" },
