@@ -29,9 +29,8 @@ const ScrubWord: React.FC<{ progress: MotionValue<number>; index: number; classN
   const start = 0.04 + index * 0.012;
   const opacity = useParallax(progress, [0, 1], [start, start + 0.09], 1);
   const y = useParallax(progress, [18, 0], [start, start + 0.09], 0);
-  const blur = useParallax(progress, ['blur(6px)', 'blur(0px)'], [start, start + 0.09], 'blur(0px)');
   return (
-    <motion.span style={{ opacity, y, filter: blur }} className={`inline-block mr-[0.25em] ${className}`}>
+    <motion.span style={{ opacity, y }} className={`inline-block mr-[0.25em] ${className}`}>
       {children}
     </motion.span>
   );

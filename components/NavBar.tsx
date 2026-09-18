@@ -131,13 +131,14 @@ export const NavBar: React.FC = () => {
     lastScrollY.current = latest;
   });
 
-  // Scroll spy
+  // Scroll spy throttled with requestAnimationFrame to prevent layout thrashing
   useEffect(() => {
     if (location.pathname !== '/') {
       setActiveSection(location.pathname);
       return;
     }
 
+    let ticking = false;
     const handleSpy = () => {
       const scrollPos = window.scrollY + 280;
       const sections = [
@@ -167,9 +168,19 @@ export const NavBar: React.FC = () => {
       }
     };
 
-    window.addEventListener('scroll', handleSpy, { passive: true });
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleSpy();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
     handleSpy();
-    return () => window.removeEventListener('scroll', handleSpy);
+    return () => window.removeEventListener('scroll', onScroll);
   }, [location.pathname]);
 
   // Freeze Lenis while the mobile drawer is open

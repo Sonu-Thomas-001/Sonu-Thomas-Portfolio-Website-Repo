@@ -85,7 +85,7 @@ export const ConstellationWeb: React.FC<ConstellationWebProps> = ({
   const edges = useMemo(() => getEdges(nodes, maxEdges), [nodes, maxEdges]);
 
   return (
-    <AmbientLayer progress={progress} drift={12} className={className}>
+    <AmbientLayer progress={progress} drift={12} className={`hidden sm:block ${className}`}>
       {/* SVG Edge Lines */}
       <svg
         className="absolute inset-0 w-full h-full"

@@ -72,7 +72,7 @@ export const DataStreamTicker: React.FC<DataStreamTickerProps> = ({
   const cols = useMemo(() => COLUMNS_DATA.slice(0, columns), [columns]);
 
   return (
-    <AmbientLayer progress={progress} drift={6} className={className}>
+    <AmbientLayer progress={progress} drift={6} className={`hidden md:block ${className}`}>
       {cols.map((col) => {
         const colOpacity = col.opacity * intensity;
 

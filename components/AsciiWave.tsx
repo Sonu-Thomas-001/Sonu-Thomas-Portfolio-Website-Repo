@@ -108,8 +108,12 @@ export const AsciiWave: React.FC<AsciiWaveProps> = ({
     // Character set matching reference: ['.', ':', '+', '*', 'x', '#']
     const CHAR_MAP = [' ', '.', ':', '+', '*', 'x', '#'];
 
+    let isVisible = true;
+
     // Main render loop
     const render = () => {
+      if (!isVisible) return;
+
       if (width === 0 || height === 0) {
         updateSize();
       }
@@ -216,10 +220,25 @@ export const AsciiWave: React.FC<AsciiWaveProps> = ({
       animationFrameId = requestAnimationFrame(render);
     };
 
+    // Pause animation when off-screen to preserve mobile device battery & GPU performance
+    const intersectionObserver = new IntersectionObserver(([entry]) => {
+      const currentlyVisible = entry.isIntersecting;
+      if (currentlyVisible && !isVisible) {
+        isVisible = true;
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = requestAnimationFrame(render);
+      } else if (!currentlyVisible && isVisible) {
+        isVisible = false;
+        cancelAnimationFrame(animationFrameId);
+      }
+    }, { threshold: 0.05 });
+    intersectionObserver.observe(container);
+
     render();
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      intersectionObserver.disconnect();
       resizeObserver.disconnect();
       window.removeEventListener('resize', updateSize);
       window.removeEventListener('mousemove', handleMouseMove);

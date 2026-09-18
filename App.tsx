@@ -37,6 +37,10 @@ const CustomCursor: React.FC = () => {
   const ringY = useSpring(mouseY, { damping: 24, stiffness: 220, mass: 0.5 });
 
   useEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
+      return;
+    }
+
     const onMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
@@ -131,6 +135,10 @@ const AppContent: React.FC = () => {
   const springY = useSpring(cursorY, { damping: 35, stiffness: 180 });
 
   useEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
+      return;
+    }
+
     const handleMouseMove = (e: MouseEvent) => {
       cursorX.set(e.clientX - 160);
       cursorY.set(e.clientY - 160);
