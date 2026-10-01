@@ -17,6 +17,7 @@ import {
   X,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLenisScroll } from '../hooks/useLenisScroll';
 import { SEO } from '../components/SEO';
 import { PageHero } from '../components/PageHero';
 import { ScrubReveal } from '../components/ScrubReveal';
@@ -527,6 +528,7 @@ export const SkillsPage: React.FC = () => {
   const [selectedArchNode, setSelectedArchNode] = useState<string>('agents');
   const [activeDisciplineId, setActiveDisciplineId] = useState<string>(DISCIPLINES[0].id);
   const [openTechDetail, setOpenTechDetail] = useState<string | null>(null);
+  const { scrollToId } = useLenisScroll();
 
   // Filter disciplines or search
   const filteredDisciplines = DISCIPLINES.filter((disc) => {
@@ -654,7 +656,11 @@ export const SkillsPage: React.FC = () => {
 
             <a
               href="#architecture-blueprint"
-              className="hidden lg:inline-flex items-center text-sm text-[#78716C] dark:text-[#A8A29E] hover:text-copper transition-colors shrink-0 whitespace-nowrap"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToId('architecture-blueprint');
+              }}
+              className="hidden lg:inline-flex items-center text-sm text-[#78716C] dark:text-[#A8A29E] hover:text-copper transition-colors shrink-0 whitespace-nowrap cursor-pointer"
             >
               System diagram
             </a>
@@ -700,7 +706,7 @@ export const SkillsPage: React.FC = () => {
                 <button
                   key={d.id}
                   onClick={() => {
-                    document.getElementById(d.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    scrollToId(d.id);
                   }}
                   className="relative z-10 group flex items-center justify-end cursor-pointer py-1"
                   aria-label={`Jump to ${d.title}`}

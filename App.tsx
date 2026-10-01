@@ -117,13 +117,38 @@ const CustomCursor: React.FC = () => {
 const AppContent: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
-  const { scrollTo, scrollToId } = useLenisScroll();
+  const { scrollTo, scrollToId, resize } = useLenisScroll();
+
+  // Disable browser's default automatic scroll restoration so it doesn't fight Lenis
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
+  // Synchronize route and hash navigation across all pages
+  useEffect(() => {
+    const hash = location.hash.slice(1);
+    if (hash) {
+      scrollToId(hash);
+    } else {
+      scrollTo(0, { immediate: false, duration: 0.8 });
+    }
+    const timer = setTimeout(() => {
+      resize();
+    }, 380);
+    return () => clearTimeout(timer);
+  }, [location.pathname, location.hash, scrollTo, scrollToId, resize]);
 
   // After a page exits, land at the top — or at the requested #anchor once the new page has mounted.
   const handleRouteExitComplete = () => {
-    scrollTo(0, { immediate: true });
     const hash = window.location.hash.slice(1);
-    if (hash) setTimeout(() => scrollToId(hash), 120);
+    if (hash) {
+      scrollToId(hash);
+    } else {
+      scrollTo(0, { immediate: true });
+    }
+    resize();
   };
 
   const { scrollYProgress: scaleX } = useScroll();

@@ -17,6 +17,7 @@ html {
   background-color: #F5F0EB;
   color: #1A1614;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: none;
 }
 
 body {
@@ -24,6 +25,21 @@ body {
   color: #4A4340;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: none;
+}
+
+/* Ensure Lenis smooth scrolling has priority and doesn't conflict with browser defaults */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
 
 /* Editorial Scrollbar */

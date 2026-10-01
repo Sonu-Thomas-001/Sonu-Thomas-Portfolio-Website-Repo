@@ -21,14 +21,14 @@ export const Footer: React.FC = () => {
   const handleScroll = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     if (location.pathname !== '/') {
-      navigate('/');
-      setTimeout(() => scrollToId(id), 450);
+      navigate(`/#${id}`);
+      scrollToId(id);
     } else {
       scrollToId(id);
     }
   };
 
-  const scrollToTop = () => scrollTo(0);
+  const scrollToTop = () => scrollTo(0, { duration: 1.2 });
 
   return (
     <footer

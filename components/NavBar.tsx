@@ -196,8 +196,8 @@ export const NavBar: React.FC = () => {
       const targetId = path.startsWith('/#') ? path.replace('/#', '') : 'hero';
 
       if (location.pathname !== '/') {
-        navigate('/');
-        setTimeout(() => scrollToId(targetId), 450);
+        navigate(path);
+        scrollToId(targetId);
       } else {
         scrollToId(targetId);
       }
