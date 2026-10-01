@@ -347,8 +347,9 @@ function generateHtmlForRoute(route) {
     );
   }
 
-  // Replace #root inner semantic content
-  const rootReplacement = `<div id="root">
+  // Keep #root clean for React client mount and place crawler fallback in <noscript>
+  const rootReplacement = `<div id="root"></div>
+    <noscript>
       <!-- Semantic Crawler & Pre-render Fallback (Instant extraction for AI bots and Search Engines before client hydration) -->
       <header style="max-width: 900px; margin: 40px auto; padding: 0 20px; font-family: system-ui, sans-serif;">
         <h1 style="font-size: 2.25rem; font-weight: 700; color: #1A1614; margin-bottom: 8px;">${route.h1}</h1>
@@ -377,9 +378,9 @@ function generateHtmlForRoute(route) {
           </article>`).join('')}
         </section>` : ''}
       </main>
-    </div>`;
+    </noscript>`;
 
-  html = html.replace(/<div id="root">[\s\S]*?<\/div>/, rootReplacement);
+  html = html.replace(/<div id="root">[\s\S]*?<\/div>(\s*<noscript>[\s\S]*?<\/noscript>)?/, rootReplacement);
 
   return html;
 }
