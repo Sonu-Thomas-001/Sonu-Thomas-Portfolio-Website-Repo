@@ -137,11 +137,11 @@ export const Contact: React.FC = () => {
         
         {/* Left Column (6 cols): Channels Dossier & Direct Comms */}
         <motion.div 
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -45 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-6 flex flex-col justify-between gap-4"
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-6 flex flex-col justify-between gap-4 will-change-transform"
         >
           
           {/* Profile Card */}
@@ -363,11 +363,11 @@ export const Contact: React.FC = () => {
 
         {/* Right Column (6 cols): Direct Message Form */}
         <motion.div 
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 50, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-6 flex flex-col lg:sticky lg:top-28"
+          transition={{ duration: 0.75, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-6 flex flex-col lg:sticky lg:top-28 will-change-transform"
         >
           <form
             onSubmit={handleSubmit}

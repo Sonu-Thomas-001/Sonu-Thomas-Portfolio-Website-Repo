@@ -184,12 +184,12 @@ export const Skills: React.FC = () => {
           return (
             <motion.div key={disc.id} style={{ y: isDesktop && idx % 2 === 1 ? oddColumnY : 0 }}>
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              whileHover={{ y: -4 }}
-              className={`relative h-full p-7 sm:p-9 rounded-[30px] bg-[#FEFCF9]/95 dark:bg-[#1C1816]/95 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-[0_4px_24px_rgba(26,22,20,0.03)] transition-all duration-300 group overflow-hidden flex flex-col justify-between ${disc.glowAccent}`}
+              initial={{ opacity: 0, y: 45, rotateX: 6, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.7, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -6, scale: 1.01 }}
+              className={`relative h-full p-7 sm:p-9 rounded-[30px] bg-[#FEFCF9]/95 dark:bg-[#1C1816]/95 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-[0_4px_24px_rgba(26,22,20,0.03)] transition-all duration-300 group overflow-hidden flex flex-col justify-between ${disc.glowAccent} will-change-transform`}
             >
               {/* Top Accent Hairline */}
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-copper/40 group-hover:via-copper to-transparent transition-all duration-300 opacity-0 group-hover:opacity-100" />
@@ -229,11 +229,30 @@ export const Skills: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Structured Flowing Tech Pills */}
-                <div className="pt-5 border-t border-[#E8E0D8]/70 dark:border-white/[0.08] flex flex-wrap gap-2">
+                {/* Structured Flowing Tech Pills with Staggered Scroll Reveal */}
+                <motion.div 
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: {
+                      opacity: 1,
+                      transition: {
+                        staggerChildren: 0.03,
+                        delayChildren: 0.15 + idx * 0.08,
+                      },
+                    },
+                  }}
+                  className="pt-5 border-t border-[#E8E0D8]/70 dark:border-white/[0.08] flex flex-wrap gap-2"
+                >
                   {disc.skills.map((skill) => (
-                    <span
+                    <motion.span
                       key={skill.name}
+                      variants={{
+                        hidden: { opacity: 0, scale: 0.8, y: 8 },
+                        visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } },
+                      }}
                       className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono transition-all duration-200 select-none cursor-default ${
                         skill.highlight
                           ? 'bg-[#1A1614] text-white dark:bg-white/[0.12] dark:text-white border border-transparent font-medium shadow-xs hover:bg-copper hover:text-white hover:scale-105'
@@ -244,9 +263,9 @@ export const Skills: React.FC = () => {
                       {skill.highlight && (
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                       )}
-                    </span>
+                    </motion.span>
                   ))}
-                </div>
+                </motion.div>
                 {/* Explore all skills link */}
                 <div className="mt-5 pt-4 border-t border-[#E8E0D8]/60 dark:border-white/[0.08] flex items-center justify-between">
                   <Link

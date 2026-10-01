@@ -385,13 +385,13 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
                   <motion.div
                     key={project.id}
                     layout
-                    initial={{ opacity: 0, y: 32, x: isWide ? -40 : 40 }}
-                    whileInView={{ opacity: 1, y: 0, x: 0 }}
+                    initial={{ opacity: 0, y: 48, scale: 0.95, clipPath: 'inset(6% 0% 0% 0%)' }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1, clipPath: 'inset(0% 0% 0% 0%)' }}
                     viewport={{ once: true, amount: 0.15 }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.6, delay: (idx % 2) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.75, delay: (idx % 2) * 0.1, ease: [0.16, 1, 0.3, 1] }}
                     onClick={() => setSelectedProject(project)}
-                    className={`group relative overflow-hidden rounded-[28px] sm:rounded-[32px] min-h-[340px] sm:min-h-[380px] md:min-h-[420px] border border-white/10 hover:border-white/30 shadow-xl hover:shadow-[0_25px_60px_rgba(0,0,0,0.45)] transition-all duration-500 cursor-pointer flex flex-col justify-between ${colSpanClass} col-span-12 md:col-span-6`}
+                    className={`group relative overflow-hidden rounded-[28px] sm:rounded-[32px] min-h-[340px] sm:min-h-[380px] md:min-h-[420px] border border-white/10 hover:border-white/30 shadow-xl hover:shadow-[0_25px_60px_rgba(0,0,0,0.45)] transition-all duration-500 cursor-pointer flex flex-col justify-between ${colSpanClass} col-span-12 md:col-span-6 will-change-transform`}
                   >
                     {/* Full-Bleed Image Background — scroll parallax on an inner layer so `layout` stays clean */}
                     <ParallaxImage src={project.image} alt={project.title} />
@@ -399,8 +399,14 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
                     {/* Rich Dark Cinematic Gradient Overlay for Maximum Readability */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-black/15 group-hover:via-black/55 transition-colors duration-300 pointer-events-none" />
 
-                    {/* Top Badges */}
-                    <div className="relative z-10 p-6 sm:p-8 pb-0 flex items-center justify-between gap-2">
+                    {/* Top Badges with Scroll-Triggered Spring Reveal */}
+                    <motion.div 
+                      initial={{ opacity: 0, y: -12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.3 }}
+                      transition={{ duration: 0.45, delay: 0.15 }}
+                      className="relative z-10 p-6 sm:p-8 pb-0 flex items-center justify-between gap-2"
+                    >
                       <span className="px-3.5 py-1.5 rounded-full bg-black/50 backdrop-blur-md text-[11px] font-mono font-medium text-white/95 border border-white/15 shadow-sm">
                         {project.category}
                       </span>
@@ -410,10 +416,16 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
                           {meta.badge}
                         </span>
                       )}
-                    </div>
+                    </motion.div>
 
-                    {/* Bottom Overlay matching user reference image */}
-                    <div className="relative z-10 p-6 sm:p-8 pt-0 flex items-end justify-between gap-4">
+                    {/* Bottom Overlay with Scroll-Triggered Upward Unfold */}
+                    <motion.div 
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.3 }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                      className="relative z-10 p-6 sm:p-8 pt-0 flex items-end justify-between gap-4"
+                    >
                       {/* Left Block: Title and Tagline */}
                       <div className="space-y-1.5 max-w-[82%]">
                         <h3 className="font-display font-bold text-2xl sm:text-3xl text-white tracking-tight leading-snug group-hover:text-copper transition-colors">
@@ -428,7 +440,7 @@ export const Projects: React.FC<{ isHomepage?: boolean }> = ({ isHomepage = fals
                       <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/25 flex items-center justify-center text-white shrink-0 group-hover:bg-white group-hover:text-black group-hover:scale-110 transition-all duration-300 shadow-md">
                         <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </div>
-                    </div>
+                    </motion.div>
                   </motion.div>
                 );
               })}

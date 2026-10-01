@@ -195,11 +195,11 @@ export const About: React.FC = () => {
         
         {/* Left Bento: Lead Narrative & Manifesto (7 cols) */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 35, scale: 0.97, clipPath: 'inset(8% 0% 0% 0%)' }}
+          whileInView={{ opacity: 1, y: 0, scale: 1, clipPath: 'inset(0% 0% 0% 0%)' }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6 }}
-          className="lg:col-span-7 flex flex-col justify-between p-7 sm:p-9 rounded-[32px] bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-[0_4px_24px_rgba(26,22,20,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] relative overflow-hidden"
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-7 flex flex-col justify-between p-7 sm:p-9 rounded-[32px] bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-[0_4px_24px_rgba(26,22,20,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] relative overflow-hidden will-change-transform"
         >
           {/* Subtle Top Specular Gradient */}
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-copper/30 to-transparent" />
@@ -242,11 +242,11 @@ export const About: React.FC = () => {
 
         {/* Right Bento: Cinematic Spotlight Portrait (5 cols) */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 40, rotateY: -8, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, rotateY: 0, scale: 1 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="lg:col-span-5 flex flex-col justify-between lg:sticky lg:top-28"
+          transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-5 flex flex-col justify-between lg:sticky lg:top-28 will-change-transform"
         >
           <div
             ref={cardRef}
@@ -395,11 +395,11 @@ export const About: React.FC = () => {
         
         {/* Pod 1: Base of Operations & Local Time */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5 }}
-          whileHover={{ y: -3 }}
+          initial={{ opacity: 0, x: -30, y: 20 }}
+          whileInView={{ opacity: 1, x: 0, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          whileHover={{ y: -4, scale: 1.01 }}
           className="p-5 sm:p-6 rounded-2xl bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-soft-sm flex items-center justify-between"
         >
           <div className="flex items-center gap-3.5">
@@ -427,11 +427,11 @@ export const About: React.FC = () => {
 
         {/* Pod 2: Live Availability Beacon */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, delay: 0.08 }}
-          whileHover={{ y: -3 }}
+          initial={{ opacity: 0, y: 30, scale: 0.94 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.6, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+          whileHover={{ y: -4, scale: 1.01 }}
           className="p-5 sm:p-6 rounded-2xl bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-soft-sm flex items-center justify-between"
         >
           <div className="flex items-center gap-3.5">
@@ -455,11 +455,11 @@ export const About: React.FC = () => {
 
         {/* Pod 3: Architecture Thesis Tag */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, delay: 0.16 }}
-          whileHover={{ y: -3 }}
+          initial={{ opacity: 0, x: 30, y: 20 }}
+          whileInView={{ opacity: 1, x: 0, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.6, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+          whileHover={{ y: -4, scale: 1.01 }}
           className="p-5 sm:p-6 rounded-2xl bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-soft-sm flex items-center justify-between group cursor-pointer"
           onClick={() => scrollToId('contact')}
         >

@@ -213,11 +213,11 @@ export const Experience: React.FC = () => {
           {EXPERIENCE_DATA.map((item, index) => (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -35 : 35, y: 25, scale: 0.96 }}
+              whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-[#1E1B18] rounded-2xl p-6 border border-[#332E2A] shadow-soft-md space-y-4 overflow-hidden"
+              transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-[#1E1B18] rounded-2xl p-6 border border-[#332E2A] shadow-soft-md space-y-4 overflow-hidden will-change-transform"
             >
               {item.company.toLowerCase().includes('hcltech') && (
                 <div className="relative h-24 -mx-6 -mt-6 mb-2 overflow-hidden">

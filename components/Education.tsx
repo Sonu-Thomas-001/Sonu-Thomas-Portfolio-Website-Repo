@@ -115,11 +115,11 @@ export const Education: React.FC = () => {
         {/* Flagship Marquee: IIT Guwahati (8 cols) — pinned runway on desktop */}
         <div ref={runwayRef} className="lg:col-span-8 lg:h-[150vh]">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 35, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6 }}
-          className="lg:sticky lg:top-24 relative rounded-[32px] overflow-hidden bg-[#131110] border border-[#E8E0D8] dark:border-white/15 shadow-[0_24px_64px_-12px_rgba(26,22,20,0.18)] flex flex-col justify-between group min-h-[500px]"
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:sticky lg:top-24 relative rounded-[32px] overflow-hidden bg-[#131110] border border-[#E8E0D8] dark:border-white/15 shadow-[0_24px_64px_-12px_rgba(26,22,20,0.18)] flex flex-col justify-between group min-h-[500px] will-change-transform"
         >
           {/* Full-bleed Cinematic Campus Background Image — scroll-scrubbed zoom */}
           <div className="absolute inset-0 z-0 overflow-hidden">
@@ -212,12 +212,12 @@ export const Education: React.FC = () => {
             return (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5, delay: 0.15 * (idx + 1) }}
-                whileHover={{ y: -4 }}
-                className="relative flex-1 p-6 sm:p-7 rounded-[28px] bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-[0_4px_20px_rgba(26,22,20,0.04)] hover:shadow-[0_12px_32px_rgba(196,125,90,0.14)] hover:border-copper/40 transition-all duration-300 flex flex-col justify-between group overflow-hidden"
+                initial={{ opacity: 0, x: 35, scale: 0.95 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.65, delay: 0.18 * (idx + 1), ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -4, scale: 1.01 }}
+                className="relative flex-1 p-6 sm:p-7 rounded-[28px] bg-[#FEFCF9]/90 dark:bg-[#1C1816]/90 backdrop-blur-xl border border-[#E8E0D8] dark:border-white/10 shadow-[0_4px_20px_rgba(26,22,20,0.04)] hover:shadow-[0_12px_32px_rgba(196,125,90,0.14)] hover:border-copper/40 transition-all duration-300 flex flex-col justify-between group overflow-hidden will-change-transform"
               >
                 {/* Top Accent Hairline */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-copper/30 group-hover:via-copper to-transparent transition-all duration-300 opacity-0 group-hover:opacity-100" />
